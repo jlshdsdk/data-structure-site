@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法标准模板（期末 + 408通用） · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 算法标准模板（期末 + 408通用）</p>
+  </div>
+  <!-- ============ 第四部分 ============ -->
+  <div class="part-zone" id="p4">
+  <div class="part-head">
+    <div class="pnum">PART 04</div>
+    <h2>算法标准模板（期末 + 408通用）</h2>
+    <p>所有核心算法的可直接默写模板：算法思想 → 标准函数接口 → 可默写模板 → 复杂度 → 考频 → 答题书写步骤 → 例题。每节明确标注：<b>考场可用STL替代</b> 还是 <b>必须手动实现</b>。带【必考模板】的代码要求能默写。</p>
+  </div>
+
+  <section class="sec" id="a-seqlist">
+    <h3>第1章 线性表 · 1.1 顺序表操作<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：慕课顺序表 + L3 顺序vs链式对比（PAGE 33-34） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>连续存储+位序换算（位序i ↔ 下标i-1）；插入删除靠整体搬移。<b>适用场景：</b>随机访问频繁、按值插删少。<b>答题书写步骤：</b>①判参数合法性→②判表满/空→③搬移元素（先想清楚边界）→④赋值+length增减→⑤返回bool；删除值用引用e带回。</p>
+<pre class="code" data-t="顺序表 · 408标准接口（可默写）"><code>#define MaxSize 50
+typedef struct {
+    int data[MaxSize];
+    int length;
+} SqList;
+
+void InitList(SqList &amp;L) { L.length = 0; }
+
+// 插入：第i个位序插入e（1 ≤ i ≤ length+1），平均移动n/2
+bool ListInsert(SqList &amp;L, int i, int e) {
+    if (i &lt; 1 || i &gt; L.length + 1) return false;    // 位序不合法
+    if (L.length &gt;= MaxSize) return false;          // 表满
+    for (int j = L.length; j &gt;= i; j--)             // 第i个及以后整体后移
+        L.data[j] = L.data[j - 1];
+    L.data[i - 1] = e;                              // 位序i → 下标i-1
+    L.length++;
+    return true;
+}
+
+// 删除：删第i个元素，e带回，平均移动(n-1)/2
+bool ListDelete(SqList &amp;L, int i, int &amp;e) {
+    if (i &lt; 1 || i &gt; L.length) return false;
+    e = L.data[i - 1];
+    for (int j = i; j &lt; L.length; j++)
+        L.data[j - 1] = L.data[j];
+    L.length--;
+    return true;
+}
+
+// 按值查找：返回位序，0表示不存在
+int LocateElem(SqList L, int e) {
+    for (int i = 0; i &lt; L.length; i++)
+        if (L.data[i] == e) return i + 1;
+    return 0;
+}</code></pre>
+    <div class="cx"><span><b>插入/删除</b> O(n)</span><span><b>按位序取</b> O(1)</span><span><b>按值查</b> O(n)</span><span><b>空间</b> O(MaxSize)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>vector代替顺序表作答；机试可直接 <code class="inl">v.insert(v.begin()+i-1, e)</code> / <code class="inl">v.erase(v.begin()+i-1)</code>。<b>高频易错：</b>搬移边界（j≥i 还是 j&gt;i）必须推演；平均移动次数：插入n/2、删除(n-1)/2。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>长度为n的顺序表等概率插入，平均移动多少元素？删除呢？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>插入n/2，删除(n-1)/2。</b>插入有n+1个合法位置（移动n…0），期望n/2；删除n个位置（移动n-1…0），期望(n-1)/2。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>设计算法将顺序表中所有值在[s,t]（s&lt;t）之间的元素删除，要求O(n)、O(1)，不合理返回false。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="删除区间元素"><code>bool DelRange(SqList &amp;L, int s, int t) {
+    if (s &gt;= t || L.length == 0) return false;
+    int k = 0;                              // k：保留区下一个位置
+    for (int i = 0; i &lt; L.length; i++)
+        if (L.data[i] &lt; s || L.data[i] &gt; t)
+            L.data[k++] = L.data[i];
+    L.length = k;
+    return true;
+}</code></pre>
+        <p><b>考点：</b>读写双指针一趟完成（对照LC283移动零）。逐个删是O(n²)——"时间尽可能高效"提示双指针。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-linklist">
+    <h3>第1章 线性表 · 1.2 链表操作<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L3 全讲（Find/Search/Insert/Delete + 哨位结点） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>指针维护逻辑次序；头插建表逆序、尾插建表保序；插入删除只改指针。<b>适用场景：</b>插删频繁、长度未知、就地操作题（逆置/合并/找中点）。<b>答题书写步骤：</b>①声明"带头结点单链表"→②工作指针p、前驱pre、暂存q分工→③画图确认语句次序→④返回头结点或bool。</p>
+<pre class="code" data-t="单链表 · 408标准接口（可默写）"><code>typedef struct LNode {
+    int data;
+    struct LNode *next;
+} LNode, *LinkList;
+
+// 头插法建表：输入顺序与链表顺序相反（高频考点）
+void CreateList_Head(LinkList &amp;L, int a[], int n) {
+    L = (LNode*)malloc(sizeof(LNode));      // 头结点
+    L-&gt;next = NULL;
+    for (int i = 0; i &lt; n; i++) {
+        LNode *s = (LNode*)malloc(sizeof(LNode));
+        s-&gt;data = a[i];
+        s-&gt;next = L-&gt;next;                  // 插到表头
+        L-&gt;next = s;
+    }
+}
+
+// 尾插法建表：需尾指针r，输入顺序=链表顺序
+void CreateList_Tail(LinkList &amp;L, int a[], int n) {
+    L = (LNode*)malloc(sizeof(LNode));
+    LNode *r = L;
+    for (int i = 0; i &lt; n; i++) {
+        LNode *s = (LNode*)malloc(sizeof(LNode));
+        s-&gt;data = a[i]; r-&gt;next = s; r = s;
+    }
+    r-&gt;next = NULL;
+}
+
+LNode* GetElem(LinkList L, int i) {         // 按位序查找，越界返回NULL
+    if (i == 0) return L;
+    LNode *p = L-&gt;next;
+    for (int j = 1; p &amp;&amp; j &lt; i; j++) p = p-&gt;next;
+    return p;
+}
+
+bool InsertNext(LNode *p, int e) {          // 后插 O(1)
+    LNode *s = (LNode*)malloc(sizeof(LNode));
+    s-&gt;data = e; s-&gt;next = p-&gt;next; p-&gt;next = s;
+    return true;
+}
+
+bool InsertPrior(LNode *p, int e) {         // 前插"偷天换日"：先后插再换数据域
+    LNode *s = (LNode*)malloc(sizeof(LNode));
+    s-&gt;next = p-&gt;next; p-&gt;next = s;
+    s-&gt;data = p-&gt;data; p-&gt;data = e;
+    return true;
+}
+
+// 删除结点p的后继：暂存q防断链，先接再删
+bool DeleteNext(LNode *p) {
+    if (!p-&gt;next) return false;
+    LNode *q = p-&gt;next;
+    p-&gt;next = q-&gt;next;
+    free(q);
+    return true;
+}
+void Reverse(LinkList &amp;L) {                 // 就地逆置（头插重建）
+    LNode *p = L-&gt;next, *q;
+    L-&gt;next = NULL;
+    while (p) {
+        q = p-&gt;next;
+        p-&gt;next = L-&gt;next;
+        L-&gt;next = p;
+        p = q;
+    }
+}</code></pre>
+    <div class="cx"><span><b>查找/定位</b> O(n)</span><span><b>已知位置插删</b> O(1)</span><span><b>空间</b> 每结点多1指针</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>std::list；机试可用。<b>高频易错：</b>双链表插入四步"先接后断"（<code class="inl">s-&gt;next=p-&gt;next; s-&gt;prior=p; p-&gt;next-&gt;prior=s; p-&gt;next=s;</code>）次序不能乱；逆置必须暂存q防断链。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>头插法依次插入1,2,3，链表次序是？尾插法呢？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>头插：<b>3→2→1</b>（与输入相反）；尾插：<b>1→2→3</b>（保序）。"头插逆序、尾插保序"必背。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>两个递增单链表A、B归并为递增链表C，利用原结点、不申请新空间。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="有序链表归并"><code>void MergeList(LinkList &amp;La, LinkList &amp;Lb, LinkList &amp;Lc) {
+    LNode *pa = La-&gt;next, *pb = Lb-&gt;next;
+    Lc = La; LNode *r = Lc;                 // 借La头结点，尾插保递增
+    while (pa &amp;&amp; pb) {
+        if (pa-&gt;data &lt;= pb-&gt;data) { r-&gt;next = pa; r = pa; pa = pa-&gt;next; }
+        else                      { r-&gt;next = pb; r = pb; pb = pb-&gt;next; }
+    }
+    r-&gt;next = pa ? pa : pb;                 // 整段接管剩余
+    free(Lb);
+}</code></pre>
+        <p>O(m+n)/O(1)，即归并排序Merge的链表版（对应LC21，第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-twoptr">
+    <h3>第1章 线性表 · 1.3 双指针算法<span class="tag tag-tpl">必考模板</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L3 双指针技巧（PAGE 50-74） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>用两个同向/相向指针把O(n²)暴力压成O(n)：同向=读写指针（原地删/划分），相向=首尾指针（有序数组两数和）。<b>适用场景：</b>原地删除、划分、有序配对、区间收缩。<b>答题书写步骤：</b>①明确两个指针含义→②写清移动条件（谁动、何时动）→③证明不重不漏。</p>
+<pre class="code" data-t="双指针三模板（可默写）"><code>// ① 读写指针：原地删除所有等于x的元素，返回新长度
+int RemoveAll(int a[], int n, int x) {
+    int k = 0;
+    for (int i = 0; i &lt; n; i++)
+        if (a[i] != x) a[k++] = a[i];
+    return k;
+}
+
+// ② 首尾指针：非降序a[]中找和为target的两元素下标
+bool twoSum(int a[], int n, int target, int &amp;i, int &amp;j) {
+    int l = 0, r = n - 1;
+    while (l &lt; r) {
+        int s = a[l] + a[r];
+        if (s == target)     { i = l; j = r; return true; }
+        else if (s &lt; target) l++;
+        else                 r--;
+    }
+    return false;
+}
+
+// ③ 原地划分（快排Partition思想）：以a[0]为基准，小的在左大的在右
+int Partition(int a[], int low, int high) {
+    int pivot = a[low];
+    while (low &lt; high) {
+        while (low &lt; high &amp;&amp; a[high] &gt;= pivot) high--;
+        a[low] = a[high];
+        while (low &lt; high &amp;&amp; a[low] &lt;= pivot) low++;
+        a[high] = a[low];
+    }
+    a[low] = pivot;
+    return low;
+}</code></pre>
+    <div class="cx"><span><b>三种模板</b> 时间O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="note"><b>STL替代标注：</b>双指针没有STL可替代——是必考思想本身；std::remove思想同模板①。对应真题：LC283移动零、LC11盛水、LC15三数之和（第七部分）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>有序数组{1,3,5,7,9}找和为10的两个数。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>l=0(1),r=4(9)：和10命中 → 下标0和4。口诀"和小l++、和大r--"。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>递增顺序表原地删除重复元素（保留一个），O(n)/O(1)。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="有序表去重"><code>int RemoveDup(int a[], int n) {
+    if (n == 0) return 0;
+    int k = 0;
+    for (int i = 1; i &lt; n; i++)
+        if (a[i] != a[k]) a[++k] = a[i];
+    return k + 1;
+}</code></pre>
+        <p>利用有序性：i扫到与保留区末尾不同才保留（对照unique的思想，第六部分·实战e1）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-slowfast">
+    <h3>第1章 线性表 · 1.4 快慢指针<span class="tag tag-tpl">必考模板</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L3 快慢指针（倒数第k/中点/判环/回文/重排） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>同向双指针的链表特化——慢针一次1步、快针一次k步：k=2找中点/判环（Floyd判圈）。<b>适用场景：</b>中点、判环、倒数第k个、回文链表。<b>答题书写步骤：</b>①初始化都指向首元结点→②循环条件 fast &amp;&amp; fast-&gt;next→③返回慢针。</p>
+<pre class="code" data-t="快慢指针三模板（可默写）"><code>// ① 找中间结点：偶数个时返回后一个中点
+LNode* Mid(LinkList L) {
+    LNode *slow = L-&gt;next, *fast = L-&gt;next;
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+    return slow;
+}
+
+// ② 判环：快针追上慢针则有环
+bool HasCycle(LNode *head) {
+    LNode *slow = head, *fast = head;
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (slow == fast) return true;
+    }
+    return false;
+}
+
+// ③ 倒数第k个：fast先走k步，再同步走
+LNode* FindKthFromEnd(LinkList L, int k) {
+    LNode *fast = L-&gt;next, *slow = L-&gt;next;
+    for (int i = 0; i &lt; k; i++) {
+        if (!fast) return NULL;             // k超长
+        fast = fast-&gt;next;
+    }
+    while (fast) { fast = fast-&gt;next; slow = slow-&gt;next; }
+    return slow;
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="note"><b>STL替代标注：</b>无STL可替代，指针思想本身即考点。对应真题：LC141/142/19/234（第七部分链表模块）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>1→2→3→4→5，Mid返回哪个结点？若是1→2→3→4呢？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>5个结点返回<b>3</b>；4个结点返回<b>3</b>（偶数个返回后一个中点）。若要前一个中点，循环条件改 <code class="inl">fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next</code>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>判断带头结点单链表是否回文，要求O(n)、O(1)。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>三步：</b>①快慢指针找中点（1.4模板①）；②就地逆置后半段（1.2 Reverse）；③前半段与逆置段逐结点比较，最后（可选）再逆回去还原。</p>
+        <p>O(n)/O(1)——即LC234标准解法（第七部分），三问合一的典型408大题。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-stack">
+    <h3>第2章 栈与队列 · 2.1 栈的模拟与实现<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L4 栈（进制转换/括号匹配/表达式求值/栈混洗） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>LIFO，顺序栈用top指针管理栈顶。<b>适用场景：</b>括号匹配、表达式求值、递归转非递归、DFS。<b>答题书写步骤：</b>①先声明top约定（<b>top指向栈顶元素、空栈-1</b>，另一种约定指向下一空位——题目给哪种就用哪种）→②进出栈先判满/空→③"先移指针再存/先取再移"。</p>
+<pre class="code" data-t="顺序栈 · 408标准接口（可默写）"><code>#define MaxSize 50
+typedef struct {
+    int data[MaxSize];
+    int top;                                // 栈顶指针：空栈为-1
+} SqStack;
+
+void InitStack(SqStack &amp;S) { S.top = -1; }
+bool StackEmpty(SqStack S) { return S.top == -1; }
+
+bool Push(SqStack &amp;S, int x) {
+    if (S.top == MaxSize - 1) return false; // 栈满上溢
+    S.data[++S.top] = x;                    // 先移指针再存入
+    return true;
+}
+bool Pop(SqStack &amp;S, int &amp;x) {
+    if (S.top == -1) return false;          // 栈空下溢
+    x = S.data[S.top--];                    // 先取值再移指针
+    return true;
+}
+bool GetTop(SqStack S, int &amp;x) {
+    if (S.top == -1) return false;
+    x = S.data[S.top];
+    return true;
+}
+
+// 共享栈：两栈顶相向，栈满条件 top1+1 == top2（选择题常客）
+typedef struct { int data[MaxSize]; int top1, top2; } SharedStack;
+void InitShared(SharedStack &amp;S) { S.top1 = -1; S.top2 = MaxSize; }
+bool PushShared(SharedStack &amp;S, int which, int x) {
+    if (S.top1 + 1 == S.top2) return false; // 相遇即满
+    if (which == 0) S.data[++S.top1] = x;
+    else            S.data[--S.top2] = x;
+    return true;
+}</code></pre>
+    <div class="cx"><span><b>入栈/出栈/取栈顶</b> O(1)</span><span><b>空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>stack（题目考的就是栈结构）；机试直接 <code class="inl">stack&lt;int&gt;</code>。<b>高频易错：</b>①链栈=头插单链表，<b>无栈满</b>（判断题）；②n个不同元素出栈序列共 Catalan数 C(2n,n)/(n+1) 种；③共享栈满条件 top1+1==top2。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>top指向栈顶元素（初始-1）与指向下一空位（初始0）两种约定下，Push分别怎么写？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>约定一：<code class="inl">S.data[++S.top] = x;</code>（先加后存）；约定二：<code class="inl">S.data[S.top++] = x;</code>（先存后加）。判满条件分别为 top==MaxSize-1 与 top==MaxSize。读题先看约定！</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>入栈1,2,3,4，不可能的出栈序列：A.3,4,2,1　B.1,4,3,2　C.4,3,1,2　D.2,3,4,1</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>C。</b>弹4,3后栈底到顶为1,2，栈顶是2而目标为1——不合法。A/B/D模拟均可行。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-queue">
+    <h3>第2章 栈与队列 · 2.2 队列的模拟与实现<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L4 循环队列两方案（PAGE 151-153 考研真题） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>FIFO；数组取模实现逻辑循环。<b>适用场景：</b>BFS、层序遍历、缓冲区。<b>答题书写步骤：</b>①写明判空判满方案（三选一并贯彻全篇）→②入队"先存后移"、出队"先取后移"→③指针都取模。</p>
+<pre class="code" data-t="循环队列 · 方案一（牺牲一个单元，408默认，可默写）"><code>#define MaxSize 50
+typedef struct {
+    int data[MaxSize];
+    int front, rear;                        // rear指向队尾后一位置
+} SqQueue;
+
+void InitQueue(SqQueue &amp;Q) { Q.front = Q.rear = 0; }
+bool QueueEmpty(SqQueue Q) { return Q.front == Q.rear; }
+bool QueueFull(SqQueue Q)  { return (Q.rear + 1) % MaxSize == Q.front; }
+
+bool EnQueue(SqQueue &amp;Q, int x) {
+    if (QueueFull(Q)) return false;
+    Q.data[Q.rear] = x;
+    Q.rear = (Q.rear + 1) % MaxSize;
+    return true;
+}
+bool DeQueue(SqQueue &amp;Q, int &amp;x) {
+    if (QueueEmpty(Q)) return false;
+    x = Q.data[Q.front];
+    Q.front = (Q.front + 1) % MaxSize;
+    return true;
+}
+// 元素个数：(rear - front + MaxSize) % MaxSize</code></pre>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>方案</th><th>队空</th><th>队满</th><th>元素个数</th></tr>
+      <tr><td>牺牲一个单元</td><td><code>front == rear</code></td><td><code>(rear+1)%MaxSize == front</code></td><td><code>(rear-front+MaxSize)%MaxSize</code></td></tr>
+      <tr><td>增设size</td><td><code>size == 0</code></td><td><code>size == MaxSize</code></td><td>size</td></tr>
+      <tr><td>增设tag</td><td>tag==0 且 front==rear</td><td>tag==1 且 front==rear</td><td>—</td></tr>
+    </table></div>
+    <div class="cx"><span><b>入队/出队</b> O(1)</span><span><b>可用容量</b> 牺牲方案MaxSize-1</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>queue；机试直接用。<b>高频易错：</b>元素个数公式必须默写；链队front指头结点、rear指尾。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>data[0..59]，front=30、rear=15（牺牲单元方案），队列元素个数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>(15-30+60)%60 = 45。</b>rear绕圈到front前面，公式加MaxSize拉回正数再取模。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>循环队列用tag区分队空队满，最多存多少元素？front==rear且tag==1的含义？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>MaxSize个</b>（不牺牲单元）。front==rear且tag==1表示<b>队满</b>（最近一次是入队导致的相等）；tag==0表示队空。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-monostack">
+    <h3>第2章 栈与队列 · 2.3 单调栈<span class="tag tag-tpl">必考模板</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L18 堆结构延伸 + L4 栈应用（接雨水） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>栈内下标对应值保持单调；新元素"清算"栈中破坏单调者——出栈即得答案。每元素至多进出各一次→O(n)。<b>适用场景：</b>下一个更大元素、每日温度、柱状图最大矩形、接雨水。<b>答题书写步骤：</b>①栈存<b>下标</b>→②while清算→③入栈→④收尾清算剩余。</p>
+<pre class="code" data-t="单调栈模板 · 下一个更大元素（可默写）"><code>void nextGreater(int a[], int n, int res[]) {
+    int stk[MaxSize], top = -1;             // 栈存下标，值严格递减
+    for (int i = 0; i &lt; n; i++) {
+        while (top &gt;= 0 &amp;&amp; a[i] &gt; a[stk[top]])
+            res[stk[top--]] = i;            // 出栈：a[i]是其右侧首个更大值
+        stk[++top] = i;
+    }
+    while (top &gt;= 0) res[stk[top--]] = -1;  // 无更大值
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写数组栈；机试 <code class="inl">stack&lt;int&gt;</code> 或 <code class="inl">deque</code>。对应真题：LC739每日温度、LC42接雨水（第六部分·实战e7、第七部分）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>a={2,1,2,4,3}，求每个元素右侧首个更大值。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>结果：<b>4 2 4 -1 -1</b>。模拟：4清算1、2（第二个）；3无人清算。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>温度数组求"再等几天升温"，无则0。a={73,74,75,71,69,72,76,73}。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>把清算语句改为 <code class="inl">res[stk[top--]] = i - stk[top]</code>（记录下标差），res初始全0：<b>1 1 4 2 1 1 0 0</b>。即LC739（第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-monoqueue">
+    <h3>第2章 栈与队列 · 2.4 单调队列<span class="tag tag-tpl">必考模板</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L5 尺取法（PAGE 129-152）+ L4 队列 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>双端队列存下标、值单调；队尾淘汰破坏单调者、队头弹出过期者，队头即窗口最值。<b>适用场景：</b>滑动窗口最大/最小值。<b>答题书写步骤：</b>①队尾清算→②入队→③队头过期弹出→④窗口形成取队头——<b>顺序铁律：先过期再取答案</b>。</p>
+<pre class="code" data-t="滑动窗口最大值 · 手写数组版（可默写）"><code>void slidingMax(int a[], int n, int k, int res[]) {
+    int q[MaxSize], front = 0, rear = 0;    // q存下标，值递减
+    int cnt = 0;
+    for (int i = 0; i &lt; n; i++) {
+        while (rear &gt; front &amp;&amp; a[q[rear - 1]] &lt;= a[i]) rear--;  // ①队尾出
+        q[rear++] = i;                                          // ②入队尾
+        if (q[front] &lt;= i - k) front++;                         // ③队头过期
+        if (i &gt;= k - 1) res[cnt++] = a[q[front]];               // ④取答案
+    }
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(k)</span></div>
+    <div class="note"><b>STL替代标注：</b>机试 <code class="inl">deque&lt;int&gt;</code> 三行对应①②③（第六部分·实战e7）；笔试手写数组版更稳。对应真题：LC239（第七部分，困难）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>a={1,3,-1,-3,5,3,6,7}，k=3，窗口最大值序列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>3, 3, 5, 5, 6, 7</b>。逐窗：{1,3,-1}→3；{3,-1,-3}→3；{-1,-3,5}→5；{-3,5,3}→5；{5,3,6}→6；{3,6,7}→7。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格判断题】</div>
+      <p>单调队列求窗口最大值时，队头过期弹出可以放在"取答案"之后做。对吗？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>错。</b>必须<b>先过期弹出再取答案</b>，否则第一组就可能取到已滑出窗口的旧队头。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-bitree">
+    <h3>第3章 树与二叉树 · 3.1 结构定义与递归遍历<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L7 定义性质 + L8 递归遍历 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>递归定义——访问根的时机决定先/中/后序。<b>适用场景：</b>一切二叉树题的骨架；属性计算用"先算子树再汇总"。<b>答题书写步骤：</b>①开头判空（终止条件）→②visit(p)表示访问→③按序递归左右子树。</p>
+<pre class="code" data-t="二叉树定义与三种递归遍历（可默写）"><code>typedef struct BiTNode {
+    int data;
+    struct BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+
+void PreOrder(BiTree T) {              // 先序：根左右
+    if (T == NULL) return;
+    visit(T);                          // 如 printf("%d ", T-&gt;data)
+    PreOrder(T-&gt;lchild);
+    PreOrder(T-&gt;rchild);
+}
+void InOrder(BiTree T) {               // 中序：左根右（BST中序即升序）
+    if (T == NULL) return;
+    InOrder(T-&gt;lchild);
+    visit(T);
+    InOrder(T-&gt;rchild);
+}
+void PostOrder(BiTree T) {             // 后序：左右根（自底向上汇总）
+    if (T == NULL) return;
+    PostOrder(T-&gt;lchild);
+    PostOrder(T-&gt;rchild);
+    visit(T);
+}</code></pre>
+    <div class="cx"><span><b>三种遍历</b> O(n)</span><span><b>递归栈</b> O(h) 最坏O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>无替代，递归即考点。<b>高频易错：</b>①先序+中序 或 后序+中序可唯一重建，<b>先序+后序不能</b>；②n个结点形态数=Catalan数C(2n,n)/(n+1)。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>先序ABDEC、中序DBEAC，求后序。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>DEBCA。</b>A为根→左子树{D,B,E}（B为根，D、E为孩子）、右子树{C}；后序=左D E +右C+根A…正确书写：左子树后序D,E，再C，最后A → <b>D E C B A</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>利用遍历思想：判断两棵二叉树是否相似（结构相同、值可不同）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="相似判断"><code>bool similar(BiTree A, BiTree B) {
+    if (!A &amp;&amp; !B) return true;                  // 都空：相似
+    if (!A || !B) return false;                 // 一空一非空：不相似
+    return similar(A-&gt;lchild, B-&gt;lchild) &amp;&amp; similar(A-&gt;rchild, B-&gt;rchild);
+}</code></pre>
+        <p>双树同步递归是408大题常客（对应LC101对称二叉树思想，第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-bitreerec">
+    <h3>第3章 树与二叉树 · 3.2 非递归遍历与层序遍历<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L8 非递归遍历与层次遍历（PAGE 31-62） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>非递归=用栈模拟递归（中序是母版）；层序=队列按层进出。<b>答题书写步骤：</b>①声明辅助栈/队列→②中序"左链入栈、弹栈访问、转右"→③后序加last标记防重入→④层序孩子依次入队。</p>
+<pre class="code" data-t="中序非递归（母版，必背）"><code>void InOrder2(BiTree T) {
+    BiTNode *stk[MaxSize]; int top = -1;
+    BiTNode *p = T;
+    while (p || top &gt;= 0) {
+        if (p) { stk[++top] = p; p = p-&gt;lchild; }      // ①沿左链入栈
+        else {
+            p = stk[top--];                             // ②弹栈访问
+            visit(p);
+            p = p-&gt;rchild;                              // ③转右子树
+        }
+    }
+}</code></pre>
+<pre class="code" data-t="先序非递归（访问时机提前）"><code>void PreOrder2(BiTree T) {
+    BiTNode *stk[MaxSize]; int top = -1;
+    BiTNode *p = T;
+    while (p || top &gt;= 0) {
+        if (p) {
+            visit(p);                        // 与中序唯一区别：入栈前访问
+            stk[++top] = p;
+            p = p-&gt;lchild;
+        } else {
+            p = stk[top--];
+            p = p-&gt;rchild;
+        }
+    }
+}</code></pre>
+<pre class="code" data-t="后序非递归（last标记法）"><code>void PostOrder2(BiTree T) {
+    BiTNode *stk[MaxSize]; int top = -1;
+    BiTNode *p = T, *last = NULL;            // last：上一个访问的结点
+    while (p || top &gt;= 0) {
+        if (p) { stk[++top] = p; p = p-&gt;lchild; }
+        else {
+            p = stk[top];                                // 看栈顶不弹
+            if (p-&gt;rchild &amp;&amp; p-&gt;rchild != last)
+                p = p-&gt;rchild;                           // 右子树未访问
+            else {
+                visit(p); last = p; top--; p = NULL;     // 访问并回退
+            }
+        }
+    }
+}</code></pre>
+<pre class="code" data-t="层序遍历（队列）"><code>void LevelOrder(BiTree T) {
+    BiTNode *que[MaxSize]; int front = 0, rear = 0;
+    if (T) que[rear++] = T;
+    while (front &lt; rear) {
+        BiTNode *p = que[front++];
+        visit(p);
+        if (p-&gt;lchild) que[rear++] = p-&gt;lchild;
+        if (p-&gt;rchild) que[rear++] = p-&gt;rchild;
+    }
+}</code></pre>
+    <div class="cx"><span><b>非递归遍历</b> O(n)</span><span><b>栈/队列空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写栈/队列；机试 <code class="inl">stack/queue</code>（第六部分·实战e3、LC102）。<b>高频易错：</b>后序last标记防重复进右子树；层序"入队时"不必标记（树无环）但图必须标记。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>中序非递归中，结点被访问的时机是？（入栈时/弹栈时/转右时）</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>弹栈时</b>——此时其左子树已遍历完，符合"左根右"。先序改在<b>入栈前</b>访问；后序在<b>第二次看到栈顶且右子树已访问</b>时访问。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>求二叉树最大宽度（同层结点数最大值）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="最大宽度"><code>int MaxWidth(BiTree T) {
+    if (!T) return 0;
+    BiTNode *que[MaxSize]; int front = 0, rear = 0, best = 0;
+    que[rear++] = T;
+    while (front &lt; rear) {
+        int level = rear - front;            // 当前层结点数
+        if (level &gt; best) best = level;
+        for (int i = 0; i &lt; level; i++) {    // 一次处理完这一层
+            BiTNode *p = que[front++];
+            if (p-&gt;lchild) que[rear++] = p-&gt;lchild;
+            if (p-&gt;rchild) que[rear++] = p-&gt;rchild;
+        }
+    }
+    return best;
+}</code></pre>
+        <p>"rear-front=当前层结点数"是分层技巧核心（对照LC102/199，第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-bitreeattr">
+    <h3>第3章 树与二叉树 · 3.3 二叉树属性计算<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L8 其他操作（计数/求高/路径/首末结点 PAGE 102-147） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>后序汇总（左右子树信息+本结点）或先序带参传递（深度作参数）。<b>答题书写步骤：</b>①判空返回→②叶子/分支判定→③左右递归→④汇总+1或取max。</p>
+<pre class="code" data-t="属性计算五件套（可默写）"><code>int Count(BiTree T) {                        // 结点总数
+    if (!T) return 0;
+    return Count(T-&gt;lchild) + Count(T-&gt;rchild) + 1;
+}
+int LeafCount(BiTree T) {                    // 叶子数
+    if (!T) return 0;
+    if (!T-&gt;lchild &amp;&amp; !T-&gt;rchild) return 1;
+    return LeafCount(T-&gt;lchild) + LeafCount(T-&gt;rchild);
+}
+// 双分支结点数（度为2）：改判定条件即可
+int TwoBranch(BiTree T) {
+    if (!T) return 0;
+    int self = (T-&gt;lchild &amp;&amp; T-&gt;rchild) ? 1 : 0;
+    return self + TwoBranch(T-&gt;lchild) + TwoBranch(T-&gt;rchild);
+}
+int Depth(BiTree T) {                        // 高度（空树0）
+    if (!T) return 0;
+    int l = Depth(T-&gt;lchild), r = Depth(T-&gt;rchild);
+    return (l &gt; r ? l : r) + 1;
+}
+void SwapLR(BiTree &amp;T) {                     // 交换所有左右子树
+    if (!T) return;
+    SwapLR(T-&gt;lchild); SwapLR(T-&gt;rchild);
+    BiTNode *t = T-&gt;lchild; T-&gt;lchild = T-&gt;rchild; T-&gt;rchild = t;
+}
+int WPL(BiTree T, int d) {                   // 带权路径长度（2014真题原型）
+    if (!T) return 0;
+    if (!T-&gt;lchild &amp;&amp; !T-&gt;rchild) return T-&gt;data * d;
+    return WPL(T-&gt;lchild, d + 1) + WPL(T-&gt;rchild, d + 1);
+}</code></pre>
+<pre class="code" data-t="判断是否为BST（中序递增）"><code>bool isBST(BiTree T, int &amp;pre) {             // pre为前驱值，初值INT_MIN
+    if (!T) return true;
+    if (!isBST(T-&gt;lchild, pre)) return false;
+    if (T-&gt;data &lt;= pre) return false;        // 当前≤前驱：非BST
+    pre = T-&gt;data;
+    return isBST(T-&gt;rchild, pre);
+}</code></pre>
+    <div class="cx"><span><b>以上全部</b> O(n)</span><span><b>空间</b> O(h)</span></div>
+    <div class="note"><b>STL替代标注：</b>无替代。<b>高频易错：</b>深度参数作"入参"（d+1下传）、结果作"返回值"上送——两种姿势覆盖几乎所有属性题。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>度为0、1、2的结点数n0、n1、n2的关系？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>n0 = n2 + 1</b>（边数=结点数-1 推出）。判断题/选择每年必考级别的结论。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>求值为x的结点所在层数（根为第1层），不存在返回0。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="求层数"><code>int FindLevel(BiTree T, int x, int d) {      // 根调用 FindLevel(T, x, 1)
+    if (!T) return 0;
+    if (T-&gt;data == x) return d;
+    int l = FindLevel(T-&gt;lchild, x, d + 1);
+    if (l) return l;
+    return FindLevel(T-&gt;rchild, x, d + 1);
+}</code></pre>
+        <p>深度作参数、结果用返回值上传——标准姿势。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-thread">
+    <h3>第3章 树与二叉树 · 3.4 线索二叉树<span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L9 线索二叉树全讲 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>利用n+1个空指针存前驱/后继线索，实现无栈无递归遍历。<b>答题书写步骤：</b>①先写带tag结点定义（tag=0孩子/1线索）→②中序线索化用pre记录刚访问结点→③处理最后结点的rtag。</p>
+<pre class="code" data-t="中序线索化（可默写）"><code>typedef struct ThreadNode {
+    int data;
+    struct ThreadNode *lchild, *rchild;
+    int ltag, rtag;                          // 0孩子 1线索
+} ThreadNode, *ThreadTree;
+
+void InThread(ThreadTree T, ThreadTree &amp;pre) {
+    if (!T) return;
+    InThread((ThreadTree)T-&gt;lchild, pre);
+    if (!T-&gt;lchild) { T-&gt;lchild = pre; T-&gt;ltag = 1; }        // 左空：前驱线索
+    if (pre &amp;&amp; !pre-&gt;rchild) { pre-&gt;rchild = T; pre-&gt;rtag = 1; }  // pre右空：后继线索
+    pre = T;
+    InThread((ThreadTree)T-&gt;rchild, pre);
+}
+void CreateInThread(ThreadTree T) {
+    ThreadTree pre = NULL;
+    if (T) { InThread(T, pre); pre-&gt;rchild = NULL; pre-&gt;rtag = 1; }
+}
+
+ThreadNode* First(ThreadNode *p) {           // 中序第一个：左链走到底
+    while (p-&gt;ltag == 0) p = p-&gt;lchild;
+    return p;
+}
+ThreadNode* Next(ThreadNode *p) {            // 中序后继
+    if (p-&gt;rtag == 1) return p-&gt;rchild;
+    return First(p-&gt;rchild);
+}// 不用栈、不用递归的中序遍历：沿线索链一路 Next
+void ThreadInOrder(ThreadNode *T) {
+    for (ThreadNode *p = First(T); p; p = Next(p))
+        visit(p);
+}
+</code></pre>
+    <div class="cx"><span><b>线索化</b> O(n)</span><span><b>线索遍历</b> O(n)、辅助O(1)</span></div>
+    <div class="note"><b>STL替代标注：</b>无替代。<b>高频易错：</b>n个结点有<b>n+1个空指针</b>（=线索数）；有右孩子的结点其中序后继=右子树最左结点。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>n个结点的二叉树有多少个空指针域？线索化后线索数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>都是n+1</b>。2n个指针域-(n-1)条边=n+1个空指针，全部用来放线索。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>中序线索树中，X有右孩子，X的中序后继是？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>右子树中最左（左链到底）的结点。</b>中序"左根右"：X的下一个访问者是其右子树的第一个结点。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-huffman">
+    <h3>第3章 树与二叉树 · 3.5 哈夫曼树与哈夫曼编码<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L11 哈夫曼树（建树/求WPL/无需建树求WPL） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>贪心——每次取权值最小的两棵树合并；n个叶子共2n-1个结点、无度为1结点。<b>答题书写步骤：</b>①初始化2n-1数组→②n-1次"选最小两个→合并→登记双亲孩子"→③WPL=非叶结点权值和。</p>
+<pre class="code" data-t="哈夫曼树 · 静态数组标准写法（可默写）"><code>#define N 100
+typedef struct {
+    int weight;
+    int parent, lchild, rchild;              // -1表示空
+} HTNode;
+
+void CreateHuffman(int w[], int n, HTNode ht[]) {
+    int m = 2 * n - 1;                       // 总结点数
+    for (int i = 0; i &lt; m; i++) {            // 初始化
+        ht[i].weight = (i &lt; n) ? w[i] : 0;
+        ht[i].parent = ht[i].lchild = ht[i].rchild = -1;
+    }
+    for (int i = n; i &lt; m; i++) {            // 合并n-1次
+        int s1 = -1, s2 = -1;                // s1最小 s2次小
+        for (int j = 0; j &lt; i; j++)
+            if (ht[j].parent == -1) {        // 只在森林中选
+                if (s1 == -1 || ht[j].weight &lt; ht[s1].weight) { s2 = s1; s1 = j; }
+                else if (s2 == -1 || ht[j].weight &lt; ht[s2].weight) s2 = j;
+            }
+        ht[s1].parent = ht[s2].parent = i;
+        ht[i].lchild = s1; ht[i].rchild = s2;
+        ht[i].weight = ht[s1].weight + ht[s2].weight;
+    }
+}</code></pre>
+    <div class="cx"><span><b>构造</b> O(n²)（堆优化O(nlogn)，机试版见第六部分·实战e4）</span><span><b>空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写；机试 <code class="inl">priority_queue</code> 小根堆一行合并。<b>高频易错：</b>①形态不唯一但<b>WPL唯一</b>；②编码左0右1，是<b>前缀码</b>；③WPL=Σ权×路径长=非叶结点权和（两个公式互验）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础计算题】</div>
+      <p>权值{5,29,7,8,14,23,3,11}，求WPL。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>WPL=271。</b>合并序列：3+5=8；7+8=15；8+15=23；11+14=25；23+23=46；25+46=71；52+71=123…注意两个"23"不同——推荐直接算<b>非叶权和</b>：8+15+25+23+48+52+100=271，并用Σ权×深度互验。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>哈夫曼编码"1100"与"11"能否同时出现？哈夫曼树中有度为1的结点吗？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>不能</b>——"11"是"1100"的前缀，哈夫曼编码是前缀码（任一编码不是另一编码前缀），保证译码唯一；<b>没有</b>度为1的结点（n个叶子共2n-1结点）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-unionfind">
+    <h3>第3章 树与二叉树 · 3.6 并查集<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L11 并查集（三操作/路径压缩/按秩合并/省份数量） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>双亲表示法存集合，Find上溯找根、Union合并两根；路径压缩+按大小合并后近乎O(1)。<b>适用场景：</b>连通分量计数、Kruskal判环、等价类。<b>答题书写步骤：</b>①fa[i]=i初始化→②合并前先找两根、不同才合→③数根即数集合。</p>
+<pre class="code" data-t="并查集标准接口（可默写）"><code>int fa[MaxSize];
+int sz[MaxSize];                             // sz[root]：集合大小
+
+void Init(int n) {
+    for (int i = 0; i &lt; n; i++) { fa[i] = i; sz[i] = 1; }
+}
+int Find(int x) {                            // 无优化版
+    while (fa[x] != x) x = fa[x];
+    return x;
+}
+// 合并两集合：先找两根，不同根才挂接（防自环）
+void Union(int x, int y) {
+    int rx = Find(x), ry = Find(y);
+    if (rx != ry) fa[rx] = ry;
+}
+int Find2(int x) {                           // 路径压缩：沿途直接挂根
+    if (fa[x] != x) fa[x] = Find2(fa[x]);
+    return fa[x];
+}
+void Union2(int x, int y) {                  // 按大小合并
+    int rx = Find2(x), ry = Find2(y);
+    if (rx == ry) return;
+    if (sz[rx] &lt; sz[ry]) { int t = rx; rx = ry; ry = t; }
+    fa[ry] = rx;
+    sz[rx] += sz[ry];
+}</code></pre>
+    <div class="cx"><span><b>Find/Union</b> 双优化后≈O(α(n)) 近似O(1)</span><span><b>空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>无STL替代。<b>高频易错：</b>合并前必须判"是否已同根"（否则自环）；判断连通分量数=统计 fa[i]==i 的个数。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>n城市m条道路求连通块数，写并查集解法核心。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="连通分量计数"><code>Init(n);
+for (int i = 0; i &lt; m; i++) Union2(e[i][0], e[i][1]);
+int cnt = 0;
+for (int i = 0; i &lt; n; i++) if (fa[i] == i) cnt++;   // 根的个数=块数</code></pre>
+        <p>近似O(n+m)；DFS/BFS解法需显式建图，并查集可"边读边并"（对应LC547，第七部分）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格选择题】</div>
+      <p>路径压缩的作用是？并查集的存储结构属于？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>路径压缩：Find回溯时把沿途结点<b>直接挂到根</b>，使树变扁平、后续Find加速。存储结构是<b>双亲表示法</b>的树（顺序数组）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-graphstore">
+    <h3>第4章 图 · 4.1 存储结构：邻接矩阵与邻接表<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L12 图的概念与存储（PAGE 55 对比表） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>矩阵=V×V数组（O(1)判边）；邻接表=顶点数组+边链表（省空间、顺邻接点快）。<b>答题书写步骤：</b>答题第一句先写"采用邻接矩阵/邻接表存储，结构定义如下"——规定动作。</p>
+<pre class="code" data-t="邻接矩阵与邻接表 · 408标准定义（可默写）"><code>#define MaxVertex 100
+#define INF 0x3f3f3f3f
+
+typedef struct {                             // 邻接矩阵：适合稠密图
+    char Vex[MaxVertex];
+    int Edge[MaxVertex][MaxVertex];          // 0/1 或 边权（无边为INF）
+    int vexnum, arcnum;
+} MGraph;
+
+typedef struct ArcNode {                     // 邻接表：适合稀疏图
+    int adjvex;                              // 邻接点下标
+    struct ArcNode *next;
+} ArcNode;
+typedef struct VNode {
+    char data;
+    ArcNode *first;
+} VNode, AdjList[MaxVertex];
+typedef struct {
+    AdjList vertices;
+    int vexnum, arcnum;
+} ALGraph;</code></pre>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>对比项</th><th>邻接矩阵</th><th>邻接表</th></tr>
+      <tr><td>空间</td><td>O(V²)</td><td>O(V+E)</td></tr>
+      <tr><td>判(u,v)存在</td><td>O(1)</td><td>O(degree(u))</td></tr>
+      <tr><td>找所有邻接点</td><td>O(V)</td><td>O(degree(u))</td></tr>
+      <tr><td>BFS/DFS</td><td>O(V²)</td><td>O(V+E)</td></tr>
+      <tr><td>适合</td><td>稠密图</td><td>稀疏图</td></tr>
+    </table></div>
+    <div class="note"><b>STL替代标注：</b>笔试写上述标准定义；机试 <code class="inl">vector&lt;vector&lt;int&gt;&gt; g(n+1)</code> 顶替邻接表（第六部分·实战e8）。<b>高频易错：</b>无向图邻接表边结点<b>2e个</b>；矩阵第i行非零个数=顶点i出度；十字链表（有向）、邻接多重表（无向）只考概念。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>n顶点e条边的无向图邻接表：求顶点u度数的复杂度？边结点总数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>O(degree(u))；2e个</b>（每条边存两次，有向图是e个）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>带权有向图既要O(1)判断任意两顶点间是否有边，又要求最短路径，选哪种存储？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>邻接矩阵</b>——Dijkstra教材版基于矩阵，判边O(1)；邻接表判边要遍历边表。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-graphbfsdfs">
+    <h3>第4章 图 · 4.2 图的BFS与DFS<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L13 DFS/BFS 与四大应用（判环三状态） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>BFS借队列逐层扩散（无权图即最短路）；DFS借递归/栈一条路走黑。<b>答题书写步骤：</b>①visited[]全初始化false→②BFS：<b>入队即标记</b>→③DFS：访问即标记→④非连通图外层循环补遍历（顺带数连通分量）。</p>
+<pre class="code" data-t="BFS / DFS · 邻接表版（可默写）"><code>bool visited[MaxVertex];
+
+void BFS(ALGraph G, int v) {                 // 邻接表O(V+E)
+    int que[MaxVertex], front = 0, rear = 0;
+    visited[v] = true;                       // 入队即标记！
+    que[rear++] = v;
+    while (front &lt; rear) {
+        int u = que[front++];
+        visit(u);
+        for (ArcNode *p = G.vertices[u].first; p; p = p-&gt;next)
+            if (!visited[p-&gt;adjvex]) {
+                visited[p-&gt;adjvex] = true;
+                que[rear++] = p-&gt;adjvex;
+            }
+    }
+}
+
+void DFS(ALGraph G, int v) {                 // 递归DFS
+    visited[v] = true;
+    visit(v);
+    for (ArcNode *p = G.vertices[v].first; p; p = p-&gt;next)
+        if (!visited[p-&gt;adjvex]) DFS(G, p-&gt;adjvex);
+}
+
+void Traverse(ALGraph G) {                   // 非连通图完整遍历
+    for (int i = 0; i &lt; G.vexnum; i++) visited[i] = false;
+    int cnt = 0;
+    for (int i = 0; i &lt; G.vexnum; i++)
+        if (!visited[i]) { cnt++; BFS(G, i); }   // cnt=连通分量数
+}
+
+void BFS_Shortest(ALGraph G, int src, int d[]) {   // 无权单源最短路
+    for (int i = 0; i &lt; G.vexnum; i++) d[i] = -1;
+    int que[MaxVertex], front = 0, rear = 0;
+    visited[src] = true; d[src] = 0;
+    que[rear++] = src;
+    while (front &lt; rear) {
+        int u = que[front++];
+        for (ArcNode *p = G.vertices[u].first; p; p = p-&gt;next)
+            if (!visited[p-&gt;adjvex]) {
+                visited[p-&gt;adjvex] = true;
+                d[p-&gt;adjvex] = d[u] + 1;     // 首次到达即最短（边权全1）
+                que[rear++] = p-&gt;adjvex;
+            }
+    }
+}</code></pre>
+    <div class="cx"><span><b>邻接表</b> O(V+E)</span><span><b>邻接矩阵</b> O(V²)</span><span><b>空间</b> O(V)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写循环队列+visited数组；机试 <code class="inl">queue+vector</code>（第七部分LC200/994/695）。<b>高频易错：</b>BFS在<b>入队时</b>标记（不是出队时）；BFS树"矮胖"、DFS树"瘦高"；遍历序列不唯一（邻接点次序）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>为什么BFS能求无权图最短路径？带权图行吗？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>BFS按"到源点距离分层"扩展，某结点<b>首次</b>被访问时的层数就是最少边数。带权图不行——要Dijkstra（边权非负）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>判断邻接表存储的无向图中u与v是否连通。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>设计思想：</b>从u出发做一次BFS，若途中访问到v则连通。</p>
+<pre class="code" data-t="连通性判断"><code>bool IsConnected(ALGraph G, int u, int v) {
+    for (int i = 0; i &lt; G.vexnum; i++) visited[i] = false;
+    int que[MaxVertex], front = 0, rear = 0;
+    visited[u] = true; que[rear++] = u;
+    while (front &lt; rear) {
+        int x = que[front++];
+        if (x == v) return true;              // 访问到v即连通
+        for (ArcNode *p = G.vertices[x].first; p; p = p-&gt;next)
+            if (!visited[p-&gt;adjvex]) {
+                visited[p-&gt;adjvex] = true;
+                que[rear++] = p-&gt;adjvex;
+            }
+    }
+    return false;
+}</code></pre>
+<p><b>复杂度：</b>O(V+E)。2013年真题"判断是否存在u到v的简单路径"同型——DFS版带路径参数即可。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-topo">
+    <h3>第4章 图 · 4.3 拓扑排序（AOV网）<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L14 拓扑排序（TopoOrder O(n+e) + DFS逆拓扑序） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>Kahn——重复"输出入度0顶点并删除其出边"；输出不全⇔有环。<b>答题书写步骤：</b>①求所有入度→②入度0进栈/队列→③出栈输出→④出边入度减1、减到0入栈→⑤cnt&lt;n返回false。</p>
+<pre class="code" data-t="拓扑排序 · 邻接表+栈（可默写）"><code>bool TopologicalSort(ALGraph G) {
+    int indeg[MaxVertex] = {0};
+    for (int i = 0; i &lt; G.vexnum; i++)       // ①求入度
+        for (ArcNode *p = G.vertices[i].first; p; p = p-&gt;next)
+            indeg[p-&gt;adjvex]++;
+    int stk[MaxVertex], top = -1;
+    for (int i = 0; i &lt; G.vexnum; i++)       // ②0入度进栈
+        if (indeg[i] == 0) stk[++top] = i;
+    int cnt = 0;
+    while (top &gt;= 0) {
+        int u = stk[top--];                  // ③取0入度顶点
+        printf("%d ", u); cnt++;
+        for (ArcNode *p = G.vertices[u].first; p; p = p-&gt;next)
+            if (--indeg[p-&gt;adjvex] == 0)     // ④删出边
+                stk[++top] = p-&gt;adjvex;
+    }
+    return cnt &gt;= G.vexnum;                  // 输出不全→有环
+}</code></pre>
+    <div class="cx"><span><b>邻接表</b> O(V+E)</span><span><b>邻接矩阵</b> O(V²)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写；机试 <code class="inl">vector邻接表+queue/stack</code>（第六部分·实战e8、LC207）。<b>高频易错：</b>①拓扑序列<b>一般不唯一</b>，唯一⇔每步0入度顶点恰一个；②DFS的<b>逆后序</b>也是拓扑序；③AOV网顶点=活动、边=先后关系。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>拓扑排序得到v1 v2 v3 v4，一定正确的是：A.强连通 B.无环 C.v4到v1有路径 D.边数3</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>B。</b>能完成拓扑排序⇔无环；边只能从前指向后（C反了）；边数任意。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>用邻接矩阵做拓扑排序的复杂度？如何用DFS求逆拓扑序？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>矩阵版O(V²)（每轮找0入度要扫一列）。DFS法：对每个未访问顶点DFS，<b>结点回溯（出栈）时输出</b>，输出序列的<b>逆序</b>即一个拓扑序。简答高频。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-dijkstra">
+    <h3>第4章 图 · 4.4 Dijkstra（单源最短路径）<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L15 Dijkstra（三步/逐轮表格/pre 输出路径） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>贪心——每轮确认一个dist最小且未确认的顶点，再用它松弛邻居；<b>要求边权非负</b>。<b>答题书写步骤：</b>①初始化dist/path/final→②"选点—确认—松弛"三步循环n-1次→③路径沿path逆序还原。</p>
+<pre class="code" data-t="Dijkstra · 邻接矩阵 O(V²)（可默写）"><code>int dist[MaxVertex];                         // 当前最短路径长度
+int path[MaxVertex];                         // 前驱顶点
+
+void Dijkstra(MGraph G, int v0) {
+    bool final_[MaxVertex];                  // true=已确定
+    for (int i = 0; i &lt; G.vexnum; i++) {
+        dist[i] = G.Edge[v0][i];
+        final_[i] = false;
+        path[i] = (G.Edge[v0][i] &lt; INF) ? v0 : -1;
+    }
+    dist[v0] = 0; final_[v0] = true;
+    for (int i = 0; i &lt; G.vexnum - 1; i++) {
+        int u = -1, min = INF;
+        for (int j = 0; j &lt; G.vexnum; j++)   // ①选未确认dist最小者
+            if (!final_[j] &amp;&amp; dist[j] &lt; min) { min = dist[j]; u = j; }
+        if (u == -1) break;                  // 剩余不可达
+        final_[u] = true;                    // ②确认（贪心不可反悔）
+        for (int j = 0; j &lt; G.vexnum; j++)   // ③松弛
+            if (!final_[j] &amp;&amp; dist[u] + G.Edge[u][j] &lt; dist[j]) {
+                dist[j] = dist[u] + G.Edge[u][j];
+                path[j] = u;
+            }
+    }
+}</code></pre>
+    <div class="cx"><span><b>教材版</b> O(V²)</span><span><b>堆优化</b> O((V+E)logV)（机试，第六部分·实战e8）</span><span><b>空间</b> O(V)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试按教材版手写并画表模拟；机试 <code class="inl">priority_queue+vector邻接表</code>。<b>高频易错：</b>①<b>不能处理负权边</b>（选择题高频）；②手工模拟：每轮确认一个顶点、更新一行；③与Prim代码极像——Prim松弛用 Edge[u][j]，Dijkstra用 dist[u]+Edge[u][j]。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>Dijkstra每轮把一个顶点加入"已确定集合"的依据是？A.编号最小 B.dist最小且未确认 C.入度最小 D.任意</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>B。</b>贪心保证该顶点最短路径已定型（边权非负前提）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>为什么Dijkstra不适用于带负权边的图？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>贪心"确认后不再修改"依赖"路径越长权越大"的单调性；负权边会使"绕道更远却更短"成为可能，已确认的dist可能被后来路径推翻——贪心前提被破坏。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-floyd">
+    <h3>第4章 图 · 4.5 Floyd（多源最短路径）<span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L15 Floyd（递推矩阵/path 语义 PAGE 89-98） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>动态规划——依次允许每个顶点k作中转，dist[i][j]=min(dist[i][j], dist[i][k]+dist[k][j])。<b>可处理负权边</b>（不允许负权回路）。<b>答题书写步骤：</b>①dist初始化为直达、mid=-1→②k-i-j三重循环（<b>k最外层！</b>）→③路径沿mid递归还原。</p>
+<pre class="code" data-t="Floyd · O(V³)（可默写）"><code>int dist[MaxVertex][MaxVertex];
+int mid[MaxVertex][MaxVertex];
+
+void Floyd(MGraph G) {
+    for (int i = 0; i &lt; G.vexnum; i++)
+        for (int j = 0; j &lt; G.vexnum; j++) {
+            dist[i][j] = G.Edge[i][j];
+            mid[i][j] = -1;
+        }
+    for (int k = 0; k &lt; G.vexnum; k++)       // ①中转点k必须最外层
+        for (int i = 0; i &lt; G.vexnum; i++)
+            for (int j = 0; j &lt; G.vexnum; j++)
+                if (dist[i][k] + dist[k][j] &lt; dist[i][j]) {   // ②借道更短
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                    mid[i][j] = k;
+                }
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(V³)</span><span><b>空间</b> O(V²)</span><span><b>特点</b> 多源、可负权边</span></div>
+    <div class="note"><b>STL替代标注：</b>无意义——核心就是三重循环。<b>高频易错：</b>k放内层结果错误（信息未就绪）；对比记忆：单源vs多源、贪心vs动规、O(V²)vsO(V³)、负权不行vs可行。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>Floyd三重循环若把k放最内层会？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>结果错误。</b>"只允许经前k个顶点中转"的状态依赖外层推进，k在内层等于用半成品中转，可能漏解。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>求带负权边的图中"每一对顶点间最短路径"，应选？求"单源"呢？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>多源选<b>Floyd</b>（可负权边）；单源且边权非负选Dijkstra，若有负权边单源问题教材范围内用"重复Dijkstra不可靠"，考纲内答案通常表述为"Floyd求每对顶点；含负权的单源超出Dijkstra适用范围"。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-prim">
+    <h3>第4章 图 · 4.6 Prim（最小生成树·加点法）<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L16 Prim（Lowcost/pre 机制 PAGE 21-31） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>从顶点出发，每次把"离生成树最近"的顶点拉进树，n-1轮。<b>适合稠密图</b>（O(V²)与边数无关）。<b>答题书写步骤：</b>①lowcost/closest初始化为到u0→②树外选lowcost最小者→③输出该边→④用新顶点更新树外lowcost/closest。</p>
+<pre class="code" data-t="Prim · 邻接矩阵 O(V²)（可默写）"><code>void Prim(MGraph G, int u0) {
+    int lowcost[MaxVertex];                  // 各点到生成树的最小边权
+    int closest[MaxVertex];                  // 该最小边的树内端点
+    bool in[MaxVertex] = {false};
+    for (int j = 0; j &lt; G.vexnum; j++) {
+        lowcost[j] = G.Edge[u0][j];
+        closest[j] = u0;
+    }
+    in[u0] = true;
+    for (int i = 1; i &lt; G.vexnum; i++) {
+        int u = -1, min = INF;
+        for (int j = 0; j &lt; G.vexnum; j++)   // ①树外选lowcost最小
+            if (!in[j] &amp;&amp; lowcost[j] &lt; min) { min = lowcost[j]; u = j; }
+        if (u == -1) break;
+        printf("(%d,%d) ", closest[u], u);   // ②选中边入MST
+        in[u] = true;
+        for (int j = 0; j &lt; G.vexnum; j++)   // ③更新：注意只用Edge[u][j]！
+            if (!in[j] &amp;&amp; G.Edge[u][j] &lt; lowcost[j]) {
+                lowcost[j] = G.Edge[u][j];
+                closest[j] = u;
+            }
+    }
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(V²)</span><span><b>适合</b> 稠密图</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写；机试可用堆优化。<b>高频易错：</b>与Dijkstra手误混写——<b>Prim不带累加、Dijkstra要累加</b>；各边权互不相同⇒MST唯一（反之不必然）；MST总权唯一。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>Prim适合稠密图还是稀疏图？为什么？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>稠密图</b>——O(V²)只与顶点数有关，边再多也不变慢；Kruskal的O(ElogE)在稠密图反而吃亏。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>MST说法正确的是：A.权互异则唯一 B.Prim适合稀疏图 C.MST总权一定大于其他生成树 D.边权可为负</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>A、D。</b>B说反；C错（MST是总权<b>最小</b>）；MST算法不依赖正权。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-kruskal">
+    <h3>第4章 图 · 4.7 Kruskal（最小生成树·加边法）<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L16 Kruskal（排序+并查集判环 O(eloge)） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>边权升序逐条尝试，并查集判环（两端同根则成环跳过），选够n-1条结束。<b>适合稀疏图</b>，瓶颈是排序O(ElogE)。<b>答题书写步骤：</b>①边集数组按权排序→②并查集初始化→③逐边Find两端、不同根才合并并选入。</p>
+<pre class="code" data-t="Kruskal · 排序+并查集（可默写）"><code>typedef struct { int u, v, w; } Edge;
+
+int fa[MaxVertex];
+int Find(int x) { while (fa[x] != x) x = fa[x]; return x; }
+
+void Kruskal(Edge e[], int m, int n) {       // m条边 n个顶点
+    for (int i = 0; i &lt; m - 1; i++)          // ①按权升序排序
+        for (int j = 0; j &lt; m - 1 - i; j++)
+            if (e[j].w &gt; e[j + 1].w) {
+                Edge t = e[j]; e[j] = e[j + 1]; e[j + 1] = t;
+            }
+    for (int i = 0; i &lt; n; i++) fa[i] = i;   // ②初始化
+    int cnt = 0;
+    for (int i = 0; i &lt; m &amp;&amp; cnt &lt; n - 1; i++) {
+        int ru = Find(e[i].u), rv = Find(e[i].v);
+        if (ru != rv) {                      // ③不同根→不成环
+            fa[ru] = rv;
+            printf("(%d,%d) w=%d\n", e[i].u, e[i].v, e[i].w);
+            cnt++;
+        }
+    }
+    if (cnt &lt; n - 1) printf("图不连通\n");
+}</code></pre>
+    <div class="cx"><span><b>时间</b> O(ElogE)</span><span><b>适合</b> 稀疏图</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试排序可写"调用排序O(ElogE)"（边排序通常非考察点）；判环的并查集必须手写。<b>高频易错：</b>手工模拟=按权列边+判成环；与Prim对比：加边vs加点、稀疏vs稠密。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础计算题】</div>
+      <p>边(1,2)=1,(1,3)=2,(2,3)=3,(2,4)=4,(3,4)=5,(4,5)=6，求Kruskal选边过程。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>(1,2)=1✔ (1,3)=2✔ (2,3)=3✘成环 (2,4)=4✔ (3,4)=5✘成环 (4,5)=6✔ → 共4条，<b>总权13</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>Kruskal判环的本质是判断？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>边的两端点是否已在同一连通集合（同根）</b>——树中再加一条内部边必成环。这就是并查集的经典应用。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-aoe">
+    <h3>第4章 图 · 4.8 关键路径（AOE网）<span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L14 关键路径（ve/vl/e/l 四量，9顶点真题全程） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>AOE网顶点=事件、边=活动（带工期）。关键路径=<b>最长路径</b>=工期下限；关键活动：时间余量l−e=0。<b>答题书写步骤（四步）：</b>①拓扑序求ve（取max）→②逆拓扑序求vl（取min，vl汇=ve汇）→③每条活动&lt;i,j&gt;：e=ve(i)、l=vl(j)−w→④e==l即关键活动。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>量</th><th>公式</th></tr>
+      <tr><td>事件最早 ve(j)</td><td>ve(源)=0；ve(j) = max{ ve(i) + w(i,j) }（拓扑序）</td></tr>
+      <tr><td>事件最迟 vl(i)</td><td>vl(汇)=ve(汇)；vl(i) = min{ vl(j) − w(i,j) }（逆拓扑序）</td></tr>
+      <tr><td>活动最早 e(i)</td><td>e(&lt;i,j&gt;) = ve(i)</td></tr>
+      <tr><td>活动最迟 l(i)</td><td>l(&lt;i,j&gt;) = vl(j) − w(i,j)</td></tr>
+      <tr><td>关键活动</td><td><b>l(i) − e(i) = 0</b></td></tr>
+    </table></div>
+<pre class="code" data-t="关键路径计算骨架"><code>int ve[MaxVertex], vl[MaxVertex];
+// 拓扑排序框架内顺带求ve：删除u时对出边&lt;u,j&gt;：ve[j] = max(ve[j], ve[u] + w)
+// 逆拓扑序求vl：初值vl[*] = ve[汇]；对边&lt;i,j&gt;：vl[i] = min(vl[i], vl[j] - w)
+// 最后扫描每条边&lt;i,j&gt;：e = ve[i]; l = vl[j] - w; e == l → 关键活动</code></pre>
+    <div class="note"><b>高频易错：</b>①ve从前往后取<b>max</b>、vl从后往前取<b>min</b>，方向别反；②关键路径可有多条——缩短一个关键活动工期，<b>总工期不一定缩短</b>（另一条关键路径成为瓶颈，判断题高频）；③关键活动延缓→工期必延。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础计算题】</div>
+      <p>活动a1(1→2,w=2), a2(1→3,w=5), a3(2→4,w=4), a4(3→4,w=3)，求关键路径与工期。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>ve：0, 2, 5, 8；vl：0, 4, 5, 8。活动：a1(e=0,l=2)非关键；a2(e=0,l=0)<b>关键</b>；a3(e=2,l=4)非关键；a4(e=5,l=5)<b>关键</b>。<b>关键路径1→3→4，工期8。</b></p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格判断题】</div>
+      <p>缩短某个关键活动的工期，总工期一定缩短。对吗？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>不一定。</b>若存在多条关键路径，只缩短其中一条，另一条仍是瓶颈；且缩短到一定程度后该活动可能不再关键。只有缩短<b>所有</b>关键路径共同包含的活动才有意义。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-seqbin">
+    <h3>第5章 查找 · 5.1 顺序查找与折半查找<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L22 对半查找（判定树/ASL 2.9 与 3.5） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>顺序=哨兵从头/尾扫；折半=有序表每次比较淘汰一半。<b>折半前提：有序+顺序存储</b>（链表不能折半）。<b>答题书写步骤：</b>①low/high/mid定义清楚→②循环条件 low&lt;=high→③三分支→④失败返回-1；画判定树辅助。</p>
+<pre class="code" data-t="顺序（哨兵版）与折半查找（可默写）"><code>int SeqSearch(int a[], int n, int key) {     // a[0]作哨兵，返回0表示失败
+    a[0] = key;
+    int i = n;
+    while (a[i] != key) i--;                 // 从尾向头，省越界判断
+    return i;
+}
+
+int BinSearch(int a[], int n, int key) {     // a[0..n-1]非降序
+    int low = 0, high = n - 1;
+    while (low &lt;= high) {                    // 闭区间用 &lt;=
+        int mid = (low + high) / 2;          // 向下取整
+        if (a[mid] == key) return mid;
+        else if (a[mid] &gt; key) high = mid - 1;
+        else                   low  = mid + 1;
+    }
+    return -1;
+}</code></pre>
+    <div class="cx"><span><b>顺序</b> O(n)（成功ASL=(n+1)/2）</span><span><b>折半</b> O(log₂n)，比较次数≤⌈log₂(n+1)⌉</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写；机试 lower_bound。<b>高频易错：</b>①判定树：mid向下取整→右子树结点≥左子树，失败结点n+1个；②<b>有序单链表也不能折半</b>（无随机访问）；③折半插入位置=查找失败时的low。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>13个元素有序表找18：7,14,18,21,23,29,31,35,38,42,46,49,52，比较序列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>low=0,high=12,<b>mid=6→31</b>（向左）；high=5,<b>mid=2→18</b>命中。<b>比较2次</b>。全表最多比较⌈log₂14⌉=4次。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>折半查找判定树中，失败结点共几个？为什么有序单链表不能折半？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>n+1个</b>（外部结点）。折半需要O(1)取中间元素——链表只能顺序寻址，取mid本身O(n)，总复杂度退化为O(n)。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-bst">
+    <h3>第5章 查找 · 5.2 二叉排序树（BST）<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L23 BST（删除三情况/退化O(n)） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>左&lt;根&lt;右递归成立；<b>中序遍历得递增序列</b>——判断/构造/找前驱后继的万能钥匙。<b>答题书写步骤：</b>①查找沿"小往左大往右"→②插入总是落在叶子→③删除分三情况（叶/单孩子/双子树）。</p>
+<pre class="code" data-t="BST 查找/插入/删除（可默写）"><code>typedef struct BSTNode {
+    int data;
+    struct BSTNode *lchild, *rchild;
+} BSTNode, *BSTree;
+
+BSTNode* BSTSearch(BSTree T, int key) {      // 非递归查找
+    while (T &amp;&amp; key != T-&gt;data)
+        T = (key &lt; T-&gt;data) ? T-&gt;lchild : T-&gt;rchild;
+    return T;
+}
+
+bool BSTInsert(BSTree &amp;T, int key) {         // 递归插入，总是插成叶子
+    if (!T) {
+        T = (BSTree)malloc(sizeof(BSTNode));
+        T-&gt;data = key; T-&gt;lchild = T-&gt;rchild = NULL;
+        return true;
+    }
+    if (key == T-&gt;data) return false;        // 已存在不插
+    if (key &lt; T-&gt;data) return BSTInsert(T-&gt;lchild, key);
+    return BSTInsert(T-&gt;rchild, key);
+}
+
+void BSTDelete(BSTree &amp;T, int key) {         // 删除
+    if (!T) return;
+    if (key &lt; T-&gt;data)      BSTDelete(T-&gt;lchild, key);
+    else if (key &gt; T-&gt;data) BSTDelete(T-&gt;rchild, key);
+    else {
+        if (T-&gt;lchild == NULL) { BSTNode *p = T; T = T-&gt;rchild; free(p); }
+        else if (T-&gt;rchild == NULL) { BSTNode *p = T; T = T-&gt;lchild; free(p); }
+        else {                               // 双子树：用直接前驱顶替
+            BSTNode *pre = T-&gt;lchild;        // 前驱=左子树最右
+            while (pre-&gt;rchild) pre = pre-&gt;rchild;
+            T-&gt;data = pre-&gt;data;
+            BSTDelete(T-&gt;lchild, pre-&gt;data); // 转化为删前驱
+        }
+    }
+}</code></pre>
+    <div class="cx"><span><b>平均</b> O(logn)</span><span><b>最坏（有序插入成单支）</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>set/map代替BST作答；机试可以。<b>高频易错：</b>①双子树删除用前驱（左子树最右）或后继（右子树最左）替换后转化为删叶/单孩子；②插入次序不同树形不同——ASL随插入序变化。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>依次插入50,30,70,20,40,35建BST，35在第几层？ASL成功是多少？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>50根；30、70第2层；20、40第3层；35挂40左第<b>4层</b>。ASL=(1×1+2×2+3×2+4×1)/6=19/6。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>上题删除30（前驱顶替）后，画出结果树。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>30是双子结点→前驱=左子树最右。30的左子树只有20→前驱是20，用20顶替30的位置；40成20的右孩子，35仍是40左孩子。结果：50根，左孩子20（右孩子40，40左孩子35），右孩子70。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-avl">
+    <h3>第5章 查找 · 5.3 平衡二叉树（AVL）<span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L23 AVL（四型旋转/2021真题） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>BST+平衡因子|BF|≤1；插入后自底向上找<b>第一个失衡结点（最小不平衡子树）</b>旋转调整。<b>答题书写步骤：</b>①插入后回溯找失衡点→②判断LL/RR/LR/RL→③单旋/双旋→④画出调整后子树。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>类型</th><th>失衡点A与新结点位置关系</th><th>调整</th></tr>
+      <tr><td><b>LL</b></td><td>左孩子的左侧</td><td><b>右单旋</b>：左孩子B上提，A下沉为B右孩子，B原右子树挂A左</td></tr>
+      <tr><td><b>RR</b></td><td>右孩子的右侧</td><td><b>左单旋</b>（LL镜像）</td></tr>
+      <tr><td><b>LR</b></td><td>左孩子的右侧</td><td><b>先左旋后右旋</b>，C（左孩子的右孩子）为最终根</td></tr>
+      <tr><td><b>RL</b></td><td>右孩子的左侧</td><td><b>先右旋后左旋</b>（LR镜像）</td></tr>
+    </table></div>
+<pre class="code" data-t="右旋/左旋接口（理解+会画）"><code>void R_Rotate(BSTree &amp;p) {                   // 右旋（LL）：q上提为根
+    BSTNode *q = p-&gt;lchild;
+    p-&gt;lchild = q-&gt;rchild;                   // q右子树过继给p
+    q-&gt;rchild = p;                           // p下沉
+    p = q;
+}
+void L_Rotate(BSTree &amp;p) {                   // 左旋（RR）：镜像
+    BSTNode *q = p-&gt;rchild;
+    p-&gt;rchild = q-&gt;lchild;
+    q-&gt;lchild = p;
+    p = q;
+}</code></pre>
+    <div class="cx"><span><b>查找/插入/删除</b> O(logn)</span><span><b>空间</b> O(n)</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试考"判断旋转类型+画调整后结果"，代码理解即可（set/map底层即此思想）。<b>高频易错：</b>①高度h的AVL最少结点 N(0)=0,N(1)=1,N(2)=2,N(h)=N(h−1)+N(h−2)+1；②插入只调一次，删除可能多次旋转。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础综合题】</div>
+      <p>依次插入30,20,10,25,40,5建AVL，每次失衡及最终根？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>插10时30处<b>LL→右旋</b>，根20；插25、40不失衡；插5时20处<b>LL→右旋</b>。<b>最终根10</b>，10右孩子20（左5右30），30左25右40。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>高度为6的AVL树至少多少个结点？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>递推：N(1)=1, N(2)=2, N(3)=4, N(4)=7, N(5)=12, N(6)=<b>20</b>。反向结论：n个结点AVL高度≈1.44·log₂(n+2)。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-hash">
+    <h3>第5章 查找 · 5.4 哈希表<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L25 散列（落位模拟/ASL口径/三道真题） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>Hash(key)=key%p（p取≤表长的最大素数）；冲突处理：开放定址（线性/平方探测，<b>不能物理删除</b>）与拉链法。<b>答题书写步骤：</b>①写散列函数→②逐个插入画表并标注比较次数→③ASL成功=Σ各元素比较次数/n；ASL失败=各散列地址探到空位的次数/p。</p>
+<pre class="code" data-t="哈希表 · 拉链法 + 线性探测（可默写）"><code>#define M 13                                 // 表长（素数）
+typedef struct HNode {
+    int key;
+    struct HNode *next;
+} HNode;
+HNode *HT[M];                                // 拉链法：桶数组
+
+int Hash(int key) { return key % M; }
+
+void HashInsert(int key) {
+    int h = Hash(key);
+    HNode *s = (HNode*)malloc(sizeof(HNode));
+    s-&gt;key = key;
+    s-&gt;next = HT[h];                         // 头插
+    HT[h] = s;
+}
+bool HashSearch(int key) {
+    for (HNode *p = HT[Hash(key)]; p; p = p-&gt;next)
+        if (p-&gt;key == key) return true;
+    return false;
+}
+
+int HT2[M];                                  // 线性探测：-1空 -2已删
+void LineInsert(int key) {
+    int h = Hash(key);
+    while (HT2[h] != -1 &amp;&amp; HT2[h] != -2)     // 占用则探测下一格
+        h = (h + 1) % M;
+    HT2[h] = key;
+}
+bool LineSearch(int key) {
+    int h = Hash(key);
+    while (HT2[h] != -1) {                   // 撞到空位才确认失败
+        if (HT2[h] == key) return true;
+        h = (h + 1) % M;
+    }
+    return false;
+}</code></pre>
+    <div class="cx"><span><b>平均</b> O(1+α)</span><span><b>最坏</b> O(n)</span><span><b>删除</b> 拉链可删/开放定址只能置标记</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试<b>禁用</b>unordered_map作答；机试可用。<b>高频易错：</b>①ASL失败的分母是<b>散列函数取值个数p</b>不是表长；②装填因子α=元素数/表长，决定平均性能；③平方探测di=1²,−1²,2²,−2²…</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础计算题】</div>
+      <p>M=13，Hash=key%13，线性探测依次插入14,36,42,38,40,15,19,12，求ASL成功。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>落位：14→1(1次) 36→10(1) 42→3(1) 38→12(1) 40→2(2) 15→4(3) 19→6(1) 12→0(2)。<b>ASL=(1+1+1+1+2+3+1+2)/8=1.5</b>。答题格式：画表+标注每元素探测次数。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>开放定址法为何不能物理删除元素？正确做法？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>物理删除会<b>截断探测链</b>——本来能探到的后插元素变成"找不到"。做法：置<b>删除标记</b>（如-2），插入可复用、查找继续探测。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortinsert">
+    <h3>第6章 内部排序 · 6.1 直接插入、折半插入、希尔排序<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L17 直接插入/希尔（考研增量判断真题） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>把元素逐个插入前面<b>已有序</b>的子序列；希尔=按增量分组做插入、增量递减到1。<b>答题书写步骤：</b>①从i=1开始，暂存a[i]→②大于t者后移→③插入a[j+1]→④希尔外层再套增量循环。</p>
+<pre class="code" data-t="直接插入 + 希尔（可默写）"><code>void InsertSort(int a[], int n) {            // 稳定；基本有序时O(n)
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] &lt; a[i - 1]) {
+            int t = a[i], j = i - 1;
+            while (j &gt;= 0 &amp;&amp; a[j] &gt; t) {
+                a[j + 1] = a[j];
+                j--;
+            }
+            a[j + 1] = t;
+        }
+    }
+}
+
+void ShellSort(int a[], int n) {             // 不稳定；增量n/2递减到1
+    for (int d = n / 2; d &gt;= 1; d /= 2)
+        for (int i = d; i &lt; n; i++)
+            if (a[i] &lt; a[i - d]) {
+                int t = a[i], j = i - d;
+                while (j &gt;= 0 &amp;&amp; a[j] &gt; t) {
+                    a[j + d] = a[j];
+                    j -= d;
+                }
+                a[j + d] = t;
+            }
+}</code></pre>
+    <div class="cx"><span><b>直接插入</b> 最好O(n)/最坏O(n²) 稳定</span><span><b>折半插入</b> 比较O(nlog₂n)级 移动仍O(n²) 稳定</span><span><b>希尔</b> ≈O(n^1.3) 不稳定</span></div>
+    <div class="note"><b>STL替代标注：</b>考排序本身必须手写。<b>高频易错：</b>①"几乎有序选插入"（O(n)）；②折半插入只省比较不省移动；③希尔只能顺序存储、不稳定。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>{46,79,56,38,40,84}直接插入（初始有序区{46}），第一、二趟后序列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>插79：不变→46,79,56,38,40,84。插56：56&lt;79后移，插46后→<b>46,56,79,38,40,84</b>。插入排序每趟只动前面有序区，后面原样。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>"基本有序时效率最高"的排序是？"数据规模小"时常选？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>基本有序→<b>直接插入</b>（每趟一次比较即插入，O(n)）；规模小→直接插入也最常选（常数小）。这也是快排递归到小区间切插入的原因。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortbubble">
+    <h3>第6章 内部排序 · 6.2 冒泡排序<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L17 冒泡（每趟就位/最后交换位置改进） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>相邻逆序交换，每趟把未排序部分最大值"冒"到末尾；flag提前终止。<b>答题书写步骤：</b>①外层n-1趟→②内层从后往前→③相等不换（稳定）→④无交换提前return。</p>
+<pre class="code" data-t="冒泡排序（含提前终止，可默写）"><code>void BubbleSort(int a[], int n) {
+    for (int i = 0; i &lt; n - 1; i++) {
+        bool flag = false;
+        for (int j = n - 1; j &gt; i; j--)      // 从后往前，小元素上浮
+            if (a[j - 1] &gt; a[j]) {
+                int t = a[j]; a[j] = a[j - 1]; a[j - 1] = t;
+                flag = true;
+            }
+        if (!flag) return;                   // 一趟无交换→已有序
+    }
+}</code></pre>
+    <div class="cx"><span><b>最好</b> O(n)</span><span><b>最坏/平均</b> O(n²)</span><span><b>空间</b> O(1)</span><span><b>稳定</b> ✔</span></div>
+    <div class="note"><b>STL替代标注：</b>考排序必手写。<b>高频易错：</b>①第i趟后尾部i个有序；②<b>交换次数=逆序对数</b>（比较次数固定n(n-1)/2）。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>{5,1,4,2,8}冒泡（从后往前比较）第一趟结果？共几趟？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>第一趟：<b>{1,5,2,4,8}</b>；第二趟{1,2,4,5,8}；第三趟无交换（flag假）结束——共3趟。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>哪个序列冒泡交换次数最少：A.1,2,3,4,5　B.5,4,3,2,1　C.2,1,4,3,5</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>A（0次，一趟即止）</b>——逆序对：A有0个、B有10个、C有2个。数逆序对即可判交换次数。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortquick">
+    <h3>第6章 内部排序 · 6.3 快速排序<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L19 快排（Partition 一趟一元素就位） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>分治——Partition让枢轴归位（左≤它≤右），再递归两半。<b>Partition是408考频最高的单函数</b>（快排/第k小/划分题通用）。<b>答题书写步骤：</b>①取a[low]为枢轴暂存→②右找小填左、左找大填右→③相遇处归位枢轴→④递归左右。</p>
+<pre class="code" data-t="快速排序（教材标准版，可默写）"><code>int Partition(int a[], int low, int high) {
+    int pivot = a[low];
+    while (low &lt; high) {
+        while (low &lt; high &amp;&amp; a[high] &gt;= pivot) high--;   // 右端找小
+        a[low] = a[high];
+        while (low &lt; high &amp;&amp; a[low] &lt;= pivot) low++;     // 左端找大
+        a[high] = a[low];
+    }
+    a[low] = pivot;                          // 枢轴归位
+    return low;
+}
+
+void QuickSort(int a[], int low, int high) {
+    if (low &lt; high) {
+        int p = Partition(a, low, high);
+        QuickSort(a, low, p - 1);
+        QuickSort(a, p + 1, high);
+    }
+}</code></pre>
+    <div class="cx"><span><b>平均</b> O(nlog₂n)</span><span><b>最坏（基本有序）</b> O(n²)</span><span><b>空间（递归栈）</b> O(log₂n) 最坏O(n)</span><span><b>不稳定</b> ✘</span></div>
+    <div class="note"><b>STL替代标注：</b>考排序/划分必手写；机试 sort/nth_element。<b>高频易错：</b>①<b>每趟枢轴归位</b>（判"第k趟结果"钥匙）；②枢轴每次中分递归深度最小log₂n；③判某序列"是否快排一趟结果"：存在元素左边全≤它右边全≥它。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>{49,38,65,97,76,13,27}以49为枢轴一次划分的结果？（2010年真题同型）</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>27, 38, 13, 49, 76, 97, 65</b>，49在第4位。模拟：27填左→65填右→13填左→97填右→相遇归位49。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>下列哪个序列可能是{3,1,4,5,2}快排<b>一趟</b>后的结果？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>验证法：找是否存在某元素满足"左边≤它≤右边"。如 2,1,3,4,5（3归位）✔；2,1,5,4,3（3归位）✔；判断时逐一检查候选归位元素即可。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortselect">
+    <h3>第6章 内部排序 · 6.4 简单选择与堆排序<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L17 选择 + L18 堆排序 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>选择=每趟选最小放前面；堆排=建大根堆后反复"堆顶换末尾+下坠调整"。<b>答题书写步骤（堆）：</b>①从⌊n/2⌋起自底向上建堆O(n)→②n-1趟：堆顶换到i→③SiftDown(a,1,i-1)。</p>
+<pre class="code" data-t="简单选择 + 堆排序（下标从1起，与教材一致，可默写）"><code>void SelectSort(int a[], int n) {            // 不稳定；比较恒为n(n-1)/2
+    for (int i = 0; i &lt; n - 1; i++) {
+        int k = i;
+        for (int j = i + 1; j &lt; n; j++)
+            if (a[j] &lt; a[k]) k = j;
+        if (k != i) { int t = a[i]; a[i] = a[k]; a[k] = t; }
+    }
+}
+
+void SiftDown(int a[], int k, int n) {       // 下标从1起：i孩子为2i,2i+1
+    a[0] = a[k];                             // a[0]暂存
+    for (int i = 2 * k; i &lt;= n; i *= 2) {
+        if (i &lt; n &amp;&amp; a[i] &lt; a[i + 1]) i++;   // 取较大孩子
+        if (a[0] &gt;= a[i]) break;
+        a[k] = a[i];                         // 大孩子上移
+        k = i;
+    }
+    a[k] = a[0];
+}
+void HeapSort(int a[], int n) {              // a[1..n]，升序用大根堆
+    for (int i = n / 2; i &gt;= 1; i--)         // ①建堆 O(n)
+        SiftDown(a, i, n);
+    for (int i = n; i &gt; 1; i--) {            // ②n-1趟
+        int t = a[1]; a[1] = a[i]; a[i] = t; // 堆顶换到末尾
+        SiftDown(a, 1, i - 1);               // O(logn)
+    }
+}</code></pre>
+    <div class="cx"><span><b>选择</b> O(n²)恒定 不稳定</span><span><b>建堆</b> O(n)</span><span><b>堆排</b> O(nlog₂n)恒定 空间O(1) 不稳定</span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写（含手工建堆/筛选过程）；机试 priority_queue。<b>高频易错：</b>①教材下标从1起（孩子2i、2i+1，末非叶⌊n/2⌋），0起编号要会换算；②堆只保证父≥子，<b>不支持二分</b>、顺序遍历无序——判断题坑；③大根堆→升序。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础综合题】</div>
+      <p>{45,78,12,90,24}建大根堆（下标1起），输出两个最大后剩余堆？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>建堆：<b>90,78,12,45,24</b>。输出90后调整：<b>78,45,12,24</b>；输出78后：<b>45,24,12</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>任何情况O(nlogn)且空间O(1)的是？A.快排 B.归并 C.堆排 D.希尔</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>C。</b>快排最坏O(n²)、归并O(n)空间、希尔复杂度依赖增量。堆排恒定nlogn+O(1)。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortmerge">
+    <h3>第6章 内部排序 · 6.5 归并排序<span class="tag tag-tpl">必考模板</span><span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★★</span></h3>
+    <p class="lcline">🎬 对应课程：L20 归并（相等先放左/逆序对） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>分治——递归拆半各自有序，再Merge两个有序段；<b>任何输入恒定O(nlogn)且稳定</b>。<b>答题书写步骤：</b>①mid拆半递归→②复制到辅助数组→③两段取小（取等号保稳定）→④接尾巴。</p>
+<pre class="code" data-t="2路归并（可默写）"><code>int b[MaxN];                                 // 辅助数组
+
+void Merge(int a[], int low, int mid, int high) {
+    for (int i = low; i &lt;= high; i++) b[i] = a[i];
+    int i = low, j = mid + 1, k = low;
+    while (i &lt;= mid &amp;&amp; j &lt;= high) {
+        if (b[i] &lt;= b[j]) a[k++] = b[i++];   // 取等号 → 稳定的关键
+        else              a[k++] = b[j++];
+    }
+    while (i &lt;= mid)  a[k++] = b[i++];
+    while (j &lt;= high) a[k++] = b[j++];
+}
+void MergeSort(int a[], int low, int high) {
+    if (low &lt; high) {
+        int mid = (low + high) / 2;
+        MergeSort(a, low, mid);
+        MergeSort(a, mid + 1, high);
+        Merge(a, low, mid, high);
+    }
+}</code></pre>
+    <div class="cx"><span><b>时间</b> 恒定O(nlog₂n)</span><span><b>空间</b> O(n)</span><span><b>稳定</b> ✔</span><span><b>趟数</b> ⌈log₂n⌉</span></div>
+    <div class="note"><b>STL替代标注：</b>考排序必手写；机试 stable_sort 即归并。<b>高频易错：</b>①与快排对比：快排"先划分后递归"、归并"先递归后合并"；②k路归并趟数⌈log_k n⌉（外部排序考点）；③"n大且要求稳定"首选归并。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>8个元素2路归并共几趟？第1趟后形态？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>3趟</b>（⌈log₂8⌉）。第1趟后4个长度2的有序段，第2趟2个长度4，第3趟完成。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格题】</div>
+      <p>链表归并排序如何找中点？（对应LC148，第七部分）</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>快慢指针找中点→断开→递归排序两半→有序链表合并（1.2的MergeList）。</b>数组版用mid下标、链表版用快慢指针——两者Merge逻辑完全同构。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortradix">
+    <h3>第6章 内部排序 · 6.6 基数排序（附计数排序思想）<span class="tag tag-no">考场禁用STL</span><span class="tag tag-star">考频 ★★</span></h3>
+    <p class="lcline">🎬 对应课程：L21 分布排序（基数LSD逐位稳定） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>算法思想：</b>不基于比较——LSD最低位优先，d趟"分配（r个队列）+收集"；计数排序=按值域计数直接写回。二者均<b>突破比较排序O(nlogn)下界</b>。<b>答题书写步骤：</b>①按个位分配收集→②十位→…→d位；同位相同保持先来后到（队列FIFO→稳定）。</p>
+<pre class="code" data-t="计数排序 + 基数排序流程"><code>void CountSort(int a[], int n, int k) {      // 值域0..k，O(n+k)
+    int cnt[MaxK] = {0};
+    for (int i = 0; i &lt; n; i++) cnt[a[i]]++;
+    int idx = 0;
+    for (int v = 0; v &lt;= k; v++)
+        while (cnt[v]-- &gt; 0) a[idx++] = v;
+}
+
+// 基数排序（LSD）：d位十进制，r=10个基数队列
+// for (int i = 1; i <= d; i++) {
+//     ① 分配：digit = (a[j] / p) % r 入 queue[digit]，p = r^(i-1)
+//     ② 收集：queue[0..r-1] 依次出队接回 a[]
+// }
+// 总复杂度 O(d(n+r))，空间O(r)，稳定</code></pre>
+    <div class="cx"><span><b>计数</b> O(n+k)/O(k) 稳定</span><span><b>基数</b> O(d(n+r))/O(r) 稳定</span><span><b>均不基于比较</b></span></div>
+    <div class="note"><b>STL替代标注：</b>笔试手写流程。<b>高频易错：</b>①第i趟后"按后i位有序"；②适用：n大、位数d小（手机号/扑克牌）；③复杂度无log项——比较类下界对它无效。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础题】</div>
+      <p>{209,386,7,48,123,76}按个位分配收集后的序列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>个位：9,6,7,8,3,6 → 分配 3:{123} 6:{386,76} 7:{7} 8:{48} 9:{209} → 收集：<b>123, 386, 76, 7, 48, 209</b>。386在76前（FIFO保稳）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>下列排序中不基于比较的是？基于比较的排序时间下界是？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>计数、基数</b>不基于比较；基于比较的排序时间下界为 <b>O(nlog₂n)</b>（判定树深度论证）——这是计数/基数能"超车"的原因。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="a-sortsummary">
+    <h3>第6章 内部排序 · 6.7 排序算法总结对比表与答题规范<span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L17-L21 全部总结表 + L20 六大对比 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>算法</th><th>最好</th><th>平均</th><th>最坏</th><th>空间</th><th>稳定</th><th>标志性特征</th><th>考频</th></tr>
+      <tr><td>直接插入</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✔</td><td>基本有序飞快；链表可用</td><td>★★★</td></tr>
+      <tr><td>折半插入</td><td>O(nlogn)*</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✔</td><td>只省比较不省移动</td><td>★★</td></tr>
+      <tr><td>希尔</td><td>—</td><td>≈O(n^1.3)</td><td>O(n²)</td><td>O(1)</td><td>✘</td><td>缩小增量；仅顺序存储</td><td>★★</td></tr>
+      <tr><td>冒泡</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✔</td><td>每趟最大者归位；交换数=逆序对</td><td>★★★</td></tr>
+      <tr><td>快速</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(n²)</td><td>O(logn)</td><td>✘</td><td>每趟枢轴归位；平均最快</td><td>★★★</td></tr>
+      <tr><td>简单选择</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✘</td><td>比较恒定；交换≤n−1</td><td>★★★</td></tr>
+      <tr><td>堆排序</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(1)</td><td>✘</td><td>建堆O(n)；父≥子不支持二分</td><td>★★★</td></tr>
+      <tr><td>归并</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(n)</td><td>✔</td><td>恒定nlogn；趟数⌈log₂n⌉</td><td>★★★</td></tr>
+      <tr><td>计数</td><td>O(n+k)</td><td>O(n+k)</td><td>O(n+k)</td><td>O(k)</td><td>✔</td><td>不比较；值域受限</td><td>★★</td></tr>
+      <tr><td>基数</td><td>O(d(n+r))</td><td>O(d(n+r))</td><td>O(d(n+r))</td><td>O(r)</td><td>✔</td><td>不比较；位数为d基数为r</td><td>★★</td></tr>
+    </table></div>
+    <div class="ok"><b>口诀：</b>不稳定的是——<b>"快选堆希"</b>（快速、选择、堆、希尔）；其余（插、冒、归、计、基）稳定。</div>
+    <h4>答题规范与高频套路</h4>
+    <ul>
+      <li><b>"第i趟后的序列"题型：</b>插入/希尔看"前缀/分组有序"；冒泡/快排看"有元素归位"；堆排看"堆顶交换+调整"；归并看"成段有序"。</li>
+      <li><b>复杂度与初态有关吗？</b>只有插入、冒泡（带flag）、快排（枢轴好坏）有关；选择、堆、归并恒定。</li>
+      <li><b>稳定性用途：</b>多关键字排序（先次关键字排好，再稳定排主关键字）。</li>
+      <li><b>大题书写：</b>函数头注释→核心循环边界→结尾一句"时间O(?)，空间O(?)，稳定性?"；能画一趟过程就画。</li>
+    </ul>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>一趟结束后能保证一个元素在最终位置的有：插入、冒泡、快排、堆排、归并中的哪些？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>冒泡、快排、堆排。</b>插入/希尔/归并不保证（注意表述：是"不保证"，不是"一定没有元素恰在其位"——文字陷阱）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格选择题】</div>
+      <p>"任何情况O(nlog₂n)且空间O(1)"的是？"n较大且要求稳定"选？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>前者<b>堆排序</b>（归并时间恒定但O(n)空间）；后者<b>归并排序</b>（或基数排序若满足值域条件）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- ============ 第五部分（本校真题） ============ -->
+  </div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "algorithms", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

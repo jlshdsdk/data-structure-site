@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STL × 算法结合 实战实例教学 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › STL × 算法结合 实战实例教学</p>
+  </div>
+  <!-- ============ 第六部分 ============ -->
+  <div class="part-zone" id="p6">
+  <div class="part-head">
+    <div class="pnum">PART 06</div>
+    <h2>STL × 算法结合 实战实例教学</h2>
+    <p>408真题风格综合实战：题目描述 → STL选型思路 → 完整可运行代码（逐行注释）→ 易错点总结。笔试场合按STL页边界裁剪，机试/刷题直接套用。</p>
+  </div>
+<section class="sec" id="e1">
+    <h3>实战1 · vector + sort：数组排序与去重</h3>
+    <p class="lcline">🎬 对应课程：L5 数组 + L17 排序 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目描述】</div><p>输入n和n个整数（可能重复），输出去重后的升序序列。如 5 / 3 1 4 1 5 → 1 3 4 5。</p></div>
+    <p><b>STL选型思路：</b>vector承接输入；去重两条路——①sort+unique+erase（O(nlogn)原地）；②set边插边去重（更短但常数大）。展示①，②作对照。</p>
+<pre class="code" data-t="排序去重 · sort+unique+erase"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; v(n);                        // 开n个空间
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; v[i];
+
+    sort(v.begin(), v.end());                // ① 排序：使重复元素相邻
+
+    v.erase(unique(v.begin(), v.end()),      // ② unique挤走相邻重复
+            v.end());                        // ③ erase删逻辑尾之后残留
+
+    for (int i = 0; i &lt; (int)v.size(); i++)
+        cout &lt;&lt; v[i] &lt;&lt; (i + 1 == (int)v.size() ? '\n' : ' ');
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①unique必须先排序；②erase的区间是[unique返回值, end)；③size()是无符号，与int比较要强转防告警。</div>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-vector">1.1 vector</a> · <a href="stl.html#s-sort">1.10 sort</a> · <a href="stl.html#s-unique">1.15 unique</a> ｜ LC217 存在重复元素（第三部分1.7例1）</p>
+  </section>
+
+  <section class="sec" id="e2">
+    <h3>实战2 · stack：括号匹配 与 表达式求值（后缀 + 中缀）</h3>
+    <p class="lcline">🎬 对应课程：L4 表达式求值（后缀版） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：括号匹配】</div><p>判断只含 ()[]{} 的串是否全部匹配。"([{}])"✔，"([)]"✘。</p></div>
+    <p><b>选型思路：</b>左括号进栈等待，右括号必须与栈顶配对——LIFO恰好对应括号嵌套。</p>
+<pre class="code" data-t="括号匹配"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+bool isMatch(const string &amp;s) {
+    stack&lt;char&gt; st;
+    for (int i = 0; i &lt; (int)s.size(); i++) {
+        if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+            st.push(s[i]);                   // 左括号进栈等待
+        else {
+            if (st.empty()) return false;    // 右括号无左可配
+            char t = st.top();
+            if ((s[i] == ')' &amp;&amp; t != '(') || (s[i] == ']' &amp;&amp; t != '[') ||
+                (s[i] == '}' &amp;&amp; t != '{')) return false;
+            st.pop();                        // 配对成功弹出
+        }
+    }
+    return st.empty();                       // 栈非空=左括号悬空
+}
+
+int main() {
+    string s;
+    while (cin &gt;&gt; s) cout &lt;&lt; (isMatch(s) ? "matched" : "not matched") &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：后缀表达式求值】</div><p>输入后缀表达式（操作数为非负整数，运算符+ - * /，空格分隔），求值。如 "6 3 2 - *" → 6×(3-2)=6。408经典：后缀求值只需<b>一个操作数栈</b>。</p></div>
+<pre class="code" data-t="后缀表达式求值"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;sstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int evaluatePostfix(const string &amp;expr) {
+    stack&lt;int&gt; num;                          // 操作数栈
+    istringstream in(expr);
+    string tok;
+    while (in &gt;&gt; tok) {
+        if (isdigit(tok[0])) {               // 操作数：转int压栈
+            int v = 0;
+            for (int i = 0; i &lt; (int)tok.size(); i++)
+                v = v * 10 + (tok[i] - '0');
+            num.push(v);
+        } else {                             // 运算符：弹两个数
+            int b = num.top(); num.pop();    // 先弹的是右操作数！
+            int a = num.top(); num.pop();
+            int r = 0;
+            if (tok == "+") r = a + b;
+            if (tok == "-") r = a - b;       // a-b顺序不能反
+            if (tok == "*") r = a * b;
+            if (tok == "/") r = a / b;
+            num.push(r);
+        }
+    }
+    return num.top();
+}
+
+int main() {
+    string s;
+    while (getline(cin, s))
+        cout &lt;&lt; evaluatePostfix(s) &lt;&lt; endl;  // 输入示例：6 3 2 - *
+    return 0;
+}</code></pre>
+        <div class="ex">
+      <div class="ex-t">【题目C：中缀表达式求值（算符优先 · 双栈法）】</div>
+      <p>输入不含空格的 + − * / 与括号的中缀表达式（操作数为非负整数），求值。如 3+4*2-(1+2) → 8。与题目B合成408"栈的应用"两大表达式考点。</p>
+      <p><b>选型思路：</b>经典<b>双栈法</b>——操作数栈 + 运算符栈；当前运算符优先级 ≤ 栈顶时先算栈内（保证先乘除后加减），遇 ) 清算到 ( 。</p>
+<pre class="code" data-t="表达式求值 · 双栈法"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int prec(char op) {                          // 运算符优先级
+    if (op == '*' || op == '/') return 2;
+    if (op == '+' || op == '-') return 1;
+    return 0;                                // '('入栈后按0，绝不会被弹出
+}
+
+void calc(stack&lt;int&gt; &amp;num, stack&lt;char&gt; &amp;ops) {   // 弹两数一符，算完压回
+    int b = num.top(); num.pop();            // 注意：先弹的是右操作数
+    int a = num.top(); num.pop();
+    char op = ops.top(); ops.pop();
+    int r = 0;
+    if (op == '+') r = a + b;
+    if (op == '-') r = a - b;                // a-b 顺序不能反！
+    if (op == '*') r = a * b;
+    if (op == '/') r = a / b;
+    num.push(r);
+}
+
+int evaluate(const string &amp;s) {
+    stack&lt;int&gt; num;                          // 操作数栈
+    stack&lt;char&gt; ops;                         // 运算符栈
+    int i = 0, n = s.size();
+    while (i &lt; n) {
+        if (isdigit(s[i])) {                 // 数字：完整读出
+            int v = 0;
+            while (i &lt; n &amp;&amp; isdigit(s[i]))
+                v = v * 10 + (s[i++] - '0');
+            num.push(v);
+        } else if (s[i] == '(') {
+            ops.push(s[i++]);                // 左括号直接进栈
+        } else if (s[i] == ')') {
+            while (ops.top() != '(')         // 算到左括号为止
+                calc(num, ops);
+            ops.pop();                       // 弹出'('本身
+            i++;
+        } else {                             // 四则运算符
+            while (!ops.empty() &amp;&amp; prec(ops.top()) &gt;= prec(s[i]))
+                calc(num, ops);              // 栈顶优先级不低于当前：先算
+            ops.push(s[i++]);
+        }
+    }
+    while (!ops.empty()) calc(num, ops);     // 清空剩余运算符
+    return num.top();
+}
+
+int main() {
+    string s;
+    while (cin &gt;&gt; s)
+        cout &lt;&lt; evaluate(s) &lt;&lt; endl;         // 输入示例：3+4*2-(1+2) → 8
+    return 0;
+}</code></pre>
+      <div class="note"><b>双栈法判定句：</b>"新运算符优先级 ≤ 栈顶则先弹算"（左结合的体现）；笔试常考"中缀转后缀"手算——与本题同一套优先级规则，后缀求值则只需一个操作数栈（见题目B）。</div>
+    </div>
+
+<div class="warn"><b>易错点：</b>①后缀求值<b>只弹一个栈</b>（中缀才要双栈）；②减法/除法先弹的是<b>右</b>操作数；③中缀转后缀手算（408选择题）与本题同一套优先级规则。</div>
+    <p class="mapline">📌 考点映射：<a href="algorithms.html#a-stack">2.1 栈的模拟</a> · <a href="stl.html#s-adapt">1.8 stack适配器</a> ｜ <a href="leetcode.html#lc20">LC20 有效的括号</a> · <a href="leetcode.html#lc150">LC150 逆波兰表达式</a></p>
+  </section>
+
+  <section class="sec" id="e3">
+    <h3>实战3 · queue + BFS：二叉树层序遍历 与 图的广度优先遍历</h3>
+    <p class="lcline">🎬 对应课程：L8 层次遍历 + L13 BFS ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：层序遍历】</div><p>按层从左到右输出二叉树。输入先序序列（#表空），如 AB#D##C##。</p></div>
+<pre class="code" data-t="层序遍历"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;string&gt;
+using namespace std;
+
+typedef struct BiTNode {
+    char data;
+    struct BiTNode *lchild, *rchild;
+} BiTNode, *BiTree;
+
+BiTree build(const string &amp;s, int &amp;i) {      // 先序+#建树
+    if (i &gt;= (int)s.size() || s[i] == '#') { i++; return NULL; }
+    BiTree T = new BiTNode;
+    T-&gt;data = s[i++];
+    T-&gt;lchild = build(s, i);
+    T-&gt;rchild = build(s, i);
+    return T;
+}
+
+void levelOrder(BiTree T) {
+    if (!T) return;
+    queue&lt;BiTree&gt; q;
+    q.push(T);                               // 根入队
+    while (!q.empty()) {
+        BiTree p = q.front(); q.pop();       // 出队访问
+        cout &lt;&lt; p-&gt;data;
+        if (p-&gt;lchild) q.push(p-&gt;lchild);    // 孩子依次入队
+        if (p-&gt;rchild) q.push(p-&gt;rchild);
+    }
+    cout &lt;&lt; endl;
+}
+
+int main() {
+    string s; cin &gt;&gt; s;
+    int i = 0;
+    levelOrder(build(s, i));                 // AB#D##C## → ABCD
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：无权图BFS最短距离】</div><p>n点m边无向图，求顶点1到各点最少步数，不可达输出-1。</p></div>
+<pre class="code" data-t="图BFS"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;vector&lt;int&gt;&gt; g(n + 1);            // vector邻接表
+    for (int i = 0; i &lt; m; i++) {
+        int u, v; cin &gt;&gt; u &gt;&gt; v;
+        g[u].push_back(v);                   // 无向图存两遍
+        g[v].push_back(u);
+    }
+    vector&lt;int&gt; d(n + 1, -1);                // -1兼做未访问标记
+    queue&lt;int&gt; q;
+    d[1] = 0; q.push(1);
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int v : g[u])
+            if (d[v] == -1) {                // 首次到达即最短
+                d[v] = d[u] + 1;
+                q.push(v);
+            }
+    }
+    for (int i = 1; i &lt;= n; i++) cout &lt;&lt; d[i] &lt;&lt; " ";
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①图BFS要<b>入队时标记</b>（树不用，因为无环）；②分层处理（求宽度/右视图）用"rear-front=当前层结点数"；③FIFO保证"先入队的孩子先被访问"=层的定义。</div>
+    <p class="mapline">📌 考点映射：<a href="algorithms.html#a-bitreerec">3.2 层序遍历</a> · <a href="algorithms.html#a-graphbfsdfs">4.2 图BFS</a> ｜ <a href="leetcode.html#lc102">LC102 层序遍历</a> · <a href="leetcode.html#lc199">LC199 右视图</a> · <a href="leetcode.html#lc994">LC994 腐烂的橘子</a></p>
+  </section>
+
+  <section class="sec" id="e4">
+    <h3>实战4 · priority_queue：TopK问题 与 哈夫曼编码</h3>
+    <p class="lcline">🎬 对应课程：L11 哈夫曼WPL + L18 TopK ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：TopK】</div><p>n个整数（n很大）求最大的k个，不允许全排序。</p></div>
+    <p><b>选型思路：</b>维护<b>大小为k的小根堆</b>：堆顶是当前k个候选的最小者（候补席），新元素比堆顶大才替换。O(nlogk)。</p>
+<pre class="code" data-t="TopK · k大小的小根堆"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;functional&gt;
+using namespace std;
+
+int main() {
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; q;   // 小根堆：堆顶最小
+    for (int i = 0; i &lt; n; i++) {
+        int x; cin &gt;&gt; x;
+        if ((int)q.size() &lt; k) q.push(x);    // 堆未满直接放
+        else if (x &gt; q.top()) {              // 比当前第k大才有资格
+            q.pop();                         // 换掉候选中最小的
+            q.push(x);
+        }
+    }
+    while (!q.empty()) {                     // 弹出即前k大（升序）
+        cout &lt;&lt; q.top() &lt;&lt; " ";
+        q.pop();
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：哈夫曼编码】</div><p>n个字符的权值，构造哈夫曼树并输出每个字符的01编码，以及WPL。</p></div>
+    <p><b>选型思路：</b>小根堆完成"取最小两个合并"O(logn)；再DFS一遍树给叶子发编码（左0右1）。用 <code class="inl">pair&lt;权值, 结点编号&gt;</code> 入堆保证次序。</p>
+<pre class="code" data-t="哈夫曼编码 · 堆+DFS"><code>#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;functional&gt;
+using namespace std;
+
+int lc[300], rc[300];                        // 左右孩子（静态树）
+int w[300];
+
+void dfs(int u, string code) {               // 给叶子发编码
+    if (lc[u] == -1 &amp;&amp; rc[u] == -1) {        // 叶子：输出编码
+        cout &lt;&lt; "w=" &lt;&lt; w[u] &lt;&lt; " code=" &lt;&lt; code &lt;&lt; endl;
+        return;
+    }
+    dfs(lc[u], code + "0");                  // 左0
+    dfs(rc[u], code + "1");                  // 右1
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    priority_queue&lt; pair&lt;long long,int&gt;, vector&lt;pair&lt;long long,int&gt;&gt;,
+                    greater&lt;pair&lt;long long,int&gt;&gt; &gt; q;   // 小根堆
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; w[i];
+        lc[i] = rc[i] = -1;                  // 叶子
+        q.push({w[i], i});                   // (权值,编号)入堆
+    }
+    int node = n;                            // 新结点编号从n起
+    long long wpl = 0;
+    while ((int)q.size() &gt; 1) {
+        pair&lt;long long,int&gt; a = q.top(); q.pop();   // 最小
+        pair&lt;long long,int&gt; b = q.top(); q.pop();   // 次小
+        w[node] = w[a.second] + w[b.second];
+        lc[node] = a.second; rc[node] = b.second;
+        wpl += w[node];                      // 非叶权和=WPL
+        q.push({w[node], node});
+        node++;
+    }
+    int root = q.top().second;
+    if (n == 1) cout &lt;&lt; "w=" &lt;&lt; w[0] &lt;&lt; " code=0" &lt;&lt; endl;  // 特判单结点
+    else dfs(root, "");
+    cout &lt;&lt; "WPL = " &lt;&lt; wpl &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①"求最大k个用小根堆"——方向最易反；②WPL=非叶结点权值和，一行累加；③n=1时哈夫曼树退化，编码约定为"0"；④笔试版（静态数组两次扫最小）见第四部分3.5，两者必须都会。</div>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-adapt">1.8 priority_queue堆写法</a> · <a href="algorithms.html#a-huffman">3.5 哈夫曼树</a> ｜ <a href="leetcode.html#lc215">LC215 第K个最大</a> · <a href="leetcode.html#lc347">LC347 前K个高频</a></p>
+  </section>
+
+  <section class="sec" id="e5">
+    <h3>实战5 · unordered_map：哈希统计 与 字符串查重</h3>
+    <p class="lcline">🎬 对应课程：L25 散列思想 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：两数之和】</div><p>n个整数找两数之和为target，输出下标（恰有一解）。</p></div>
+    <p><b>选型思路：</b>扫到x时O(1)判定 target−x 是否出现过——空间换时间的教科书案例。</p>
+<pre class="code" data-t="两数之和"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+using namespace std;
+
+int main() {
+    int n, target;
+    cin &gt;&gt; n &gt;&gt; target;
+    vector&lt;int&gt; a(n);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+
+    unordered_map&lt;int, int&gt; pos;             // 值 → 下标
+    for (int i = 0; i &lt; n; i++) {
+        int need = target - a[i];            // 还需要的另一半
+        unordered_map&lt;int,int&gt;::iterator it = pos.find(need);
+        if (it != pos.end()) {
+            cout &lt;&lt; it-&gt;second &lt;&lt; " " &lt;&lt; i &lt;&lt; endl;
+            return 0;
+        }
+        pos[a[i]] = i;                       // 边扫边登记
+    }
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：字符串查重+词频】</div><p>读入若干单词，统计各单词出现次数并输出（按出现次数降序、同次数字典序）。</p></div>
+    <p><b>选型思路：</b>统计用unordered_map（O(1)/次）；<b>有序输出必须再排序</b>——把键值对搬进vector&lt;pair&gt;用sort，体现"unordered统计 + sort输出"组合拳。</p>
+<pre class="code" data-t="词频统计"><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    unordered_map&lt;string, int&gt; cnt;
+    string w;
+    while (cin &gt;&gt; w) cnt[w]++;               // []默认0再自增
+
+    vector&lt; pair&lt;string,int&gt; &gt; v(cnt.begin(), cnt.end());
+    sort(v.begin(), v.end(),
+         [](const pair&lt;string,int&gt; &amp;a, const pair&lt;string,int&gt; &amp;b) {
+             if (a.second != b.second) return a.second &gt; b.second;  // 次数降序
+             return a.first &lt; b.first;                              // 字典序
+         });
+    for (int i = 0; i &lt; (int)v.size(); i++)
+        cout &lt;&lt; v[i].first &lt;&lt; " " &lt;&lt; v[i].second &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①cnt[w]++利用operator[]默认值——这里正是要用副作用；②判存在用find不用[]；③unordered遍历顺序不可依赖，有序输出必须排序。</div>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-unord">1.7 unordered容器</a> · <a href="algorithms.html#a-hash">5.4 哈希表</a> ｜ <a href="leetcode.html#lc1">LC1 两数之和</a> · <a href="leetcode.html#lc49">LC49 字母异位词分组</a> · <a href="leetcode.html#lc560">LC560 和为K的子数组</a></p>
+  </section>
+
+  <section class="sec" id="e6">
+    <h3>实战6 · set / map：有序统计 与 区间查找</h3>
+    <p class="lcline">🎬 对应课程：L22/L23 有序查找 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：动态集合前驱后继】</div><p>维护集合，支持：1 x插入；2 x删除一个x；3 x查前驱（&lt;x的最大值）；4 x查后继（&gt;x的最小值）。单步必须O(logn)。</p></div>
+    <p><b>选型思路：</b>unordered_set没有lower_bound——<b>有序性不可替代</b>，必须set + lower_bound/upper_bound + prev/next。</p>
+<pre class="code" data-t="set前驱后继"><code>#include &lt;iostream&gt;
+#include &lt;set&gt;
+using namespace std;
+
+int main() {
+    int m;
+    cin &gt;&gt; m;
+    set&lt;int&gt; s;
+    while (m--) {
+        int op, x;
+        cin &gt;&gt; op &gt;&gt; x;
+        if (op == 1) s.insert(x);
+        else if (op == 2) s.erase(s.find(x));        // 只删一个！
+        else if (op == 3) {                          // 前驱
+            set&lt;int&gt;::iterator it = s.lower_bound(x);
+            if (it == s.begin()) cout &lt;&lt; -1 &lt;&lt; endl; // 无前驱
+            else cout &lt;&lt; *prev(it) &lt;&lt; endl;
+        } else {                                     // 后继
+            set&lt;int&gt;::iterator it = s.upper_bound(x);
+            if (it == s.end()) cout &lt;&lt; -1 &lt;&lt; endl;
+            else cout &lt;&lt; *it &lt;&lt; endl;
+        }
+    }
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：map有序统计+区间人数】</div><p>分数升序输出"分数:人数"，并查询[l,r]段总人数。</p></div>
+<pre class="code" data-t="map区间统计"><code>map&lt;int, int&gt; m;
+for (int i = 0; i &lt; n; i++) { int s; cin &gt;&gt; s; m[s]++; }
+for (map&lt;int,int&gt;::iterator it = m.begin(); it != m.end(); ++it)
+    cout &lt;&lt; it-&gt;first &lt;&lt; ":" &lt;&lt; it-&gt;second &lt;&lt; endl;
+int total = 0;
+for (map&lt;int,int&gt;::iterator it = m.lower_bound(l);      // 从≥l起
+     it != m.end() &amp;&amp; it-&gt;first &lt;= r; ++it)             // 到&gt;r停
+    total += it-&gt;second;</code></pre>
+    <div class="warn"><b>易错点：</b>①multiset删除单个要 erase(find(x))；②前驱=lower_bound的前一位（注意begin判界）；③区间统计 [l,r] 用 [lower_bound(l), upper_bound(r)) 半开区间。</div>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-set">1.5 set/multiset</a> · <a href="stl.html#s-map">1.6 map</a> · <a href="stl.html#s-lower">1.14 lower_bound</a></p>
+  </section>
+
+  <section class="sec" id="e7">
+    <h3>实战7 · 单调队列/单调栈 STL实现：滑动窗口最大值 与 接雨水</h3>
+    <p class="lcline">🎬 对应课程：L18 堆 + L5 尺取法 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：滑动窗口最大值】</div><p>n个数、窗口k，输出每个窗口最大值。n≤10⁶，暴力O(nk)必超时。</p></div>
+    <p><b>选型思路：</b>deque存<b>下标</b>、对应值递减：队尾出（淘汰小值）、队头出（过期）、队头即答案。</p>
+<pre class="code" data-t="滑动窗口最大值 · deque"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;deque&gt;
+using namespace std;
+
+int main() {
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    vector&lt;int&gt; a(n);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+
+    deque&lt;int&gt; q;                            // 存下标：值从队头到队尾递减
+    for (int i = 0; i &lt; n; i++) {
+        while (!q.empty() &amp;&amp; a[q.back()] &lt;= a[i])
+            q.pop_back();                    // ①队尾出：≤当前者永无出头之日
+        q.push_back(i);                      // ②当前下标入队尾
+        if (q.front() &lt;= i - k) q.pop_front();   // ③队头过期
+        if (i &gt;= k - 1) cout &lt;&lt; a[q.front()] &lt;&lt; " ";   // ④队头即最大
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：接雨水】</div><p>n根柱子宽度1，求能接多少雨水。三种解法中单调栈是408风格最自然的。</p></div>
+    <p><b>选型思路（单调栈版）：</b>栈存下标、高度递减；来了更高的柱子，弹栈顶作"凹槽底"，左边界=新栈顶、右边界=当前柱，按"宽×高"累加。</p>
+<pre class="code" data-t="接雨水 · 单调栈"><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int trap(const vector&lt;int&gt; &amp;h) {
+    stack&lt;int&gt; st;                           // 栈存下标，高度递减
+    long long water = 0;
+    for (int i = 0; i &lt; (int)h.size(); i++) {
+        while (!st.empty() &amp;&amp; h[i] &gt; h[st.top()]) {
+            int bottom = st.top(); st.pop(); // 凹槽底
+            if (st.empty()) break;           // 无左边界，接不了
+            int left = st.top();             // 左边界
+            int width = i - left - 1;                        // 横向宽
+            int height = min(h[left], h[i]) - h[bottom];     // 纵向高
+            water += (long long)width * height;
+        }
+        st.push(i);
+    }
+    return (int)water;
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; h(n);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; h[i];
+    cout &lt;&lt; trap(h) &lt;&lt; endl;                 // 输入 0,1,0,2,1,0,1,3,2,1,2,1 → 6
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①单调队列"先过期再取答案"顺序铁律；②接雨水弹栈后必须判栈空（无左边界）；③高度是 min(左右边界)−底，宽度按横向层算；④LC42也可用双指针O(1)空间解（见第七部分）。</div>
+    <p class="mapline">📌 考点映射：<a href="algorithms.html#a-monoqueue">2.4 单调队列</a> · <a href="algorithms.html#a-monostack">2.3 单调栈</a> ｜ <a href="leetcode.html#lc239">LC239 滑动窗口最大值</a> · <a href="leetcode.html#lc42">LC42 接雨水</a></p>
+  </section>
+
+  <section class="sec" id="e8">
+    <h3>实战8 · vector邻接表 + Dijkstra / 拓扑排序</h3>
+    <p class="lcline">🎬 对应课程：L12 存储 + L14 拓扑 + L15 Dijkstra ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：堆优化Dijkstra】</div><p>n点m边的带权有向图，求1到各点最短距离（边权非负，可能有重边自环，不可达输出-1）。</p></div>
+    <p><b>选型思路：</b>vector邻接表存 <code class="inl">pair&lt;邻点,边权&gt;</code>；小根堆存 <code class="inl">pair&lt;dist,顶点&gt;</code>，堆顶即"当前最小的未确认dist"，替代教材版的O(V)扫描。</p>
+<pre class="code" data-t="堆优化Dijkstra · O((V+E)logV)"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+using namespace std;
+typedef long long ll;
+typedef pair&lt;ll,int&gt; P;                      // (dist, 顶点)
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;vector&lt;P&gt;&gt; g(n + 1);              // g[u] = {(v, w), ...}
+    for (int i = 0; i &lt; m; i++) {
+        int u, v; ll w;
+        cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;
+        g[u].push_back({v, w});              // 有向图存一遍；无向存两遍
+    }
+    vector&lt;ll&gt; dist(n + 1, -1);
+    vector&lt;bool&gt; done(n + 1, false);
+    priority_queue&lt;P, vector&lt;P&gt;, greater&lt;P&gt;&gt; q;   // 小根堆：dist小在前
+    dist[1] = 0;
+    q.push({0, 1});
+    while (!q.empty()) {
+        P t = q.top(); q.pop();
+        int u = t.second;
+        if (done[u]) continue;               // 旧版本入堆，跳过
+        done[u] = true;
+        for (int i = 0; i &lt; (int)g[u].size(); i++) {
+            int v = g[u][i].first;
+            ll nd = dist[u] + g[u][i].second;                 // 松弛
+            if (dist[v] == -1 || nd &lt; dist[v]) {
+                dist[v] = nd;
+                q.push({nd, v});             // 允许重复入堆，出堆时判done
+            }
+        }
+    }
+    for (int i = 1; i &lt;= n; i++) cout &lt;&lt; dist[i] &lt;&lt; " ";
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：拓扑排序】</div><p>n门课m个先修关系，输出一个可行修课顺序；有环输出"impossible"。</p></div>
+<pre class="code" data-t="拓扑排序 · Kahn + queue"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+using namespace std;
+
+int main() {
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    vector&lt;vector&lt;int&gt;&gt; g(n + 1);
+    vector&lt;int&gt; indeg(n + 1, 0);
+    for (int i = 0; i &lt; m; i++) {
+        int u, v; cin &gt;&gt; u &gt;&gt; v;             // 先修u，后修v
+        g[u].push_back(v);
+        indeg[v]++;
+    }
+    queue&lt;int&gt; q;
+    for (int i = 1; i &lt;= n; i++)
+        if (indeg[i] == 0) q.push(i);        // 入度0进队
+    int cnt = 0;
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        cout &lt;&lt; u &lt;&lt; " ";
+        cnt++;
+        for (int v : g[u])
+            if (--indeg[v] == 0) q.push(v);  // 删边，新0入度入队
+    }
+    if (cnt &lt; n) cout &lt;&lt; "\nimpossible" &lt;&lt; endl;   // 输出不全→有环
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①堆优化Dijkstra用"懒删除"：同一顶点可能多次入堆，出堆时判done跳过；②dist用long long防溢出；③拓扑排序输出数&lt;n⇔有环——这是判环标准方法；④笔试版（邻接矩阵O(V²)）见第四部分4.4/4.3。</div>
+    <p class="mapline">📌 考点映射：<a href="algorithms.html#a-dijkstra">4.4 Dijkstra</a> · <a href="algorithms.html#a-topo">4.3 拓扑排序</a> · <a href="stl.html#s-adapt">1.8 小根堆写法</a> ｜ <a href="leetcode.html#lc207">LC207 课程表</a></p>
+  </section>
+
+  <section class="sec" id="e9">
+    <h3>实战9 · lower_bound 二分查找进阶应用</h3>
+    <p class="lcline">🎬 对应课程：L22 对半查找变体（BinSearchFirstPosGEK） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <div class="ex"><div class="ex-t">【题目A：区间统计】</div><p>非降序数组a[0..n-1]，q次询问：统计值在 [l, r] 内的元素个数。</p></div>
+    <p><b>选型思路：</b>每次询问O(logn)：个数 = upper_bound(r) − lower_bound(l)，两次二分而非逐个比较。</p>
+<pre class="code" data-t="区间统计"><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    int n, q;
+    cin &gt;&gt; n &gt;&gt; q;
+    int a[100005];
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+    sort(a, a + n);                          // 保证非降序（lower_bound前提）
+    while (q--) {
+        int l, r;
+        cin &gt;&gt; l &gt;&gt; r;
+        int cnt = upper_bound(a, a + n, r) - lower_bound(a, a + n, l);
+        cout &lt;&lt; cnt &lt;&lt; endl;                 // [l,r]内元素个数
+    }
+    return 0;
+}</code></pre>
+    <div class="ex"><div class="ex-t">【题目B：最长递增子序列 LIS（贪心+二分）】</div><p>求数组最长严格递增子序列长度。DP是O(n²)，贪心+二分O(nlogn)。</p></div>
+    <p><b>选型思路：</b>维护数组tails——<b>tails[i]=长度i+1的递增子序列的最小结尾</b>（恒有序）；每个x用lower_bound找第一个≥x的位置并替换/追加——替换保证结尾尽量小，给未来留更多机会。</p>
+<pre class="code" data-t="LIS · 贪心+二分 O(nlogn)"><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int lengthOfLIS(const vector&lt;int&gt; &amp;a) {
+    vector&lt;int&gt; tails;                       // tails[i]：长度i+1的LIS最小结尾
+    for (int i = 0; i &lt; (int)a.size(); i++) {
+        int x = a[i];
+        vector&lt;int&gt;::iterator it = lower_bound(tails.begin(), tails.end(), x);
+        if (it == tails.end()) tails.push_back(x);   // x比所有结尾大：LIS延长
+        else *it = x;                        // 否则替换第一个≥x的结尾
+    }
+    return (int)tails.size();
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; a(n);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+    cout &lt;&lt; lengthOfLIS(a) &lt;&lt; endl;          // 10,9,2,5,3,7,101,18 → 4
+    return 0;
+}</code></pre>
+    <div class="warn"><b>易错点：</b>①lower_bound前提<b>必须有序</b>——题目A要先sort，B的tails天然有序；②"找第一个≥x"用lower_bound（严格上升LIS），"找第一个&gt;x"用upper_bound（非递减LIS变体）；③tails数组不是实际的LIS，只有长度有意义。</div>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-lower">1.14 lower_bound/upper_bound</a> · <a href="algorithms.html#a-seqbin">5.1 折半查找</a> ｜ <a href="leetcode.html#lc34">LC34 查找首末位置</a> · <a href="leetcode.html#lc300">LC300 最长递增子序列</a> · <a href="leetcode.html#lc33">LC33 搜索旋转排序数组</a></p>
+  </section></div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "practice", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

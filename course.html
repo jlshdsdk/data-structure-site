@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本校课程PPT同步精讲（Lecture 0-26） · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 本校课程PPT同步精讲（Lecture 0-26）</p>
+  </div>
+  <!-- ============ 第二部分 ============ -->
+  <div class="part-zone" id="p2">
+  <div class="part-head">
+    <div class="pnum">PART 02</div>
+    <h2>本校课程PPT同步精讲（Lecture 0-26）</h2>
+    <p>完全对应本校课件讲次的课堂视角精讲：L0导学与考核 → L1-L2绪论 → L3链表 → L4栈队列 → L5数组矩阵 → L6串+KMP → L7-L11树 → L12-L16图 → L17-L21排序 → L22-L25查找 → L26总结。含考试范围与「不考清单」原话，与王道精讲互补：王道打理论地基，这里对齐课堂与期末口径。</p>
+  </div>
+
+  <div class="chap-head" id="ch0"><h3>第0章 · 课程导学与考核（对应PPT：Lecture 0 + Lecture 26）</h3><p>开课先讲规矩：这门课学什么、怎么考、哪些不考——L0 开课讲、L26 结课再强调一遍，两讲合起来就是你的"复习宪法"。</p></div>
+
+  <section class="sec" id="c-l0">
+    <h3>L0 · 课程简介与考核方式<span class="tag tag-ppt">PPT课堂重点</span></h3>
+    <p><b>本节导入：</b>第一节课我们不急着写代码，先把这门课的"游戏规则"说清楚——这门课地位如何、怎么考核、期末到底考什么范围。把这些搞明白，你这学期的复习才不会跑偏。</p>
+    <h4>核心概念</h4>
+    <ul>
+      <li><b>课程地位（PAGE 2-3）：</b>数据结构是计算机专业核心课，学分最高（6学分）、学时最长（112学时），是操作系统、编译原理、数据库、计算机网络、人工智能等课的基础。师承一脉：王湘浩院士（课程创始人，我国AI研究奠基人）→ 管纪文教授 → 刘大有教授。</li>
+      <li><b>教学安排（PAGE 8-9）：</b>课堂教学 64 学时，16 周讲完：第2章绪论 → 第3章线性表 → 第4章字符串 → 第5章树 → 第6章图 → 第7章排序 → 第8章查找；上机采用 OJ 在线评测，第 15–18 周某一周<span class="tag tag-hot">408高频考点</span><b style="color:#b91c1c">上机考试</b>。</li>
+      <li><b>混合式教学（PAGE 10）：</b>比较基础、易于自学的内容课下通过慕课自学、课堂不再讲授；<b>慕课观看情况计入期末成绩</b>（平台 jlu.fy.chaoxing.com）。</li>
+    </ul>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】考试范围公式与成绩构成（L0 PAGE 11，L26 再次强调）</div>
+      <ul>
+        <li><b>考试范围 = A + B − C</b>：A = 老师要求必须自学的慕课内容；B = 老师课堂讲授的内容；C = 老师明确说不考的内容（L26 给出了完整不考清单，见下）。</li>
+        <li><b>期末成绩 = 笔试 50 分 + 上机 35 分 + 慕课（含作业）15 分</b>。慕课 15 分是"平时分"，最容易拿满也最容易白丢。</li>
+        <li><b>题型（L26 PAGE 6）：</b>选择题 50 分（12–15 个单选）＋ 算法大题 50 分（3 道）。算法题可用 ADL/C/C++/Java 任意语言；<b>开头必须写算法主要思想、关键步骤必须有注释、要有缩进，缺了要扣分</b>。</li>
+        <li><b>STL 使用边界（L26 原话）：</b>非核心操作可用 STL（如考二叉树层次遍历可直接用队列）；<b>考的就是那个结构本身时必须手写</b>（比如考队列的实现就不能用 queue）。</li>
+      </ul>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>慕课不是"可看可不看"——直接占 15 分（L0 PAGE 10-11）。第2章自学清单：算法及其特性、算法的描述（ADL）、算法的评价准则；第3章自学清单：线性表定义与操作、顺序存储、堆栈定义与操作、顺序栈/链式栈及比较、队列定义与操作、顺序队列、链式队列。</li>
+        <li>算法大题"空着"最亏——会不会都尽量写，能写点就写点（L26 PAGE 7）。</li>
+      </ul>
+    </div>
+    <div class="ok"><b>算法动画演示网站（L0 PAGE 15）：</b>https://csvistool.com/ —— 老师课上演示排序、遍历都用它，自己复习画不动的时候看动画。</div>
+    <p><b>本节小结：</b>这节课我们记住三件事——范围公式 A+B−C、成绩 50/35/15 的构成、算法题"思想+注释+缩进"的书写规范。后面每一讲的复习优先级，都由这三条决定。</p>
+  </section>
+
+  <section class="sec" id="c-l26">
+    <h3>L26 · 期末总结：所学梳理与不考清单<span class="tag tag-ppt">PPT课堂重点</span></h3>
+    <p><b>本节导入：</b>最后一节课，我们把一学期的东西串一遍。老师特别强调：<b>下面梳理的内容"并非划考试范围，只是帮助大家梳理所学"</b>——真正的范围仍然是 A+B−C。</p>
+    <h4>一、期末明确不考的内容（C 项清单，L26 PAGE 5）<span class="tag tag-ext">课件界定</span></h4>
+    <ul>
+      <li>单链表求交和判环（注意：L3 里讲了，但期末不考）、<b>静态链表</b>、<b>侵入式链表</b></li>
+      <li>栈扩容的容量加倍/容量递增策略对比、程序在内存里是什么样、<b>快速幂</b>、浏览器前进/后退、<b>栈混洗总数的推导过程</b>（记住结论没坏处）</li>
+      <li><b>动态规划的空间优化（滚动数组）</b>、高效计算组合数 C(n,m)、<b>差分数组</b>、<b>ST表</b>、<b>尺取法</b>、矩阵应用——图像处理</li>
+      <li><b>KMP算法的改进（nextval）</b>、<b>字符串循环节</b></li>
+      <li>给定先根序列和后根序列输出可能有多少种二叉树结构（洛谷P1229）</li>
+      <li>后续课件中标 C、D 的内容</li>
+    </ul>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】"不考"≠"不用学"</div>老师原话：这些内容<b>从找工作或考研的角度，都在考核范围内且很重要</b>。本手册把它们全部保留讲解，并打上【课件拓展】标签——应付期末可以略读，准备考研/面试请认真看。</div>
+    <h4>二、全课程知识地图（L26 PAGE 9-16）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>章</th><th>内容主线（L26 梳理页）</th><th>对应本手册</th></tr>
+      <tr><td>第2章 绪论</td><td>概念术语、逻辑/存储结构、时间复杂度渐近表示、分析给定算法复杂度</td><td><a href="#c-l1">L1</a>·<a href="#c-l2">L2</a></td></tr>
+      <tr><td>第3章 线性表</td><td>数组算法、单/循环/双向链表、顺序vs链式、栈队列（含表达式求值）、递归</td><td><a href="#c-l3">L3</a>·<a href="#c-l4">L4</a></td></tr>
+      <tr><td>第4章 数组与字符串</td><td>多维数组寻址、特殊矩阵压缩、三元组、朴素匹配/KMP</td><td><a href="#c-l5">L5</a>·<a href="#c-l6">L6</a></td></tr>
+      <tr><td>第5章 树与二叉树</td><td>定义性质、存储、四种遍历、重建、线索、树森林转换、哈夫曼</td><td><a href="#c-l7">L7</a>–<a href="#c-l11">L11</a></td></tr>
+      <tr><td>第6章 图</td><td>概念存储、DFS/BFS、拓扑、关键路径、最短路、最小支撑树</td><td><a href="#c-l12">L12</a>–<a href="#c-l16">L16</a></td></tr>
+      <tr><td>第7章 排序</td><td>插入/冒泡/选择/希尔/堆/快排/归并/基数——原理、实现、时空复杂度、稳定性</td><td><a href="#c-l17">L17</a>–<a href="#c-l21">L21</a></td></tr>
+      <tr><td>第8章 查找</td><td>顺序/对半查找与ASL、BST、AVL、B树、散列</td><td><a href="#c-l22">L22</a>–<a href="#c-l25">L25</a></td></tr>
+    </table></div>
+    <h4>三、五大算法思想分类（L26 PAGE 17-18）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <ul>
+      <li><b>模拟/枚举</b>：简单问题直接做。</li>
+      <li><b>动态规划</b>：最大子数组和、斐波那契迭代、跳台阶、next数组、编辑距离、LCS/LIS、Floyd、关键路径。</li>
+      <li><b>回溯</b>：DFS、八皇后、迷宫寻径。</li>
+      <li><b>分治/减治</b>：二叉树遍历、二分查找、快排、归并、快速选择。</li>
+      <li><b>贪心</b>：哈夫曼、Dijkstra、Prim、Kruskal。</li>
+    </ul>
+    <p>下学期《算法设计与分析》就按这个分类系统讲，我们这学期已经全部"预习"过了。</p>
+    <p><b>本节小结：</b>本节课我们重点掌握了两件事——不考清单 C（但考研面试仍重要）和七章知识地图。另外记住答题忠告：卷面整洁、字迹工整、算法题别空着、平时分拿满。</p>
+  </section>
+
+  <div class="chap-head" id="ch1"><h3>第1章 · 绪论：数据结构概述（对应PPT：Lecture 1，66页）</h3><p>这一章回答一个问题：什么是数据结构？答案就三个词——逻辑结构、存储结构、操作。</p></div>
+
+  <section class="sec" id="c-l1">
+    <h3>L1 · 数据结构概述：逻辑结构 · 存储结构 · 操作<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>今天我们来讲这门课的第一个概念性问题——到底什么是"数据结构"？Wirth 有一句名言（PAGE 4、13）：<b>算法 + 数据结构 = 程序</b>。编程语言和框架是"招式"，数据结构与算法是"内功"——一个招式能发挥多大威力，取决于出招人的内功（PAGE 25）。这句话就是这门课存在的意义。</p>
+    <h4>一、数据的三层结构（PAGE 42-44）</h4>
+    <ul>
+      <li><b>数据</b>：计算机程序处理的对象统称。简单的如整数、实数、字符串；复杂的如图像、音频、程序本身。</li>
+      <li><b>数据元素</b>（也叫数据成分、结点、顶点）：数据由多个数据元素组成。</li>
+      <li><b>数据项</b>（也叫域、字段）：数据元素由描述其属性的多个数据项组成。</li>
+    </ul>
+    <p>课堂例（PAGE 44）：个人图书表格——整张表是<b>数据</b>，表中的一行是<b>数据元素</b>，表中的一列属性是<b>数据项</b>。这个三层关系是所有后续讨论的颗粒度基础。</p>
+    <h4>二、逻辑结构：元素之间是什么关系（PAGE 45-52）</h4>
+    <p>用结点表示数据元素、箭头表示前驱/后继关系，逻辑结构分四类（PAGE 47）：</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>逻辑结构</th><th>关系特征（PPT原文口径）</th><th>典型例子</th></tr>
+      <tr><td><b>线性结构</b>（线性表）</td><td>有且仅有一个始结点和一个终结点；始结点只有后继、终结点只有前驱；每个内结点有且仅有一个前驱和一个后继</td><td>a→b→c→d→e（PAGE 48）</td></tr>
+      <tr><td><b>层次结构</b>（树）</td><td>根没有前驱；除根外每个结点有且仅有一个前驱，但可以有多个后继</td><td>k1 为根的 9 结点树（PAGE 50）</td></tr>
+      <tr><td><b>网状结构</b>（图）</td><td>每个结点可以有任意多个前驱和后继</td><td>N={A,B,C,D,E}（PAGE 51）</td></tr>
+      <tr><td><b>集合</b></td><td>每个结点都没有前驱和后继（除同属一个集合外无任何关系）</td><td>N={A,B,C,D,E}（PAGE 52）</td></tr>
+    </table></div>
+    <h4>三、存储结构：关系怎么存进计算机（PAGE 53-62）</h4>
+    <p>设计存储结构要回答两个问题：<b>①数据元素怎么存；②逻辑关系怎么存</b>。四种基本方式（PAGE 53）：</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>存储结构</th><th>做法</th><th>优点</th><th>缺点</th></tr>
+      <tr><td><b>顺序存储</b></td><td>元素连续存放，逻辑相邻=物理相邻</td><td>基于下标的检索效率高 O(1)</td><td>插入删除要整体搬移 O(n)（元素大时更惨）</td></tr>
+      <tr><td><b>链接存储</b></td><td>元素任意存放，用指针表达前驱后继</td><td>插入删除只改指针 O(1)</td><td>按关键字/下标检索低效 O(n)</td></tr>
+      <tr><td><b>散列存储</b></td><td>散列函数 h(K)=K 映射到存储地址</td><td>理想情况 O(1) 定位</td><td>冲突：K1≠K2 但 h(K1)=h(K2)（PAGE 56-57，第八章细讲）</td></tr>
+      <tr><td><b>索引存储</b></td><td>建索引表存指针，指向实际元素</td><td>对索引的检索快（数据在外存、索引在内存时优势巨大）</td><td>额外空间（PAGE 58-60）</td></tr>
+    </table></div>
+    <p>四种存储结构可以<b>灵活组合</b>使用；应根据问题特点选择（PAGE 62）。</p>
+    <h4>四、操作与总定义（PAGE 63-66）</h4>
+    <p>基本操作集合（PAGE 64）：插入、删除、修改、查找（按关键字）、排序、遍历。课堂用电话薄映射：加联系人=插入、改号码=查找+修改、按姓氏排=排序、打印全部=遍历。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】数据结构三要素（PAGE 65-66，板书结论）</div>
+      <b>数据结构 = 逻辑结构 + 存储结构 + 施加于数据上的操作</b>。《数据结构》就是研究如何组织、存储和操作数据的一门课程。顺序与链接的优缺点互为镜像（检索快/插删慢 ↔ 插删快/检索慢），是后续所有选型题的出发点。
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>线性结构的定义是<b>严格限定</b>的（"有且仅有"三个字都不能少），不能只记"一对一"（PAGE 48-49）。</li>
+        <li>散列"冲突"指<b>不同关键词</b>落到同一地址（K1≠K2 而 h(K1)=h(K2)），不是同一关键词重复插入（PAGE 57）。</li>
+        <li>术语换算（跨教材复习必备）：本课件"数据成分/结点/顶点"= 408教材"数据元素"；"域/字段"= "数据项"；"始结点/终结点/内结点"对应首元结点/尾结点/中间结点。408答题请用规范用语。</li>
+      </ul>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课堂示例 PAGE 57】散列与冲突</div>
+      <p>设散列函数 h(a)=1, h(b)=2, h(c)=3, h(d)=0：a、b、c、d 分别存入下标 1、2、3、0；再插入 e 时 h(e)=1 与 a 冲突——"怎么办？"这就是第八章散列要解决的核心问题。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>冲突的定义即 K1≠K2 且 h(K1)=h(K2)。解决办法两大流派：<b>开散列（拉链）</b>与<b>闭散列（开放定址：线性/二次/双重探查）</b>，详见 <a href="#c-l25">L25 散列</a>。</p></div></details>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了数据结构的三要素——逻辑结构四分类（线性/树/图/集合）、存储结构四分类（顺序/链接/散列/索引）及其镜像优缺点、六种基本操作。这个"4+4+6"框架，就是整门课的目录。</p>
+  </section>
+
+  <div class="chap-head" id="ch2"><h3>第2章 · 算法概述（对应PPT：Lecture 2，97页）</h3><p>怎么衡量一个算法好不好？这一章给出一把尺子：时间复杂度与空间复杂度，以及大O记号。期末和408都年年在这里出选择题。</p></div>
+
+  <section class="sec" id="c-l2">
+    <h3>L2 · 算法概述：复杂度分析与大O记号<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>上一节我们知道了"组织数据"，这一节解决"怎么衡量算法好坏"。为什么不直接掐表测运行时间？因为实际运行时间依赖机器、语言和实现细节（C 快于 Java/Python，printf/scanf 快于 cout/cin）——所以我们需要一个<b>与机器无关、与语言无关</b>的度量标准（PAGE 14-15）。</p>
+    <h4>一、算法与它的五个特性（PAGE 7-9）</h4>
+    <p><b>算法</b>：解决问题所采用的方法或步骤——由有限条指令构成、规定解决特定问题的一系列操作。五个特性（PAGE 8）：</p>
+    <ol>
+      <li><b>有限性</b>：有限步后必须终止；</li>
+      <li><b>确定性</b>：每条指令含义明确无二义；</li>
+      <li><b>输入</b>：<b>0个或多个</b>；</li>
+      <li><b>输出</b>：<b>1个或多个</b>；</li>
+      <li><b>可行性</b>：每个操作都可用基本运算有限次完成。</li>
+    </ol>
+    <p><b>算法 vs 程序（PAGE 9）：</b>程序是算法的语言实现；程序可以不满足有限性——比如 <code class="inl">while(1){}</code> 和操作系统。这是判断题爱考的区分点。</p>
+    <p><b>评价准则（PAGE 10-16）：</b>正确性、时间复杂性、空间复杂性、可读性、健壮性（鲁棒性：能应对各种极端输入）。</p>
+    <h4>二、基本运算与三种时间复杂性（PAGE 27-39）</h4>
+    <p><b>基本运算（关键运算）</b>：算法中起主要作用、费时最多的操作——排序数"比较"、插入删除数"移动"、矩阵数"乘加"。时间复杂性 = 基本运算次数，是问题规模 n 的函数（PAGE 15、27）。</p>
+    <p>同一算法不同输入次数可能不同（PAGE 30），于是有三种口径（PAGE 31）：设输入 I 的概率 P(I)、基本运算次数 T(I)：</p>
+    <ul>
+      <li><b>平均</b> E(n) = Σ P(I)·T(I)；<b>最好</b> = min T(I)；<b>最坏</b> = max T(I)。</li>
+    </ul>
+    <p><b>课堂主例：Find 算法</b>（PAGE 30-39）——数组 R[1..n] 中找 K，基本运算是"比较"：K=R[1] 最好 1 次；K=R[n] 或不在表中，最坏 n 次；平均：设 K 在表中的概率为 q，则 K=R[i] 的概率为 q/n，"不在表中"概率 1−q（比较 n 次！不是 0 次），得 <b>E(n) = q(n+1)/2 + (1−q)n</b>；已知 K 在表中（q=1）时 E(n)=(n+1)/2——这正是408顺序查找 ASL 的经典结论。</p>
+    <h4>三、大O / Ω / Θ（PAGE 46-55）</h4>
+    <p>精确表达式没必要，我们只关心<b>变化趋势</b>（PAGE 46-47）：T(n)=n²+100n+log₁₀n+1000，n 大时第一项说了算，取 g(n)=n²。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>记号</th><th>定义（存在什么常数、什么不等式）</th><th>含义</th></tr>
+      <tr><td><b>T(n)=O(g(n))</b></td><td>∃正常数C和n₀，∀n≥n₀：T(n) ≤ C·g(n)</td><td>上界：增长至多和 g(n) 一样快</td></tr>
+      <tr><td><b>T(n)=Ω(g(n))</b></td><td>∃正常数C和n₀：T(n) ≥ C·g(n)</td><td>下界</td></tr>
+      <tr><td><b>T(n)=Θ(g(n))</b></td><td>∃C₁、C₂：C₁g(n) ≤ T(n) ≤ C₂g(n)</td><td>同阶（上下界同时给出）</td></tr>
+    </table></div>
+    <p>验证例（PAGE 51）：T(n)=3n−2，取 C=3、n₀=1，3n−2≤3n，故 O(n)；T(n)=(n+1)²≤4n²（n≥1），故 O(n²)。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】必背两组表</div>
+      <b>① 量级全序（PAGE 58）：</b>O(1) &lt; O(loglogn) &lt; O(logn) &lt; O(n) &lt; O(nlogn) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ)<br>
+      <b>② 大O四条化简性质（PAGE 63-66）：</b>常系数可忽略 O(df(n))=O(f(n))；低次项可忽略 O(nᵃ+nᵇ)=O(nᵃ)（a&gt;b&gt;0）；<b>对数底可忽略</b> O(logₐn)=O(logn)；对数常数次幂可忽略 log(nᶜ)=O(logn)。多项式看最高次项。<br>
+      <b>③ 级数（PAGE 68-69）：</b>Σk = n(n+1)/2 = O(n²)；Σk² = O(n³)；一般 Σk^d = O(n^{d+1})；<b>调和级数 1+1/2+…+1/n ≈ ln n = O(logn)</b>——后面分析"内层依赖外层"的循环全靠它。
+    </div>
+    <h4>四、典型循环复杂度分析（PAGE 71-88）——考试就是考这些</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>代码模式</th><th>分析</th><th>答案</th></tr>
+      <tr><td>单层 for i&lt;n（PAGE 72）</td><td>执行 n 次</td><td>O(n)</td></tr>
+      <tr><td>双层嵌套均到 n（PAGE 73）</td><td>n×n</td><td>O(n²)</td></tr>
+      <tr><td>内层常数 9999 次（PAGE 75）</td><td>常数不管多大</td><td>O(n)</td></tr>
+      <tr><td><b>2019考研</b>：while(n&gt;=(x+1)*(x+1)) x++（PAGE 76）</td><td>(x+1)²≤n ⇒ x≈√n</td><td><b>O(√n)</b></td></tr>
+      <tr><td>内层 j≤i 依赖外层（PAGE 77）</td><td>Σi = n(n+1)/2</td><td>O(n²)</td></tr>
+      <tr><td>i*=2 / i/=2（PAGE 78-79）</td><td>2^k 达 n</td><td>O(logn)</td></tr>
+      <tr><td><b>2014考研</b>：k*=2 外层 × j&lt;n 内层（PAGE 80）</td><td>logn × n</td><td><b>O(nlogn)</b></td></tr>
+      <tr><td><b>吉大考研</b>：j+=n/3（常数次）× k*=2（PAGE 82）</td><td>3(n−1)·log₂n</td><td>O(nlogn)</td></tr>
+      <tr><td>调和级数：j+=i（PAGE 83）</td><td>n(1+1/2+…+1/n)</td><td><b>O(nlogn)</b></td></tr>
+      <tr><td><b>2017考研</b>：while(sum&lt;n) sum+=++i（PAGE 84）</td><td>k(k+1)/2≥n ⇒ k≈√(2n)</td><td><b>O(√n)</b></td></tr>
+      <tr><td><b>2022考研（兼吉大20级期末）</b>：i*=2外层、j&lt;i内层（PAGE 85）</td><td>1+2+4+…+2^{k−1}=2^k−1&lt;2n</td><td><b>O(n)</b>（要"尽可能精确的上界"）</td></tr>
+      <tr><td>空间（PAGE 86-87）</td><td>就地累加 vs 辅助数组 new int[n]</td><td>O(1) / O(n)</td></tr>
+      <tr><td>设计高效算法：Σi²（PAGE 88）</td><td>循环 O(n) vs 公式 n(n+1)(2n+1)/6</td><td>O(1)</td></tr>
+    </table></div>
+    <h4>五、均摊时间复杂度（PAGE 89-97）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <p>n 位二进制计数器 AddOne（PAGE 90-93）：最坏一趟翻转 n 位 O(n)，但连续 n 次加 1 不可能次次最坏。逐位统计：第 i 位每 2ⁱ 次调用才翻转一次，n 次调用总翻转次数 = n(1+1/2+1/4+…) ≤ 2n = O(n)，<b>均摊每次 O(1)</b>。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>对比维</th><th>平均时间复杂度</th><th>均摊时间复杂度</th></tr>
+      <tr><td>输入情况</td><td>假定概率分布</td><td>不对分布做任何假设</td></tr>
+      <tr><td>考察对象</td><td>单个操作</td><td>足够长的连续操作序列</td></tr>
+      <tr><td>计算方法</td><td>按概率加权平均</td><td>序列总时间÷操作数</td></tr>
+      <tr><td>特点</td><td>操作彼此独立</td><td>操作间前后关联、整体考量</td></tr>
+    </table></div>
+    <p>适用场景（PAGE 97）：大部分操作很快、个别操作慢且与前面操作有时序关联时（比如 L4 的栈扩容），把高代价摊到低代价操作上。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>输入可以 0 个，<b>输出必须至少 1 个</b>——不对称表述别记错（PAGE 8）。</li>
+        <li>大O是上界，可以给得很松（O(n²)的算法也是O(n³)）——题目要"尽可能精确的上界"（2022真题原话）。</li>
+        <li><b>对数的底可忽略，指数的底不可忽略</b>（PAGE 57-58）。</li>
+        <li>嵌套循环≠两层相乘：PAGE 83（内层次数 n/i 递减→调和级数）与 PAGE 85（内层次数 2^k 递增→等比求和）是两大经典反例。</li>
+        <li>Find 平均分析里"K 不在表中"这一输入的比较次数是 <b>n 而不是 0</b>（PAGE 33-39）。</li>
+      </ul>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课堂填空 PAGE 66、68】</div>
+      <p>(n+1)(3n²+2) = O(?)；1³+2³+…+n³ = O(?)；1⁴+2⁴+…+n⁴ = O(?)</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>展开 (n+1)(3n²+2)=3n³+3n²+2n+2，最高次 n³ → <b>O(n³)</b>；由 Σk^d = O(n^{d+1})：<b>O(n⁴)</b>、<b>O(n⁵)</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课下思考 PAGE 70】<span class="tag tag-ext">课件拓展·408不考</span></div>
+      <p>判断：① 200+sin(n) = O(1)【剑桥练习题】；② nlogloglogn = O(logn!)【清华考研题】</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>① 对——200+sin(n) 有界（|sin|≤1），是常数阶。② 对——由 Stirling 近似 logn! ≈ nlogn，而 n·logloglogn 显然不超其常数倍。此题只需了解，408 不考此类证明。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·SelectMaxMin 与 BinarySelect（PAGE 22-45）】<span class="tag tag-ext">课件拓展·408不考</span></div>
+      <p>选最大最小：平凡法每轮 2 次比较共 2n−2 次；分治法 BinarySelect 递归两半各求再合并（2次比较），递推 T(n)=2T(n/2)+2，解得 1.5n−2。两者比较说明了什么？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>BinarySelect 比较次数更少（1.5n−2 &lt; 2n−2），但它是递归算法，<b>需要额外辅助栈空间</b>——时间上的优势以空间为代价，典型的时空权衡（PAGE 45）。递归方程展开：T(n)=2T(n/2)+2=2^{k−1}T(2)+Σ2^i·2=3·2^{k−1}−2=1.5n−2（n=2^k）。408 不考递归方程求解，记住"分治可以省比较"这个感觉即可。</p></div></details>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——算法五特性与"程序可不满足有限性"；基本运算的选取；最好/最坏/平均三种口径（Find 的 E(n)=q(n+1)/2+(1−q)n 要会推）；大O定义与四条化简性质；量级全序；以及十几段循环代码的复杂度分析（其中 2014/2017/2019/2022 四道全国卷真题就是期末和考研的原题风格）。均摊分析是课件特色拓展，408 同学了解概念即可。</p>
+  </section>
+
+  <div class="chap-head" id="ch3"><h3>第3章 · 线性表的链接存储（对应PPT：Lecture 3，85页）</h3><p>课件顺序表部分放在慕课自学；课堂从链接存储讲起：单链表 → 循环 → 双向 → 静态 → 侵入式 → 双指针技巧 → 多项式链表。</p></div>
+
+  <section class="sec" id="c-l3">
+    <h3>L3 · 线性表的链接存储与双指针技巧<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>顺序表在慕课里大家已经自学了，今天课堂上我们集中火力讲链接存储。核心一句话（PAGE 4）：链接存储用<b>任意一组</b>存储单元存放线性表，每个结点除了数据字段，还必须存放其逻辑相邻结点的地址——<b>指针字段</b>。</p>
+    <h4>一、单链表与哨位结点（PAGE 5-17）</h4>
+    <p>结点结构：<code class="inl">struct Node{ int data; Node* next; };</code>。<b>头指针 head</b> 指向表头，<b>尾指针 tail</b> 指向表尾（PAGE 5）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】哨位（哨兵）结点（PAGE 6-7）</div>
+      在表前端增加一个<b>不算表中实际结点</b>的特殊表头结点，作用是<b>简化边界条件的处理</b>（对表头的插入删除不再需要特判）。<b>表长 = 非哨位结点个数</b>；只有哨位则为空表。讨论"第k个结点"均指第 k 个实际结点。<br>
+      ⚠️ 术语对齐：408/严蔚敏教材把哨兵叫"头结点"、第一个数据结点叫"首元结点"；本课件"头结点"指第一个数据结点。跨教材复习务必对齐！
+    </div>
+    <p>四个基本操作（函数签名与核心语句）：</p>
+<pre class="code" data-t="单链表基本操作 · PPT PAGE 8-17"><code>Node* Find(Node* head, int k) {          // 返回第k个结点地址，k&lt;0返回NULL
+    Node* p = head;                      // 从哨位出发走k步
+    for (int i = 0; i &lt; k &amp;&amp; p != NULL; i++) p = p-&gt;next;
+    return p;                            // p==NULL说明链表长度不足k
+}
+Node* Search(Node* head, int item) {     // 按值查找：从第1个实际结点开始！
+    for (Node* p = head-&gt;next; p != NULL; p = p-&gt;next)
+        if (p-&gt;data == item) return p;
+    return NULL;
+}
+void Delete(Node* head, int k) {         // 删除第k个结点
+    if (k &lt; 1) return;                   // 不能删哨位
+    Node* p = Find(head, k - 1);         // 先找前驱
+    if (p == NULL || p-&gt;next == NULL) return;
+    Node* q = p-&gt;next;
+    p-&gt;next = q-&gt;next;                   // 跨过q
+    delete q;                            // ADL记号：AVAIL&lt;-q（归还可利用空间表）
+}
+void Insert(Node* head, int k, int item) {   // 在第k个结点后插入
+    Node* p = Find(head, k);
+    Node* s = new Node; s-&gt;data = item;
+    s-&gt;next = p-&gt;next;                   // ①先接后继（顺序不能反！）
+    p-&gt;next = s;                         // ②再改前驱
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】结论（PAGE 13、16）</div>链表中插入/删除一个结点，只需改变一个或两个相关结点的指针，不对其它结点产生影响——这就是"插删 O(1)"的来源。插入两句 <code class="inl">s-&gt;next=p-&gt;next; p-&gt;next=s;</code> 的顺序不能颠倒，反了会丢失后继。</div>
+    <h4>二、循环链表与双向链表（PAGE 18-32）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>判断对象</th><th>单链表</th><th>循环链表（PAGE 19-21）</th></tr>
+      <tr><td>判空</td><td><code>head-&gt;next == NULL</code></td><td><code>head-&gt;next == head</code>（尾指向哨位而非NULL）</td></tr>
+      <tr><td>判表尾</td><td><code>p-&gt;next == NULL</code></td><td><code>p-&gt;next == head</code></td></tr>
+    </table></div>
+    <p>循环链表适合<b>环形结构</b>问题（约瑟夫环等）。双向链表结点带 prev/next，优点是<b>方便找前驱</b>（PAGE 24）。删除结点 s 两步（PAGE 25）：<code class="inl">s-&gt;prev-&gt;next = s-&gt;next; s-&gt;next-&gt;prev = s-&gt;prev;</code>；在 s 后插入 p 四步（PAGE 32）：<code class="inl">next-&gt;prev=p; p-&gt;next=next; p-&gt;prev=s; s-&gt;next=p;</code>（①②③④次序图上标号）。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>双向链表若不加哨位，s 是第一个或最后一个结点时代码失效——所以最终方案是<b>双哨位</b>（head+tail）或<b>双向循环+单哨位</b>，两种情形下同一套两行代码都适用（PAGE 26-31）。链表编程三大边界（PAGE 35 专门提醒）：<b>空表、单结点、处理头尾</b>。</div>
+    <h4>三、顺序 vs 链式（PAGE 33-34）——考试型对比表</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>维度</th><th>顺序存储</th><th>链接存储</th></tr>
+      <tr><td>空间</td><td>数组大小事先定，元素少时闲置浪费</td><td>按需申请无浪费，但每结点附加指针开销</td></tr>
+      <tr><td>按下标查找</td><td><b>O(1)</b></td><td>O(n)</td></tr>
+      <tr><td>插入/删除</td><td>O(n)（移动元素）</td><td><b>O(1)</b>（改几个指针）</td></tr>
+      <tr><td>选择建议</td><td>查找频繁、插删少</td><td>经常插入删除</td></tr>
+    </table></div>
+    <h4>四、静态链表与侵入式链表（PAGE 38-49）</h4>
+    <p><b>静态链表（PAGE 39-41）</b>：没有指针类型的语言里，用<b>数组下标模拟指针</b>：<code class="inl">int data[12]; int next[12];</code>，next 值 <b>−1 表示表尾（NULL）</b>。<b>静态双向循环链表</b>（PAGE 43-45）核心思想——"<b>盒子不动，指针动</b>"：盒子在数组中的位置永远不变（可 O(1) 定位任意盒子），移动只改 prev/next 两个数组：</p>
+<pre class="code" data-t="静态双向循环链表操作模板 · PAGE 45"><code>// 删除盒子x：
+next[prev[x]] = next[x];  prev[next[x]] = prev[x];
+// x插到y右边：
+prev[next[y]] = x;  next[x] = next[y];  prev[x] = y;  next[y] = x;
+// x插到y左边：
+next[prev[y]] = x;  prev[x] = prev[y];  next[x] = y;  prev[y] = x;
+// 指令 L X Y = 删X + 插到Y左边；R X Y = 删X + 插到Y右边</code></pre>
+    <p><b>侵入式链表（PAGE 46-49）</b><span class="tag tag-ext">课件拓展·408不考</span>：普通链表把 next 指针写进每个业务类（Student/Teacher/Car 各一套 Insert/Delete），数据与结构<b>深度耦合</b>。侵入式链表定义一套纯指针结构 <code class="inl">struct ListPtr{ ListPtr* next; };</code>，各类数据内嵌 ListPtr 成员——<b>数据与结构解耦合</b>，一套代码管理所有类型。操作系统内核都用它：Linux <code class="inl">list_head</code> + container_of 宏、Windows <code class="inl">LIST_ENTRY</code>、鸿蒙 <code class="inl">LOS_DL_LIST</code>（双向循环，"鸿蒙内核最重要结构体之一"）。</p>
+    <h4>五、链表双指针技巧（PAGE 50-74）——考研与面试的主战场</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>技巧</th><th>核心结论</th><th>出处标注</th></tr>
+      <tr><td>找倒数第k个</td><td>倒数第k = 正数第 n−k+1；fast 先走 k−1 步再同步推进，<b>一遍扫描 O(n)</b></td><td>考研题全国卷（PAGE 51）</td></tr>
+      <tr><td>找中间结点</td><td>slow 一步 fast 两步；奇数长度终于 fast-&gt;next==NULL，偶数终于 fast==NULL；默认返回<b>靠右</b>中点</td><td>LeetCode 876（PAGE 55）</td></tr>
+      <tr><td>链表相交</td><td>先比<b>尾结点</b>（不同必不相交）；相同则长链先走 |L1−L2| 步对齐，再同步走，p1==p2 即交点</td><td>LeetCode 160（PAGE 58）</td></tr>
+      <tr><td>判环/找环入口</td><td>快慢必相遇（套圈）；<b>2(a+b)=a+b+c+b ⟹ a=c</b>：相遇后一头回表头同步走，再相遇即入口（无需对齐）</td><td>LeetCode 141/142（PAGE 64）</td></tr>
+      <tr><td>回文判断</td><td>找中间结点 + 反转后半部分 + 逐结点比较</td><td>LeetCode 234（PAGE 70）</td></tr>
+      <tr><td>重排链表</td><td>L=(a1,…,an) 重排为 (a1,an,a2,an−1,…)：找中点+逆后半+交替合并，空间O(1)</td><td><b>2019年考研全国卷13分</b> + LeetCode 143（PAGE 73）</td></tr>
+    </table></div>
+<pre class="code" data-t="倒数第k · 一遍双指针（PPT PAGE 54）"><code>int kthToLast(ListNode* head, int k) {
+    ListNode *slow = head, *fast = head;
+    for (int i = 1; fast != NULL &amp;&amp; i &lt; k; i++) fast = fast-&gt;next;  // fast到第k个
+    if (fast == NULL) return 0;              // 长度不足k
+    while (fast-&gt;next != NULL) { slow = slow-&gt;next; fast = fast-&gt;next; }
+    return slow-&gt;val;
+}</code></pre>
+<pre class="code" data-t="找环入口 · a=c 推导（PPT PAGE 68-69）"><code>ListNode* detectCycleEntrance(ListNode *head) {
+    ListNode *slow = head, *fast = head;
+    while (fast != NULL &amp;&amp; fast-&gt;next != NULL) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (fast == slow) {                   // 相遇后：一头回起点
+            ListNode *p1 = head, *p2 = fast;
+            while (p1 != p2) { p1 = p1-&gt;next; p2 = p2-&gt;next; }
+            return p1;                        // 同速再相遇=环入口
+        }
+    }
+    return NULL;
+}</code></pre>
+    <h4>六、一元多项式链表（PAGE 75-85）</h4>
+    <p>结点两个数据域（<b>coef 系数、exp 指数</b>）+ 链接域，按指数升序存储。优点：项数动态增长不溢出、插删只"穿针引线"。多项式相加用 <b>pa/pb/pc 三指针协同</b>：指数小者接入结果、相等则系数相加（<b>系数为0的结点删除</b>，PAGE 81-82），一方扫完另一方整段链入。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 85】多项式相加</div>
+      <p>A = 1 − 3x⁶ + 7x¹²，B = −x⁴ + 3x⁶ − 9x¹⁰ + 8x¹⁴，求 A+B。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>逐项归并：(1,0) 直接入结果；(−1,4) 入结果；(−3,6) 与 (3,6) 相加得 0 <b>删除该结点</b>；(−9,10) 入结果；(7,12) 入结果；A 扫完，B 剩余 (8,14) 整段链入。</p>
+        <p><b>答案：A+B = 1 − x⁴ − 9x¹⁰ + 7x¹² + 8x¹⁴</b></p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·盒子移动 PAGE 42】</div>
+      <p>n=6 个盒子从左至右排列为 2 3 1 4 5 6，执行 L 1 4（1移到4左边，已在则忽略）、再执行 R 3 5（3移到5右边）。最终排列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>L 1 4：1 已在 4 左边，<b>忽略</b>，排列不变。R 3 5：删去 3 得 2 1 4 5 6，把 3 插到 5 右边 → <b>2 1 4 5 3 6</b>。这类题用静态双向循环链表 O(1) 完成（见上面操作模板）。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】汇总</div>
+      <ul>
+        <li>Search 从 <code class="inl">head-&gt;next</code> 开始（第1个实际结点），不是从哨位开始（PAGE 10）。</li>
+        <li>找中点循环条件必须 <code class="inl">fast!=NULL &amp;&amp; fast-&gt;next!=NULL</code> 两项齐全（防空指针）。</li>
+        <li>判相交不能只比中间某结点，要比<b>最后一个结点</b>（PAGE 61）。</li>
+        <li>ADL记号：申请空间 <code class="inl">q←AVAIL</code>、释放 <code class="inl">AVAIL←q</code>（AVAIL=可利用空间表，PAGE 13）——写ADL时要会用。</li>
+        <li>期末注意：单链表求交/判环在"不考清单"里（L26），但<b>2019年考研全国卷考了重排链表</b>——课程不考≠考研不考。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——单链表四操作与"只动指针不搬家"的结论；哨位结点统一边界；循环/双向链表的判空判尾对照；顺序vs链式的 O(1)/O(n) 权衡表；静态链表"盒子不动指针动"；以及双指针六连题（倒数第k、中点、相交、判环、回文、重排——其中两道是考研真题原题）。</p>
+  </section>
+
+  <div class="chap-head" id="ch4"><h3>第4章 · 栈和队列（对应PPT：Lecture 4，163页）</h3><p>本讲七大专题：进制转换、括号匹配、表达式求值、栈扩容、栈混洗、递归与回溯、队列与BFS——期末与408的双料大户。</p></div>
+
+  <section class="sec" id="c-l4">
+    <h3>L4 · 栈和队列及其应用<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>栈和队列的定义与顺序/链式实现都在慕课里自学了（L0 清单），课堂上我们直接讲<b>应用</b>——用栈解决"后进先出"的一切问题，用队列解决"先进先出"的一切问题。</p>
+    <h4>一、进制转换与括号匹配（PAGE 5-20）</h4>
+    <p><b>进制转换（PAGE 5）</b>：十进制转 base 进制，余数要<b>逆序输出</b>——先求得的余数最后写出，天然符合栈 LIFO。<b>课堂例：(66)₁₀ = (102)₈</b>（66/8=8余2；8/8=1余0；1/8=0余1，余数逆序 102）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】括号匹配（PAGE 11-17）</div>
+      核心思路：<b>栈只存左括号</b>——遇左括号压栈；遇右括号：栈空→失败；栈顶不是对应左括号→失败；否则弹栈。扫描结束<b>栈空才成功</b>（栈非空=有多余左括号）。
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>只有<b>一种</b>括号时可用计数器（过程中非负、最终归零），但<b>不能推广到多种括号</b>——[ ( ] ) 计数器法失效，必须用栈（PAGE 10）。</div>
+    <h4>二、表达式求值（PAGE 21-76）——期末408双高频</h4>
+    <p>表达式三要素（PAGE 22）：操作数、运算符（+ − * /）、界限符（括号与结束符）。<b>中缀</b>：运算符在操作数之间；<b>后缀（逆波兰式，1929年 Lukasiewicz 提出）</b>：运算符紧跟两个操作数之后——没有括号、无优先级差别、完全按出现次序计算（PAGE 23-24）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】中缀转后缀三条规则（PAGE 33，必须默写）</div>
+      <b>① 运算符规则：</b>栈空或栈顶是左括号→压栈；当前优先级 <b>&gt;</b> 栈顶→压栈；当前优先级 <b>≤</b> 栈顶→弹栈（弹出者进入后缀式）直至满足压栈条件再压栈。<br>
+      <b>② 括号规则：</b>左括号压栈；右括号弹栈<b>直至左括号</b>（左括号本身不进后缀式）。<br>
+      <b>③ 结束符规则：</b>弹栈至空。<br>
+      手工速算法（PAGE 28）：充分加括号（每对括号仅一个运算符）→ 运算符移到对应右括号后 → 去括号。<br>
+      复杂度：<b>每个元素最多进栈1次、出栈1次、入队1次，O(n)</b>（PAGE 62）。
+    </div>
+    <p><b>后缀求值（PAGE 25-27）：</b>只需<b>一个操作数栈</b>——读操作数压栈；读运算符连续弹两个（<b>先弹的是右操作数</b>）运算、结果压栈；结束符时栈顶即结果。</p>
+    <p><b>中缀直接求值（PAGE 63-73）：</b>转后缀与求值合并——双栈（运算符栈 S + 操作数栈 NUM），该输出运算符时直接弹两个数算掉。<b>课堂例：2∗3+1# → 7</b>（∗弹栈算 2∗3=6 压回；+压栈；结束符弹+算 6+1=7）。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 28 选择题】中缀 A−(B+C/D)∗E 的后缀形式</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>充分加括号：(A−((B+(C/D))∗E)) → 移运算符 → 去括号得 <b>ABCD/+E*−</b>（答案D）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 34-58 全过程表】(A+B)∗((C−D)∗E+F) 转后缀</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>25页逐步演示，最终答案：<b>AB+CD−E*F+*</b>。关键动作：遇)弹至(；遇+时先弹出栈顶的∗（≤规则，保证左结合）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 26 后缀求值表】求 ABC*/DE*+AC*−</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>对应中缀 A/(B∗C)+D∗E−A∗C。逐步：T1=B∗C；T2=A/T1；T3=D∗E；T4=T2+T3；T5=A∗C；T6=T4−T5——栈内演化 A,T1 → T2 → T2,T3 → T4 → T4,T5 → T6。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 59 考研题全国卷】</div>
+      <p>中缀 a/b+(c∗d−e∗f)/g 转后缀过程中，扫描到 f 时运算符栈内容（自底向上）是？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>a输出；/入栈；b输出；+不高于/→弹/输出、+入栈；(入栈；c输出；∗入栈；d输出；−≤∗→弹∗输出、−入栈；e输出；∗&gt;−→入栈。<b>扫描到f时栈自底向上：+ ( − ∗</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 60 考研题全国卷·课下思考】</div>
+      <p>a+b−a∗((c+d)/e−f)+g 转后缀过程中，运算符栈中元素的最大个数？A.5 B.7 C.8 D.11</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>推到双左括号后+入栈时达峰值 <b>5 个</b>（− ∗ ( ( +）。<b>答案 A</b>。</p></div></details>
+    </div>
+    <h4>三、栈扩容与均摊分析（PAGE 77-83）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】两种扩容策略的均摊结论（期末在"不考清单"，工程必知）</div>
+      栈满四步：申请新数组→拷贝→释放旧数组→切换。<b>容量加倍策略</b>：n 次 PUSH 总拷贝 1+2+4+…+2^k=2^{k+1}−1=O(n)，<b>每次均摊 O(1)</b>；<b>容量递增策略</b>（每次加d）：总时间 O(n²)，<b>每次均摊 O(n)</b>。C++ STL vector 扩容取 1.5 倍或 2 倍即此权衡（PAGE 81-83）。
+    </div>
+    <h4>四、栈混洗（PAGE 84-101）——408选择题大户</h4>
+    <p>入栈序列 a1..an，出栈序列 b1..bn 称为原序列的一个<b>栈混洗</b>（PAGE 87）。两个问题：甄别与计数。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】三连结论</div>
+      <b>① 审题关键（PAGE 85-86 批注）：</b>"并不一定要全部进栈再出栈——进栈的过程中也可以出栈！"<br>
+      <b>② 312模式定理（PAGE 92，充要条件）：</b>出栈序列中若存在 i&lt;j&lt;k 使 <b>bᵢ &gt; bₖ &gt; bⱼ</b>，则必为非法出栈序列。<br>
+      <b>③ 总数（PAGE 93-98）：</b>n 个元素的栈混洗 ⟺ n 对括号匹配，总数 = C(2n,n) − C(2n,n−1) = <b>Catalan(n) = C(2n,n)/(n+1)</b>；Catalan(6)=132。
+    </div>
+<pre class="code" data-t="栈混洗甄别 · O(n)（PPT PAGE 89-90）"><code>bool check(int a[], int b[], int n) {   // a入栈序列 b待验出栈序列
+    stack s;  int k = 0;                 // k扫描入栈序列
+    for (int i = 0; i &lt; n; i++) {        // i扫描出栈序列
+        while (s.empty() || s.peek() != b[i])
+            if (k &lt; n) s.push(a[k++]);   // 压到栈顶等于目标为止
+            else return false;           // 入栈耗尽仍不匹配→非法
+        s.pop();                         // 栈顶出栈
+    }
+    return true;
+}</code></pre>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 85 阿里笔试】A、B、C、D顺序进栈（进栈过程中可出栈），出栈次序错误的是？A.ABCD B.ACBD C.BCDA D.DCAB</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>D</b>。D 先出须全进栈，出 D 后栈内自底向顶 A,B,C，下一个出 C 可以，但再要求出 A 时栈顶是 B——矛盾。（同型 PAGE 86：答案也是 D，4312。）</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 91 2018考研全国卷·课下思考】1..6 依次进栈，不可能的出栈序列：A.125643 B.234561 C.345612 D.654321</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>C</b>。3 先出后 4、5、6 依次"即进即出"，此时栈内自底向顶 1、2，只能先 2 后 1，但序列尾部是"1 2"——矛盾。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 100 考研题全国卷】a,b,c,d,e 依次进栈，以 d 开头的出栈序列个数？A.3 B.4 C.5 D.6</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>d 先出 → a,b,c,d 进栈后 d 弹出，栈内 a,b,c（c 在顶），输入剩 e。枚举：<b>dcbae、dcbea、dceba、decba 共 4 个</b>。答案 B。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 101 考研题全国卷·课下思考】入栈 1..n，出栈 p1..pn，若 p2=3，则 p3 可能取值个数？A.n−3 B.n−2 C.n−1 D.无法确定</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>p1=1 时 p3∈{2,4,…,n}；p1=2 时 p3∈{1,4,…,n}；并集 {1,2,4,…,n} 共 <b>n−1 个</b>。答案 C。</p></div></details>
+    </div>
+    <h4>五、递归与回溯（PAGE 102-149）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】递归的空间复杂度 = 递归深度（栈帧数）（PAGE 103-111）</div>
+      函数调用经栈实现：<b>栈帧</b>（返回地址、参数、局部变量）调用入栈、返回出栈。每次递归调用一个栈帧：<code class="inl">F(n)=n*F(n-1)</code> 空间 O(n)；<code class="inl">F(n)=n+F(n/2)</code> 空间 O(logn)；BinarySelect 空间 O(logn)。递归过深→<b>系统栈溢出</b>（PAGE 108）。程序内存四分区：代码区/数据区/堆区/栈区（PAGE 104）。
+    </div>
+    <p><b>回溯口诀（PAGE 120，出现三次）："可行则进、不行则换、换不了则退"。</b>迷宫寻径（PAGE 117-122）：方向数组 <code class="inl">int dx[4]={-1,0,1,0}; int dy[4]={0,1,0,-1};</code>（0上1右2下3左），DFS 输出<b>所有</b>方案时 <code class="inl">vis[nx][ny]=0</code> 恢复现场不可省（只找一条/只判存在则可另议）。</p>
+    <p><b>八皇后（PAGE 125-129）：</b>A[k] 表示第 k 列皇后所在行，冲突判定 <code class="inl">A[j]==i || abs(A[j]-i)==abs(j-k)</code>（同列或同斜线）；共 92 个解，高斯手算只找到 76 个。<b>快速幂（PAGE 131-133）</b><span class="tag tag-ext">课件拓展·408不考</span>：a^n=(a^(n/2))²，奇数再乘 a，O(logn)。<b>汉诺塔（PAGE 137-143）：</b>HANOI(n,A,B,C)=①借助C把1..n−1移到B ②MOVE(A,C) ③借助A把1..n−1从B移到C；时间 O(2ⁿ)、空间（递归深度）O(n)；栈模拟要点——<b>未来先处理的子任务后入栈</b>。<b>消除递归三法（PAGE 134-135）：</b>①尾递归可直接改循环 ②栈模拟 ③递推（动态规划）。<b>浏览器前进/后退（PAGE 144-147）：</b>双栈——BACK 当前页压 forward、从 backward 弹出；VISIT 当前页压 backward 并<b>清空 forward 栈</b>。</p>
+    <h4>六、循环队列与BFS（PAGE 150-163）——408必考公式</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】循环队列两方案（PAGE 151-152，front指向队首，rear指向队尾元素的下一位置）</div>
+      <b>方案1（增设count）：</b>队空 count==0；队满 count==MaxSize；个数=count。<br>
+      <b>方案2（牺牲一个单元，408默认）：</b>队空 front==rear；<b>队满 (rear+1)%MaxSize==front</b>；<b>元素个数 (rear−front+MaxSize)%MaxSize</b>——直接 r−f 会得负数，必须加 MaxSize 再取模！
+    </div>
+    <p><b>BFS 迷宫最短路（PAGE 154-159）：</b>队列按访问顺序层层推进；<b>每个格子第一次被访问时就确定了与起点的最短距离</b>（注意 dist[0][0]=1，<b>步数包括起点和终点</b>）。<b>DFS vs BFS（PAGE 160）：</b>DFS 一条道走到黑（回溯实现）；BFS 地毯式层层推进，<b>常用于找最短路径</b>。队列还有缓冲区、CPU 就绪进程队列两大应用（PAGE 161-162）。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 153 阿里笔试】数组 C[1..m] 环形队列，f 队头位置、r 队尾元素后一位置（顺时针），非空时元素个数公式？</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>个数=(r−f) mod m，r−f 可能为负需加 m：<b>(m+r−f) mod m，选 A</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】汇总</div>
+      <ul>
+        <li>转后缀：<b>左括号遇右括号弹到左括号为止，左括号不进后缀式</b>；同级也弹（≤规则）。</li>
+        <li>栈混洗审题：默认"进栈过程中可出栈"（PAGE 85-86）。</li>
+        <li>rear 指<b>队尾元素的下一个位置</b>，不是队尾元素本身。</li>
+        <li>回溯输出所有路径必须恢复 vis=0；汉诺塔栈模拟时先处理的子任务后入栈。</li>
+        <li>八皇后/迷宫回溯/快速幂/浏览器/栈扩容推导 属期末不考清单或课件拓展，但面试考研常遇。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——括号匹配"只存左括号、终态栈空"；中缀转后缀三规则与双栈直接求值（2012/2022 两道全国卷真题就是"扫描到f时栈中元素"与"栈最大个数"）；栈混洗 312 模式与 Catalan 计数；递归空间=递归深度；循环队列两方案与个数公式；BFS"第一次访问即最短"。这些是期末算法大题和408选择题的绝对主力。</p>
+  </section>
+
+  <div class="chap-head" id="ch5"><h3>第5章 · 数组与矩阵（对应PPT：lecture 5，157页）</h3><p>前半是408硬考点（寻址公式+压缩存储+三元组），后半是课件特色的算法弹药库（动态规划、前缀和、差分、ST表、尺取法——期末大多不考，面试考研机试全是宝）。</p></div>
+
+  <section class="sec" id="c-l5">
+    <h3>L5 · 数组与矩阵：寻址、压缩存储与区间技巧<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>今天这节课分两段：前一段"多维数组怎么寻址、特殊矩阵怎么省空间存"是期末和408都必考的硬知识；后一段老师带我们打了一整套区间问题的组合拳——动态规划、前缀和、差分、ST表、尺取法，这些大多在期末不考清单里，但<b>考研机试和大厂笔试是硬通货</b>。</p>
+    <h4>一、n维数组按行优先寻址（PAGE 4-7）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】寻址公式（PAGE 5）</div>
+      各维元素个数 m1,…,mn，每元素占 C 个单元，下标 (i1,…,in) 的地址：<br>
+      <b>LOC(i1,…,in) = LOC(0,…,0) + ( i1·m2·m3·…·mn + i2·m3·…·mn + … + i_{n−1}·mn + in )·C</b><br>
+      记忆：按行优先时<b>最后一维系数为1，往前逐维乘以后面所有维的长度</b>。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课堂例 PAGE 6】A[3][5][11][3]</div>
+      <p>写出 (i,j,k,l) 的地址表达式。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>i 的系数=5×11×3=165，j 的系数=11×3=33，k 的系数=3，l 的系数=1 → <b>Loc(A)+(165i+33j+3k+l)·C</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课下练习 PAGE 7】</div>
+      <p>四维数组 A[3][5][11][3] 按行优先，每元素4个存储单元，A[0][0][0][0] 地址为 1000，求 A[1][2][6][1] 的地址。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>1000+4×(165×1+33×2+3×6+1)=1000+4×250=<b>2000</b>。</p></div></details>
+    </div>
+    <h4>二、特殊矩阵的压缩存储（PAGE 8-23）——408年年出题</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】压缩存储两问（PAGE 10）+ 四套公式</div>
+      分析任何压缩存储都回答两问：<b>①需要多大空间（d[]元素个数）；②地址映射 M(i,j)→d[]下标</b>。
+      <div class="tbl-wrap"><table class="api">
+        <tr><th>矩阵</th><th>空间</th><th>映射公式（按行优先、下标从1）</th></tr>
+        <tr><td>对角矩阵</td><td>n</td><td>M(i,i)=d[i−1]（其余0）</td></tr>
+        <tr><td>下三角（i≥j有效）</td><td>n(n+1)/2</td><td>M(i,j)=d[ i(i−1)/2 + (j−1) ]</td></tr>
+        <tr><td>对称矩阵（存下三角）</td><td>n(n+1)/2</td><td>i≥j：d[i(i−1)/2+(j−1)]；i&lt;j：先对称化 M(j,i) 再套左式</td></tr>
+        <tr><td>三对角（|i−j|≤1有效）</td><td>3n−2</td><td>M(i,j)=d[2i+j−3]</td></tr>
+      </table></div>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018考研全国卷·课下思考 PAGE 19】</div>
+      <p>12×12 对称矩阵 M，将<b>上三角</b>元素按行优先存入 C 语言一维数组 N（下标从0），求 M(6,6) 的下标。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>上三角按行优先：第1行12个、第2行11个、第3行10个、第4行9个、第5行8个，共 <b>50</b> 个；M(6,6) 是第6行第1个（上三角行内从对角线开始）→ <b>M(6,6)=N[50]</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2020考研全国卷·课下思考 PAGE 20】</div>
+      <p>10×10 对称矩阵 M，上三角元素按<b>列优先</b>存入 N，求 M(7,2) 的下标。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>M(7,2) 在下三角，先对称化为上三角元 M(2,7)。列优先时它前有第1列1个、第2列2个…第6列6个共 21 个元素，M(2,7) 是第7列第2个 → <b>N[22]</b>（PPT 给出的答案）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2016考研全国卷·课下思考 PAGE 23】</div>
+      <p>100 阶三对角矩阵按行优先压缩存入下标从0的数组 N，求 M(30,30) 的下标。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>k=2i+j−3=60+30−3=<b>87</b>。</p></div></details>
+    </div>
+    <h4>三、稀疏矩阵：三元组表与十字链表（PAGE 24-41）</h4>
+    <p><b>稀疏矩阵</b>：非零元个数远小于零元个数（PAGE 25）。<b>三元组 (i, j, aij)</b> 唯一确定一个非零元；按行优先顺序排列成线性表用顺序存储，即<b>三元组表</b>（PAGE 26-28）：<code class="inl">struct Triple{int row,col,value;};</code></p>
+    <ul>
+      <li><b>转置算法（PAGE 33）：</b>对 k=1..n 扫描列号填入 b——O(nt)（n为列数、t为非零元数）。</li>
+      <li><b>快速转置（PAGE 34-36）：</b>rowsize[]（各列非零元数）→ start[]（转置后各行起点，start[1]=0，start[i]=start[i−1]+rowsize[i−1]），扫描一遍按 start 放置并自增——<b>O(n+t)</b>。</li>
+      <li><b>十字链表（PAGE 38-41）：</b>结点五域 left/up/row/col/data；每行每列都是哨位引导的循环链表（行哨兵 col=−1、列哨兵 row=−1）；矩阵运算=插删结点。</li>
+      <li><b>适用性（PAGE 37）：</b>三元组省空间，但非零元位置/个数经常变化的运算不适合（要频繁插删移动）。</li>
+    </ul>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2023考研全国卷 PAGE 29】</div>
+      <p>用三元组表存储稀疏矩阵 M，除三元组及非零元个数外还需保存：Ⅰ.行数 Ⅱ.含非零元的行数 Ⅲ.列数 Ⅳ.含非零元的列数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>选 A（仅Ⅰ、Ⅲ）</b>——矩阵的行数列数无法由三元组推出，而非零元所在行/列数可由三元组统计。</p></div></details>
+    </div>
+    <h4>四、动态规划初探（PAGE 42-102）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <p><b>从递归斐波那契说起（PAGE 43-46）：</b>递归版 T(n) 满足 O(2ⁿ) 上界与 Ω(2^{n/2}) 下界——慢的根因是<b>重复计算</b>。<b>DP 思想（PAGE 47）：</b>自底向上先解小子问题存表，大问题查表。<b>三条件（PAGE 53）：</b>最优子结构、无后效性、重叠子问题。<b>四步（PAGE 54）：</b>找子问题→定义状态→导出递推式→定边界；"没有固定规则，多做题"。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>问题（页码）</th><th>状态与转移</th><th>复杂度</th></tr>
+      <tr><td>斐波那契递推（P49-50）</td><td>F[i]=F[i−1]+F[i−2]；滚动变量压空间</td><td>O(n)/O(1)</td></tr>
+      <tr><td>跳台阶 LeetCode70（P51-52）</td><td>F(n)=F(n−1)+F(n−2)；可跳1/2/3级则三重和</td><td>O(n)</td></tr>
+      <tr><td>网格路径 LC62/63（P55-87）</td><td>F(i,j)=F(i−1,j)+F(i,j−1)；有障碍处 F=0；滚动数组 F[j]+=F[j−1]；另一解 C(n+m−2,m−1)</td><td>O(mn)</td></tr>
+      <tr><td>组合数 C(n,m)（P77-83）</td><td><b>ans=ans*i/j 逐项乘除</b>（中间结果恒整数；先乘后除会溢出）；m&gt;n/2 则 m=n−m</td><td>O(m)/O(1)</td></tr>
+      <tr><td>最大子数组和 LC53（P88-99）</td><td>f(i)=以i结尾的最大和：f(i−1)&gt;0 则续接否则另起；答案=max f(i)；初值取 a[0] 非 0（防全负）</td><td>O(n)/O(1)</td></tr>
+      <tr><td>最大子数组乘积 LC152（P101-102）</td><td>同时维护 f 最大与 g 最小（负负得正）</td><td>O(n)/O(1)</td></tr>
+    </table></div>
+    <div class="note"><b>工程技巧（PAGE 90）：</b>INT_MAX 当∞会溢出（∞+d≠∞），用 <b>0x3f3f3f3f</b>（加数/翻倍不溢出，还能 memset）。</div>
+    <h4>五、区间问题四件套（PAGE 103-152）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>技巧</th><th>核心公式/规则</th><th>复杂度</th></tr>
+      <tr><td><b>前缀和</b>（P103-108）</td><td>sum[i]=sum[i−1]+a[i]；区间和 a[i..j]=sum[j]−sum[i−1]</td><td>预处理O(n)，查询<b>O(1)</b></td></tr>
+      <tr><td><b>差分数组</b>（P110-115）</td><td>diff[i]=a[i]−a[i−1]；[i,j]加d：diff[i]+=d、j&lt;n则diff[j+1]−=d；还原 a[i]=a[i−1]+diff[i]</td><td>每次区间操作<b>O(1)</b></td></tr>
+      <tr><td><b>ST表/RMQ</b>（P117-128）</td><td>F(i,j)=max(F(i,j−1), F(i+2^{j−1},j−1))，F(i,0)=a[i]；查询[L,R]：k=⌊log₂(R−L+1)⌋，max(F[L][k],F[R−2^k+1][k])——两段<b>可重叠</b>；2^j 用 <code class="inl">1&lt;&lt;j</code>；倍增思想</td><td>预处理O(nlogn)，查询<b>O(1)</b></td></tr>
+      <tr><td><b>尺取法</b>（P129-152）</td><td>双指针维护区间：和&lt;S 右扩1位、≥S 左缩1位（最短区间和≥S：LC209）；<b>依赖正整数</b>（有负数失效）</td><td><b>O(n)</b></td></tr>
+    </table></div>
+    <p><b>子集生成（PAGE 153-156）：</b>0/1 数组模拟二进制递增（AddOne：连续1变0、首个0变1），输出幂集，a[n]==0 作终止哨兵。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·吉大2019级上机 PAGE 104-108】区间平均分</div>
+      <p>9 名学生成绩 10 20 30 40 50 60 70 80 90，2 次查询 (1,9) 与 (3,6)，输出截尾整平均。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>sum[9]=450 → 450/9=<b>50</b>；sum[6]−sum[2]=210−30=180 → 180/4=<b>45</b>。暴力 O(nm) 10⁵ 级会超时，前缀和 O(n+m)。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·洛谷P3865 PAGE 117-128】区间最值</div>
+      <p>a=[3,9,1,2,5,6,0,7,8]（下标1..9），查询 (3,6)、(5,8)、(2,7)。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>6、7、9</b>。k=log₂(区间长)向下取整，取两段覆盖的 max。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】汇总</div>
+      <ul>
+        <li>多维寻址系数顺序：行优先时最后一维系数是1，别把最前面维的长度乘进去。</li>
+        <li>对称矩阵存上三角时第 i 行只有 n−i+1 个元素；M(7,2) 类下三角元要<b>先对称化再定位</b>（P19-20 两道真题都埋这个坑）。</li>
+        <li>三对角公式 2i+j−3 只对 |i−j|≤1 的非零元成立。</li>
+        <li>C(n,m) 千万别先乘分子再除分母（溢出）；逐项 ans=ans*i/j 的中间结果恒为整数。</li>
+        <li>最大子数组和初值取 a[0] 而非 0（全负数组）；f(i) 定义是"以i结尾"，答案取所有 f 的 max。</li>
+        <li>ST表查询两段区间允许重叠（max 不怕重复）；尺取法有负数就失效。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——行优先寻址公式；四类特殊矩阵的空间与映射公式（2016/2018/2020 三道真题直接考）；三元组表/快速转置 O(n+t)；十字链表。DP、前缀和、差分、ST表、尺取法是课件特色弹药库（期末不考、机试必练），到第七部分力扣（LC53/152/209/239）我们还会反复用到它们。</p>
+  </section>
+
+  <div class="chap-head" id="ch6"><h3>第6章 · 字符串模式匹配（对应PPT：Lecture 6 + Tutorial 1）</h3><p>朴素匹配 → KMP → next 手算 → 循环节（不考清单）→ 改进 next2（不考清单）；Tutorial 的编辑距离与 LCS 全部是课件拓展。</p></div>
+
+  <section class="sec" id="c-l6">
+    <h3>L6 · 字符串模式匹配：朴素匹配与 KMP<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>今天讲文本编辑器"查找/替换"背后的算法。<b>问题定义（PAGE 5）：</b>目标串 S 长 n、模式串 P 长 m（m≤n），判断 P 是否为 S 的子串：是则返回 P 第一个字符在 S 中的首位置，否则返回 −1（即 LeetCode28）。</p>
+    <h4>一、朴素（BF）模式匹配（PAGE 6-30）</h4>
+    <p>第 i 趟看 P 是否出现在 S 的第 i 个位置。<b>失配三动作（PAGE 19）：</b>P 右移1位、<b>i 回退到 i−j+1</b>、j 回退到 0；匹配成功（j==m）返回 i−m。关键运算是字符比较，<b>最坏 O(n·m)</b>（PAGE 20）。</p>
+    <div class="note"><b>平均情况（PAGE 21-29，东京大学考研题）：</b>设字符集 k 种、单次匹配概率 1/k，每趟期望比较 T_i=(1−(1/k)^m)/(1−1/k)≤2，故平均 <b>T≤2n</b>——字符集越大，单次比对成功率越低、越接近线性（结论记牢，证明了解）。</div>
+    <h4>二、KMP：利用"经验"与"教训"（PAGE 31-71）</h4>
+    <p>朴素匹配的浪费在哪？<b>三个优化途径（PAGE 38）：</b>P 能否多移几位？i 可否不回退？j 可否不退到0？答案是：利用模式串自身的重复性。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】next 函数（失败函数/前缀函数，PAGE 44-46）——本讲核心</div>
+      在 p_j 失配（s_i≠p_j，且已匹配 s_{i−j}…s_{i−1}=p_0…p_{j−1}）：在 p_0…p_{j−1} 中找<b>最长相等前后缀</b>，设长度 k，则下次匹配 s_i 直接与 p_k 比较——<b>i 不动，j 回退到 k（即模式串右移 j−k 位）</b>。<br>
+      next(j) = −1（j=0）；max{k | p_0…p_{k−1} = p_{j−k}…p_{j−1}，0&lt;k&lt;j}；0（不存在）<br>
+      <b>① 必须取"最长"</b>（取短了会漏掉成功匹配，PAGE 40-41 反例专门强调）；<b>② next 只与 P 有关、与 S 无关</b>，可预处理；<b>③ next 与教材失败函数的换算：f(j) = next(j+1) − 1</b>（PAGE 84，应对不同教材口径）。
+    </div>
+<pre class="code" data-t="KMP 主算法 + buildNext 递推（PPT PAGE 53、68-69）"><code>int KMP(char *S, char *P, int n, int m) {
+    int next[maxm], i = 0, j = 0;
+    buildNext(P, next, m);
+    while (j &lt; m &amp;&amp; i &lt; n) {
+        if (j == -1 || S[i] == P[j]) { i++; j++; }   // j==-1：p0失配，整体右移1位
+        else j = next[j];                             // 失配：j回退，i不动
+    }
+    return (j == m) ? i - m : -1;
+}
+void buildNext(char *P, int next[], int m) {          // 递推：已知next(j)=k
+    int k = next[0] = -1;
+    for (int j = 0; j &lt; m - 1; j++) {
+        while (k &gt;= 0 &amp;&amp; P[k] != P[j]) k = next[k];   // 链式回退找次长相等前后缀
+        next[j + 1] = ++k;                            // P[k]==P[j]则next(j+1)=k+1
+    }
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】复杂度（PAGE 70-71）</div>
+      buildNext：++k 至多 m 次、k=next[k] 次数不超过 k 的增加次数 → 字符比较 ≤2m，O(m)；KMP 匹配：i 只增不减、j 增减相抵 → 比较 ≤2n，O(n)。<b>KMP 总时间 O(n+m)</b>。字符集越小（P_r=1/k 越大），KMP 相对朴素的优势越大（PAGE 83）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·吉大2021级期末 PAGE 52】</div>
+      <p>模式串 abcabcaaa，KMP 匹配中在 j=7 处失配，下一次与目标串失配位置比较的是模式串哪个位置（下标从0）？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>p0…p6="abcabca"，最长相等前后缀 abca（长4）→ next(7)=4 → <b>答案 D（位置4）</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课堂练习 PAGE 54】手算 next</div>
+      <p>P = abcabcd，逐位写出 next 数组。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>next(0)=−1，next(1)=0；"ab"/"abc"/"abcd"无相等前后缀→0；"abca"→1；"abcab"→2；"abcabc"→3。<b>next = −1, 0, 0, 0, 1, 2, 3</b>。</p></div></details>
+    </div>
+    <h4>三、KMP 的拓展与改进（PAGE 72-98）</h4>
+    <ul>
+      <li><b>统计出现次数与所有位置（PAGE 72，吉大20级上机）：</b>匹配成功时 cnt++、输出 i−m，然后 <b>j=next[j]（"假装"失配）</b> 继续找下一处——buildNext 要<b>多算一位到 next[m]</b>。</li>
+      <li><b>隐藏应用（PAGE 73-75）：</b>最长相等前后缀=next[n]、第二长=next[next[n]]、最长重复前缀=max next[i]；最长回文前缀用 p#p⁻¹ 拼接 + KMP；最短补成回文（LC214）。<span class="tag tag-ext">课件拓展·408不考</span></li>
+      <li><b>循环节（PAGE 76-82）：</b>S 可由最小子串 P 重复 k 次构成，P 叫<b>循环节</b>、k 叫周期。判定（LC459）：设 L=n−next[n]，若 <b>next[n]&gt;0 且 n%L==0</b> 则可完全循环；循环节长 L、周期 n/L。<span class="tag tag-ext">课件拓展·408不考</span></li>
+      <li><b>KMP 改进 next2/nextval（PAGE 85-97）：</b>原始 next 的不足——在 p_j 失配说明 s_i≠p_j，若 p_k=p_j，则下次 s_i≠p_k <b>必然失败</b>（"只用经验没用教训"）。改进：确定下一位置时额外保证 <b>p_k≠p_j</b>。buildNext2 核心：<code class="inl">next2[j+1] = (P[j+1]!=P[++k]) ? k : next2[k];</code><span class="tag tag-ext">课件拓展·408不考</span></li>
+    </ul>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 86、94-95】改进 next 动机例</div>
+      <p>P=abaxabax，在 j=7（x）失配：原 next(7)=3，而 p3=x 恰等于失配字符——这次匹配"并非偶然，而是必然"失败。改进后？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>退而取次长相等前后缀"a"（长2对应的次长——ax 不行取 a，长1），p1=b≠x，<b>next2(7)=1</b>，下趟直接从 P 的位置1继续，跳过必然失败的一步。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>朴素失配 i 回退到 <b>i−j+1</b>（i 已随 j 前移）；成功返回 <b>i−m</b>。</li>
+        <li>右移方案不能贪多——必须取<b>最长相等</b>前后缀，否则漏解（PAGE 40-41）。</li>
+        <li>next(0)=−1、next(1)=0 的边界；换 S 不需要重算 next。</li>
+        <li>手算注意口径：本课件 next(j) 是"p0…p_{j−1} 的最长相等前后缀<b>长度</b>"，与教材 f(j) 差 1。</li>
+        <li>找所有匹配成功后是 j=next[j] 而<b>不是 j=0</b>（否则漏重叠匹配）。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——朴素匹配的过程与最坏 O(n·m)；KMP 的最长相等前后缀思想、next 定义与手算、j=next[j] 的失配处理、O(n+m) 复杂度论证；next 与 f(j) 的换算。循环节与 next2 改进在期末不考清单里，但 nextval 是不少自命题学校的考点，了解不吃亏。</p>
+  </section>
+
+  <section class="sec" id="c-tut">
+    <h3>Tutorial 1 · 字符串的模糊匹配：编辑距离与 LCS<span class="tag tag-ext">课件拓展·408不考</span></h3>
+    <p><b>本节导入：</b>精确匹配要求一字不差，但现实中基因序列比对（黑猩猩与人 DNA 相似度 86–89%）、论文查重需要"差不多就算匹配"——<b>模糊匹配（PAGE 2）</b>：只要有一定程度的相似就认为匹配成功。怎么量化"相似"？两个工具：编辑距离和 LCS。</p>
+    <h4>一、编辑距离（PAGE 5-15）</h4>
+    <p><b>定义：</b>一个串变另一个串所需<b>最少编辑操作</b>次数（增加/删除/替换各算一次）。递推（PAGE 11-12）：</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>情形</th><th>递推式</th></tr>
+      <tr><td>S_i = P_j</td><td>Dist(i,j) = Dist(i−1, j−1)</td></tr>
+      <tr><td>S_i ≠ P_j</td><td>Dist(i,j) = min{ Dist(i−1,j−1)【替换】, Dist(i,j−1)【插入P_j】, Dist(i−1,j)【删S_i】 } + 1</td></tr>
+    </table></div>
+    <p><b>边界：D[i][0]=i、D[0][j]=j</b>（变成空串要删 i/j 次——不是0！）。复杂度 O(nm)。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 6、13】FOOD→MONEY</div>
+      <p>求编辑距离；并填表 S="BCD"、P="ABC" 求 D[3][3]。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>FOOD→MONEY：<b>4 次</b>（F→M、O→N、插入E、D→Y）。BCD vs ABC 填表逐格：D[1][1]=1、D[1][2]=1(B=B取左上)、D[1][3]=2；D[2][1]=2、D[2][2]=2、D[2][3]=1(C=C)；D[3][1]=3、D[3][2]=3、<b>D[3][3]=2</b>（B→A、D→C 两次替换）。</p></div></details>
+    </div>
+    <h4>二、最长公共子序列 LCS（PAGE 16-23）</h4>
+    <p><b>子序列</b>：按原相对次序取若干字符（<b>不要求连续</b>——与子串的区别）。递推：</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>情形</th><th>递推式</th></tr>
+      <tr><td>S_i = P_j</td><td>LCS(i,j) = LCS(i−1,j−1) + 1</td></tr>
+      <tr><td>S_i ≠ P_j</td><td>LCS(i,j) = max{ LCS(i−1,j), LCS(i,j−1) }（<b>不含左上项</b>，与编辑距离对照记）</td></tr>
+    </table></div>
+    <p><b>边界 LCS[i][0]=LCS[0][j]=0</b>。复杂度 O(nm)。<b>三个变形结论（PAGE 24-26）：</b>①最少删成相等 = (n−k)+(m−k)（k为LCS长）；②S 的最长回文子序列 = LCS(S, S⁻¹)；③最少删成回文 = n − 最长回文子序列长。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 22、24】LCS 填表与变形</div>
+      <p>S="BCD"、P="ABC" 求 LCS 长度；S=axbce、P=abcfe 最少共删几个字符变相等？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>填表得 LCS 长度 <b>2（"BC"）</b>。变形题：LCS="abce" 长4，S 删 1 个（x）、P 删 1 个（f），<b>合计 2 个</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>子序列≠子串（可不连续）；编辑距离边界是 i/j 而非 0；不相等时 LCS 取 max<b>不含左上</b>、编辑距离取 min<b>含左上+1</b>——两张表对照背。</div>
+    <p><b>本节小结：</b>本节课我们了解了模糊匹配的两把尺子——编辑距离（相等取左上、不等三邻取min+1）与 LCS（相等左上+1、不等上左取max），以及三个变形的转化结论。这些全是动态规划在字符串上的应用，408 不考，但 LeetCode72/1143/583/516 是面试高频，放到了第七部分供你练手。</p>
+  </section>
+
+  <div class="chap-head" id="ch7"><h3>第7章 · 树和二叉树（对应PPT：Lecture 7–11）</h3><p>五章连环：定义性质 → 存储与遍历 → 线索 → 树与森林 → 应用（哈夫曼/表达式树/并查集）。这是全课程分值最重的一章。</p></div>
+
+  <section class="sec" id="c-l7">
+    <h3>L7 · 树和二叉树的定义与性质<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>从这一讲起我们进入课程的重头戏——树。为什么要学树？家谱、组织机构、文件系统、软件模块划分（PAGE 4-12），凡是"一对多"的层次关系都用树。今天先把定义和五条性质打牢——期末考研年年在这里出计算题。</p>
+    <h4>一、树的定义与术语（PAGE 13-22）</h4>
+    <p><b>树（PAGE 13）：</b>有限结点集合 T：空则为空树；非空则 ①有根 root(T)；②其余结点分成 m(m≥0) 个<b>不相交</b>的集合 T1..Tm，且均为树（根的子树）。子树次序被指明为<b>有序树</b>（PAGE 15）。</p>
+    <ul>
+      <li><b>度</b>：结点的子结点数；树的度 = max。度为0是叶结点，度&gt;0是分支结点（PAGE 17）。</li>
+      <li><b>层数（深度）</b>：<b>根层数为0</b>（本课件约定！），其余=父+1；树高/树深=最大层数；结点高度=以它为根的子树高度（PAGE 19-20）。</li>
+      <li><b>路径</b>：vi+1 是 vi 子结点的序列；路径长度=边数；<b>根到某结点的路径长度恰为该结点层数</b>（PAGE 21）。祖先/子孙（PAGE 22）。</li>
+    </ul>
+    <h4>二、二叉树：定义与五条性质（PAGE 24-33）</h4>
+    <p><b>二叉树（PAGE 24）：</b>空集，或一个根 + 两棵不相交的左、右子树。<b>特征（PAGE 25）：</b>每结点最多2孩子；<b>子树有左右之分</b>，单孩子也须指明左右（五种形态）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】五条引理（PAGE 28-33，全部给过证明）</div>
+      <ol>
+        <li>第 i 层至多 <b>2^i</b> 个结点（i≥0）——归纳法。</li>
+        <li>高度 k 的二叉树至少 <b>k+1</b> 个结点（单支链）。</li>
+        <li>高度 k 的二叉树至多 <b>2^{k+1}−1</b> 个结点（各层求和）。</li>
+        <li><b>n0 = n2 + 1</b>（任意二叉树！）：n=n0+n1+n2；边数下往上数 e=n−1、上往下数 e=2n2+n1，联立即得。</li>
+        <li>（为完全二叉树铺垫的编号/高度引理见下。）</li>
+      </ol>
+    </div>
+    <h4>三、满二叉树与完全二叉树（PAGE 34-48）</h4>
+    <ul>
+      <li><b>满二叉树（PAGE 34-36）：</b>高度 k 且有 2^{k+1}−1 个结点。特点：叶都在最后一层；非叶都有两孩子；叶数=非叶数+1。k 个叶结点的满二叉树共 <b>2k−1</b> 个结点。</li>
+      <li><b>完全二叉树（PAGE 37-40）：</b>按层次顺序编号恰好对应同高满二叉树的前 n 个结点。特点：只有最下两层度可小于2；最下层结点靠左；叶只在最后两层；<b>仅编号最大的非叶结点可无右孩子</b>。</li>
+    </ul>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】完全二叉树编号与高度（PAGE 42-46，顺序存储的地基）</div>
+      n 结点按层次从1编号：①i≠1 时父=⌊i/2⌋；②2i≤n 时左孩子=2i；③2i+1≤n 时右孩子=2i+1。<br>
+      <b>推论（PAGE 44）：</b>非叶结点 ⌊n/2⌋ 个、叶结点 ⌈n/2⌉ 个。<br>
+      <b>高度（PAGE 46）：</b>h = ⌊log₂n⌋（由 2^k ≤ n &lt; 2^{k+1}）。<br>
+      <b>高度 k 的完全二叉树最少 2^k 个结点</b>（高 k−1 的满二叉树 +1，PAGE 41）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·腾讯笔试 PAGE 32】</div>
+      <p>二叉树有 10 个度为2的结点、5 个度为1的结点，度为0的结点个数？A.9 B.11 C.15 D.不确定</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>n0=n2+1=11，<b>选 B</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·搜狗笔试 PAGE 33】</div>
+      <p>32 个结点且度为1的结点有 7 个，叶结点个数？A.13 B.14 C.12 D.15</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>n0+n2=25 且 n0=n2+1 → n0=13（板书：n0+n2=25, n0=n2+1），<b>选 A</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018考研全国卷 PAGE 36】</div>
+      <p>满二叉树有 k 个叶结点，结点总数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>满树 n1=0、n2=k−1，总数=k+(k−1)=<b>2k−1</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 45】</div>
+      <p>完全二叉树 768 个结点，叶结点个数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>⌈768/2⌉=<b>384</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 47】</div>
+      <p>完全二叉树第5层（层数从0起）有 8 个叶结点，结点总数最少/最多？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>最少=第0~4层满(2^5−1=31)+第5层8叶=<b>39</b>；最多=高6：前6层满63，第5层32个中8叶24个度为2，第6层 24×2=48 叶，63+48=<b>111</b>。一般化（PAGE 48 课下思考）：最少 2^n+k−1，最多 2^{n+2}−2k−1。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>本课件<b>层数从0起</b>（根层数0），408真题常按从1起编号——换算后再套公式。</li>
+        <li>n0=n2+1 对<b>任意二叉树</b>成立；"叶⌈n/2⌉"只对<b>完全</b>二叉树成立。</li>
+        <li>"高度k至少k+1个"（一般二叉树）与"高度k完全二叉树最少2^k个"是两回事（PAGE 29 vs 41）。</li>
+        <li>满二叉树 k 叶 → 2k−1，别写成 2k 或 2k+1。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——树的递归定义与度/层数/路径术语（层数从0计）；二叉树五引理（尤其 n0=n2+1 的双计数证明）；满/完全二叉树定义特点；完全二叉树编号三关系 + 叶⌈n/2⌉ + 高⌊log₂n⌋；"第n层k个叶求总数范围"的极值套路（最少 2^n+k−1 / 最多 2^{n+2}−2k−1）。</p>
+  </section>
+
+  <section class="sec" id="c-l8">
+    <h3>L8 · 二叉树的存储与遍历<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>性质有了，今天解决"怎么存、怎么遍历"。遍历是二叉树一切操作的总纲——找父、计数、求高、复制、建树，全是遍历的实例化。</p>
+    <h4>一、三种存储结构（PAGE 4-14）</h4>
+    <ul>
+      <li><b>顺序存储（PAGE 5-10）：</b>编号作下标、根存 T[1]，<b>T[2i]、T[2i+1] 是孩子</b>——完全二叉树最省空间（不存指针，靠下标算父子）；非完全二叉树（右斜树）要补空位，浪费大。</li>
+      <li><b>二叉链表（PAGE 11-13）：</b><code class="inl">struct TreeNode{int data; TreeNode *left,*right;};</code>——ADL 记法 Left(t)/Data(t)/Right(t)。</li>
+      <li><b>三叉链表（PAGE 14）：</b>再加 Parent 域。</li>
+    </ul>
+    <h4>二、递归遍历与分治（PAGE 16-29）</h4>
+    <p>先根（根左右）/中根（左根右）/后根（左右根），所得序列称先/中/后根序列。<b>时间 O(n)、空间 O(h)</b>（递归栈）。遍历即<b>分治</b>：大问题拆成"访问根/遍历左/遍历右"三个不重叠子问题；自顶向下递归=分治，自底向上递推+查表=动态规划（PAGE 22）。</p>
+    <h4>三、非递归遍历（PAGE 31-53）<span class="tag tag-tpl">必考模板</span></h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】非递归先根/中根 + 进出栈对应（PAGE 32-44）</div>
+      <b>先根：</b>沿左分支<b>边访问边压栈</b>；弹栈后转右子树。<b>中根：</b>沿左分支压栈<b>不访问</b>；<b>弹栈访问</b>后转右。两者代码只差 visit 的位置。<br>
+      <b>关键结论（PAGE 44、87）：</b><b>先根遍历的进栈序列 = 中根遍历的进栈序列；出栈序列亦然</b>——先根算法"进栈顺序=访问顺序"，中根算法"出栈顺序=访问顺序"。这是二叉树计数化为栈混洗的桥梁！<br>
+      <b>后根（PAGE 46-52）：</b>弹栈 p 前须先访问 p 的右子树。版本1：取栈顶不弹 + <b>pre 记录上一个刚访问的结点</b>，p 无右子树或 right==pre 时才弹出访问；版本2：栈存二元组(结点,标号)，i=1/2/3 分别表示准备遍历左/右/访问自身，结点可多次进出栈。
+    </div>
+<pre class="code" data-t="非递归中根（母版，PPT PAGE 41）"><code>void InOrder2(TreeNode *t) {
+    vector&lt;TreeNode*&gt; stk;                   // 手动栈
+    TreeNode *p = t;
+    while (p || !stk.empty()) {
+        if (p) { stk.push_back(p); p = p-&gt;left; }   // 沿左链入栈（不访问）
+        else {
+            p = stk.back(); stk.pop_back();
+            visit(p);                       // 弹栈访问
+            p = p-&gt;right;                   // 转右子树
+        }
+    }
+}</code></pre>
+    <h4>四、层次遍历与队列规模（PAGE 54-62）</h4>
+    <p>按层自上而下、同层从左到右；用<b>队列</b>：根入队→出队访问、孩子依次入队（PAGE 54-58）。<b>课堂重点（PAGE 59-60，清华+吉大考题）：</b>n 结点<b>完全二叉树</b>层次遍历辅助队列容量至少 <b>⌈n/2⌉</b>（最后一层叶同时驻留队列的峰值）——2021 个结点答案是 1011。</p>
+    <h4>五、统计每层叶结点：三方案（PAGE 63-77）</h4>
+    <ul>
+      <li>方案1：队列中插 <b>NULL 分隔符</b>标记层结束（最后一层后不再入 NULL 防死循环；返回 level−1 为树高）；</li>
+      <li>方案2：每层开始记 <code class="inl">int size=q.size()</code>，for 连续出队一层；</li>
+      <li>方案3：先根遍历递归，<b>递归深度 k 即层数</b>，leafnum[k]++（h 初值−1，空树高−1）。</li>
+    </ul>
+    <p><b>遍历分类总结（PAGE 78）：先/中/后根遍历 = 深度优先搜索（DFS）；层次遍历 = 广度优先搜索（BFS）。</b></p>
+    <h4>六、二叉树的重建与计数（PAGE 80-100）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】重建唯一性结论（PAGE 80-97）</div>
+      <b>先根+中根可唯一重建（先根定根、中根分左右）；后根+中根亦可；先根+后根不能</b>（无法区分独子左右，反例先根AB/后根BA）；层次+中根可以；<b>中根序列 + 任意一种其他序列都可唯一确定二叉树</b>（清华考研、吉大期末考过中根+层次）。
+    </div>
+    <p><b>二叉树计数（PAGE 86-88）：</b>n 结点按先根编号 1..n，中根序列个数 = 树的形态数；由"进栈=先根、出栈=中根"化为栈混洗计数 = <b>Catalan(n)</b>。</p>
+    <p><b>先+后求结构数（PAGE 98-100，洛谷P1229）</b><span class="tag tag-ext">课件拓展·408不考</span>：先根 X 紧跟 Y、后根 Y 紧邻 X 前（preorder[i]==postorder[j] 且 preorder[i+1]==postorder[j−1]）说明该结点单孩子——<b>每多一个度为1的结点，结构数×2</b>。先根ABC+后根CBA → 4 种。</p>
+<pre class="code" data-t="先根+中根重建（PPT PAGE 83-85）"><code>TreeNode* buildTree(char *preorder, char *inorder, int n) {
+    if (n &lt;= 0) return NULL;
+    TreeNode *root = new TreeNode(preorder[0]);      // 先根首=根
+    int k = find(inorder, n, root-&gt;data);            // 在中根中定位根
+    root-&gt;left  = buildTree(&amp;preorder[1], &amp;inorder[0], k);          // 左子树k个
+    root-&gt;right = buildTree(&amp;preorder[k+1], &amp;inorder[k+1], n-k-1); // 右子树n-k-1个
+    return root;
+}   // 最好/平均O(nlogn)，最坏O(n²)（退化时find线性扫描）</code></pre>
+    <h4>七、其他操作：一个框架打天下（PAGE 102-147）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】一般框架（PAGE 103）</div>
+      <code class="inl">f(root)</code>：可在此处理根 → 递归 f(left) → 可在此处理根 → 递归 f(right) → 可在此处理根 → RETURN。三个"可在此处理"位置分别对应先/中/后根——找父、条件搜索、释放、删子树、复制、计数、求高、路径全是它的实例化。
+    </div>
+    <ul>
+      <li><b>找父（PAGE 104）：</b>root 空或 p 为根返回 NULL；root 的孩子是 p 则返回 root；否则先左后右递归。</li>
+      <li><b>释放（PAGE 106）：</b>后根序 Del(left); Del(right); delete p——先释放子树再删根。</li>
+      <li><b>带空指针先根序列建树（PAGE 107-110）：</b>两棵不同树可有相同先根序列（空指针信息丢失）→ 加 # 表空（如 ABD##E##C##）即可唯一建树；上机版整数 0 表空、边 scanf 边递归。</li>
+      <li><b>计数/求高（PAGE 112-113）：</b>Count=左+右+1；depth 空=−1，否则 max(左,右)+1。</li>
+      <li><b>首末结点六连（PAGE 115-133，不用递归不用栈，O(h)）：</b>中根第一个=沿左链到底；中根最后=沿右链到底；先根第一=根、最后=<b>有右走右、无右有左走左到叶</b>；后根最后=根、第一个=<b>有左走左、无左有右走右到叶</b>（上交/吉大/哈工大考题）。</li>
+      <li><b>路径（PAGE 134-146）：</b>先根遍历把沿途结点存 Path[k]（k=递归深度=路径长度）；到叶输出 path[0..k]；找根到 x 的一条路径用返回值短路。</li>
+    </ul>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2017考研全国卷 PAGE 29】</div>
+      <p>要使非空二叉树的先根序列与中根序列相同，所有非叶结点须？A.只有左子树 B.只有右子树 C.度均为1 D.度均为2</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>先根=根左右，中根=左根右，相同 ⟺ 不能有左子树 → <b>B</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 43 留作业】非递归中根运行实例</div>
+      <p>树 A(B(D), C(E,F))，写出非递归中根遍历的栈演化与访问序列。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>A入→B入→B无左弹访B→D入→弹访D→弹访A→C入→E入→弹访E→弹访C→F入→弹访F。访问序列 <b>D B A E C F</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·阿里笔试 PAGE 82 课下练习】</div>
+      <p>先序 ABCDEFGHIJ、中序 CBAEFDIHJG，求后序。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>根A；左{C,B}（B根C左孩子）；右中序EFDIHJG先序DEFGHIJ：根D，左{E,F}（E根F右孩子），右{I,H,J,G}（G根，左{I,H}：H根I左孩子，右J）。树=A(B(C), D(E(,F), G(H(I),J)))。<b>后序：C B F E I H J G D A</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 89】</div>
+      <p>先根序列为 a,b,c,d 的不同二叉树个数？A.13 B.14 C.15 D.16</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>Catalan(4)=C(8,4)/5=70/5=<b>14，选 B</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>非递归先根"进栈前访问"、中根"弹栈后访问"——就差这一行，别混。</li>
+        <li>后根版本1的 pre 必须指向"上一步刚访问完的结点"；版本2压栈顺序是孩子在上父在下。</li>
+        <li>⌈n/2⌉ 队列容量是<b>完全二叉树</b>的结论，一般二叉树不成立（PAGE 62 思考：叶2018的一般树可构造反例）。</li>
+        <li>先+后不能唯一重建的<b>本质：无法区分独子是左还是右</b>。</li>
+        <li>depth 空树返回 −1（层数从0计）；leafnum 调用前要清零。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——顺序存储下标关系与二叉链表；三种递归遍历（O(n)/O(h)）；非递归先/中/后根模板与"进栈=先根、出栈=中根"；层次遍历与 ⌈n/2⌉ 队列容量；统计每层叶的三方案；重建唯一性组合（中根+任意序列）；Catalan 计数；以及"一般框架"驱动的十来个操作。这讲内容是期末算法大题的最大题源。</p>
+  </section>
+
+  <section class="sec" id="c-l9">
+    <h3>L9 · 线索二叉树<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>腾讯面试题引入（PAGE 7）：没有父指针，怎么快速找中根后继？——只能遍历 O(n)。而 n 个结点的二叉树 2n 个指针域<b>只有 n−1 个被使用</b>（每条边占一个），剩下 n+1 个空指针闲着——让它们存前驱后继，这就是<b>线索二叉树</b>（PAGE 9-11）。</p>
+    <h4>一、结构与两个天然性质（PAGE 12-17）</h4>
+    <p>结点加两个标志位：<b>LThread/RThread=0 指孩子（真指针），=1 是线索</b>；Left 无左孩子时指中根前驱、Right 无右孩子时指中根后继。按中根/先根/后根线索化分别得中序/先序/后序线索二叉树。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】（PAGE 14、17）</div>
+      <b>性质1：</b>中根序列第一个结点一定无左孩子、最后一个一定无右孩子。<br>
+      <b>性质2：</b>结点是叶 ⟺ LThread=RThread=1。<br>
+      <b>目的：</b>在中序线索二叉树中方便地找中序前驱/后继，且不需太多额外空间。
+    </div>
+    <h4>二、四个基本操作（PAGE 19-28）<span class="tag tag-tpl">必考模板</span></h4>
+<pre class="code" data-t="线索四操作（PPT PAGE 20-28）"><code>TreeNode* FirstInOrder(TreeNode* t) {      // 中根第一：沿左链到底
+    TreeNode *p = t;
+    while (p-&gt;LThread == 0) p = p-&gt;left;
+    return p;                              // O(h)
+}
+TreeNode* LastInOrder(TreeNode* t) {       // 中根最后：沿右链到底
+    TreeNode *p = t;
+    while (p-&gt;RThread == 0) p = p-&gt;right;
+    return p;
+}
+TreeNode* NextInOrder(TreeNode* p) {       // 后继
+    if (p-&gt;RThread == 1) return p-&gt;right;            // 有线索直接走
+    return FirstInOrder(p-&gt;right);                   // 否则=右子树中根首结点
+}
+TreeNode* PreInOrder(TreeNode* p) {        // 前驱
+    if (p-&gt;LThread == 1) return p-&gt;left;
+    return LastInOrder(p-&gt;left);                     // =左子树中根末结点
+}
+// 线索遍历：不用递归不用栈，空间O(1)
+for (TreeNode *p = FirstInOrder(t); p != NULL; p = NextInOrder(p)) visit(p);</code></pre>
+    <h4>三、中序线索化与实现方案（PAGE 29-34）</h4>
+    <p><b>线索化：</b>使二叉树变为线索二叉树的过程——把中根遍历的"访问结点"具体化为"建立当前结点与前驱的线索关系"：指针 p 指当前访问结点，<b>全局 pre 始终指向 p 的中根前驱</b>（初值 NULL）。成对判断：p 无左孩子→p 的左指针对 pre 建线索；<b>pre 存在且无右孩子→pre 的右指针对 p 建线索</b>；然后 pre=p。<b>算法结束后单独补最后结点：pre-&gt;RThread=1</b>（其 right 此时仍为 NULL）。</p>
+    <p><b>实现方案（PAGE 32-34）：</b>①Tag 字节压缩——C/C++ 没有 1bit 变量，用 1 字节 4 种状态编码两标志组合；②<b>扩展二叉树</b>——把 LThread/RThread 换成实打实的 Pred/Succ 指针域，空间换时间，找前驱后继从 O(h) 降到 O(1)。<span class="tag tag-ext">课件拓展·408不考</span></p>
+    <h4>四、先序/后序线索的"两个不能"（PAGE 36）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】经典选择题结论（PAGE 36）</div>
+      结点无父指针时：<b>先序线索二叉树不能高效找先根前驱；后序线索二叉树不能高效找后根后继</b>（这两个方向必须靠栈或父指针）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 15 课下思考】</div>
+      <p>对给定二叉树中序线索化，结点 x 的左右线索分别指向？A.e,c B.e,a C.d,c D.b,a</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>方法：写出中根序列——x 的左线索=其中根<b>前驱</b>、右线索=中根<b>后继</b>，按图数一下即可。这是408真题的原型考法。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>标志位含义：<b>0=孩子、1=线索</b>别记反；NextInOrder 在 RThread==0 时返回的是右子树的<b>中根首结点</b>（沿左下走到底），不是右孩子；画链接图别忘首结点 left 与末结点 right 指向 NULL。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——线索化的动机（n+1 个空指针再利用）；标志位语义与叶的判定；First/Last/Next/Pre 四操作；O(1) 空间的线索遍历；pre 指针线索化算法与收尾补线索；先/后序线索的"两个不能"。</p>
+  </section>
+
+  <section class="sec" id="c-l10">
+    <h3>L10 · 树的存储和操作<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>一般树孩子数不定，怎么存？核心思路：树 ↔ 二叉树互相转换，然后复用二叉树的一切算法。</p>
+    <h4>一、树/森林 ↔ 二叉树转换（PAGE 3-10）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】转换规则与"自然对应"（PAGE 4-10）</div>
+      <b>树→二叉树：</b>①兄弟结点间加连线 ②保留与左孩子的连线、去掉与其他孩子的连线 ③整形。规律：<b>左孩子仍是左孩子，右兄弟变成右孩子，转换后二叉树的根无右孩子</b>。<br>
+      <b>森林→二叉树：</b>每棵树先转换，以第一棵的根为总根，其余树的根依次作前一棵根的<b>右孩子</b>（或引入虚拟根法）。<br>
+      <b>二叉树→树：</b>当且仅当<b>右子树为空</b>；→森林：右子树非空。<br>
+      <b>自然对应：</b>任一森林对应唯一一棵二叉树，反之亦然。
+    </div>
+    <h4>二、树的存储结构（PAGE 12-28）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>存储</th><th>做法</th><th>优缺点（PPT口径）</th></tr>
+      <tr><td><b>双亲表示法</b>（顺序）</td><td>层次顺序编号 + Father[] 存父下标</td><td>找父方便；求子结点要遍历整棵树</td></tr>
+      <tr><td><b>孩子表示法</b>（顺序）</td><td>固定个数孩子域</td><td>便于孩子操作；求父不便、空间浪费</td></tr>
+      <tr><td>孩子链表</td><td>每结点挂孩子链表，头指针入数组</td><td>便于子不便于父；加父域=父亲孩子链表</td></tr>
+      <tr><td><b>左孩子-右兄弟</b>（链接）</td><td>Data + FirstChild + NextBrother</td><td><b>与二叉链表完全一样，直接复用二叉树算法</b>（使用最广）</td></tr>
+    </table></div>
+    <p><b>"序列+度"表示（PAGE 14-19）</b><span class="tag tag-ext">课件拓展·408不考</span>：三条定理——<b>先根序列+各结点度、后根序列+度、层次序列+度均可唯一确定树</b>。重建方向：先根+度<b>从右往左</b>归并（结点度 k 取最近的 k 个子树）；后根+度<b>从左往右</b>。优点不存指针省空间，适合输入输出与建树。</p>
+    <h4>三、树与森林的遍历（PAGE 30-42）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】两条对应关系（PAGE 32、34，选择题核心）</div>
+      <b>森林的先根序列 = 其对应二叉树的先根序列；森林的后根序列 = 其对应二叉树的中根序列。</b><br>
+      树的先根：访问根→从左到右先根遍历诸子树；树的后根：先遍历诸子树→访问根。树<b>没有中根遍历</b>（子树数不定，"根在中间"无统一定义——PAGE 17 提问）。
+    </div>
+<pre class="code" data-t="孩子-兄弟结构上的核心操作（PPT PAGE 35-40）"><code>struct TreeNode { int data; TreeNode *FirstChild, *NextBrother; };
+
+void PreOrder(TreeNode* t) {                      // 树的先根遍历
+    visit(t-&gt;data);
+    for (TreeNode *p = t-&gt;FirstChild; p != NULL; p = p-&gt;NextBrother)
+        PreOrder(p);
+}
+TreeNode* FindFather(TreeNode* t, TreeNode* p) {  // 找父：扫孩子链
+    if (!t || !p || p == t) return NULL;
+    for (TreeNode *chd = t-&gt;FirstChild; chd != NULL; chd = chd-&gt;NextBrother) {
+        if (chd == p) return t;                   // t是父
+        TreeNode *r = FindFather(chd, p);         // 进子树找
+        if (r) return r;
+    }
+    return NULL;
+}
+void Del(TreeNode* p) {                           // 释放子树：沿孩子链先记next再删
+    for (TreeNode *c = p-&gt;FirstChild; c != NULL; ) {
+        TreeNode *next = c-&gt;NextBrother;          // 先记兄弟再Del，防断链
+        Del(c);
+        c = next;
+    }
+    delete p;
+}
+// 删子树 DelSubTree：p==t 整树删；否则找父 fa——
+// p 是长子则 fa-&gt;FirstChild = p-&gt;NextBrother；
+// 否则找左兄弟 pre，pre-&gt;NextBrother = p-&gt;NextBrother；最后 Del(p)</code></pre>
+    <p><b>森林层次遍历（PAGE 42）：</b>先把每棵树的根沿 NextBrother 链入队；出队访问 p，再把 p 的孩子沿 FirstChild→NextBrother 链依次入队。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>树转二叉树后<b>根无右孩子</b>；森林后根对应二叉树<b>中根</b>（不是后根——最易记错）；Del 释放前先记 NextBrother。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——树/森林与二叉树的双向转换规则和自然对应；四种存储结构对比（左孩子-右兄弟=二叉链表可复用算法）；树的先根/后根遍历定义与"森林后根=二叉树中根"的对应；以及找父/删子树/森林层次遍历的实现要点。</p>
+  </section>
+
+  <section class="sec" id="c-l11">
+    <h3>L11 · 树和二叉树的应用：哈夫曼 · 表达式树 · 并查集<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>应用大礼包。先看老师的<b>知识点分级（PAGE 3）</b>：A=期末上机考研核心；B=考试范围；C=求职笔试与名校考研范围；D=听故事。我按这个分级带大家过。</p>
+    <h4>一、压缩与哈夫曼树（PAGE 4-57）【A级】</h4>
+    <p>编码=压缩时每字符→唯一位串；解码=还原。<b>不等长编码两目标（PAGE 9-10）：</b>①频率高的字符编码短（熵编码）；②<b>前缀码</b>——任何字符的编码不是其他字符编码的前缀（否则解码歧义）。最优编码问题：min Σ cᵢ·lᵢ（PAGE 11）。</p>
+    <p><b>建模桥梁（PAGE 12-16）：</b>扩充二叉树（空指针处加<b>外结点</b>，圆结点为内结点，内结点都有俩孩子）——字符↔外结点、出现次数↔权值、编码长度↔深度、总编码长↔<b>WPL=Σwᵢ·Lᵢ</b>。最优编码 ≡ 构造<b>WPL 最小的扩充二叉树</b>。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】Huffman 算法与四条性质【A级】</div>
+      <b>算法（PAGE 24）：</b>①n 个权值成 n 棵单结点树；②<b>每次选权值最小的两个根合并</b>（新结点权=两子之和）；③重复至一棵树。<br>
+      <b>编码：</b>非叶结点<b>左0右1</b>，根到叶的标号序列即该字符编码（PAGE 27）。<br>
+      <b>性质：</b>①前缀码天然成立（字符全在叶上，PAGE 32）；②<b>无度为1结点</b>，n 叶共 2n−1 结点（PAGE 36）；③树形与编码不唯一、<b>但 WPL 唯一</b>（PAGE 37）；④<b>求 WPL 捷径：每次合并的两个最小权值（即每个新内部结点权值）累加</b>（WPLₙ=WPLₙ₋₁(w₁+w₂,…)+（w₁+w₂），PAGE 48-52）。<br>
+      <b>解码（PAGE 56）：</b>从根出发 0走左 1走右，到叶输出字符再回根。
+    </div>
+<pre class="code" data-t="求给定二叉树WPL（PPT PAGE 53，考研真题算法）"><code>int WPL = 0;                              // 全局累加
+void WPLPreOrder(TreeNode *t, int k) {    // 先根遍历，k=递归深度=结点层数
+    if (t == NULL) return;
+    if (t-&gt;left == NULL &amp;&amp; t-&gt;right == NULL)   // 叶结点
+        WPL += t-&gt;weight * k;
+    WPLPreOrder(t-&gt;left,  k + 1);
+    WPLPreOrder(t-&gt;right, k + 1);
+}   // 空树高度按-1计口径时根调用k=0；调用 WPLPreOrder(T, 0)</code></pre>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·课堂例 PAGE 24-27】权 15,7,6,6,5</div>
+      <p>建哈夫曼树、给编码、求 WPL。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>合并 5+6=11 → 6+7=13 → 11+13=24 → 15+24=39。编码示例：A=0、B=100、C=101、D=110、E=111；WPL=15×1+(7+6+6+5)×3=<b>87</b>（对照：Shannon-Fano 法同数据 WPL=89，非最优）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·阿里笔试 PAGE 33】"alibaba" 的哈夫曼编码总长度？A.11 B.12 C.13 D.14</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>频次 a3、b2、i1、l1：1+1=2→2+2=4→3+4=7；WPL=2+4+7=<b>13，选 C</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2023考研全国卷 PAGE 34 课下思考】6 字符频次 3,4,5,6,8,10 的 WPL？A.86 B.90 C.96 D.99</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>3+4=7→5+6=11→7+8=15→10+11=21→15+21=36；WPL=7+11+15+21+36=<b>90，选 B</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018考研全国卷 PAGE 35 课下思考】频次 a6,b3,c8,d2,e10,f4 的哈夫曼编码</div>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>2(d)+3(b)=5→4(f)+5=9→6(a)+8(c)=14→9+10(e)=19→14+19=33。编码（PPT结果）：<b>a=00、b=1011、c=01、d=1010、e=11、f=100</b>，WPL=80。</p></div></details>
+    </div>
+    <h4>二、表达式树（PAGE 59-78）【B级】</h4>
+    <p>叶=操作数、非叶=运算符；<b>中根序列=中缀表达式、后根序列=后缀表达式</b>（例：(a+b)×(c−d)−e ↔ 后缀 ab+cd−×e−）。</p>
+    <ul>
+      <li><b>后缀→表达式树（PAGE 62-67）：</b>扫描后缀式：操作数建叶压栈；运算符弹两结点——<b>先弹的作右孩子、后弹的作左孩子</b>——建子树根压栈；结束栈顶即根。</li>
+      <li><b>中缀直接转表达式树（PAGE 68，课下思考）：</b>表达式结点栈 EXP + 运算符栈 OP，规则同中缀转后缀，operation() 时弹出运算符做根、弹两个表达式结点做孩子压回。</li>
+      <li><b>求值（PAGE 69-70）：</b>后根遍历——先算左子树、再右子树、按根运算符合成。</li>
+    </ul>
+    <h4>三、并查集（PAGE 80-107）【A级；2022年起408入纲】</h4>
+    <p><b>定义（PAGE 84-85）：</b>维护一组不相交集合，支持三操作：<b>MAKE_SET(x)</b> 建新集合（x 为代表元）、<b>UNION(x,y)</b> 合并、<b>FIND(x)</b> 返回 x 所在集合代表元。<b>树表示（PAGE 86-89）：</b>树↔集合、结点↔元素、<b>根↔代表元</b>；只需向上访问——Father[] 数组（根为0），UNION 即让一根的父指另一根。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】两个优化与复杂度结论【A级】</div>
+      <b>① 路径压缩（PAGE 94-95）：</b>FIND 找到根后把路径上所有结点的父亲改为根（两趟写法：<code class="inl">Father[x]=FIND(Father[x])</code> 写在 return 前）。<br>
+      <b>② 按秩合并（PAGE 96-98）：</b>秩=子树高度<b>上界</b>（路径压缩不改变秩）；秩大者作父，相等时新根秩+1。实现技巧：根的 Father 域空闲——<b>Father[x]≤0 表示 x 是根，存秩的相反数</b>。<br>
+      <b>③ 复杂度定理（PAGE 101）：</b>m 次操作（Make_Set 共 n 次）同时用两优化，最坏 <b>O(m·α(n))</b>——α 是反阿克曼函数，每个操作均摊接近 O(1)。<br>
+      <b>④ 应用范式：</b>等价性问题（等价类↔集合：初始逐个 Make_Set、输入等价对就 Union、查询比 Find）——省份数量（华为字节等面试题）：统计 Father[i]≤0 的根个数。
+    </div>
+<pre class="code" data-t="并查集最终版（PPT PAGE 95、99-100）"><code>int Father[N];                       // Father[x]&lt;=0：x是根，值为秩的相反数
+void MS(int x) { Father[x] = 0; }    // 或 -1 视口径；代表元即自身
+int FIND(int x) {                    // 路径压缩：两趟
+    if (Father[x] &lt;= 0) return x;
+    Father[x] = FIND(Father[x]);     // 上行找根，返回时顺带压缩
+    return Father[x];
+}
+void UN(int x, int y) {              // 按秩合并
+    int fx = FIND(x), fy = FIND(y);
+    if (fx == fy) return;            // 同集合：跳过（防自环）
+    if (Father[fx] &lt; Father[fy])     // 负得更多=秩更大者作父
+        Father[fy] = fx;
+    else {
+        if (Father[fx] == Father[fy]) Father[fy]--;   // 秩相等则新根秩+1
+        Father[fx] = fy;
+    }
+}</code></pre>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·等价性问题 PAGE 102-104】</div>
+      <p>S={1..8}，等价对 (1,2)(1,5)(5,6)(3,7)(6,8)，求等价类划分。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>逐对 Union：{1,2,5,6,8}、{3,7}、{4}——三个等价类。</p></div></details>
+    </div>
+    <p><b>排队问题（PAGE 107，课下思考）</b>：指令"x y"把 x 队接到 y 队后——<b>因题目规定了合并次序，不能用按秩合并</b>（队首=根）。这个"什么时候不能按秩"的辨析本身是考点。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】汇总</div>
+      <ul>
+        <li>WPL 深度从根（0）到外结点计；<b>求 WPL 用"新结点权值累加"最快</b>，两法互验。</li>
+        <li>后缀转树：<b>先弹的是右孩子</b>。</li>
+        <li>固定方向 UNION 会退化成链（最坏 O(n)，PAGE 93）；判同集合前必须先 Find 再比。</li>
+        <li>路径压缩与按秩合并<b>单独用</b>都是均摊 O(logn)，<b>合用</b>才是 O(α(n))。</li>
+        <li>Shannon-Fano（D级）、哈夫曼正确性证明（C级）、DOM/博弈树/MCTS（D级）了解即可。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——前缀码与最优编码建模；Huffman 算法与四性质（无度1结点、2n−1、WPL唯一、合并累加求WPL）；求给定树 WPL 的先根遍历算法（考研真题）；表达式树的构造与求值；并查集三操作、两优化与 O(m·α(n)) 结论、等价类/省份数量应用。哈夫曼与并查集是 A 级核心，期末408双在线。</p>
+  </section>
+
+  <div class="chap-head" id="ch8"><h3>第8章 · 图（对应PPT：Lecture 12–16）</h3><p>概念存储 → 遍历 → 拓扑与关键路径 → 最短路径 → 最小支撑树。课件还带了不少好东西：A*、Warshall、强连通分量、第K短路（全部课件拓展）。</p></div>
+
+  <section class="sec" id="c-l12">
+    <h3>L12 · 图的概念与存储结构<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>图是比线性表和树更一般的结构——任意两结点都可能相关（PAGE 4）。今天把术语和两套存储过扎实，后面四讲全建立在这上面。</p>
+    <h4>一、基本概念（PAGE 4-35）</h4>
+    <ul>
+      <li><b>图 G=(V,E)</b>：V 顶点有穷非空集，E 边有穷集。有向边（弧）&lt;w,v&gt;：w 始点（弧尾）、v 终点（弧头）（PAGE 9）。</li>
+      <li><b>简单图（PAGE 13）：</b>不含重边与自环——<b>"除非特别说明，本课程中的图都是简单图"</b>。</li>
+      <li><b>完全图（PAGE 15）：</b>无向 n(n−1)/2 条边；有向 n(n−1) 条；完全图 e=O(n²)。</li>
+      <li><b>握手定理（PAGE 17）：</b>ΣD(vᵢ)=2e——"已知度序列即可求边数"。</li>
+      <li><b>路径/简单路径/简单回路（PAGE 19-21）：</b>路径长度=边数；简单路径除起终点外无重复；回路起点=终点且长度≥2。欧拉回路=每<b>边</b>恰一次；汉密尔顿回路=每<b>顶点</b>恰一次（PAGE 22）<span class="tag tag-ext">课件拓展·408不考</span>。</li>
+      <li><b>连通性（PAGE 26-32）：</b>无向图任意两点<b>可及</b>（有路径）为连通图；有向图任意两点<b>双向</b>可及为强连通图；连通分量=极大连通子图（不唯一）。</li>
+      <li><b>权图（PAGE 33-34）：</b>w(u,u)=0、无边 w=∞；带权路径长度=各边权之和。</li>
+    </ul>
+    <h4>二、两套存储结构（PAGE 36-55）</h4>
+<pre class="code" data-t="邻接表定义与入度统计（PPT PAGE 48、53）"><code>struct Vertex { int VerName; Edge *adjacent; };    // 顶点表
+struct Edge   { int VerAdj;  int cost; Edge *link; };  // 边结点：邻接点/权/下一条
+
+void getInDegree(Vertex Head[], int n, int InDegree[]) {   // O(n+e)
+    for (int i = 1; i &lt;= n; i++)                  // 扫所有边结点，终点计数
+        for (Edge *p = Head[i].adjacent; p != NULL; p = p-&gt;link)
+            InDegree[p-&gt;VerAdj]++;
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】邻接矩阵 vs 邻接表对比表（PAGE 55）</div>
+      <div class="tbl-wrap"><table class="api">
+        <tr><th>维度</th><th>邻接矩阵</th><th>邻接表</th></tr>
+        <tr><td>空间</td><td>O(n²)</td><td>O(n+e)（无向图边结点2e个、有向e个）</td></tr>
+        <tr><td>判边/改删边</td><td><b>O(1)</b></td><td>O(dᵢ)</td></tr>
+        <tr><td>找邻接点</td><td>O(n)</td><td><b>O(dᵢ)</b></td></tr>
+        <tr><td>度</td><td>无向：行或列1的个数；有向：行=出度、列=入度</td><td>出度顺链数；入度需逆邻接表或全扫</td></tr>
+        <tr><td>适合</td><td>稠密图、频繁查改删边</td><td>稀疏图、频繁找邻接点</td></tr>
+      </table></div>
+      权图矩阵：对角线0、有边=权值、<b>无边=∞</b>（不是0！PAGE 37）；无向图矩阵对称。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 18】</div>
+      <p>无向图 16 条边，度4的顶点3个、度3的4个，其余顶点度均小于3，顶点数至少？A.10 B.11 C.13 D.15</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>度总和=2e=32；设其余 n−7 个顶点度至多2：4×3+3×4+2(n−7)=2n+10≤32 → n≥11。<b>选 B</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·北大/吉大考研 PAGE 27-28】</div>
+      <p>①n 顶点无向图至少多少条边<b>确保</b>一定连通？②7 顶点的最少保证连通边数？③36 条边的无向<b>非连通</b>图顶点至少几个？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>① n−1 个顶点构成完全图再+1条边：C²ₙ₋₁+1=(n−1)(n−2)/2+1。② C(6,2)+1=16，选 C。③ 36≤n(n−1)/2 → n≥9（连通下界），非连通再加1 → <b>10，选 C</b>。注意"确保（最坏）"与"可能"是两类题。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>有向完全图 n(n−1) 条边（两顶点间方向相反的两条），勿与无向的 n(n−1)/2 混；邻接表求入度要扫全部边（单点 O(e)）；逆邻接表（PAGE 54）便于统计入度——408大纲未明确列，作邻接表变体了解。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——握手定理与度序列算边数；"确保连通"的 C²ₙ₋₁+1 套路；两套存储的结构定义、度的读取、复杂度对比与适用场合；统计入度的 O(n+e) 写法。</p>
+  </section>
+
+  <section class="sec" id="c-l13">
+    <h3>L13 · 图的遍历及应用：DFS 与 BFS<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>图遍历=从某顶点出发访问所有顶点且每点恰一次——必须配 visited[]（初值0，访问置1）防重复（PAGE 4）。两条路线：DFS 一条道走到黑；BFS 层层推进。</p>
+    <h4>一、DFS（PAGE 5-33）</h4>
+    <p>访问 v0 后任选一个未访问邻接点深入——口诀就是回溯那三句："可行则进、不行则换、换不了则退"。<b>遍历次序不唯一</b>。邻接表复杂度 Σ(1+dᵢ)=n+2e=<b>O(n+e)</b>（PAGE 28）。<b>非连通图（PAGE 29）：</b>每个顶点都试做起点——<b>一次 DFS 恰遍历一个连通分量</b>。非递归版（栈，PAGE 30-33）：<b>顶点弹栈时访问</b>；压栈时保证了未访问，但<b>出栈时仍须再判 visited</b>（同一顶点可能被多个顶点重复压栈——课下思考 PAGE 32）。</p>
+    <h4>二、BFS（PAGE 35-50）</h4>
+    <p>类似树的层次遍历、<b>不是递归过程</b>、不需回溯；队列确定访问次序——<b>顶点入队时访问</b>（PAGE 46-47）。邻接表 O(n+e)、邻接矩阵 O(n²)（每出队一个点扫一行）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】两种访问时机对照（考试爱挖的点）</div>
+      <b>非递归 DFS：弹栈时访问（可能重复入栈，出栈再判 visited）</b>；<b>BFS：入队时访问/标记（防重复入队）</b>。
+    </div>
+    <h4>三、四大应用（PAGE 52-79）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>应用</th><th>方法（PPT口径）</th><th>复杂度</th></tr>
+      <tr><td>判断连通/连通分量数</td><td>方案1：DFS 调用次数 cnt（cnt=1 连通）；方案2：并查集边读边并、数根</td><td>O(n+e)</td></tr>
+      <tr><td>u 到 v 是否有路径</td><td>从 u 遍历看是否经过 v</td><td>O(n+e)</td></tr>
+      <tr><td>无向图判环</td><td>DFS 带 pre 参数：遇已访问且<b>≠前驱</b>即有环；或并查集 Find(u)==Find(v) 时有环</td><td>O(n+e)</td></tr>
+      <tr><td>有向图判环</td><td><b>visited 三状态</b>：0未访问 / 1在当前探索路径上 / 2已完成——DFS 遇到 <b>visited==1</b> 的点即有环；顶点按 0→1→2 变化</td><td>O(n+e)</td></tr>
+    </table></div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 30-31 非递归DFS演示】</div>
+      <p>顶点 A（邻接 G、B）等 7 顶点图，非递归 DFS 执行：A压栈→弹A访问、G/B压栈→……写出访问序列。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>按算法四步逐步执行得 <b>AGFBCED</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 49 BFS队列演化】</div>
+      <p>8 顶点邻接表 BFS：写出遍历序列与队列变化。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>序列 <b>0 1 2 3 4 5 6 7</b>；队列（队头→队尾）依次：1 → 1,2 → 2,3,4 → 3,4,5,6 → 4,5,6,7 → 5,6,7 → 6,7 → 7 → 空。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2020级期末15分 PAGE 56 课下思考】FindPath</div>
+      <p>带权图邻接表存储，设计算法找从 u 出发、不经过 v、总顶点数≤m、长度恰为 L 的所有简单路径（每条存单链表）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>DFS + 路径数组 + 两剪枝（顶点数超 m 剪、当前长度已超 L 剪——边权可能为负时只能顶点数剪枝），路径长恰为 L 且未过 v 时整条记录。属于回溯搜索的综合题，L26 归入课下思考；思路与第四部分回溯模板一致。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>无向图 DFS 判环必须带 pre 排除父边，否则每条边都像环；有向图遇到 visited==2（已完成）不是环、只有 ==1 才是；输出所有路径类题 vis 要恢复现场。并查集法判连通/判环是课件特色补充，408 作为替代解法了解。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——DFS/BFS 的过程、两种访问时机、复杂度（表 O(n+e)/矩阵 O(n²)）；非连通图多次启动与连通分量计数；四大应用（连通性、可达性、无向/有向判环——三状态法是课件招牌）。</p>
+  </section>
+
+  <section class="sec" id="c-l14">
+    <h3>L14 · 拓扑排序与关键路径<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>图最经典的两类工程问题：活动有先后（AOV网→拓扑排序）、活动有耗时（AOE网→关键路径）。</p>
+    <h4>一、拓扑排序（PAGE 3-22）</h4>
+    <p><b>AOV网（PAGE 6）：</b>顶点表示活动、有向边表示先后关系——<b>AOV网不能有环（DAG）</b>。<b>拓扑排序三步（PAGE 8）：</b>①选入度0的顶点输出 ②删除它及其引出的所有边 ③重复至全部输出；<b>排不完⟺有环⟺任务不可行</b>。序列<b>未必唯一</b>。</p>
+<pre class="code" data-t="TopoOrder（PPT PAGE 16-17，数组栈最简写法）"><code>bool TopoOrder(Vertex Head[], int n) {     // O(n+e)
+    int InDegree[N] = {0}, stack[N], top = -1;
+    getInDegree(Head, n, InDegree);        // ①求入度 O(n+e)
+    for (int i = 1; i &lt;= n; i++)           // ②入度0者进栈
+        if (InDegree[i] == 0) stack[++top] = i;
+    int cnt = 0;
+    while (top &gt;= 0) {
+        int j = stack[top--];              // ③弹栈输出
+        printf("%d ", j); cnt++;
+        for (Edge *p = Head[j].adjacent; p; p = p-&gt;link)
+            if (--InDegree[p-&gt;VerAdj] == 0)   // ④删边：入度减到0入栈
+                stack[++top] = p-&gt;VerAdj;
+    }
+    return cnt &gt;= n;                       // 输出不全→有环
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】DFS 生成逆拓扑序（PAGE 19-20）</div>
+      DFS <b>不能保证 A 在 B 前输出，但能保证 A 在 B 后输出</b>——把 printf 放在<b>递归返回之后</b>，输出的就是逆拓扑序（DFS_TopoSort）。
+    </div>
+    <h4>二、关键路径 AOE 网（PAGE 23-54）</h4>
+    <p><b>AOE网：</b>有向边=活动（权=耗时），顶点=事件（入边任务全完成、出边任务可开始）；<b>源点</b>入度0、<b>汇点</b>出度0。<b>关键路径=源点到汇点的最长路径</b>（工期下限）（PAGE 23-26）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】四个量与三条公式（PAGE 27-36，必背）</div>
+      <b>ve(j) 事件最早发生</b>：ve(1)=0；按<b>拓扑序</b>取 max：ve(j)=max{ve(i)+w(i,j)}。<br>
+      <b>vl(j) 事件最迟发生</b>：vl(n)=ve(n)；按<b>逆拓扑序</b>取 min：vl(j)=min{vl(k)−w(j,k)}。<br>
+      <b>e(i) 活动最早开始</b>：活动在边 &lt;j,k&gt; 上，e(i)=ve(j)。 <b>l(i) 活动最迟开始</b>：l(i)=vl(k)−w(j,k)。<br>
+      <b>关键活动：l(i)=e(i)</b>（时间余量为0）。步骤：拓扑排序→按序求ve→逆序求vl→算e/l→e=l者为关键活动。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·9顶点11活动AOE网 PAGE 24、37-44】全程推演</div>
+      <p>边权：&lt;1,2&gt;=6、&lt;1,3&gt;=4、&lt;1,4&gt;=5、&lt;2,5&gt;=1、&lt;3,5&gt;=1、&lt;4,6&gt;=2、&lt;5,7&gt;=9、&lt;5,8&gt;=7、&lt;6,8&gt;=4、&lt;7,9&gt;=2、&lt;8,9&gt;=4。求 ve、vl、e、l 与关键路径。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>ve（拓扑序）：</b>ve1=0；ve2=6；ve3=4；ve4=5；ve5=max(6+1,4+1)=7；ve6=7；ve7=16；ve8=max(7+7,7+4)=14；ve9=max(16+2,14+4)=<b>18</b>。</p>
+        <p><b>vl（逆拓扑序）：</b>vl9=18；vl8=14；vl7=16；vl6=14−4=10；vl5=min(14−7,16−9)=7；vl4=10−2=8；vl3=7−1=6；vl2=7−1=6；vl1=min(6−6,6−4,8−5)=0。</p>
+        <p><b>e/l：</b>a1..a11 的 e=(0,0,0,6,4,5,7,7,7,16,14)，l=(0,2,3,6,6,8,7,7,10,16,14)。</p>
+        <p><b>e=l 的关键活动：a1、a4、a7、a8、a10、a11</b>；关键路径 v1→v2→v5→v7→v9 与 v1→v2→v5→v8→v9，最短工期 <b>18</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2022考研题 PAGE 55 课下思考】</div>
+      <p>10 个活动的 AOE 网，时间余量最大的活动是？A.c B.g C.h D.j</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>时间余量 = l−e，对每个活动算出后取最大者即答案（按当年真题图为 g；方法就是本讲的 e/l 表格法）。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>ve 取 <b>max</b> 沿拓扑序、vl 取 <b>min</b> 沿逆拓扑序——方向与取法别双重搞反。</li>
+        <li>初值：ve(1)=0；<b>vl(n)=ve(n)（不是0！）</b>。</li>
+        <li>DFS 直接输出的是<b>逆</b>拓扑序。</li>
+        <li>关键活动是"l=e"（余量0），<b>不是"耗时最长"的活动</b>；加速某关键活动不一定缩短工期（可能存在多条关键路径——PAGE 56 课下思考的经典辨析）。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——拓扑排序三步与 O(n+e) 实现、判环用法、DFS 逆拓扑序；AOE 网四量三公式与"e=l 即关键活动"；整网推演的表格套路（期末大题和408解答题的标准题型）。</p>
+  </section>
+
+  <section class="sec" id="c-l15">
+    <h3>L15 · 最短路径<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>按问题分类讲（PAGE 4/20/68/77 一棵问题树）：无权单源→BFS；正权单源→Dijkstra；单源单目标→A*；任意两点→Floyd；可及性→Warshall；第K短→Yen。<span class="tag tag-ext">后三个408不考</span></p>
+    <h4>一、无权图单源最短路：BFS（PAGE 3-18）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】（PAGE 5-6、16-18）</div>
+      <b>BFS 过程中，顶点第一次被访问时就确定了与源点的最短距离</b>（由近及远分层）。dist[] 初值∞（用 <b>0x3f3f3f3f</b>，INT_MAX 相加会溢出——PAGE 16）、pre[] 记前驱。<b>带权图（哪怕权全正）不能用 BFS</b>：它只反映边数（PAGE 21 反例）。
+    </div>
+    <h4>二、Dijkstra（PAGE 20-66）</h4>
+    <p><b>思想（PAGE 41-42）：</b>顶点分 S（已确定）与 V−S，<b>按与源点最短距离递增的顺序</b>逐个把顶点加入 S。三步：①从 V−S 选 dist 最小的 v 入 S（此时 Dv 即最终最短距离）②用 v 松弛邻居：Dv+w(v,w)&lt;Dw 则更新 ③重复。</p>
+<pre class="code" data-t="Dijkstra（PPT PAGE 44-46）"><code>const int INF = 0X3f3f3f3f;
+void Dijkstra(Vertex *Head, int n, int u, int dist[], int pre[]) {
+    int S[N] = {0};
+    for (int i = 1; i &lt;= n; i++) { dist[i] = INF; pre[i] = -1; }
+    dist[u] = 0;
+    for (int t = 1; t &lt;= n; t++) {
+        int v = findMin(S, dist, n);       // V-S中dist最小者，O(n)
+        if (v == -1) break;
+        S[v] = 1;                           // 入S：贪心确认，不可反悔
+        for (Edge *p = Head[v].adjacent; p; p = p-&gt;link)
+            if (S[p-&gt;VerAdj] == 0 &amp;&amp; dist[v] + p-&gt;cost &lt; dist[p-&gt;VerAdj]) {
+                dist[p-&gt;VerAdj] = dist[v] + p-&gt;cost;   // 松弛
+                pre[p-&gt;VerAdj] = v;
+            }
+    }
+}   // 邻接表O(n²+e)；邻接矩阵O(n²)（课下思考PAGE 46）</code></pre>
+    <p><b>正确性原理（PAGE 56）："任意最短路的前缀也是最短路"</b>（反证易明）；pre 数组可同时存源点到<b>所有点</b>的最短路。<b>不适用负权（PAGE 59）</b>：负权会让"已入 S 的最小 Dv"失效；负权用 Bellman-Ford O(ne)（OSPF 用 Dijkstra、RIP/BGP 用距离向量——PAGE 60）。堆优化可到 O(nlogn+e)（详见 L18 优先队列）。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·逐轮表格 PAGE 47-56】5 顶点 Dijkstra 全程</div>
+      <p>源点=顶点1，关键边 1→2=3、1→3=30、2→4=8、2→5=25、4→3=4、4→5=12。逐轮推演并给最终表。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>初始 [0,∞,∞,∞,∞] →选1：dist=[0,3,30,∞,∞]（2、3 由1直达）→选2(3)：dist=[0,3,30,<b>11</b>,<b>28</b>]（经2到4、5）→选4(11)：dist=[0,3,<b>15</b>,11,<b>23</b>]（11+4&lt;30、11+12&lt;28）→选3(15)：不变→选5(23)。</p>
+        <p><b>最终 dist=[0,3,15,11,23]；pre：2←1、4←2、3←4、5←4。</b>源点到 v5 最短路 1→2→4→5（3+8+12=23），PrintPath 沿 pre 递归回溯输出。</p>
+      </div></details>
+    </div>
+    <h4>三、A* 算法初探（PAGE 67-74）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <p>Dijkstra 求单源单目标时"只顾离起点近、不顾离终点近"，搜索盲目。A* 引入估价函数 <b>f(v)=g(v)+h(v)</b>（g=已走距离、h=到终点估计），每次选 f 最小——启发式搜索；<b>h(v)≤h*(v)（不高估）时可得最优解</b>，否则只能近似（工程中常折中取次优换时间）。游戏自动寻路就是这么做的。</p>
+    <h4>四、Floyd（PAGE 76-104）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】Floyd 递推与 path 语义（PAGE 89-96）</div>
+      Dᵏ[i][j] = i 借助中间点集 {v1..vk} 到 j 的最短长：<b>Dᵏ[i][j]=min{Dᵏ⁻¹[i][j], Dᵏ⁻¹[i][k]+Dᵏ⁻¹[k][j]}</b>（不经k / 经k）。<b>k 必须在最外层</b>。<br>
+      <b>path[i][j] = i 到 j 路径上 i 的下一个顶点（后继）</b>——与 Dijkstra 的 pre（前驱）方向相反，输出代码不同！O(n³)。特点：<b>允许负权边、不允许负环</b>（执行中 D[i][i]&lt;0 即有负环——PAGE 99）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 97-98】Floyd 矩阵全程</div>
+      <p>4 顶点有向图：1→2=1、1→4=4、2→3=9、2→4=2、3→1=3、3→2=5、3→4=8、4→3=6。求 D⁴ 与顶点2到1的最短路径。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>D⁰=邻接矩阵（对角0，无边∞）。D¹（经1）：3→2: min(5,3+1)=4；3→4: min(8,3+4)=7。D²（经2）：1→3: min(∞,1+9)=10。D³（经3）：2→1: min(∞,9+3)=12；4→1: 6+3=9；4→2: 6+4=10。D⁴（经4）：2→1: min(12, 2+9)=<b>11</b>；2→3: min(9, 2+6)=8。</p>
+        <p><b>D⁴ 第2行：[11, 0, 8, 2]</b>。2到1最短路径：path[2][1]=4 → path[4][1]=3 → path[3][1]=1，即 <b>2→4→3→1</b>（2+6+3=11）。</p>
+      </div></details>
+    </div>
+    <h4>五、Warshall 与第K短路（PAGE 101-116）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <p><b>可及矩阵/传递闭包：</b>只关心"有没有路径"：Rᵏ[i][j]=Rᵏ⁻¹[i][j] OR (Rᵏ⁻¹[i][k] AND Rᵏ⁻¹[k][j])——Warshall 算法 O(n³)（L16 求 SCC 也用它）。<b>第K短路：</b>Yen 算法（偏离点+候选集）O(kn³)；或改造 Dijkstra——优先级队列存(v,Dv)、允许重复入队，<b>t 第 k 次出队时的 D 即第 k 短</b>（结果可能含环）。<b>满足约束的最短路</b>（必经/避开某些点边）：依次生成第1、2、3…短路逐一测试。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>∞ 用 0x3f3f3f3f；带权图别用 BFS。</li>
+        <li>四个"不可行"课下思考（PAGE 62-65）：负权平移后 Dijkstra ✘（边数不同的路径平移量不同）；比较符取反求最长路 ✘；权取倒数求最长路 ✘；只有 DAG 才能用"ve 的 max 改 min"求最短路。</li>
+        <li>Floyd 的 k 在最外层；path 是"下一个顶点"不是"前驱"。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——BFS 求无权单源（首访即最短）；Dijkstra 三步、逐轮表格、pre 输出路径、不适用负权；Floyd 递推、矩阵全程推演、path 语义与三特点。A*、Warshall、第K短路、约束最短路是课件拓展，408 不考但能打开视野。</p>
+  </section>
+
+  <section class="sec" id="c-l16">
+    <h3>L16 · 最小支撑树及图应用<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>n 个地点修最便宜的连通网——最小支撑树（MST）。两大算法 Prim 和 Kruskal，背后是同一条定理。</p>
+    <h4>一、MST 与最小跨边定理（PAGE 4-10）</h4>
+    <p><b>支撑树：</b>n 顶点 + n−1 条边的连通子图（无环）；<b>MST=边权总和最小的支撑树</b>。<b>跨集合边：</b>端点分属 S 与 V−S 的边。<b>最小跨边定理（PAGE 7-10）："权值最小的跨集合边一定在某棵 MST 里"</b>——反证：MST 不含它，则 u,v 路径上必有另一条跨边(s,t)，换之权和更小，矛盾。<b>这是两个算法的共同依据。</b></p>
+    <h4>二、Prim（PAGE 12-42）</h4>
+    <p><b>三步（PAGE 21）：</b>①任选起点 u，S={u} ②取最小跨集合边(u,v)加入 MST，v 入 S ③重复至 S=V。实现靠两个数组：<b>Lowcost[v]=v 到 S 的最小跨边权值、pre[v]=该边在 S 中的端点</b>；每选一个 v 入 S 就用它更新邻居（PAGE 22-26）。<b>O(n²)</b>，FindMin 返回 −1 判不连通（此时返回含起点的连通分量的 MST）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】Dijkstra vs Prim 一行之差（PAGE 32-33，"仔细体会两段代码的细微不同"）</div>
+      选点后更新邻居的条件：<br>
+      Dijkstra：<code class="inl">dist[v] + G[v][w] &lt; dist[w]</code>（<b>累加</b>路径长）<br>
+      Prim：<code class="inl">G[v][w] &lt; Lowcost[w]</code>（<b>单边直比</b>）——两算法最易混的地方！
+    </div>
+    <h4>三、Kruskal（PAGE 44-53）</h4>
+    <p><b>三步（PAGE 45）：</b>①T 含 n 顶点 0 边（n 个分量）②选权最小边：若加入不产生环（两端点在不同分量）则加入，分量数减一 ③重复至一个分量。实现：<b>边按权排序 + 并查集判环</b>（Find(u)≠Find(v) 才加入并 Union），存图用边集数组 <code class="inl">struct Edge{int head,tail,weight;}</code>。复杂度 <b>O(e·loge)</b>（排序主导）。正确性：当前最小边必是其一侧分量的最小跨边（PAGE 52）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】对比结论（PAGE 53，2023清华考研判断题原型）</div>
+      <b>Prim O(n²) 适合稠密图；Kruskal O(eloge) 适合稀疏图；两者均为贪心算法。</b>"相对于 Kruskal，Prim 更适宜于稀疏图"——<b>错误</b>，方向记反是送分变丢分。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·6顶点图 Prim PAGE 13-20】</div>
+      <p>从顶点1开始，逐次选最小跨边：写出 MST 的 5 条边。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>S 扩张链 {1}→{1,3}→{1,3,6}→{1,3,6,4}→{1,3,6,4,2}→全部；<b>MST 边：1-3、3-6、6-4、3-2、2-5</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018级期末14分 PAGE 59】增量MST</div>
+      <p>已有 G 的 MST 为 T，向 G 加入新边 e=(u,v)，设计 O(n) 算法求 G+e 的 MST。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>加 e 后 T 中 u−v 路径与 e 成环：<b>去掉环中权值最大的边</b>即新 MST。实现：在 T 中以 u 为起点 DFS 到 v 为止，记录路径上的最大权边；若该边权 &gt; w(e) 则删它加 e，否则 MST 不变。O(n)。</p></div></details>
+    </div>
+    <h4>四、拓展与图应用（PAGE 55-81）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <ul>
+      <li><b>MST 唯性（PAGE 55 思考）：</b>边权互异则 MST 唯一；有权值相同的边时不一定不唯一。最大支撑树=权取反；最小乘积支撑树=权取对数。</li>
+      <li><b>强连通分量 SCC（PAGE 63-66）：</b>课件法用 Warshall 可及矩阵：R[i][j]==1 且 R[j][i]==1 则同分量，O(n³)；<b>缩点</b>后得 DAG；高效算法 Tarjan/Kosaraju O(n+e)。</li>
+      <li><b>应用拓展（PAGE 68-81）：</b>PageRank（PR 值沿出度分配迭代）；智能拼音输入法（句子的最大概率⟺ -log 概率为权的最短路）；神经元 y=σ(Σwᵢxᵢ+b) 与多层网络；贝叶斯网络。MST 还用于聚类（Kruskal 跑到剩 k 个分量）与图像分割。</li>
+    </ul>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>Prim/Kruskal 适用方向别记反；Kruskal 判环必须并查集（暴力判环低效）；图不连通时两算法返回值语义不同（Prim 返回起点所在分量的 MST、Kruskal 返回∞）；SCC 只对有向图。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——支撑树与 MST 概念；最小跨边定理（两算法的理论根基）；Prim 的 Lowcost/pre 机制与 O(n²)；Kruskal 的排序+并查集与 O(eloge)；稠密/稀疏选型；增量 MST 的"成环去最大边"思想。SCC、PageRank 等应用拓展按分级了解。</p>
+  </section>
+
+  <div class="chap-head" id="ch9"><h3>第9章 · 排序（对应PPT：Lecture 17–21）</h3><p>课件按"平方阶 → 堆 → 快排 → 归并与下界 → 分布排序"五讲推进，与408大纲完全对应；另带比较排序下界、BFPRT、对顶堆等拓展。</p></div>
+
+  <section class="sec" id="c-l17">
+    <h3>L17 · 平方阶排序：插入 · 冒泡 · 选择 · 希尔<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>排序的基本概念先立好（PAGE 6-8）：<b>文件</b>=n 个记录的集合，按某<b>关键词域</b>排序；度量指标=<b>比较次数+移动次数</b>、空间、<b>稳定性</b>（K 相同的 Ri、Rj 排序后相对次序不变——两级排序"先按班级再按学号"全靠它）。分类：内/外排序、基于比较/分布排序。课件前三个排序在慕课已讲，课堂回顾+深挖，然后讲希尔。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>算法</th><th>最好</th><th>平均</th><th>最坏</th><th>空间</th><th>稳定</th><th>课件强调（PAGE）</th></tr>
+      <tr><td>直接插入</td><td><b>O(n)</b>（已序）</td><td>O(n²)</td><td>O(n²)（逆序）</td><td>O(1)</td><td>✔</td><td>适合"短文件、基本有序"、增量数据（22）</td></tr>
+      <tr><td>冒泡</td><td><b>O(n)</b>（一趟无交换）</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td>✔</td><td>每趟最大者就位；改进：记最后交换位置t（48-52）</td></tr>
+      <tr><td>直接选择</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td><td><b>✘</b></td><td><b>比较次数与初态无关</b>（76）</td></tr>
+      <tr><td>希尔</td><td>—</td><td>介于O(n²)与O(nlogn)</td><td>O(n²)（视增量）</td><td>O(1)</td><td><b>✘</b></td><td>复杂度强烈依赖增量序列（95）</td></tr>
+    </table></div>
+<pre class="code" data-t="希尔排序（PPT PAGE 91）"><code>void ShellSort(int R[], int n) {          // d1=n/2 递减到1
+    for (int d = n / 2; d &gt; 0; d /= 2)
+        for (int i = d + 1; i &lt;= n; i++) {
+            int K = R[i], j = i - d;
+            while (j &gt; 0 &amp;&amp; R[j] &gt; K) { R[j + d] = R[j]; j -= d; }  // 组内插入
+            R[j + d] = K;                 // 直接在大数组上按间隔d操作
+        }
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】希尔的两点（PAGE 80-95）</div>
+      <b>① 思想：</b>按增量 d 分 d 组，<b>各组分别</b>做组内直接插入；d 递减到 1。为什么有效？——利用了插入排序的两个特性：<b>大增量时每组很短（短文件快），小增量时已基本有序</b>。<b>最后一趟 d 必须为 1。</b><br>
+      <b>② 复杂度是 OPEN PROBLEM：</b>依赖增量序列（n/2系列O(n²)；2^k−1系列O(n^1.5)；2^p3^q系列O(n(logn)²)……），是否存在达 O(nlogn) 的增量序列尚未解决。不稳定。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 84-87】希尔全程（n=10）</div>
+      <p>R=(7, 5, 9, 2, 13, 5*, 8, 10, 15, 6)，d=5, 2, 1 三趟的结果？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>d1=5 分 5 组 {7,5*}{5,8}{9,10}{2,15}{13,6} 组内插入 → <b>5* 5 9 2 6 7 8 10 15 13</b></p>
+        <p>d2=2：奇下标组(5*,9,6,8,15)→(5*,6,8,9,15)、偶下标组(5,2,7,10,13)→(2,5,7,10,13) → <b>5* 2 6 5 8 7 9 10 15 13</b></p>
+        <p>d3=1 全表插入 → <b>2 5* 5 6 7 8 9 10 13 15</b>。5 与 5* 相对次序变了 → <b>不稳定</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研真题 PAGE 93】</div>
+      <p>希尔第一趟结果为 9,1,4,13,7,8,20,23,15，该趟增量可能是？A.2 B.3 C.4 D.5</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>验证 d=3：分组 (9,13,20)(1,7,23)(4,8,15) 各组内均递增 ✔；d=2 组 (9,4,7,20,15) 中 9&gt;4 ✘；d=4、d=5 亦 ✘。<b>答案 B</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li>冒泡"相等不交换"才有稳定性；每趟只保证<b>当前未序段最大</b>就位。</li>
+        <li>直接选择不稳定：<b>改成"选最后一个最大"也不能保证稳定</b>（反例 5, 1*, 1——PAGE 70-74）。</li>
+        <li>插入的最好/最坏触发条件（已序/逆序）别记反。</li>
+        <li>408 另考"折半插入"（本讲未展开，在慕课/教材——见 L22 对半查找的联动）。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——稳定性定义与意义；四个平方阶排序的三态复杂度、稳定性与标志性特点（插入"基本有序飞快"、选择"比较数恒定"、冒泡"逐位就位"、希尔"分组增量递减"）；希尔一趟的手工模拟与增量判断（考研真题原题）。</p>
+  </section>
+
+  <section class="sec" id="c-l18">
+    <h3>L18 · 堆排序<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>直接选择每趟找最大要 O(n)，重复比较太浪费——能不能用树形结构把比较结果存起来？先看<b>锦标赛排序（胜者树）</b>（PAGE 6-11）：取冠军 O(n)，之后每次把冠军叶改 −∞ 重赛只要 O(logn)，总 O(nlogn)——但至少 2n−1 个结点，<b>拿空间换时间</b>。更省的方案：把树隐含在数组里——<b>堆</b>。</p>
+    <h4>一、堆的定义与存储（PAGE 13-20）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】堆的两性质（PAGE 16-19）</div>
+      <b>最大堆（大根堆）= 完全二叉树 + 任意结点 ≥ 其两孩子</b>——①<b>结构性</b>（完全二叉树）②<b>堆序性</b>；最小堆相反；<b>根是最大/最小</b>是堆的优势。顺序存储：R[1] 存根，<b>R[i] 左孩子 R[2i]、右孩子 R[2i+1]、父 R[⌊i/2⌋]</b>。
+    </div>
+    <h4>二、上浮与下沉（PAGE 23-43）</h4>
+    <ul>
+      <li><b>上浮 ShiftUp</b>（元素变大，插入用）：与父比、大于父交换、i/=2，至根或不大于父。O(logn)。</li>
+      <li><b>下沉 ShiftDown</b>（元素变小，核心操作）：与<b>最大孩子</b>比较（先两个孩子比一次、再与自身比一次，共2次比较）、小于则交换下移；循环条件 <b>i≤n/2</b>。O(logn)。</li>
+    </ul>
+<pre class="code" data-t="下沉/建堆/堆排序（PPT PAGE 42-43、53、72）"><code>void ShiftDown(int R[], int n, int i) {       // 与最大孩子比较
+    while (i &lt;= n / 2) {                      // 最多到最后一个非叶结点
+        int maxchd = 2 * i;
+        if (maxchd &lt; n &amp;&amp; R[maxchd] &lt; R[maxchd + 1]) maxchd++;  // 选大孩子
+        if (R[i] &gt; R[maxchd]) return;
+        swap(R[maxchd], R[i]);
+        i = maxchd;
+    }
+}
+void BuildHeap(int R[], int n) {              // Floyd自底向上建堆
+    for (int i = n / 2; i &gt;= 1; i--)         // 从最后一个非叶结点开始
+        ShiftDown(R, n, i);
+}
+void HeapSort(int R[], int n) {
+    BuildHeap(R, n);                          // ①建大根堆
+    for (int i = n; i &gt; 1; i--) {             // ②n-1趟
+        swap(R[1], R[i]);                     // 堆顶(最大)换到末尾就位
+        ShiftDown(R, i - 1, 1);               // 剩余堆规模i-1，下沉重建
+    }
+}</code></pre>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】自底向上建堆是 O(n)，不是 O(nlogn)！（PAGE 44-55）</div>
+      各结点下沉代价≤其高度，总代价=高度和 T=n/4·1 + n/8·2 + n/16·3 + …，错位相减得 T&lt;n。<b>清华考研判断题"建堆至少需O(nlogn)"为错误</b>（PAGE 57）。<br>
+      <b>堆排序：</b>最好=平均=最坏 <b>O(nlogn)</b>、空间 <b>O(1)</b>、<b>不稳定</b>——"虽然操作的是数组，但背后隐藏的灵魂是二叉树"（PAGE 71）。大根堆排<b>升序</b>（最大不断沉底）；要降序建小根堆。
+    </div>
+    <h4>三、堆与优先级队列（PAGE 88-112）</h4>
+    <p><b>插入</b>：放堆尾再上浮 O(logn)；<b>删除堆顶</b>：<b>堆尾补根再下沉</b>（不是直接删根）O(logn)。堆=优先级队列的标准实现。课件延伸：<b>最小堆优化哈夫曼</b> O(nlogn)；<b>堆优化 Dijkstra</b>（方案1 DecreaseKey+index数组 O((n+e)logn)；方案2 允许重复入队 O(eloge)）；图搜索统一框架：<b>栈→DFS、队列→BFS、优先队列→PFS</b>（Dijkstra 优先级=dist、Prim 优先级=Lowcost）。<b>d堆/斐波那契堆</b>与 STL priority_queue（默认最大堆，最小堆存负值或 greater）为拓展内容。<span class="tag tag-ext">课件拓展·408不考</span></p>
+    <h4>四、Top K（PAGE 114-118）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】Top K 最优解：k 大小的小根堆（PAGE 116）</div>
+      排序 O(nlogn) → 选k次 O(nk) → 建堆取k次 O(n+klogn) → <b>维护"当前最大k个"的 k 元小根堆：扫到 x&gt;堆顶则替换堆顶并下沉，O(nlogk)</b>，适合增量环境，堆顶即第k大。<b>对顶堆</b>（PAGE 117）：小根堆存前k大+大根堆存其余，支持动态 k，各操作 O(logn)。<span class="tag tag-ext">对顶堆408不考</span>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·吉大21级期末 PAGE 57-58】</div>
+      <p>将 (42,13,91,23,24,16,5,88) 建成大根堆？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>i=4: 23↔88；i=2: 13↔88后13↔23；i=1: 42↔91、42与24比较停 → <b>91 88 42 23 24 16 5 13（选D）</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018考研全国卷 PAGE 59】</div>
+      <p>(6,1,5,9,8,4,7) 建大根堆的过程序列？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>i=3: 5↔7 → 6 1 7 9 8 4 5；i=2: 1↔9 → 6 9 7 1 8 4 5；i=1: 6↔9、6↔8 → <b>9 8 7 1 6 4 5（选A）</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 90】</div>
+      <p>大根堆 (25,13,10,12,9) 尾插 18，需要比较几次？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>18&gt;父10交换（1次）、18&lt;父25（1次）停 → <b>2次，选B</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 94】</div>
+      <p>小根堆 (8,15,10,21,34,16,12) 删除8后重建，比较几次？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>末元素12补根：比两孩子15/10（1次）、12与10（1次）交换；再12与16（1次）停 → <b>3次，选C</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>下沉是与<b>最大</b>孩子比（不是左孩子）；每趟堆规模减1，ShiftDown 的 n 参数传 i−1；堆排序不稳定（PAGE 85 演示 15* 越过 15）；删除堆顶是"堆尾补根再下沉"。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——堆的两性质与下标公式；上浮/下沉过程与比较次数计算；<b>自底向上建堆 O(n)</b>；堆排序两步循环、O(nlogn)/O(1)/不稳定；堆作优先队列的插删；Top K 的 k 小根堆 O(nlogk)。</p>
+  </section>
+
+  <section class="sec" id="c-l19">
+    <h3>L19 · 快速排序<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>Hoare 1960 年提出、IEEE 20世纪十大算法之一。它的地位：<b>基于关键词比较的内排序中平均时间最快</b>。</p>
+    <h4>一、基本思想与 Partition（PAGE 4-25）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】一趟分划，一个元素就位（PAGE 4-9）</div>
+      选基准 K（轴点 Pivot，如 R[m]），使<b>左侧子数组 ≤K、右侧 &gt;K、K 居中就位</b>，再对两半递归——分治法。操作①就是 <b>Partition</b>：<br>
+      指针 L 从左向右找第一个 &gt;K（"喜欢小讨厌大"）、G 从右向左找第一个 ≤K，交换 R[L]、R[G]，直至相遇；最后 swap(R[m], R[G])。<b>特点：一趟分划把一个记录放在最终位置上</b>——这是判断"某序列是否快排一趟结果"的依据！G 扫描不需考虑左越界（基准 K 在 R[m] 兜底）。
+    </div>
+<pre class="code" data-t="Partition + QuickSort（PPT PAGE 8-9、25）"><code>int Partition(int R[], int m, int n) {     // [m, n]，基准R[m]
+    int K = R[m], L = m + 1, G = n;
+    while (L &lt;= G) {
+        while (L &lt;= n &amp;&amp; R[L] &lt;= K) L++;   // 从左找 &gt;K
+        while (R[G] &gt; K) G--;                // 从右找 &lt;=K（左边有K兜底）
+        if (L &lt; G) { swap(R[L], R[G]); L++; G--; }
+    }
+    swap(R[m], R[G]);                       // 基准归位，返回其位置
+    return G;
+}
+void QuickSort(int R[], int m, int n) {
+    if (m &lt; n) {
+        int j = Partition(R, m, n);
+        QuickSort(R, m, j - 1);
+        QuickSort(R, j + 1, n);
+    }
+}</code></pre>
+    <h4>二、复杂度（PAGE 27-43）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>情形</th><th>条件</th><th>时间</th><th>空间（递归栈）</th></tr>
+      <tr><td>最好</td><td>每次分划在正中（两半等长）</td><td>O(nlogn)</td><td>O(logn)</td></tr>
+      <tr><td><b>最坏</b></td><td><b>初始已序或逆序</b>（首元素基准恰为最值）</td><td><b>O(n²)</b></td><td>O(n)</td></tr>
+      <tr><td>平均</td><td>叠缩法推导（PAGE 34-42）</td><td><b>O(1.386·n·log₂n)=O(nlogn)</b></td><td>—</td></tr>
+    </table></div>
+    <p><b>不稳定</b>（验证：3,3*,2 一趟 → 2,3*,3，PAGE 43）。Partition 比较次数至多 n+1。</p>
+    <h4>三、优化策略八连（PAGE 44-77）<span class="tag tag-ext">课件拓展·408不考（思想值得懂）</span></h4>
+    <ol>
+      <li>小数据转插入排序（阈值≈16，或最后整体一次插入）；</li>
+      <li>随机选基准——降低最坏概率<b>但无法杜绝</b>；</li>
+      <li>三数取中（R[m]、R[m+n)/2]、R[n] 的中位数）——保证不是最值；</li>
+      <li>尾递归转循环——<b>最坏空间仍 O(n)</b>；</li>
+      <li><b>尾递归+先处理短区间——递归深度降为 O(logn)</b>（每次子问题至少减半）；注意它只降空间、<b>不能</b>把最坏时间降到 O(nlogn)；</li>
+      <li>用栈消除全部递归（栈存区间二元组）；</li>
+      <li>侦测递归深度达 O(logn) 层时转堆排序——<b>真正使最坏时间为 O(nlogn)，即 Introsort 内省排序</b>（C++ STL sort 的做法：≤16转插入+超深转堆排）；</li>
+      <li>三路分划（重复元素多时 &lt;K/=K/&gt;K 三段，只递归左右）——即<b>荷兰国旗问题</b>（Dijkstra）：三指针 i/j/k，j 遍历：红则换入左区 i++、j++；蓝则换入右区 k−−（<b>不 j++</b>，换来的没检查过）；白则 j++。</li>
+    </ol>
+    <p><b>为什么快排平均比堆排快（PAGE 69-71）：</b>①nlogn 的常系数小；②访问物理相邻数据缓存命中率高（堆排跳访 R[i]→R[2i]）。<b>缓存友好</b>写法（PAGE 72-77）：二维数组按行遍历、矩阵乘法 i-k-j 序。</p>
+    <h4>四、快速选择 QuickSelect 与 BFPRT（PAGE 79-92）</h4>
+    <p><b>找第k小（PAGE 79-83）：</b>Partition 后左段个数 nL：nL==k−1 则 R[j] 即答案；nL&gt;k−1 在左段找第k小；nL&lt;k−1 在右段找第 k−nL−1 小——<b>只递归一侧=减治法</b>，最好/平均 <b>O(n)</b>（n+n/2+…≤2n），最坏 O(n²)。<b>BFPRT（中位数的中位数，PAGE 84-90）</b><span class="tag tag-ext">课件拓展·408不考</span>：5个一组取各组中位数、再取中位数作基准，保证分划最差3:7，理论最坏 O(n)——但常数大实际很少用。<b>TopK：快选 vs 堆</b>——数据是静态的快选好；<b>增量数据用堆</b>（新元素堆只要 O(logk)，快选要重做 O(n)）。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 10-24 分划动画】</div>
+      <p>R=(70,56,69,23,93,18,11,35,60,68)，以 70 为基准做一次 Partition。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>L 找到 93、G 找到 68 交换 → 70 56 69 23 <b>68</b> 18 11 35 60 <b>93</b>；L→93位、G→60位，L&gt;G 停；swap(R[1],R[G]) → <b>60 56 69 23 68 18 11 35 | 70 | 93</b>，返回 j=9：左侧全≤70、70 就位。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 43 课下验证】</div>
+      <p>3, 3*, 2 一趟分划的结果？说明什么？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>K=3，L 越过 3*、2，G 停在 2，swap(R[1],R[3]) → <b>2, 3*, 3</b>——3 与 3* 反序，<b>快排不稳定</b>。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>
+      <ul>
+        <li><b>最坏情形是初始有序/逆序</b>（首元素做基准时）——别答"随机数据"。</li>
+        <li>空间复杂度=递归栈深度：最好 O(logn)、最坏 O(n)。</li>
+        <li>"先短区间"只优化空间不优化最坏时间；能保证最坏时间的是"超深转堆排"。</li>
+        <li>荷兰国旗"蓝"分支换回元素未检查、不能 j++（PAGE 63）。</li>
+      </ul>
+    </div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——Partition 双指针相向扫描与"一趟一元素就位"；三态复杂度与触发条件；不稳定反例；快排平均最快的两个原因。八条优化、三路分划、BFPRT 属课件拓展，其中 Introsort（STL sort 的真身）与三路分划思想在面试中很常用。</p>
+  </section>
+
+  <section class="sec" id="c-l20">
+    <h3>L20 · 归并排序与比较排序下界<span class="tag tag-hot">408高频考点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p><b>本节导入：</b>冯·诺依曼提出的算法。快排重"分"、归并重"合"——这一讲把"合"研究到极致，顺便回答一个理论问题：基于比较的排序最快能多快？</p>
+    <h4>一、Merge 与归并排序（PAGE 4-23）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】（PAGE 4-23）</div>
+      <b>Merge：</b>合并相邻有序段 R[low..mid]、R[mid+1..high]：i、j 扫描取小放 X[k]——<b>相等时先放左(i)侧</b>（稳定性的来源！）；一方扫完另一方整段拷入；再拷回 R。<b>O(n) 时间、O(n) 辅助数组</b>。<br>
+      <b>递归版：</b>分治——对半递归再 Merge，递归树 logn 层×每层 O(n) → <b>三态全 O(nlogn)、空间 O(n)、稳定——"最快的稳定性排序算法"</b>。<br>
+      <b>非递归（自底向上）：</b>for(L=1; L&lt;n; L*=2) 相邻长度 L 的段两两合并（尾部残余单独处理）——趟数 logn。
+    </div>
+<pre class="code" data-t="Merge + 非递归归并（PPT PAGE 13-14、18-20）"><code>void Merge(int R[], int low, int mid, int high) {    // 借助辅助数组X
+    int i = low, j = mid + 1, k = 0;
+    int *X = new int[high - low + 1];
+    while (i &lt;= mid &amp;&amp; j &lt;= high)
+        if (R[i] &lt;= R[j]) X[k++] = R[i++];   // 相等先放左 → 稳定
+        else               X[k++] = R[j++];
+    while (i &lt;= mid)  X[k++] = R[i++];
+    while (j &lt;= high) X[k++] = R[j++];
+    for (k = 0, i = low; i &lt;= high; ) R[i++] = X[k++];
+    delete[] X;
+}
+void MergeSort(int R[], int n) {              // 自底向上
+    for (int L = 1; L &lt; n; L *= 2)            // 段长逐趟翻倍
+        MergePass(R, n, L);                   // 相邻长度L的段两两合并
+}</code></pre>
+    <p><b>逆序对（PAGE 26-29，面试高频）：</b>Merge 中当 R[i]&gt;R[j] 时，R[i..mid] 都 &gt;R[j]——<b>cnt += mid−i+1</b>，各次 Merge 累计 O(nlogn)。<b>分治对比（PAGE 30）：</b>快排侧重"分"（合无需操作），归并侧重"合"（分即对半）。<b>优化（PAGE 24）：</b>小数据转插入；元素很大时改链表存储（移动变指针）。</p>
+    <h4>二、比较排序的下界（PAGE 38-47）<span class="tag tag-ext">课件拓展·408不考（结论常被引用）</span></h4>
+    <p><b>判定树：</b>n 个元素的每种排列（n! 种）对应一个叶子；一种输入的比较次数=根到叶路径长度；<b>判定树高度=最坏比较次数</b>。由 n!≤2^h 得 h≥log₂(n!)，而 log(n!) ≥ (n/2)·log(n/2) = Ω(nlogn)。<b>结论：任何基于关键词比较的排序，最坏（和平均）比较次数至少 Ω(nlogn)</b>——这就是堆排/归并/快排平均"封顶"的理论原因；分布排序不受此限（下一讲）。</p>
+    <h4>三、外排序一瞥（PAGE 49-52）</h4>
+    <p>文件远大于内存时：分块读入、内排序成多个有序块、<b>多路归并</b>成大文件。10TB 数据排序选<b>归并</b>（考研题，PAGE 52）。408 新大纲的外排序（多路归并/败者树/最佳归并树）需另行补充，课件只到原理。</p>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 17 非递归归并】</div>
+      <p>初始 25 57 50 37 12 92 86 33，写出自底向上归并的逐趟结果。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>L=1：25,57 | 37,50 | 12,92 | 33,86 → L=2：25,37,50,57 | 12,33,86,92 → L=4：<b>12 25 33 37 50 57 86 92</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·搜狗校招 PAGE 33】</div>
+      <p>n 条词+拼音串，先按拼音排、相同拼音按原词序——选哪种排序？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>需要<b>稳定</b>排序：直接插入、冒泡满足；快排、堆排不稳定不满足（北京beijing/背景beijing 要保证北京在前）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2023考研全国卷 PAGE 34 课下思考】</div>
+      <p>不稳定的是：Ⅰ希尔 Ⅱ归并 Ⅲ快排 Ⅳ堆 Ⅴ冒泡 → 选？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>仅 Ⅰ、Ⅲ、Ⅳ（选C）</b>——口诀"快选堆希"不稳定。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 35-36 课下思考】</div>
+      <p>①每趟结束都至少有一个元素在最终位置：Ⅰ直接选择 Ⅱ希尔 Ⅲ快排 Ⅳ堆 Ⅴ归并？②最后一趟开始前<b>所有元素都不在</b>最终位置的是？A堆 B冒泡 C直接插入 D快排</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>① <b>Ⅰ、Ⅲ、Ⅳ（选A）</b>。② <b>C 直接插入</b>（例 2 3 4 5 6 1：最后把 1 插到最前时，其余全部后移才就位）。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>归并空间 O(n) 不是 O(1)；稳定的命门在"相等先放左"；<b>归并每趟不保证任何元素在最终位置</b>（与选择/冒泡/快排/堆排对照的真题）；逆序对只在"取右侧进 X"时累加 mid−i+1。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——Merge 过程与"相等先放左"；归并三态 O(nlogn)/O(n)/稳定、自底向上逐趟翻倍；六大排序对比总表（PAGE 31 必背）；逆序对计数；下界 Ω(nlogn) 的判定树论证（结论）；外排序原理。</p>
+  </section>
+
+  <section class="sec" id="c-l21">
+    <h3>L21 · 分布排序：桶 · 计数 · 基数<span class="tag tag-hot">408高频考点（基数）</span></h3>
+    <p><b>本节导入：</b>能不能突破 O(nlogn)？能——只要<b>不靠比较</b>，前提是知道元素的分布规律（值域有限）。</p>
+    <h4>一、桶排序（PAGE 4-23）</h4>
+    <p>值域 [0,m) 设 m 个桶：①<b>分配</b>——扫描元素按关键词入桶；②<b>收集</b>——依次取出各桶元素。桶用<b>链式队列</b>实现，同桶先进先出 → <b>稳定</b>。<b>O(n+m)</b>，m=O(n) 时线性。</p>
+    <h4>二、计数排序（PAGE 25-41）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】计数三步（PAGE 26-31）</div>
+      ①扫描计数 cnt[R[i]]++；②<b>前缀和</b> cnt[i]+=cnt[i−1]——此时 cnt[i]=R 中 ≤i 的元素个数=元素 i 在有序数组中的位置；③<b>从右往左</b>扫描：B[cnt[R[i]]−−]=R[i]——<b>必须从右往左才稳定</b>（同值元素右侧者进高位槽）！O(n+m)、稳定。
+    </div>
+    <h4>三、基数排序（PAGE 43-94）——408 在纲</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】LSD 逐位稳定排序（PAGE 44-45）</div>
+      关键词由多域构成 K=(K_d,…,K_2,K_1)：<b>自 K1（最低位）至 Kd 依次以各域做"稳定排序"</b>——每位是 [0,r) 内整数，用桶或计数排序实现。<b>每趟必须稳定</b>（LSD 正确性的来源；某趟不稳定结果就错）。<b>时间 O(d(n+r))、空间 O(n+r)、稳定</b>；d=位数、r=基数，d、r 为常数时线性；适合位数固定/可拆分的关键词。
+    </div>
+<pre class="code" data-t="计数排序（PPT PAGE 38）"><code>void CountingSort(int R[], int n, int m, int B[]) {   // 值域[0,m)
+    int cnt[M] = {0};
+    for (int i = 1; i &lt;= n; i++) cnt[R[i]]++;              // ①计数
+    for (int i = 1; i &lt; m; i++) cnt[i] += cnt[i - 1];     // ②前缀和=排名
+    for (int i = n; i &gt;= 1; i--) B[cnt[R[i]]--] = R[i];   // ③从右往左放
+}</code></pre>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 44、46-90】基数排序全程</div>
+      <p>数据 257, 29, 839, 658, 720, 236, 155（d=3, r=10），逐趟收集结果？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>按个位</b>（7,9,9,8,0,6,5）→ <b>720 155 236 257 658 29 839</b>（29 在 839 前，保持原序——稳定性）</p>
+        <p><b>按十位</b>（7,5,3,5,5,2,3）→ 桶2:[29]、桶3:[236,839]、桶5:[155,257,658]、桶7:[720] → <b>29 236 839 155 257 658 720</b></p>
+        <p><b>按百位</b>（0,2,8,1,2,6,7）→ <b>29 155 236 257 658 720 839</b>（有序）。总 O(3(7+10))。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 93】三者对比选型</div>
+      <p>10 个整数范围 [0,1000)（n=10, m=1000）：桶/计数/基数各开销？选谁？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>桶需1000个桶、计数需长1000的cnt数组——都是 O(10+1000)；基数 d=3、r=10，O(3(10+10))。<b>值域大而 n 小，基数排序明显占优</b>。选型口诀：吉大22级英语成绩（n大值域小）→计数/桶；各国人口（值域大）→快排更好（PAGE 40-41）。</p></div></details>
+    </div>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>计数第③步从左往右扫会失去稳定性；基数若从高位（MSD）开始或某趟用了不稳定排序会出错；计数空间取决于值域 m 而非 n。<b>408口径：</b>基数排序是考纲明确考点（复杂度亦写 O(d(n+rd))、空间 O(rd)）；桶/计数 408 大纲未列（概念辨析级了解）。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——桶"分配+收集"；计数三步与前缀和语义（从右往左保稳定）；基数 LSD"逐位稳定排序"的原理、逐趟手工模拟与 O(d(n+r))；三者"不基于比较、需知分布"的共同本质与选型。至此内部排序九件套齐了。</p>
+  </section>
+
+  <div class="chap-head" id="ch10"><h3>第10章 · 查找（对应PPT：Lecture 22–25）</h3><p>线性结构查找（顺序/对半/斐波那契/插值/分块/跳表）→ 二叉查找树/AVL/红黑树/伸展树 → B树/B+树/Trie → 散列。课件顺序与408"查找"章完全对应（红黑树2022年入纲）。</p></div>
+
+  <section class="sec" id="c-l22">
+    <h3>L22 · 线性结构查找<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>查找（检索）：给定值 K，在含 n 个记录的文件中找关键词等于 K 的记录，分成功/失败。<b>ASL（平均查找长度）=查找一个元素的关键词平均比较次数——衡量查找算法优劣的主要标准</b>（PAGE 3）。这一讲的方法串成一条线：<b>用不同规则确定 mid，得到不同方法：对半、斐波那契、插值</b>（PAGE 6）。</p>
+    <h4>一、顺序查找与对半查找（PAGE 4-27）</h4>
+    <p><b>顺序查找</b>无序表 O(n)。<b>对半（折半）查找</b>：mid=⌊(low+high)/2⌋，每轮淘汰一半，O(logn)。<b>对半插入排序（PAGE 9）：</b>插入位置用对半定——比较次数降到 O(logn)，但移动次数不变，总时间仍 O(n²)（常系数更小）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】判定树与 ASL 口径（PAGE 19-25，期末408双考）</div>
+      对半查找的二叉判定树是<b>扩充二叉树</b>（空指针处加方形外结点）。<b>成功查找对应内结点：比较次数=结点深度+1；失败对应外结点：比较次数=该外结点深度</b>（根到它经过的内结点数）。<br>
+      <b>ASL_succ = (1/n)Σ(深度+1)；ASL_unsucc = (1/(n+1))Σ(外结点深度)——失败的分母是 n+1（外结点个数），不是 n！</b>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 11-25】R[1..10]={12,23,26,37,55,60,68,75,82,96}</div>
+      <p>①查 96、查 58 各比较几次？②画判定树并算 ASL 成功/失败。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>①查96：mid=5(55)→mid=8(75)→mid=9(82)→mid=10(96) 命中，<b>4次</b>；查58：mid=5(55)→mid=8(75)→mid=6(60)→low&gt;high <b>失败，3次</b>。</p>
+        <p>②判定树：根5；第2层2、8；第3层1、3、6、9；第4层4、7、10。<b>ASL成功=(1/10)(1×1+2×2+4×3+3×4)=2.9</b>；<b>ASL失败=(1/11)(5×3+6×4)=39/11≈3.5</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 10】</div>
+      <p>同一序列分别做对半插入排序和直接插入排序，可能不同的是？A.总趟数 B.移动次数 C.辅助空间 D.元素的比较次数</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>D</b>——对半只省比较、不省移动。</p></div></details>
+    </div>
+    <h4>二、斐波那契查找与插值查找（PAGE 29-46）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <ul>
+      <li><b>斐波那契查找：</b>设 n=F_k−1，比较 R[F_{k−1}]：小则左段（F_{k−1}−1，k−1阶）、大则右段（F_{k−2}−1，k−2阶）——<b>黄金分割 0.618 划分</b>；O(log₂n) 但总体略快于对半（进左只比1次的概率大），且<b>只用加减不用乘除</b>；n 不是 F_k−1 时用 R[n] 补全、返回下标要截断 (mid&lt;n)?mid:n。</li>
+      <li><b>插值查找：</b>mid = low + (K−R[low])/(R[high]−R[low])×(high−low)（假设均匀分布）；姚期智与储枫证明平均每轮把区间从 n 缩到 √n → <b>平均 O(loglogn)</b>，最坏 O(n)（分布极不均）；实用法：先用插值缩小区间再转对半。</li>
+    </ul>
+    <h4>三、再谈对半查找（PAGE 52-63）</h4>
+    <p><b>循环不变量："执行过程中 low 左边全&lt;K、high 右边全&gt;K"</b>（PAGE 54）——由此得两个工程变体：<b>BinSearchFirstPosGEK 返回 low</b>（第一个 ≥K 的位置，不存在返回 n+1）、<b>BinSearchLastPosLEK 返回 high</b>——它们正是 lower_bound/upper_bound 的语义（联动第三部分 STL）。<b>二分搜索答案</b>（PAGE 60-63，LC875 珂珂吃香蕉）：速度 s 的"能否吃完"构成 0…0 1…1 序列，<b>找第一个 1</b>，O(nlogm)。<span class="tag tag-ext">工程变体408不考，思想极有用</span></p>
+    <h4>四、分块查找与跳表（PAGE 49-50、65-88）</h4>
+    <p><b>分块（索引顺序）查找：</b>块间有序（前块最大&lt;后块）、<b>块内不要求有序</b>——索引表对半 + 块内顺序。<b>跳表（Pugh 1989）</b><span class="tag tag-ext">课件拓展·408不考</span>：多层耦合有序链表；查找从顶层起"小则向右、大则向下"；插入<b>抛硬币</b>（1/2概率）逐层生长；查/插/删 O(logn)、空间 O(n)——概率性平衡的替代品。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>成功=深度+1、失败=深度（不加1）；失败分母 n+1；对半只适用于<b>有序数组</b>（链表不能二分）、适合<b>静态</b>查找（动态增删 O(n) 调整）；分块查找块内无序不能二分。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——ASL 定义与判定树分析法；对半查找过程、判定树、ASL 成功/失败计算（2.9 与 3.5 这种题必须秒杀）；对半插入"只省比较"；斐波那契/插值/跳表作拓展；≥K 第一个位置的循环不变量写法（通往 lower_bound）。</p>
+  </section>
+
+  <section class="sec" id="c-l23">
+    <h3>L23 · 二叉查找树：BST · AVL · 红黑树 · 伸展树<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>有序数组二分快但动态调整 O(n)——想要插/删/查都 O(logn)，把数据<b>存进树里</b>。</p>
+    <h4>一、BST（PAGE 4-44）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】BST 定义与删除三情况（PAGE 5、12-14）</div>
+      <b>定义：</b>各结点关键词互异、<b>中根序列递增</b>（等价：左子树全&lt;Key(P)&lt;右子树全，且左右子树也是BST）。<b>与判定树的区别（PAGE 6）：</b>判定树只描述查找过程（数据在数组、是扩充二叉树）；BST 数据真存于树中。<br>
+      <b>删除三情况：</b>①叶：直接删；②单孩子："子承父业"；③两孩子：用<b>右子树最小结点（中根后继）替换 K</b>，再删 s（s 至多一个右孩子）。<br>
+      <b>性能（PAGE 43）：</b>随机 BST 平均高度 O(logn)、平均 O(logn)；<b>最坏退化为链 O(n)</b>（阿里笔试原题）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 15-32 练习】BST 建树与插删</div>
+      <p>依次插入 (17,31,13,20,35,25,8,4,13,24,40,27)，然后 ①插9 ②删17 ③删13。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>13 重复不插。树：根17；左13(左8(左4))；右31(左20，右35(左25(左24,右27)，右40))。</p>
+        <p>①9 → 8 的右孩子。②删根17（两孩子）：右子树最小 20 替换（20 原为叶删去）→ 根20。③删13（单孩子8）：8 子承父业 → <b>20(8(4,9), 31(,35(25(24,27),40)))</b>。</p>
+      </div></details>
+    </div>
+    <h4>二、AVL 高度平衡树（PAGE 46-93）</h4>
+    <p><b>定义（PAGE 48-49）：</b>任一结点左右子树高度至多差1；<b>平衡系数=左高−右高 ∈ {−1,0,1}</b>。<b>高度（PAGE 52-53）：</b>最少结点 F(0)=1、F(1)=2、<b>F(h)=F(h−1)+F(h−2)+1</b>；精确上界 <b>h ≤ 1.4404·log₂(n+2) − 0.3277</b>（最多比满树高44%）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】四种失衡与旋转（PAGE 57-87，期末408年年考）</div>
+      <div class="tbl-wrap"><table class="api">
+        <tr><th>型</th><th>判别（新结点插入路径）</th><th>调整（口诀：左子树高右转、右子树高左转）</th></tr>
+        <tr><td><b>LL</b></td><td>左孩子的左侧</td><td><b>单旋转右转</b>：抓B上提，A成B右孩子，B的BR挂A左</td></tr>
+        <tr><td><b>RR</b></td><td>右孩子的右侧</td><td><b>单旋转左转</b>（镜像）</td></tr>
+        <tr><td><b>LR</b></td><td>左孩子的右侧</td><td><b>双旋转</b>：先对左子树做RR（以C为轴左转B）再LL（右转A）：<code class="inl">LR(A){RR(A-&gt;left); LL(A);}</code></td></tr>
+        <tr><td><b>RL</b></td><td>右孩子的左侧</td><td><b>双旋转</b>：先对右子树做LL再RR：<code class="inl">RL(A){LL(A-&gt;right); RR(A);}</code></td></tr>
+      </table></div>
+      <b>插入：</b>找"从插入点到根路径上<b>第一个失衡结点A</b>"，平衡以A为根的最小子树；旋转后子树高度与插入前相同（h+1）→ <b>插入最多2次旋转</b>（一次单旋或一次双旋）。<br>
+      <b>删除：</b>平衡后子树高度可能变小 → 失衡可连锁上传直至根，<b>最坏 O(logn) 次旋转</b>（对比插入 O(1) 次）。
+    </div>
+<pre class="code" data-t="AVL 插入骨架（PPT PAGE 89-92）"><code>int Height(AVLnode* t);
+void UpdateHeight(AVLnode* t) { t-&gt;height = max(Height(t-&gt;left), Height(t-&gt;right)) + 1; }
+void Balance(AVLnode *&amp;t) {                  // 回溯时逐层调用
+    UpdateHeight(t);
+    if (Height(t-&gt;left) - Height(t-&gt;right) == 2)          // 左高
+        if (Height(t-&gt;left-&gt;left) &gt;= Height(t-&gt;left-&gt;right)) LL(t);
+        else LR(t);
+    else if (Height(t-&gt;right) - Height(t-&gt;left) == 2)     // 右高
+        if (Height(t-&gt;right-&gt;right) &gt;= Height(t-&gt;right-&gt;left)) RR(t);
+        else RL(t);
+}
+void Insert(AVLnode *&amp;root, int K) {         // 递归插入，返回路上逐层Balance
+    if (root == NULL) { root = new AVLnode(K); return; }
+    if (K &lt; root-&gt;key) Insert(root-&gt;left, K);
+    else if (K &gt; root-&gt;key) Insert(root-&gt;right, K);
+    Balance(root);
+}</code></pre>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2021考研全国卷+吉大21级期末 PAGE 83】</div>
+      <p>AVL 树 20(16, 30(25,50)) 插入 23，根结点关键词是？A.16 B.20 C.23 D.25</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>23→20右→30左→25左；结点20平衡系数 0−2=−2，路径 20(右)→25(左)=<b>RL型</b>：先以25为轴将30右转→25(23,30(,50))，再以25为轴将20左转 → <b>25(20(16,23),30(,50))，选D</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 70-72 练习2】</div>
+      <p>空 AVL 依次插 3,2,1,4,5,6,7，写出每次旋转。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>插1：3处LL右转→2(1,3)；插4→2(1,3(,4))；插5：3处RR左转→2(1,4(3,5))；插6：根2 RR左转→4(2(1,3),5(,6))；插7：5处RR左转 → <b>4(2(1,3),6(5,7))</b>。</p></div></details>
+    </div>
+    <h4>三、红黑树与伸展树（PAGE 95-112）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】红黑树五性质（2022年起408入纲，PAGE 95-98）</div>
+      ①非红即黑；②根黑；③外结点黑；④红父黑子（红结点孩子必黑）；⑤任一结点到其每个外结点的路径含相同数目黑结点（黑高相等）。推论：忽略红结点则平衡，最长路径≤最短2倍，<b>h≤2logn；插/删/查最坏 O(logn) 且最多3次旋转</b>。与AVL取舍：平衡略弱、查找略慢，但增删失衡概率小、增删更快。应用：Linux CFS调度、<b>C++ STL map/set 基于 红黑树</b>、Java TreeMap。
+    </div>
+    <p><b>伸展树 Splay（PAGE 100-108）</b><span class="tag tag-ext">课件拓展·408不考</span>：基于<b>时间局部性</b>——每次访问 X 后把它旋转到根；三种情况（一字型先转爷再转父、之字型同AVL双旋、只有父单转）；各操作<b>均摊 O(logn)</b>。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>BST 遇重复关键词<b>不再插入</b>；两孩子删除用<b>中根后继</b>（右子树最左）替换，不是直接拿右孩子；递归 Insert 必须<b>引用参数 &amp;root</b>（或返回新根），否则修改不生效（PAGE 34-37 的 increase 类比）；LR/RL 双旋的<b>先后次序</b>（LR先动左子树）易混。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——BST 中序有序性与删除三情况；BST 最坏退化 O(n)；AVL 平衡系数、四型旋转判定与口诀、插入最多2次旋转 vs 删除最坏 O(logn) 次；最少结点递推 F(h)；红黑树五性质与"最多3次旋转、h≤2logn"（2022入纲）；伸展树均摊 O(logn) 作拓展。</p>
+  </section>
+
+  <section class="sec" id="c-l24">
+    <h3>L24 · 多叉查找树：B树 · B+树 · Trie<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>为什么需要多叉？外存与内存速度差<b>10万倍</b>——外存上查找的时间∝<b>外存访问次数∝树高</b>；n=2×10¹⁰ 的 BST 平均约 35 次外存访问，把一个结点装多个关键词、树变宽变矮就能大幅减少访问（PAGE 4-7）。</p>
+    <h4>一、m 阶 B 树（PAGE 8-46）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】m阶B树五条定义（PAGE 10，必须逐字掌握）</div>
+      ①每个结点至多 m 个子结点；②<b>除根外每个非叶结点至少 ⌈m/2⌉ 个子结点</b>；③根若非叶至少 2 个子结点；④有 k 个子结点的结点恰有 k−1 个递增有序关键词；⑤<b>所有叶结点（失败结点）在同一层且不带信息</b>。<br>
+      换算（7阶例）：非根 3~6 个关键词、根 1~6 个。<b>查找（PAGE 13-14）：</b>结点内顺序/对半查找 K，不在则沿 Ki~Ki+1 之间的指针把子结点<b>读入内存</b>继续；指针空则失败。<br>
+      <b>高度（PAGE 45-46）：</b>n 个关键词有 <b>n+1 个叶结点</b>（n种成功、n+1种失败查找）；k ≤ 1 + log_{⌈m/2⌉}((n+1)/2) = O(log_m n)。m 的选取≈一个磁盘块（数据库常用 m=200~300，n=2×10¹⁰ 时至多5次外存访问）。
+    </div>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】插入分裂与删除三步（PAGE 15-44，大题题源）</div>
+      <b>插入：</b>未满（&lt;m−1 个）直接插；已满<b>上溢分裂</b>：第 <b>⌈m/2⌉ 个关键词提升到父结点</b>，左右各成新结点；分裂可<b>逐层上传直至根</b>（树长高、根分裂是树长高的唯一方式）。<br>
+      <b>删除口诀："先换后删、下溢借位、不够借则合并"：</b>①非最底层的 K 先与<b>右子树最底层最小</b>（中根后继）交换，使真正删除只发生在最底层；②删后关键词 &lt;⌈m/2⌉−1（下溢）向兄弟借：<b>经父结点中转</b>（兄弟的上移、父的分隔词下移），"左顾右盼"优先左兄弟；<b>若借位不在最底层，须连子树一起借</b>；③兄弟也不够借（恰为⌈m/2⌉−1）则<b>两兄弟+父结点分隔词合并</b>（优先左），合并可能使父下溢、上传，<b>可能使树降一层</b>。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 39】3阶B树删78</div>
+      <p>根[45]；子[17,35]（叶[10][21][37]）、[55,65]（叶[47][60,62][78]）。删除78后最右叶结点？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>[78] 下溢（3阶最少1个关键词），左顾右盼：向左兄弟[60,62]借最大62——<b>65下来、62上去</b> → 最右叶变 <b>[65]</b>（叶序列 [47][60][65]）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 23-27】3阶B树插19（连续三层分裂）</div>
+      <p>root[18,33]，子[12](10,[14,15])、[23,30]([19插入处[20,21]]…)、[48,52]。插入19后的树？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>19落入[20,21]位→[19,20,21]分裂，<b>20提升</b>→父[20,23,30]再分裂，<b>23提升</b>→根[18,23,33]分裂，<b>23成新根</b>，树高+1：root[23]；左[18]（子[12](10,[14,15])与[20]([19],[21])）；右[33]（子[30]([24],[31])与[48,52]…）。</p></div></details>
+    </div>
+    <h4>二、B+ 树（PAGE 48-59）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】B+ vs B 对比表（PAGE 54，考研高频）</div>
+      <div class="tbl-wrap"><table class="api">
+        <tr><th>维度</th><th>B+树</th><th>B树</th></tr>
+        <tr><td>子树n个对应关键词</td><td><b>n 个</b></td><td>n−1 个</td></tr>
+        <tr><td>非根结点关键词范围</td><td>[⌈m/2⌉, m]</td><td>[⌈m/2⌉−1, m−1]</td></tr>
+        <tr><td>结点内容</td><td>非叶仅存各孩子<b>最大关键词</b>作索引；<b>全部关键词都在叶</b>且叶层链成<b>有序链表</b></td><td>每个关键词都在某个结点中，附记录指针</td></tr>
+        <tr><td>查找</td><td>查到非叶等于K<b>不停止</b>，走到叶；支持<b>顺序查找</b>（两个入口：根+最小叶链头）</td><td>到结点命中即停</td></tr>
+        <tr><td>应用</td><td>文件系统（NTFS/EXT4…）、数据库（MySQL/Oracle…）</td><td>—</td></tr>
+      </table></div>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·考研题全国卷 PAGE 58】</div>
+      <p>B+树不同于B树的特点之一：A.能支持顺序查找 B.结点中含有关键词 C.根结点至少两个分支 D.所有叶结点在同一层</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p><b>A</b>——B+ 叶层链表支持顺序查找；B/C/D 两者皆有。</p></div></details>
+    </div>
+    <h4>三、字典树 Trie（PAGE 61-68）<span class="tag tag-ext">课件拓展·408不考</span></h4>
+    <p>第 i 层对应关键词第 i 个字母（数字序列叫数字查找树）；<b>关键词不是结点，而是从根到叶的路径</b>（空格作结束符）。应用：字典的保存/统计/排序、搜索引擎<b>前缀匹配/自动补全</b>。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>"至少⌈m/2⌉个<b>子结点</b>"与"⌈m/2⌉−1个<b>关键词</b>"换算别混；删除必须"先换后删"到最底层；借位<b>经父结点中转</b>且非底层要带子树；B+ 查到非叶命中<b>不能停</b>；3阶（2-3树）非根1~2个关键词。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——B树五定义与查找；插入上溢分裂逐层上传；删除三步口诀（换/借/合并）；n+1 叶与高度公式；B+ 树六大特征与 B/B+ 对比表（两道真题原题）；Trie 作拓展。</p>
+  </section>
+
+  <section class="sec" id="c-l25">
+    <h3>L25 · 散列<span class="tag tag-hot">408高频考点</span></h3>
+    <p><b>本节导入：</b>之前所有查找都基于"比较"，理想是<b>根据关键词直接算出地址</b>——散列。两大核心问题（PAGE 7）：<b>散列函数设计 + 冲突处理</b>。</p>
+    <h4>一、散列函数族（PAGE 9-15）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>方法</th><th>公式/做法</th><th>要点</th></tr>
+      <tr><td><b>除余法（408主流）</b></td><td>h(K)=K%M</td><td><b>M 取素数</b>分布最均匀（等差数列当 GCD(d,M)=1 时均匀铺满）</td></tr>
+      <tr><td>MAD</td><td>h(K)=(aK+b)%M</td><td>a&gt;1、b&gt;0、M∤a<span class="tag tag-ext">拓展</span></td></tr>
+      <tr><td>乘法</td><td>⌊M·(Kθ mod 1)⌋</td><td>θ 取黄金分割 0.618<span class="tag tag-ext">拓展</span></td></tr>
+      <tr><td>平方取中</td><td>取 K² 中间几位（123²=15129→512）</td><td><span class="tag tag-ext">拓展</span></td></tr>
+      <tr><td>压缩（异或/折叠）</td><td>子串异或或求和</td><td>异或满足交换律：h(THE)=h(HTE)<span class="tag tag-ext">拓展</span></td></tr>
+      <tr><td>抽取（数字分析）</td><td>抽某几位</td><td>只依赖部分位、易冲突<span class="tag tag-ext">拓展</span></td></tr>
+    </table></div>
+    <h4>二、冲突处理（PAGE 17-30）</h4>
+    <ul>
+      <li><b>开散列=拉链法：</b>同地址记录链成单链表，T[i] 头指针；链太长可换跳表/查找树（unordered_map/HashMap 思想，Java 链长&gt;8 转红黑树）。</li>
+      <li><b>闭散列=开放地址法：</b><b>线性探查</b> hᵢ=(h(K)+i)%M——缓存命中率高，缺点<b>聚集</b>；<b>二次探查</b> hᵢ=(h(K)±i²)%M（+1²,−1²,+2²,−2²…交替）更快跳离冲突区；<b>双重探查</b>步长 δ(K) 与 K 相关，<b>δ(K) 与 M 互质（故 M 取素数）才能探遍全表</b>。</li>
+      <li><b>装填因子 α=N/M</b>：实用 0.5~0.8（Java 0.75 自动扩容；STL 默认1.0可改）。</li>
+    </ul>
+    <h4>三、闭散列的删除（PAGE 32-43）</h4>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】闭散列不能直接删除（PAGE 32-33）</div>
+      该位置可能被别人的探查路径经过，直接清空会<b>阻断查找</b>（删位置1后查 21、31、51 全失败）。三方案：<b>①懒惰删除</b>——位置三状态（空/占用/已删除），查找跳过、插入可复用，缺点空位越来越少；<b>②实时删除</b>——清空 T[j] 后考察 j+1 到下一空位前的每个 i：若清空阻断了"从 h(T[i]) 探查到 i"的路径则前移（最坏O(n)，α≤2/3 时平均O(1)）；<b>③延迟删除</b>——平时懒惰、定期按访问频次降序重建（热点靠近散列地址降 ASL）。②③为课件拓展。
+    </div>
+    <h4>四、性能分析（PAGE 45-47）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>方法</th><th>成功</th><th>不成功</th></tr>
+      <tr><td>拉链法</td><td>1+α/2</td><td>α+e^{−α}</td></tr>
+      <tr><td>线性探查</td><td>(1/2)(1+1/(1−α))</td><td>(1/2)(1+1/(1−α)²)</td></tr>
+      <tr><td>二次/双重</td><td>(1/α)ln(1/(1−α))</td><td>1/(1−α)</td></tr>
+    </table></div>
+    <p>α=0.5 时线性探查成功1.5次、不成功2.5次。<b>结论（PAGE 46）：</b>α 越大探测越多、<b>超过0.5性能急剧下降</b>；<b>拉链法综合最优</b>（实际系统多用）。</p>
+    <div class="ppt-key"><div class="pk-t">📌【PPT课堂重点】ASL 计算口径（历年真题的坑，PAGE 19-27）</div>
+      <b>成功：</b>对表中每个实际元素求比较次数平均（分母=元素个数）。<b>不成功：</b>对<b>散列函数值域的每个地址</b>求"探到第一个空位"的探测次数平均——<b>分母=值域大小，不一定是表长</b>！线性探查失败长度=从 h(K) 探到第一个空位（空位本身计一次）。
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·PAGE 23-25】线性探查建表与 ASL</div>
+      <p>h(K)=K%10，表长10，依次插 20,17,2,23,32,66,6,1。求落位、α、ASL成功/不成功。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>20→0；17→7；2→2；23→3；32：2冲突3占→<b>4</b>（3次）；66→6；6：6冲突7占→<b>8</b>（3次）；1→1。α=0.8。</p>
+        <p><b>ASL成功=(1+1+1+1+3+1+1+3)/8=1.5</b>；<b>ASL不成功=(6+5+4+3+2+1+4+3+2+1)/10=3.1</b>（h=0须探0..5共6次等）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2018考研全国卷 PAGE 26 课下练习】</div>
+      <p>表长7，H(K)=K%7，线性探查，依次插 22,43,15，ASL成功=？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>22→1；43：1冲突→2；15：1、2冲突→3。<b>ASL=(1+2+3)/3=2</b>。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·2019考研全国卷 PAGE 27 课下思考】</div>
+      <p>表长11、H(K)=K%7，线性探查，插 87,40,30,6,11,22,98,20，求查找失败 ASL。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>前7个直接落0..6，20：6冲突→7。失败 ASL 按<b>值域7</b>个地址算：(9+8+7+6+5+4+3)/7=42/7=<b>6</b>（分母是7不是11——本题最易失分点）。</p></div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【PPT原题·吉大2020级期末 PAGE 40-41】实时删除</div>
+      <p>表长13，h(K)=K%13，表中含 {65,92,35,40,15,70,22,62,9,38}，实时删除 9，依次移动哪些关键词？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>清空 9 的位置后，依次考察其后到空位前的元素：清空阻断了 35、40、15 各自从散列地址到当前位置的探查路径——<b>依次移动 35、40、15</b>（每前移一次空位下移）。</p></div></details>
+    </div>
+    <h4>五、散列 vs 树形查找 · 其他应用（PAGE 47-50）</h4>
+    <p><b>对比（PAGE 47）：</b>散列平均快但<b>最坏 O(n)</b>；<b>以空间换时间</b>；失败时只知"不在"（比较类还能给邻近信息）；<b>不维护序</b>（找最小/第k小要 O(n)，树 O(logn)）。<b>应用（PAGE 48-50）</b><span class="tag tag-ext">课件拓展·408不考</span>：分布式存储（数据散列到服务器）、密码散列入库、<b>布隆过滤器</b>——k 个散列函数置位数组各位；查询全1→"可能在"（可能误判）、任一0→"一定不在"（不会误判）；不能删除（位共享）；Chrome 用它先筛恶意URL。课后编程题（PAGE 51）：实现一个散列表（腾讯校招大题）。</p>
+    <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>失败 ASL 分母=值域（2019真题坑）；逐个落位按<b>插入顺序</b>模拟；二次探查 ±i² 交替不是只加；闭散列删除直接置空会断路径。</div>
+    <p><b>本节小结：</b>本节课我们重点掌握了——冲突定义与两大核心问题；散列函数族（M 取素数的理由）；拉链/线性/二次/双重探查；α 与性能拐点 0.5；<b>成功/失败 ASL 的计算口径与三道真题实练</b>；闭散列删除三方案；散列与树查找的取舍。至此，课件 28 个单元全部过完！</p>
+  </section>
+
+<!-- ============ 第三部分 ============ -->
+  </div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "course", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

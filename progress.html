@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>打卡进度 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 打卡进度</p>
+  </div>
+  <div class="part-zone" id="p8">
+  <div class="part-head">
+    <div class="pnum">打卡进度</div>
+    <h2>📅 打卡与学习进度</h2>
+    <p>每日打卡记录学习习惯，各模块「已学」汇总为进度条。数据保存在浏览器 localStorage，配置 Supabase 后多设备云端同步。</p>
+  </div>
+
+  <section class="sec" id="prog-checkin">
+    <h3>📅 每日打卡 <span id="modeBadge" style="float:right"></span></h3>
+    <p class="intro">🎤 同学们，坚持每天打开网站学一点：学完随便哪个模块，回这里点一下打卡；各内容页小节右侧的「◻ 已学」按钮点了也会计入进度。</p>
+    <div class="prog-top">
+      <button class="pc-btn" id="todayBtn">✅ 今日打卡</button>
+      <div class="prog-stats"><span>🔥 连续 <b id="streakNum">0</b> 天</span><span>📅 累计 <b id="totalNum">0</b> 天</span></div>
+    </div>
+    <div class="cal-head"><button id="prevM">‹</button><b id="calTitle"></b><button id="nextM">›</button></div>
+    <div id="calendar" class="cal-grid"></div>
+  </section>
+
+  <section class="sec" id="prog-parts">
+    <h3>📚 模块学习进度</h3>
+    <p class="intro">🎤 进度 = 各页里你点过「已学」的小节/题目数 ÷ 该页总数。点模块名直达对应页面继续学习。</p>
+    <div id="partBars"></div>
+    <div class="wd-err"><b>⚠ 数据说明</b>未配置 Supabase 时数据仅存于本浏览器（清理浏览器数据会丢失）；云端模式下打卡与进度通过 Supabase 表 ds_state 按设备ID同步。</div>
+  </section>
+  </div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "progress", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

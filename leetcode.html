@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>力扣Hot100精讲 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 力扣Hot100精讲</p>
+  </div>
+  <!-- ============ 第七部分 ============ -->
+  <div class="part-zone" id="p7">
+  <div class="part-head">
+    <div class="pnum">PART 07</div>
+    <h2>力扣Hot100精讲</h2>
+    <p>按模块刷题巩固：每题带完整题解 + 考点映射回前面各部分。408与机试的实战练兵场，支持按难度筛选。</p>
+  </div>
+
+  <div class="lcbar" id="lcbar">
+    <span>难度筛选：</span>
+    <button class="fbtn active" data-f="all">全部</button>
+    <button class="fbtn" data-f="easy">简单</button>
+    <button class="fbtn" data-f="mid">中等</button>
+    <button class="fbtn" data-f="hard">困难</button>
+    <span class="cnt" id="lcCount"></span>
+  </div>
+
+  <div class="chap-head" id="p4-array"><h3>模块1 · 数组与双指针（10题）</h3><p>对应：第四部分第1章（顺序表/双指针/快慢指针）+ 第三部分 vector/sort。核心套路：同向读写指针、相向首尾指针、前缀和、三次逆置。</p></div>
+
+  <div class="prob" id="lc283" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 283</span><span class="pname">移动零</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：swap ｜ 算法：同向双指针（读写指针） ｜ 突破口：k为已保留区边界，非零前移</div>
+    <p class="prob-desc">把数组中所有0移到末尾，保持非零元素相对顺序。要求原地、尽量少操作。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>"保持非零相对顺序+原地"→读写双指针：k指向下一个非零应放的位置，i扫描，非零就交换到k。一趟O(n)。</p>
+<pre class="code" data-t="LC283 · 同向双指针"><code>class Solution {
+public:
+    void moveZeroes(vector&lt;int&gt;&amp; nums) {
+        int k = 0;                           // k：下一个非零元素的位置
+        for (int i = 0; i &lt; (int)nums.size(); i++) {
+            if (nums[i] != 0) {
+                swap(nums[i], nums[k]);      // 非零前移，零自然沉底
+                k++;
+            }
+        }
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-twoptr">第四部分·1.3 双指针</a>｜<a href="stl.html#s-swap">第三部分·1.18 swap</a>｜同源题：<a href="algorithms.html#a-seqlist">第四部分1.1例2删除区间元素</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc88" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 88</span><span class="pname">合并两个有序数组</span><span class="diff d-easy">简单</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：无 ｜ 算法：逆向双指针（归并变体） ｜ 突破口：从后往前合并，避免覆盖nums1元素</div>
+    <p class="prob-desc">nums1末尾预留了nums2长度的空位，将nums2合并入nums1使整体非降序。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>正向归并会覆盖nums1的有效数据；预留空位在<b>尾部</b>→从后往前比较取大者放尾部。这是归并排序Merge的"镜像写法"，408归并变体高频。</p>
+<pre class="code" data-t="LC88 · 逆向归并"><code>class Solution {
+public:
+    void merge(vector&lt;int&gt;&amp; nums1, int m, vector&lt;int&gt;&amp; nums2, int n) {
+        int i = m - 1, j = n - 1;            // 分别指向两数组末尾有效元素
+        int k = m + n - 1;                   // 合并结果末尾
+        while (i &gt;= 0 &amp;&amp; j &gt;= 0) {
+            if (nums1[i] &gt; nums2[j]) nums1[k--] = nums1[i--];
+            else                     nums1[k--] = nums2[j--];
+        }
+        while (j &gt;= 0) nums1[k--] = nums2[j--];   // nums2剩余（nums1剩余本来就在）
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-sortmerge">第四部分·6.5 归并</a>｜<a href="algorithms.html#a-linklist">第四部分1.2例2有序链表归并</a>（链表版）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc121" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 121</span><span class="pname">买卖股票的最佳时机</span><span class="diff d-easy">简单</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：min ｜ 算法：一次扫描维护前缀最小值 ｜ 突破口：第i天卖出的最优=当天价−之前最低价</div>
+    <p class="prob-desc">已知每天股价，某天买入、之后某天卖出，求最大利润；不行返回0。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>枚举卖点i，买点必然是前i-1天最低价→扫描中维护minPrice，每步用 price−minPrice 更新答案。O(n)/O(1)。</p>
+<pre class="code" data-t="LC121 · 前缀最小"><code>class Solution {
+public:
+    int maxProfit(vector&lt;int&gt;&amp; prices) {
+        int minPrice = prices[0];            // 到目前为止的最低价
+        int best = 0;
+        for (int i = 1; i &lt; (int)prices.size(); i++) {
+            best = max(best, prices[i] - minPrice);   // 今天卖
+            minPrice = min(minPrice, prices[i]);      // 更新前缀最小
+        }
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-maxmin">第三部分·1.17 max/min</a>｜思想同LC53（前缀信息+一次扫描）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc53" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 53</span><span class="pname">最大子数组和</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：max ｜ 算法：Kadane（前缀和/贪心） ｜ 突破口：前缀和小于0的前缀直接舍弃</div>
+    <p class="prob-desc">求连续子数组的最大和（至少含一个元素）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>dp[i]=以i结尾的最大子数组和：dp[i]=max(nums[i], dp[i-1]+nums[i])——前缀和为负则"拖后腿"，从i重新开始。滚动变量压成一维。</p>
+<pre class="code" data-t="LC53 · Kadane算法"><code>class Solution {
+public:
+    int maxSubArray(vector&lt;int&gt;&amp; nums) {
+        int cur = nums[0], best = nums[0];   // cur：以当前元素结尾的最大和
+        for (int i = 1; i &lt; (int)nums.size(); i++) {
+            cur = max(nums[i], cur + nums[i]);   // 接上前缀 or 重新开始
+            best = max(best, cur);
+        }
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-maxmin">第三部分·1.17 max/min</a>｜与LC121同一"前缀信息一次扫描"范式</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc189" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 189</span><span class="pname">轮转数组</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：reverse ｜ 算法：三次逆置法 ｜ 突破口：右移k位=逆全→逆前k→逆后段</div>
+    <p class="prob-desc">数组向右轮转k位。要求O(1)空间。（2010年真题"循环左移"同源）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>右移k位 ⇔ 左移n-k位 → 三次逆置：整体逆、逆前k、逆后段。k先对n取模。</p>
+<pre class="code" data-t="LC189 · 三次逆置"><code>class Solution {
+public:
+    void rotate(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size();
+        k %= n;
+        reverse(nums.begin(), nums.end());       // ①整体逆置
+        reverse(nums.begin(), nums.begin() + k); // ②逆前k个
+        reverse(nums.begin() + k, nums.end());   // ③逆剩余
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-reverse">第三部分·1.11 reverse（含手写版）</a>｜<a href="algorithms.html#a-twoptr">第四部分1.3</a>｜真题：2010年循环左移</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc560" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 560</span><span class="pname">和为K的子数组</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组+哈希 ｜ STL：unordered_map ｜ 算法：前缀和 ｜ 突破口：pre[j]−pre[i]=k ⇔ 数pre[j]−k出现次数</div>
+    <p class="prob-desc">统计和恰为k的连续子数组个数（含负数，滑动窗口失效）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>含负数→窗口单调性失效→前缀和：以j结尾的和为k的子数组个数=此前 pre−k 出现的次数，用哈希表边扫边计数。注意先记pre[0]=1（空前缀）。</p>
+<pre class="code" data-t="LC560 · 前缀和+哈希"><code>class Solution {
+public:
+    int subarraySum(vector&lt;int&gt;&amp; nums, int k) {
+        unordered_map&lt;int, int&gt; cnt;         // 前缀和 → 出现次数
+        cnt[0] = 1;                          // 空前缀：和为0出现1次
+        int pre = 0, ans = 0;
+        for (int x : nums) {
+            pre += x;
+            unordered_map&lt;int,int&gt;::iterator it = cnt.find(pre - k);
+            if (it != cnt.end()) ans += it-&gt;second;   // 以当前结尾的和为k
+            cnt[pre]++;
+        }
+        return ans;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-unord">第三部分·1.7 unordered_map</a>｜<a href="practice.html#e5">第六部分·实战实战5</a>｜哈希考点闭环</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc11" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 11</span><span class="pname">盛最多水的容器</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：min/max ｜ 算法：相向双指针+贪心 ｜ 突破口：移动较矮的一侧才可能更优</div>
+    <p class="prob-desc">n条垂线与x轴组成容器，选两条使盛水最多：面积=min(h[i],h[j])×距离。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>l、r两端开始，面积由<b>较矮者</b>决定；固定较矮者再怎么移都不可能更大→必须移动较矮一侧。每步O(1)淘汰一列，O(n)。</p>
+<pre class="code" data-t="LC11 · 首尾双指针"><code>class Solution {
+public:
+    int maxArea(vector&lt;int&gt;&amp; h) {
+        int l = 0, r = (int)h.size() - 1, best = 0;
+        while (l &lt; r) {
+            int area = min(h[l], h[r]) * (r - l);
+            best = max(best, area);
+            if (h[l] &lt; h[r]) l++;            // 矮的一侧移动
+            else             r--;
+        }
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-twoptr">第四部分·1.3 双指针模板②</a>｜与LC15三数之和同范式</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc15" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 15</span><span class="pname">三数之和</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：sort ｜ 算法：排序+枚举一个+首尾双指针 ｜ 突破口：排序后"两数之和"线性扫；三重去重</div>
+    <p class="prob-desc">找出所有不重复的三元组使三数之和为0。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>暴力O(n³)→排序后固定i，对i+1..n-1做首尾双指针找两数和=−nums[i]；三处去重：i跳过重复、命中后l/r各自跳过重复。O(n²)。</p>
+<pre class="code" data-t="LC15 · 排序+双指针"><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
+        vector&lt;vector&lt;int&gt;&gt; res;
+        sort(nums.begin(), nums.end());      // ①排序：双指针+去重前提
+        for (int i = 0; i &lt; (int)nums.size(); i++) {
+            if (nums[i] &gt; 0) break;                       // 最小数&gt;0无解
+            if (i &gt; 0 &amp;&amp; nums[i] == nums[i-1]) continue;  // ②i去重
+            int l = i + 1, r = (int)nums.size() - 1;
+            while (l &lt; r) {
+                int s = nums[i] + nums[l] + nums[r];
+                if (s &lt; 0) l++;
+                else if (s &gt; 0) r--;
+                else {
+                    res.push_back({nums[i], nums[l], nums[r]});
+                    while (l &lt; r &amp;&amp; nums[l] == nums[l+1]) l++; // ③去重
+                    while (l &lt; r &amp;&amp; nums[r] == nums[r-1]) r--;
+                    l++; r--;
+                }
+            }
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-twoptr">第四部分·1.3 双指针模板②</a>｜<a href="stl.html#s-sort">第三部分·1.10 sort</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc287" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 287</span><span class="pname">寻找重复数</span><span class="diff d-mid">中等</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组(视作隐式链表) ｜ STL：无 ｜ 算法：快慢指针(Floyd判圈) ｜ 突破口：i→nums[i]成链，重复数=环入口</div>
+    <p class="prob-desc">n+1个数取值1..n，至少一个重复。不修改数组、O(1)空间找重复数。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>把数组看成链表 i→nums[i]，因值域1..n必有环，重复数=环的入口→快慢指针判圈+找入口（与第四部分快慢指针同款）。二分"≤mid的个数"也可解。</p>
+<pre class="code" data-t="LC287 · 快慢指针"><code>class Solution {
+public:
+    int findDuplicate(vector&lt;int&gt;&amp; nums) {
+        int slow = 0, fast = 0;
+        do {
+            slow = nums[slow];               // 慢针走1步
+            fast = nums[nums[fast]];         // 快针走2步
+        } while (slow != fast);              // 相遇：在环内
+        slow = 0;
+        while (slow != fast) {               // 双针同速，再次相遇=环入口
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;                         // 重复数
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4 快慢指针</a>｜判圈思想同<a href="#lc141">LC141</a>/<a href="#lc142">LC142</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc42" data-diff="hard">
+    <div class="prob-head"><span class="pnum">LC 42</span><span class="pname">接雨水</span><span class="diff d-hard">困难</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组/栈 ｜ STL：stack ｜ 算法：双指针 或 单调栈 ｜ 突破口：每列水位=min(左最大,右最大)−自身</div>
+    <p class="prob-desc">柱状图接雨水总量。（第六部分·实战e7有单调栈版，此处给O(1)空间双指针版）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>water[i]=min(左边最高,右边最高)−h[i]。双指针+两侧最大值：较矮一侧的答案已确定（min由它决定），逐列累加，O(n)/O(1)。</p>
+<pre class="code" data-t="LC42 · 双指针版"><code>class Solution {
+public:
+    int trap(vector&lt;int&gt;&amp; h) {
+        int l = 0, r = (int)h.size() - 1;
+        int lmax = 0, rmax = 0, water = 0;
+        while (l &lt; r) {
+            lmax = max(lmax, h[l]);          // 左侧最高
+            rmax = max(rmax, h[r]);          // 右侧最高
+            if (lmax &lt; rmax) water += lmax - h[l++];   // 较矮一侧已确定
+            else             water += rmax - h[r--];
+        }
+        return water;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="practice.html#e7">第六部分·实战实战7（单调栈版）</a>｜<a href="algorithms.html#a-monostack">第四部分2.3 单调栈</a></p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-link"><h3>模块2 · 链表（8题）</h3><p>对应：第四部分第1章（链表操作/快慢指针）。核心套路：虚拟头结点、就地逆置、快慢指针、拼接偷换。</p></div>
+
+  <div class="prob" id="lc206" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 206</span><span class="pname">反转链表</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：头插重建/三指针迭代 ｜ 突破口：暂存后继防断链</div>
+    <p class="prob-desc">单链表就地反转。（=408必考"就地逆置"）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>头插法重建：每次摘下首元结点头插到新表。q=暂存后继→p头插→p=q。迭代三指针O(n)/O(1)。</p>
+<pre class="code" data-t="LC206 · 就地逆置"><code>class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *prev = NULL, *cur = head;
+        while (cur) {
+            ListNode *next = cur-&gt;next;  // ①暂存后继防断链
+            cur-&gt;next = prev;            // ②反转指向
+            prev = cur;                  // ③prev前移
+            cur = next;                  // ④cur前移
+        }
+        return prev;                     // 新表头
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-linklist">第四部分·1.2 链表Reverse（同一算法）</a>｜<a href="stl.html#p2-pre">第三部分·0 例题</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc21" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 21</span><span class="pname">合并两个有序链表</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：双指针尾插归并 ｜ 突破口：虚拟头结点统一"插到表头"逻辑</div>
+    <p class="prob-desc">合并两个非降序链表为一个非降序链表。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>归并排序Merge的链表版：虚拟头结点+尾指针r，取小者尾插；剩余整段接上。</p>
+<pre class="code" data-t="LC21 · 链表归并"><code>class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);                   // 虚拟头结点（免特判第一个结点）
+        ListNode *r = &amp;dummy;                // 尾指针
+        while (l1 &amp;&amp; l2) {
+            if (l1-&gt;val &lt;= l2-&gt;val) { r-&gt;next = l1; l1 = l1-&gt;next; }
+            else                    { r-&gt;next = l2; l2 = l2-&gt;next; }
+            r = r-&gt;next;
+        }
+        r-&gt;next = l1 ? l1 : l2;              // 整段接管剩余
+        return dummy.next;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-linklist">第四部分·1.2 例2 MergeList</a>｜<a href="#lc88">LC88 数组版</a>｜<a href="#lc148">LC148 链表归并排序</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc141" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 141</span><span class="pname">环形链表</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：快慢指针Floyd判圈 ｜ 突破口：快2慢1，有环必相遇</div>
+    <p class="prob-desc">判断链表是否有环。要求O(1)空间。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>有环则快针"套圈"追上慢针；无环快针先到NULL。哈希表存地址也可解但O(n)空间——面试/机试追问点。</p>
+<pre class="code" data-t="LC141 · Floyd判圈"><code>class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *slow = head, *fast = head;
+        while (fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;               // 慢1步
+            fast = fast-&gt;next-&gt;next;         // 快2步
+            if (slow == fast) return true;   // 相遇有环
+        }
+        return false;                        // 到NULL无环
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4 快慢指针模板②</a>｜进阶：<a href="#lc142">LC142 找环入口</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc142" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 142</span><span class="pname">环形链表 II</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：Floyd判圈+数学推导找入口 ｜ 突破口：相遇后一头回起点，同速再走再相遇即入口</div>
+    <p class="prob-desc">返回链表入环的第一个结点；无环返回NULL。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>设头到入口长a、相遇点在环内。相遇时慢针走了a+b，快针走了a+b+nb圈⇒a+b=nb(快针速度2倍)⇒a=nb−b=c(n-1)+... 结论：<b>从相遇点和表头同时出发同速前进，再次相遇处即入口</b>。</p>
+<pre class="code" data-t="LC142 · 找环入口"><code>class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *slow = head, *fast = head;
+        while (fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+            if (slow == fast) {              // 相遇
+                slow = head;                 // 一针回头
+                while (slow != fast) {       // 同速前进
+                    slow = slow-&gt;next;
+                    fast = fast-&gt;next;
+                }
+                return slow;                 // 环入口
+            }
+        }
+        return NULL;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4</a>｜同思想：<a href="#lc287">LC287 寻找重复数</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc19" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 19</span><span class="pname">删除链表的倒数第 N 个结点</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：快慢指针+虚拟头结点 ｜ 突破口：fast先走N步，删除需停留在前驱</div>
+    <p class="prob-desc">一趟扫描删除倒数第n个结点。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>fast先走n步，slow/fast同速前进到fast为空，slow即倒数第n+1个（前驱）→改指针删除。虚拟头结点解决"删头"特判。</p>
+<pre class="code" data-t="LC19 · 先驱定位"><code>class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode dummy(0);
+        dummy.next = head;
+        ListNode *fast = &amp;dummy, *slow = &amp;dummy;
+        for (int i = 0; i &lt; n; i++) fast = fast-&gt;next;   // fast先走n步
+        while (fast-&gt;next) {                 // 同速走到尾部
+            fast = fast-&gt;next;
+            slow = slow-&gt;next;
+        }
+        ListNode *del = slow-&gt;next;          // slow是前驱
+        slow-&gt;next = del-&gt;next;
+        delete del;
+        return dummy.next;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4 模板③</a>｜<a href="algorithms.html#a-linklist">1.2 删除结点</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc160" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 160</span><span class="pname">相交链表</span><span class="diff d-easy">简单</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：双指针"走完换道" ｜ 突破口：a+c+b == b+c+a 消除长度差</div>
+    <p class="prob-desc">找两单链表第一个公共结点；不相交返回NULL。（408真题原题思想）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>两针各从自己表头走，到尾换到对方表头——走过的总长相同（a+c+b 与 b+c+a），必在交点相遇；不相交则同到NULL。O(m+n)/O(1)。笔试版：先求两表长度差，长表先走差值步再同步走。</p>
+<pre class="code" data-t="LC160 · 换道双指针"><code>class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *p = headA, *q = headB;
+        while (p != q) {
+            p = p ? p-&gt;next : headB;         // 走完A换B
+            q = q ? q-&gt;next : headA;         // 走完B换A
+        }
+        return p;                            // 相交点或NULL
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-twoptr">第四部分·1.3 双指针</a>｜408真题2012年"找公共结点"同源</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc234" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 234</span><span class="pname">回文链表</span><span class="diff d-easy">简单</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：快慢指针+逆置后半段 ｜ 突破口：找中点→逆后半→逐个比较</div>
+    <p class="prob-desc">判断链表是否回文，要求O(n)、O(1)。（408大题三合一经典）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>快慢指针找中点（偶数取前一个中点）→就地逆置后半段→前半与后半逐结点比较。三个子问题全部来自第四部分模板。</p>
+<pre class="code" data-t="LC234 · 找中点+逆置+比较"><code>class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if (!head || !head-&gt;next) return true;
+        ListNode *slow = head, *fast = head;
+        while (fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next) {   // 中点偏前
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        ListNode *second = slow-&gt;next;       // 后半段
+        slow-&gt;next = NULL;                   // 断开
+        ListNode *prev = NULL;
+        while (second) {                     // 逆置后半段
+            ListNode *nxt = second-&gt;next;
+            second-&gt;next = prev;
+            prev = second;
+            second = nxt;
+        }
+        ListNode *p = head, *q = prev;       // 逐个比较
+        while (q) {
+            if (p-&gt;val != q-&gt;val) return false;
+            p = p-&gt;next; q = q-&gt;next;
+        }
+        return true;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4 模板①</a> + <a href="algorithms.html#a-linklist">1.2 Reverse</a>｜<a href="stl.html#s-string">1.2 string例2回文串</a>（数组版）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc146" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 146</span><span class="pname">LRU 缓存</span><span class="diff d-mid">中等</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：哈希表+双向链表 ｜ STL：unordered_map ｜ 算法：O(1)定位+O(1)摘链插链 ｜ 突破口：哈希表key→链表结点，链表维护访问次序</div>
+    <p class="prob-desc">容量有限的LRU缓存：get/put均O(1)，超出容量淘汰最久未使用项。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>单链表删除需找前驱O(n)→用<b>双向链表</b>：哈希表完成O(1)查找，命中后把结点从链中摘下移到头部；尾部即最久未用，淘汰O(1)。408把该题作为"哈希+链表复合结构"的绝佳案例。</p>
+<pre class="code" data-t="LC146 · 哈希+双向链表"><code>struct Node {
+    int key, val;
+    Node *prev, *next;
+    Node(int k, int v) : key(k), val(v), prev(NULL), next(NULL) {}
+};
+class LRUCache {
+    int cap;
+    Node *head, *tail;                        // 哨兵：head侧最近，tail侧最久
+    unordered_map&lt;int, Node*&gt; pos;            // key → 结点
+    void remove(Node *p) {                    // 摘结点 O(1)
+        p-&gt;prev-&gt;next = p-&gt;next;
+        p-&gt;next-&gt;prev = p-&gt;prev;
+    }
+    void pushFront(Node *p) {                 // 头插 O(1)
+        p-&gt;next = head-&gt;next;
+        p-&gt;prev = head;
+        head-&gt;next-&gt;prev = p;
+        head-&gt;next = p;
+    }
+public:
+    LRUCache(int capacity) : cap(capacity) {
+        head = new Node(0, 0); tail = new Node(0, 0);
+        head-&gt;next = tail; tail-&gt;prev = head;
+    }
+    int get(int key) {
+        unordered_map&lt;int,Node*&gt;::iterator it = pos.find(key);
+        if (it == pos.end()) return -1;
+        Node *p = it-&gt;second;
+        remove(p); pushFront(p);              // 移到最近端
+        return p-&gt;val;
+    }
+    void put(int key, int value) {
+        unordered_map&lt;int,Node*&gt;::iterator it = pos.find(key);
+        if (it != pos.end()) {                // 已存在：更新+提前
+            Node *p = it-&gt;second;
+            p-&gt;val = value;
+            remove(p); pushFront(p);
+            return;
+        }
+        if ((int)pos.size() == cap) {         // 淘汰最久未用
+            Node *last = tail-&gt;prev;
+            remove(last);
+            pos.erase(last-&gt;key);
+            delete last;
+        }
+        Node *p = new Node(key, value);
+        pushFront(p);
+        pos[key] = p;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-hash">第四部分·5.4 哈希</a>｜<a href="algorithms.html#a-linklist">1.2 链表操作</a>｜双向链表删除O(1)思想即408双链表考点</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-stackqueue"><h3>模块3 · 栈与队列（8题）</h3><p>对应：第四部分第2章 + 第三部分1.8适配器。核心套路：栈的对称匹配、双栈互转、单调栈/单调队列、后缀表达式。</p></div>
+
+  <div class="prob" id="lc20" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 20</span><span class="pname">有效的括号</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈 ｜ STL：stack ｜ 算法：LIFO对称匹配 ｜ 突破口：右括号必须与栈顶配对，最后栈空</div>
+    <p class="prob-desc">判断括号串是否全部有效闭合。（408栈应用标准题，完整程序见第六部分·实战e2）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>左括号进栈；右括号来时栈必须非空且栈顶是其对应左括号；结尾栈空才有效。</p>
+<pre class="code" data-t="LC20 · 括号匹配"><code>class Solution {
+public:
+    bool isValid(string s) {
+        stack&lt;char&gt; st;
+        for (int i = 0; i &lt; (int)s.size(); i++) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{')
+                st.push(s[i]);
+            else {
+                if (st.empty()) return false;
+                char t = st.top();
+                if ((s[i] == ')' &amp;&amp; t != '(') || (s[i] == ']' &amp;&amp; t != '[') ||
+                    (s[i] == '}' &amp;&amp; t != '{')) return false;
+                st.pop();
+            }
+        }
+        return st.empty();
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-adapt">第三部分·1.8 stack</a>｜<a href="practice.html#e2">第六部分·实战实战2</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc155" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 155</span><span class="pname">最小栈</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈 ｜ STL：stack ｜ 算法：辅助同步栈 ｜ 突破口：每层记录"该层时刻的最小值"</div>
+    <p class="prob-desc">设计支持push/pop/top且O(1)取最小值的栈。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>再开一个minStk与数据栈同步：入栈x时压入 min(x, minStk.top())；弹栈同步弹。minStk.top()恒为当前栈内最小。</p>
+<pre class="code" data-t="LC155 · 辅助栈"><code>class MinStack {
+    stack&lt;int&gt; dataStk, minStk;              // minStk与dataStk同步
+public:
+    void push(int val) {
+        dataStk.push(val);
+        if (minStk.empty() || val &lt; minStk.top())
+            minStk.push(val);
+        else
+            minStk.push(minStk.top());       // 复制当前最小
+    }
+    void pop() {
+        dataStk.pop();
+        minStk.pop();
+    }
+    int top()    { return dataStk.top(); }
+    int getMin() { return minStk.top(); }    // O(1)
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-stack">第四部分·2.1 栈</a>｜空间换时间思想的栈版</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc232" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 232</span><span class="pname">用栈实现队列</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈/队列 ｜ STL：stack ｜ 算法：双栈倒序 ｜ 突破口：出队栈非空不倒腾——均摊O(1)</div>
+    <p class="prob-desc">用两个栈实现队列的入队/出队/取队头。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>入栈in、出栈out：入队压in；出队时out空才把in全部倒入out（顺序翻转一次）。每个元素至多进出两栈各一次，均摊O(1)。</p>
+<pre class="code" data-t="LC232 · 双栈转队列"><code>class MyQueue {
+    stack&lt;int&gt; inStk, outStk;
+    void shift() {                           // in倒入out
+        if (outStk.empty())
+            while (!inStk.empty()) {
+                outStk.push(inStk.top());
+                inStk.pop();
+            }
+    }
+public:
+    void push(int x) { inStk.push(x); }
+    int pop() {
+        shift();
+        int v = outStk.top(); outStk.pop();
+        return v;
+    }
+    int peek() { shift(); return outStk.top(); }
+    bool empty() { return inStk.empty() &amp;&amp; outStk.empty(); }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-stack">2.1 栈</a>·<a href="algorithms.html#a-queue">2.2 队列</a>｜镜像题LC225用两队列实现栈（一队入、另一队中转）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc225" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 225</span><span class="pname">用队列实现栈</span><span class="diff d-easy">简单</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：队列/栈 ｜ STL：queue ｜ 算法：入队后前n-1个出队再入队 ｜ 突破口：让最新元素永远在队头</div>
+    <p class="prob-desc">用两个（或一个）队列实现栈。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>单队列版：入栈时把新元素入队后，将前面全部元素依次出队再入队——新元素到队头，出栈即队头出。</p>
+<pre class="code" data-t="LC225 · 单队列旋转"><code>class MyStack {
+    queue&lt;int&gt; q;
+public:
+    void push(int x) {
+        q.push(x);
+        int n = q.size();
+        for (int i = 0; i &lt; n - 1; i++) {    // 前n-1个转到后面
+            q.push(q.front());
+            q.pop();
+        }
+    }
+    int pop() {
+        int v = q.front(); q.pop();
+        return v;
+    }
+    int top() { return q.front(); }
+    bool empty() { return q.empty(); }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-queue">第四部分·2.2</a>｜与LC232对照记忆"谁转谁"</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc739" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 739</span><span class="pname">每日温度</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈 ｜ STL：vector作栈 ｜ 算法：单调栈 ｜ 突破口：栈存下标、值递减，出栈时记距离</div>
+    <p class="prob-desc">每天等几天会升温，没有则0。（=第四部分2.3单调栈模板的应用）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>单调递减栈：当天温度高于栈顶时，弹出的那天"等到"了答案=i−栈顶下标。</p>
+<pre class="code" data-t="LC739 · 单调栈"><code>class Solution {
+public:
+    vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) {
+        int n = T.size();
+        vector&lt;int&gt; res(n, 0);
+        vector&lt;int&gt; stk;                      // 栈存下标，温度递减
+        for (int i = 0; i &lt; n; i++) {
+            while (!stk.empty() &amp;&amp; T[i] &gt; T[stk.back()]) {
+                int j = stk.back(); stk.pop_back();
+                res[j] = i - j;               // 距离即天数
+            }
+            stk.push_back(i);
+        }
+        return res;                           // 未被清算的保持0
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-monostack">第四部分·2.3 单调栈（模板与例题）</a>｜进阶：<a href="#lc42">LC42 接雨水</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc394" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 394</span><span class="pname">字符串解码</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈 ｜ STL：stack、string ｜ 算法：双栈（重复次数+串） ｜ 突破口：遇到]回溯到[前的状态</div>
+    <p class="prob-desc">"3[a2[c]]" → "accaccacc"。解码嵌套编码串。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>嵌套结构→栈：数字栈存重复次数、串栈存[前的结果；遇]弹次数与前串，拼好后作为当前串继续。</p>
+<pre class="code" data-t="LC394 · 双栈解码"><code>class Solution {
+public:
+    string decodeString(string s) {
+        stack&lt;int&gt; numStk;                    // 重复次数栈
+        stack&lt;string&gt; strStk;                 // [前的串栈
+        string cur = "";
+        int num = 0;
+        for (int i = 0; i &lt; (int)s.size(); i++) {
+            if (isdigit(s[i])) num = num * 10 + (s[i] - '0');   // 多位数字
+            else if (s[i] == '[') {
+                numStk.push(num); num = 0;
+                strStk.push(cur); cur = "";   // 保存现场
+            } else if (s[i] == ']') {
+                int k = numStk.top(); numStk.pop();
+                string pre = strStk.top(); strStk.pop();
+                string t = "";
+                for (int j = 0; j &lt; k; j++) t += cur;   // 重复k次
+                cur = pre + t;                // 恢复并拼接
+            } else cur += s[i];               // 字母
+        }
+        return cur;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-stack">第四部分·2.1</a>｜<a href="stl.html#s-string">第三部分·1.2 string</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc239" data-diff="hard">
+    <div class="prob-head"><span class="pnum">LC 239</span><span class="pname">滑动窗口最大值</span><span class="diff d-hard">困难</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：双端队列 ｜ STL：deque ｜ 算法：单调队列 ｜ 突破口：存下标、队尾清算、队头过期</div>
+    <p class="prob-desc">返回每个长度k窗口的最大值。（408单调队列标准落地，完整程序见第六部分·实战e7、手写版第四部分2.4）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>维护"下标对应值递减"的队列：新元素清算队尾所有≤它者（它们不可能再成为最大）、队头滑出窗口则弹出、窗口形成时队头即答案。每元素进出各一次O(n)。</p>
+<pre class="code" data-t="LC239 · 单调队列"><code>class Solution {
+public:
+    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) {
+        deque&lt;int&gt; q;                         // 存下标，值递减
+        vector&lt;int&gt; res;
+        for (int i = 0; i &lt; (int)nums.size(); i++) {
+            while (!q.empty() &amp;&amp; nums[q.back()] &lt;= nums[i])
+                q.pop_back();                 // ①队尾清算
+            q.push_back(i);                   // ②入队尾
+            if (q.front() &lt;= i - k) q.pop_front();   // ③队头过期
+            if (i &gt;= k - 1) res.push_back(nums[q.front()]);  // ④答案
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-monoqueue">第四部分·2.4 单调队列</a>｜<a href="practice.html#e7">第六部分·实战实战7</a>（含手写数组版）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc150" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 150</span><span class="pname">逆波兰表达式求值</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：栈 ｜ STL：stack、stoi ｜ 算法：后缀表达式求值 ｜ 突破口：操作数压栈，运算符弹两个（先弹为右操作数）</div>
+    <p class="prob-desc">逆波兰（后缀）表达式求值。token数组给定。（408栈应用必考，完整IO程序见第六部分·实战e2）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>后缀式只需<b>一个操作数栈</b>：数字入栈；运算符弹出b、a，算a op b压回。减除顺序不能反。</p>
+<pre class="code" data-t="LC150 · 后缀求值"><code>class Solution {
+public:
+    int evalRPN(vector&lt;string&gt;&amp; tokens) {
+        stack&lt;int&gt; num;                       // 操作数栈
+        for (int i = 0; i &lt; (int)tokens.size(); i++) {
+            string &amp;t = tokens[i];
+            if (t == "+" || t == "-" || t == "*" || t == "/") {
+                int b = num.top(); num.pop(); // 先弹的是右操作数！
+                int a = num.top(); num.pop();
+                int r = 0;
+                if (t == "+") r = a + b;
+                else if (t == "-") r = a - b;
+                else if (t == "*") r = a * b;
+                else r = a / b;               // LC保证整除
+                num.push(r);
+            } else {
+                num.push(stoi(t));            // 数字直接转int入栈
+            }
+        }
+        return num.top();
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="practice.html#e2">第六部分·实战实战2B</a>｜<a href="algorithms.html#a-stack">第四部分·2.1</a>｜中缀转后缀为408选择题常客</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-hash"><h3>模块4 · 哈希表（7题）</h3><p>对应：第三部分1.7 unordered容器 + 第四部分5.4哈希表。核心套路：空间换时间、前缀计数、数组模拟哈希（值域小时）。</p></div>
+
+  <div class="prob" id="lc1" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 1</span><span class="pname">两数之和</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组+哈希 ｜ STL：unordered_map ｜ 算法：一次扫描哈希查找 ｜ 突破口：判定 target−x 是否出现过</div>
+    <p class="prob-desc">找和为target的两个元素下标（Hot100第1题）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>暴力O(n²)→哈希"出现过吗"O(1)：边扫边查need=target−x，查到即返回，否则登记自己。</p>
+<pre class="code" data-t="LC1 · 哈希一次扫描"><code>class Solution {
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) {
+        unordered_map&lt;int, int&gt; pos;          // 值 → 下标
+        for (int i = 0; i &lt; (int)nums.size(); i++) {
+            int need = target - nums[i];
+            unordered_map&lt;int,int&gt;::iterator it = pos.find(need);
+            if (it != pos.end()) return {it-&gt;second, i};   // 找到另一半
+            pos[nums[i]] = i;                 // 先查后登，防用自己配自己
+        }
+        return {};
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-unord">第三部分·1.7</a>｜<a href="practice.html#e5">第六部分·实战实战5A</a>｜笔试变体：值域小时用计数数组</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc242" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 242</span><span class="pname">有效的字母异位词</span><span class="diff d-easy">简单</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：计数数组（数组哈希） ｜ STL：无 ｜ 算法：字符计数 ｜ 突破口：小写字母→cnt[26]</div>
+    <p class="prob-desc">判断t是否为s的字母异位词（字母相同次数相同）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>值域只有26个小写字母——<b>计数数组</b>比哈希表更快更省（这正是408笔试推荐写法）：s加、t减，最后全为0。</p>
+<pre class="code" data-t="LC242 · 数组哈希"><code>class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size()) return false;
+        int cnt[26] = {0};
+        for (int i = 0; i &lt; (int)s.size(); i++) {
+            cnt[s[i] - 'a']++;               // s方计数+
+            cnt[t[i] - 'a']--;               // t方计数-
+        }
+        for (int i = 0; i &lt; 26; i++)
+            if (cnt[i] != 0) return false;
+        return true;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-hash">第四部分·5.4</a>｜<a href="stl.html#s-unord">1.7</a>｜"数组哈希"是笔试最稳哈希写法</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc49" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 49</span><span class="pname">字母异位词分组</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：哈希表 ｜ STL：unordered_map、sort ｜ 算法：规范化签名分组 ｜ 突破口：异位词排序后相同→排序串作key</div>
+    <p class="prob-desc">把字母异位词（字母重排）分到同一组。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>每组需要一个"等价类代表"：异位词排序后结果相同→key=排序后的串，value=下标列表，用map自动分组。</p>
+<pre class="code" data-t="LC49 · 排序签名分组"><code>class Solution {
+public:
+    vector&lt;vector&lt;string&gt;&gt; groupAnagrams(vector&lt;string&gt;&amp; strs) {
+        unordered_map&lt;string, vector&lt;int&gt;&gt; groups;   // 签名 → 成员下标
+        for (int i = 0; i &lt; (int)strs.size(); i++) {
+            string key = strs[i];
+            sort(key.begin(), key.end());    // 排序串作为等价类签名
+            groups[key].push_back(i);
+        }
+        vector&lt;vector&lt;string&gt;&gt; res;
+        for (unordered_map&lt;string, vector&lt;int&gt;&gt;::iterator it = groups.begin();
+             it != groups.end(); ++it) {
+            vector&lt;string&gt; grp;
+            for (int idx : it-&gt;second) grp.push_back(strs[idx]);
+            res.push_back(grp);
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-unord">1.7</a>·<a href="stl.html#s-sort">1.10</a>｜签名法=哈希函数设计（把等价类映到同桶）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc3" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 3</span><span class="pname">无重复字符的最长子串</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：滑动窗口+哈希计数 ｜ STL：unordered_map/数组 ｜ 算法：双指针收缩 ｜ 突破口：右扩左缩，窗口内始终无重复</div>
+    <p class="prob-desc">求不含重复字符的最长子串长度。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>模板"右指针扩张、条件破坏时左指针收缩"：cnt记录窗口内字符次数，重复时左移l并把出窗字符计数减1。</p>
+<pre class="code" data-t="LC3 · 滑动窗口"><code>class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int cnt[128] = {0};                   // ASCII计数
+        int l = 0, best = 0;
+        for (int r = 0; r &lt; (int)s.size(); r++) {
+            cnt[(int)s[r]]++;
+            while (cnt[(int)s[r]] &gt; 1) {      // 有重复：左端收缩
+                cnt[(int)s[l]]--;
+                l++;
+            }
+            if (r - l + 1 &gt; best) best = r - l + 1;
+        }
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-twoptr">第四部分·1.3</a>｜<a href="stl.html#s-unord">1.7</a>｜滑动窗口=双指针的计数强化版</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc128" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 128</span><span class="pname">最长连续序列</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：哈希集合 ｜ STL：unordered_set ｜ 算法：只从序列起点扩展 ｜ 突破口：x-1不在集合⇔x是某连续段开头</div>
+    <p class="prob-desc">无序数组中最长连续数字序列的长度（如[100,4,200,1,3,2]→4）。要求O(n)。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>排序O(nlogn)不合要求。哈希集合存全部数字；只对"没有前驱x-1"的x（序列开头）向后数长度——每个数字至多被访问两次，O(n)。</p>
+<pre class="code" data-t="LC128 · 哈希集+起点扩展"><code>class Solution {
+public:
+    int longestConsecutive(vector&lt;int&gt;&amp; nums) {
+        unordered_set&lt;int&gt; s;
+        for (int x : nums) s.insert(x);
+        int best = 0;
+        for (int x : nums) {
+            if (s.count(x - 1)) continue;    // 不是序列起点，跳过
+            int y = x, len = 1;              // x是起点：向后数
+            while (s.count(y + 1)) { y++; len++; }
+            if (len &gt; best) best = len;
+        }
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-unord">1.7</a>｜"只从起点数"是O(n)的关键（均摊分析思想）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc41" data-diff="hard">
+    <div class="prob-head"><span class="pnum">LC 41</span><span class="pname">缺失的第一个正数</span><span class="diff d-hard">困难</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组（原地哈希） ｜ STL：swap ｜ 算法：置换归位 ｜ 突破口：答案必在1..n+1，把x换到下标x-1</div>
+    <p class="prob-desc">未排序数组求没出现的最小正整数。要求O(n)、O(1)。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>长度n的数组答案必在[1,n+1]→做"原地哈希"：值x∈[1,n]就换到下标x-1处；归位后第一个nums[i]≠i+1处即答案，全归位则n+1。</p>
+<pre class="code" data-t="LC41 · 原地置换"><code>class Solution {
+public:
+    int firstMissingPositive(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        for (int i = 0; i &lt; n; i++) {
+            while (nums[i] &gt;= 1 &amp;&amp; nums[i] &lt;= n
+                   &amp;&amp; nums[nums[i] - 1] != nums[i]) {   // 没归位就换
+                swap(nums[i], nums[nums[i] - 1]);       // x放到下标x-1
+            }
+        }
+        for (int i = 0; i &lt; n; i++)
+            if (nums[i] != i + 1) return i + 1;         // 第一个没归位处
+        return n + 1;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqlist">第四部分·1.1 顺序表</a>｜<a href="stl.html#s-swap">1.18 swap</a>｜"数组作哈希表"思想的极限运用</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc380" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 380</span><span class="pname">O(1) 时间插入、删除和获取随机元素</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：动态数组+哈希 ｜ STL：vector、unordered_map、swap ｜ 算法：尾部交换删除 ｜ 突破口：哈希存值→下标，删除换尾</div>
+    <p class="prob-desc">设计集合：insert/remove/getRandom均均摊O(1)。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>getRandom需随机下标→vector；O(1)删除→把要删的与<b>尾部交换</b>再pop_back，哈希表维护值→下标并同步更新被换元素下标。</p>
+<pre class="code" data-t="LC380 · 数组+哈希"><code>class RandomizedSet {
+    vector&lt;int&gt; a;                            // 存元素
+    unordered_map&lt;int, int&gt; pos;              // 值 → 下标
+public:
+    bool insert(int val) {
+        if (pos.count(val)) return false;
+        pos[val] = a.size();
+        a.push_back(val);
+        return true;
+    }
+    bool remove(int val) {
+        unordered_map&lt;int,int&gt;::iterator it = pos.find(val);
+        if (it == pos.end()) return false;
+        int i = it-&gt;second, last = a.back();
+        a[i] = last;                          // 尾元素补位
+        pos[last] = i;
+        a.pop_back();                         // 尾部删除O(1)
+        pos.erase(it);
+        return true;
+    }
+    int getRandom() { return a[rand() % a.size()]; }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-vector">1.1 vector</a>·<a href="stl.html#s-unord">1.7</a>｜"尾部交换删除"正是O(1)删除的核心技巧</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-tree"><h3>模块5 · 二叉树（12题）</h3><p>对应：第四部分第3章（遍历/属性/BST）。核心套路：递归三问（终止？汇总？返回什么？）、层序分层、中序=BST有序性、双树同步递归。</p></div>
+
+  <div class="prob" id="lc104" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 104</span><span class="pname">二叉树的最大深度</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：max ｜ 算法：后序递归 ｜ 突破口：深度=max(左右)+1</div>
+    <p class="prob-desc">求二叉树最大深度。（=第四部分3.3 Depth原题）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>后序汇总标准式：空返回0，否则左右深度取大+1。</p>
+<pre class="code" data-t="LC104 · 后序递归"><code>class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if (!root) return 0;                 // 终止条件
+        int l = maxDepth(root-&gt;left);        // 左子树深度
+        int r = maxDepth(root-&gt;right);       // 右子树深度
+        return (l &gt; r ? l : r) + 1;          // 汇总+1
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3 Depth</a>｜<a href="#lc543">LC543 直径</a>是它的孪生题</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc226" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 226</span><span class="pname">翻转二叉树</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：无 ｜ 算法：递归交换左右子树 ｜ 突破口：先交换子树再交换本层（=SwapLR）</div>
+    <p class="prob-desc">将每结点左右子树交换。（=第四部分3.3 SwapLR原题）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>左右子树各自翻转完成后，交换本结点左右指针。</p>
+<pre class="code" data-t="LC226 · 镜像翻转"><code>class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if (!root) return NULL;
+        TreeNode *l = invertTree(root-&gt;left);    // 先翻左
+        TreeNode *r = invertTree(root-&gt;right);   // 再翻右
+        root-&gt;left = r;                          // 交换本层
+        root-&gt;right = l;
+        return root;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3 SwapLR</a>｜判断对称：LC101双树同步递归</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc101" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 101</span><span class="pname">对称二叉树</span><span class="diff d-easy">简单</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：无 ｜ 算法：双树同步递归 ｜ 突破口：比较"左的左 vs 右的右"镜像位置</div>
+    <p class="prob-desc">判断二叉树是否轴对称。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>对称⇔左子树与右子树"镜像相等"：两树同步递归，比较left.left vs right.right、left.right vs right.left。</p>
+<pre class="code" data-t="LC101 · 镜像递归"><code>class Solution {
+    bool mirror(TreeNode *a, TreeNode *b) {
+        if (!a &amp;&amp; !b) return true;           // 都空：对称
+        if (!a || !b) return false;          // 一空一非空
+        return a-&gt;val == b-&gt;val
+            &amp;&amp; mirror(a-&gt;left,  b-&gt;right)    // 外侧对外侧
+            &amp;&amp; mirror(a-&gt;right, b-&gt;left);    // 内侧对内侧
+    }
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (!root) return true;
+        return mirror(root-&gt;left, root-&gt;right);
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitree">第四部分·3.1 例2相似判断</a>｜双树同步递归是408大题万能框架</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc543" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 543</span><span class="pname">二叉树的直径</span><span class="diff d-easy">简单</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：max ｜ 算法：后序递归+全局变量 ｜ 突破口：直径=某结点左右深度之和，取全局max</div>
+    <p class="prob-desc">任意两结点间最长路径的边数。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>最长路径必在某结点"拐弯"：直径候选=depth(left)+depth(right)。递归返回高度，同时用引用/成员变量维护全局最大——"递归返回A、全局维护B"双任务模式（LC124同款）。</p>
+<pre class="code" data-t="LC543 · 后序+全局最大"><code>class Solution {
+    int best = 0;
+    int depth(TreeNode *root) {              // 返回高度
+        if (!root) return 0;
+        int l = depth(root-&gt;left);
+        int r = depth(root-&gt;right);
+        if (l + r &gt; best) best = l + r;      // 拐弯路径过本结点
+        return (l &gt; r ? l : r) + 1;
+    }
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        best = 0;
+        depth(root);
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3</a>｜同款双任务：<a href="#lc124">LC124 最大路径和</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc94" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 94</span><span class="pname">二叉树的中序遍历</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树+栈 ｜ STL：vector、stack ｜ 算法：非递归中序 ｜ 突破口：左链入栈→弹栈访问→转右</div>
+    <p class="prob-desc">非递归返回中序序列。（=第四部分3.2 InOrder2）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>408必背模板：一路向左入栈，走不动弹栈访问，转右子树。</p>
+<pre class="code" data-t="LC94 · 非递归中序"><code>class Solution {
+public:
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) {
+        vector&lt;int&gt; res;
+        vector&lt;TreeNode*&gt; stk;               // 手动栈
+        TreeNode *p = root;
+        while (p || !stk.empty()) {
+            if (p) {
+                stk.push_back(p);            // 左链入栈
+                p = p-&gt;left;
+            } else {
+                p = stk.back(); stk.pop_back();
+                res.push_back(p-&gt;val);       // 弹栈访问
+                p = p-&gt;right;                // 转右
+            }
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreerec">第四部分·3.2 非递归遍历（先/中/后全套）</a>｜先序=访问提前，后序加last</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc102" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 102</span><span class="pname">二叉树的层序遍历</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树+队列 ｜ STL：queue、vector ｜ 算法：分层BFS ｜ 突破口：循环前记录当前层结点数rear−front</div>
+    <p class="prob-desc">按层输出二维数组。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>层序遍历+"分层"技巧：每轮记录队列中恰为一层的结点数，逐个出队并把孩子入队。</p>
+<pre class="code" data-t="LC102 · 分层BFS"><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
+        vector&lt;vector&lt;int&gt;&gt; res;
+        queue&lt;TreeNode*&gt; q;
+        if (root) q.push(root);
+        while (!q.empty()) {
+            int level = q.size();            // 当前层结点数
+            vector&lt;int&gt; lay;
+            for (int i = 0; i &lt; level; i++) {
+                TreeNode *p = q.front(); q.pop();
+                lay.push_back(p-&gt;val);
+                if (p-&gt;left)  q.push(p-&gt;left);
+                if (p-&gt;right) q.push(p-&gt;right);
+            }
+            res.push_back(lay);
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreerec">第四部分·3.2 层序+最大宽度</a>｜变形：<a href="#lc199">LC199 右视图</a>、锯齿形(每层反转)（每层反转一次）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc199" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 199</span><span class="pname">二叉树的右视图</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树+队列 ｜ STL：queue ｜ 算法：分层BFS取每层最后一个 ｜ 突破口：同层只留最后出队的</div>
+    <p class="prob-desc">从右侧看到的结点值序列。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>右视图=每层最右结点→分层BFS，一层处理完时最后的结点即答案（也可DFS"先右后左"按深度首次到达取）。</p>
+<pre class="code" data-t="LC199 · 分层取尾"><code>class Solution {
+public:
+    vector&lt;int&gt; rightSideView(TreeNode* root) {
+        vector&lt;int&gt; res;
+        queue&lt;TreeNode*&gt; q;
+        if (root) q.push(root);
+        while (!q.empty()) {
+            int level = q.size();
+            for (int i = 0; i &lt; level; i++) {
+                TreeNode *p = q.front(); q.pop();
+                if (p-&gt;left)  q.push(p-&gt;left);
+                if (p-&gt;right) q.push(p-&gt;right);
+                if (i == level - 1) res.push_back(p-&gt;val);   // 层末=最右
+            }
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreerec">第四部分·3.2</a>｜<a href="#lc102">LC102</a>的取值变体</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc98" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 98</span><span class="pname">验证二叉搜索树</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：BST ｜ STL：无 ｜ 算法：中序递增判定 ｜ 突破口：维护前驱值，当前必须大于前驱</div>
+    <p class="prob-desc">判断二叉树是否为合法BST。（=第四部分3.3 isBST）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>BST中序严格递增→中序遍历中记录前驱pre，若当前≤pre即非法。<b>易错</b>：只比较"根与左右孩子"是错的，必须与整个子树范围比——中序前驱法天然解决。</p>
+<pre class="code" data-t="LC98 · 中序前驱法"><code>class Solution {
+    bool ok = true;
+    long long pre = (long long)LLONG_MIN;    // 前驱值（long long防极值）
+    void inorder(TreeNode *root) {
+        if (!root || !ok) return;
+        inorder(root-&gt;left);                 // 左
+        if (root-&gt;val &lt;= pre) { ok = false; return; }   // 中：须严格递增
+        pre = root-&gt;val;
+        inorder(root-&gt;right);                // 右
+    }
+public:
+    bool isValidBST(TreeNode* root) {
+        inorder(root);
+        return ok;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3 isBST</a>｜<a href="algorithms.html#a-bst">5.2 BST性质</a>｜<a href="algorithms.html#a-bitreerec">3.2 非递归中序</a>亦可实现</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc230" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 230</span><span class="pname">二叉搜索树中第K小的元素</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：BST ｜ STL：无 ｜ 算法：中序遍历计数 ｜ 突破口：BST中序=升序，数到第k个停</div>
+    <p class="prob-desc">返回BST中第k小的值。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>中序遍历BST得到升序序列，计数到k即停——利用"中序=有序"这一性质避免全排。</p>
+<pre class="code" data-t="LC230 · 中序计数"><code>class Solution {
+    int cnt = 0, ans = 0;
+    void inorder(TreeNode *root, int k) {
+        if (!root || cnt &gt;= k) return;       // 已找到提前剪枝
+        inorder(root-&gt;left, k);
+        if (++cnt == k) { ans = root-&gt;val; return; }
+        inorder(root-&gt;right, k);
+    }
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        inorder(root, k);
+        return ans;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bst">第四部分·5.2 BST中序递增</a>｜<a href="stl.html#s-nth">第三部分·1.16 nth_element</a>（数组版第k小）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc105" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 105</span><span class="pname">从前序与中序遍历序列构造二叉树</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：unordered_map ｜ 算法：分治重建 ｜ 突破口：先序首=根；中序定位左右子树分界；哈希存值→下标</div>
+    <p class="prob-desc">由前序+中序重建二叉树（408手工题的程序化）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>先序[preL..preR]首元素是根；在中序中找到根位置k（用哈希O(1)定位），左子树长度len=k-inL；递归：先序区间[preL+1,preL+len]配中序[inL,k-1]，其余配右子树。</p>
+<pre class="code" data-t="LC105 · 分治重建"><code>class Solution {
+    unordered_map&lt;int, int&gt; idx;             // 值 → 中序下标
+    TreeNode* build(vector&lt;int&gt;&amp; pre, int preL, int preR, int inL, int inR) {
+        if (preL &gt; preR) return NULL;
+        TreeNode *root = new TreeNode(pre[preL]);        // 先序首=根
+        int k = idx[pre[preL]];              // 根在中序中的位置
+        int len = k - inL;                   // 左子树长度
+        root-&gt;left  = build(pre, preL + 1, preL + len, inL, k - 1);
+        root-&gt;right = build(pre, preL + len + 1, preR, k + 1, inR);
+        return root;
+    }
+public:
+    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {
+        int n = inorder.size();
+        for (int i = 0; i &lt; n; i++) idx[inorder[i]] = i;
+        return build(preorder, 0, n - 1, 0, n - 1);
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitree">第四部分·3.1 例1手工重建</a>｜<a href="stl.html#s-unord">1.7</a>｜先序+后序不能唯一重建（判断题）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc236" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 236</span><span class="pname">二叉树的最近公共祖先</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：无 ｜ 算法：后序递归汇总 ｜ 突破口：左右子树各找到一个目标→当前即LCA</div>
+    <p class="prob-desc">求二叉树中两结点的最近公共祖先。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>后序：递归找p、q。空返回NULL；命中目标返回自身；左右都非空⇒当前结点是分叉点=LCA；只一侧非空则上送。</p>
+<pre class="code" data-t="LC236 · 后序LCA"><code>class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root || root == p || root == q) return root;   // 空或命中
+        TreeNode *l = lowestCommonAncestor(root-&gt;left,  p, q);
+        TreeNode *r = lowestCommonAncestor(root-&gt;right, p, q);
+        if (l &amp;&amp; r) return root;             // 分居两侧：当前即LCA
+        return l ? l : r;                    // 单侧命中则上送
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3 后序汇总</a>｜BST版LCA可用"夹在p q之间"判据（利用有序性）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc124" data-diff="hard">
+    <div class="prob-head"><span class="pnum">LC 124</span><span class="pname">二叉树中的最大路径和</span><span class="diff d-hard">困难</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二叉树 ｜ STL：max ｜ 算法：后序+全局变量 ｜ 突破口：路径"拐弯"模型同LC543；单臂贡献须≥0才接</div>
+    <p class="prob-desc">路径=任意结点到任意结点（至少一结点），求最大路径和。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>同LC543双任务：递归返回"从本结点向下的单臂最大贡献"（负则贡献0），全局维护 left+right+val 的拐弯最大值。</p>
+<pre class="code" data-t="LC124 · 拐弯路径"><code>class Solution {
+    int best = INT_MIN;
+    int gain(TreeNode *root) {               // 单臂最大贡献（可贡献0）
+        if (!root) return 0;
+        int l = max(0, gain(root-&gt;left));    // 负臂不接
+        int r = max(0, gain(root-&gt;right));
+        if (l + r + root-&gt;val &gt; best)        // 拐弯过本结点
+            best = l + r + root-&gt;val;
+        return max(l, r) + root-&gt;val;        // 只能选一条臂向上
+    }
+public:
+    int maxPathSum(TreeNode* root) {
+        best = INT_MIN;
+        gain(root);
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-bitreeattr">第四部分·3.3</a>｜<a href="#lc543">LC543</a>（边数版拐弯路径）</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-graph"><h3>模块6 · 图与广度/深度优先（5题）</h3><p>对应：第四部分第4章（BFS/DFS/拓扑/并查集）。核心套路：网格DFS沉岛、多源BFS、拓扑判环、并查集数分量。</p></div>
+
+  <div class="prob" id="lc200" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 200</span><span class="pname">岛屿数量</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：网格图 ｜ STL：vector ｜ 算法：DFS泛洪(沉岛) ｜ 突破口：每发现'1'计数+1并把整岛改'0'</div>
+    <p class="prob-desc">'1'陆地'0'水，统计岛屿数（上下左右连通）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>连通分量计数：扫描网格遇到'1'计数+1，DFS把整个岛"沉没"（改'0'替代visited数组）。四方向dr/dc数组是笔试标准写法。</p>
+<pre class="code" data-t="LC200 · 泛洪DFS"><code>class Solution {
+    int n, m;
+    void dfs(vector&lt;vector&lt;char&gt;&gt;&amp; g, int i, int j) {
+        if (i &lt; 0 || i &gt;= n || j &lt; 0 || j &gt;= m || g[i][j] != '1') return;
+        g[i][j] = '0';                       // 沉岛：替代visited
+        dfs(g, i + 1, j); dfs(g, i - 1, j);  // 四方向
+        dfs(g, i, j + 1); dfs(g, i, j - 1);
+    }
+public:
+    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
+        n = grid.size(); m = n ? grid[0].size() : 0;
+        int cnt = 0;
+        for (int i = 0; i &lt; n; i++)
+            for (int j = 0; j &lt; m; j++)
+                if (grid[i][j] == '1') {
+                    cnt++;                   // 发现新岛
+                    dfs(grid, i, j);         // 沉没全岛
+                }
+        return cnt;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-graphbfsdfs">第四部分·4.2 遍历+连通分量</a>｜<a href="algorithms.html#a-unionfind">3.6 并查集</a>亦可解｜面积版：<a href="#lc695">LC695</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc695" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 695</span><span class="pname">岛屿的最大面积</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：网格图 ｜ STL：vector ｜ 算法：DFS计数 ｜ 突破口：泛洪时返回"本子树面积"上送汇总</div>
+    <p class="prob-desc">求最大岛屿面积。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>LC200的变体：DFS返回该连通块结点数=1+四方向子面积之和，扫描取最大。</p>
+<pre class="code" data-t="LC695 · DFS面积"><code>class Solution {
+    int n, m;
+    int dfs(vector&lt;vector&lt;int&gt;&gt;&amp; g, int i, int j) {
+        if (i &lt; 0 || i &gt;= n || j &lt; 0 || j &gt;= m || g[i][j] != 1) return 0;
+        g[i][j] = 0;                         // 沉岛
+        return 1 + dfs(g, i + 1, j) + dfs(g, i - 1, j)
+                 + dfs(g, i, j + 1) + dfs(g, i, j - 1);   // 上送面积
+    }
+public:
+    int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        n = grid.size(); m = n ? grid[0].size() : 0;
+        int best = 0;
+        for (int i = 0; i &lt; n; i++)
+            for (int j = 0; j &lt; m; j++)
+                if (grid[i][j] == 1)
+                    best = max(best, dfs(grid, i, j));
+        return best;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-graphbfsdfs">第四部分·4.2</a>｜<a href="#lc200">LC200</a>（计数版）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc994" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 994</span><span class="pname">腐烂的橘子</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：网格+队列 ｜ STL：queue ｜ 算法：多源BFS ｜ 突破口：所有源点同时入队，层数即分钟数</div>
+    <p class="prob-desc">每分钟腐烂橘子向四方向扩散，求全部腐烂的最少分钟数；不可能返回-1。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>多源最短路=BFS天然形态：<b>所有腐烂橘子一开始全部入队</b>（虚拟超级源点），逐层扩散；结束时检查是否剩新鲜橘子。</p>
+<pre class="code" data-t="LC994 · 多源BFS"><code>class Solution {
+public:
+    int orangesRotting(vector&lt;vector&lt;int&gt;&gt;&amp; g) {
+        int n = g.size(), m = n ? g[0].size() : 0;
+        queue&lt;pair&lt;int,int&gt;&gt; q;
+        int fresh = 0, time = 0;
+        for (int i = 0; i &lt; n; i++)
+            for (int j = 0; j &lt; m; j++) {
+                if (g[i][j] == 2) q.push({i, j});   // 全部源点入队
+                if (g[i][j] == 1) fresh++;
+            }
+        int dr[4] = {1, -1, 0, 0}, dc[4] = {0, 0, 1, -1};
+        while (!q.empty() &amp;&amp; fresh &gt; 0) {
+            int level = q.size();
+            time++;                          // 过一分钟
+            for (int i = 0; i &lt; level; i++) {
+                int r = q.front().first, c = q.front().second; q.pop();
+                for (int d = 0; d &lt; 4; d++) {
+                    int nr = r + dr[d], nc = c + dc[d];
+                    if (nr &lt; 0 || nr &gt;= n || nc &lt; 0 || nc &gt;= m) continue;
+                    if (g[nr][nc] == 1) {
+                        g[nr][nc] = 2;       // 入队时标记！
+                        fresh--;
+                        q.push({nr, nc});
+                    }
+                }
+            }
+        }
+        return fresh ? -1 : time;            // 有剩余→不可能
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-graphbfsdfs">第四部分·4.2 BFS最短路</a>｜<a href="practice.html#e3">第六部分·实战实战3B</a>｜入队即标记的最好练习</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc207" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 207</span><span class="pname">课程表</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：有向图 ｜ STL：vector邻接表、queue ｜ 算法：拓扑排序判环 ｜ 突破口：输出顶点数&lt;n ⇔ 有环</div>
+    <p class="prob-desc">课程先修关系能否完成（有向图是否有环）。（=第四部分4.3拓扑排序原题）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>Kahn算法：入度0入队→删边减入度→计数；cnt&lt;n说明有环，返回false。</p>
+<pre class="code" data-t="LC207 · 拓扑判环"><code>class Solution {
+public:
+    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
+        vector&lt;vector&lt;int&gt;&gt; g(numCourses);   // vector邻接表
+        vector&lt;int&gt; indeg(numCourses, 0);
+        for (int i = 0; i &lt; (int)prerequisites.size(); i++) {
+            int a = prerequisites[i][0], b = prerequisites[i][1];
+            g[b].push_back(a);               // b→a：先修b
+            indeg[a]++;
+        }
+        queue&lt;int&gt; q;
+        for (int i = 0; i &lt; numCourses; i++)
+            if (indeg[i] == 0) q.push(i);
+        int cnt = 0;
+        while (!q.empty()) {
+            int u = q.front(); q.pop();
+            cnt++;
+            for (int v : g[u])
+                if (--indeg[v] == 0) q.push(v);
+        }
+        return cnt == numCourses;            // 输出不全→有环
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-topo">第四部分·4.3 拓扑排序</a>｜<a href="practice.html#e8">第六部分·实战实战8B</a>｜输出序列版：LC210</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc547" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 547</span><span class="pname">省份数量</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：无向图+并查集 ｜ STL：无 ｜ 算法：并查集数根 ｜ 突破口：M[i][j]=1就Union，最后数fa[i]==i</div>
+    <p class="prob-desc">邻接矩阵给定的无向图，求连通分量（省份）数。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>并查集：读对称矩阵逐条Union，根的个数即省份数。DFS/BFS也可解（对每列做一次遍历）——并查集"边读边并"更贴合矩阵输入。</p>
+<pre class="code" data-t="LC547 · 并查集"><code>class Solution {
+    int fa[205];
+    int Find(int x) {
+        while (fa[x] != x) x = fa[x];
+        return x;
+    }
+    void merge(int x, int y) {
+        int rx = Find(x), ry = Find(y);
+        if (rx != ry) fa[rx] = ry;           // 合并两省
+    }
+public:
+    int findCircleNum(vector&lt;vector&lt;int&gt;&gt;&amp; M) {
+        int n = M.size();
+        for (int i = 0; i &lt; n; i++) fa[i] = i;
+        for (int i = 0; i &lt; n; i++)
+            for (int j = i + 1; j &lt; n; j++)
+                if (M[i][j] == 1) merge(i, j);   // 边读边并
+        int cnt = 0;
+        for (int i = 0; i &lt; n; i++)
+            if (fa[i] == i) cnt++;           // 数根=数省份
+        return cnt;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-unionfind">第四部分·3.6 并查集（例1同款）</a>｜<a href="algorithms.html#a-kruskal">4.7 Kruskal判环</a></p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-binarysearch"><h3>模块7 · 二分查找（6题）</h3><p>对应：第四部分5.1折半查找 + 第三部分1.14 lower_bound。核心套路：左闭右开与闭区间两套写法、lower_bound语义、二分答案。</p></div>
+
+  <div class="prob" id="lc704" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 704</span><span class="pname">二分查找</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：有序数组 ｜ STL：无（考手写） ｜ 算法：折半查找 ｜ 突破口：闭区间low≤high，mid向下取整</div>
+    <p class="prob-desc">升序数组找target下标，没有返回-1。（=第四部分5.1 BinSearch）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>408标准闭区间写法：low&lt;=high循环、mid=(low+high)/2、三分支。两套区间写法不能混用。</p>
+<pre class="code" data-t="LC704 · 折半查找"><code>class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int low = 0, high = (int)nums.size() - 1;
+        while (low &lt;= high) {                // 闭区间用 &lt;=
+            int mid = low + (high - low) / 2;   // 防溢出写法
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] &gt; target) high = mid - 1;
+            else low = mid + 1;
+        }
+        return -1;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqbin">第四部分·5.1 折半查找（判定树/ASL）</a>｜<a href="stl.html#s-lower">第三部分·1.14</a>（机试一行）</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc35" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 35</span><span class="pname">搜索插入位置</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：有序数组 ｜ STL：lower_bound ｜ 算法：二分找第一个≥target ｜ 突破口：插入位置=lower_bound</div>
+    <p class="prob-desc">升序数组找target，找不到返回应插入位置。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>插入位置=第一个≥target的下标——正是lower_bound的定义。笔试手写二分时，循环结束未命中返回low即可。</p>
+<pre class="code" data-t="LC35 · 插入位置"><code>class Solution {
+public:
+    int searchInsert(vector&lt;int&gt;&amp; nums, int target) {
+        int low = 0, high = (int)nums.size() - 1;
+        while (low &lt;= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) return mid;
+            else if (nums[mid] &gt; target) high = mid - 1;
+            else low = mid + 1;
+        }
+        return low;                          // 失败时low即插入位置
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqbin">第四部分·5.1</a>｜<a href="stl.html#s-lower">1.14 lower_bound例2</a>｜进阶：<a href="#lc34">LC34 首末位置</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc34" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 34</span><span class="pname">在排序数组中查找元素的第一个和最后一个位置</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：有序数组 ｜ STL：lower_bound、upper_bound ｜ 算法：二分左边界+右边界 ｜ 突破口：首=lower_bound，末=upper_bound−1</div>
+    <p class="prob-desc">非降序数组中target的起止下标，不存在返回[-1,-1]。O(logn)。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>首=lower_bound(target)；末=upper_bound(target)−1；验证区间非空且指向target。两次二分各O(logn)。</p>
+<pre class="code" data-t="LC34 · 边界二分"><code>class Solution {
+    int lower(vector&lt;int&gt;&amp; a, int x) {       // 第一个≥x的下标
+        int low = 0, high = a.size();
+        while (low &lt; high) {                 // 左闭右开写法
+            int mid = (low + high) / 2;
+            if (a[mid] &gt;= x) high = mid;
+            else low = mid + 1;
+        }
+        return low;
+    }
+public:
+    vector&lt;int&gt; searchRange(vector&lt;int&gt;&amp; nums, int target) {
+        int l = lower(nums, target);
+        int r = lower(nums, target + 1) - 1; // 第一个&gt;target − 1
+        if (l &gt;= (int)nums.size() || nums[l] != target) return {-1, -1};
+        return {l, r};
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-lower">第三部分·1.14（[lb,ub)等值区间）</a>｜<a href="algorithms.html#a-seqbin">第四部分·5.1</a>｜<a href="practice.html#e9">第六部分·实战实战9A</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc33" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 33</span><span class="pname">搜索旋转排序数组</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：旋转有序数组 ｜ STL：无 ｜ 算法：分段有序判断的二分 ｜ 突破口：mid把数组切成一半有序一半无序，判断target在哪半</div>
+    <p class="prob-desc">数组在某个点旋转过（如4,5,6,7,0,1,2），O(logn)找target。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>mid分割后，[low,mid]与[mid,high]必有一半有序：nums[low]≤nums[mid]则左半有序；判断target落在有序半则收缩到该半，否则另一半。</p>
+<pre class="code" data-t="LC33 · 旋转数组二分"><code>class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int low = 0, high = (int)nums.size() - 1;
+        while (low &lt;= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[low] &lt;= nums[mid]) {    // 左半有序
+                if (nums[low] &lt;= target &amp;&amp; target &lt; nums[mid])
+                    high = mid - 1;          // target在有序左半
+                else low = mid + 1;
+            } else {                          // 右半有序
+                if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[high])
+                    low = mid + 1;           // target在有序右半
+                else high = mid - 1;
+            }
+        }
+        return -1;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqbin">第四部分·5.1</a>｜二分"丢一半"思想的变形运用；最小值版：<a href="#lc153">LC153</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc153" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 153</span><span class="pname">寻找旋转排序数组中的最小值</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：旋转有序数组 ｜ STL：min ｜ 算法：二分与右端比较 ｜ 突破口：nums[mid]&gt;nums[high]⇒最小在右半</div>
+    <p class="prob-desc">找旋转数组中的最小元素。O(logn)。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>mid与high比（与low比在无旋转时会误判）：mid&gt;high说明断点在右半，low=mid+1；否则最小在mid及其左，high=mid。收敛到low。</p>
+<pre class="code" data-t="LC153 · 二分找断点"><code>class Solution {
+public:
+    int findMin(vector&lt;int&gt;&amp; nums) {
+        int low = 0, high = (int)nums.size() - 1;
+        while (low &lt; high) {                 // 区间收敛到1个元素
+            int mid = low + (high - low) / 2;
+            if (nums[mid] &gt; nums[high])
+                low = mid + 1;               // 断点在右半
+            else
+                high = mid;                  // 最小在mid或其左
+        }
+        return nums[low];
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqbin">第四部分·5.1</a>｜与LC33同一旋转数组家族</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc4" data-diff="hard">
+    <div class="prob-head"><span class="pnum">LC 4</span><span class="pname">寻找两个正序数组的中位数</span><span class="diff d-hard">困难</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：两个有序数组 ｜ STL：无 ｜ 算法：第k小递归淘汰 或 二分分割线 ｜ 突破口：408真题2011年"找中位数"的通用化</div>
+    <p class="prob-desc">两个非降序数组，O(log(m+n))求合并后的中位数。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导（第k小法，笔试可讲清）：</b>求两数组第k小：各取前k/2比较，较小一方的前k/2个必不是第k小，整体淘汰k/2个递归。中位数=第⌈(m+n)/2⌉小（奇）或第(总/2)与(总/2+1)小的均值（偶）。2011年真题的O(m+n)双指针在m=n时也是满分答案。</p>
+<pre class="code" data-t="LC4 · 第k小递归淘汰"><code>class Solution {
+    int kth(vector&lt;int&gt;&amp; a, int i, vector&lt;int&gt;&amp; b, int j, int k) {
+        if (i &gt;= (int)a.size()) return b[j + k - 1];   // a空：b中直接取
+        if (j &gt;= (int)b.size()) return a[i + k - 1];
+        if (k == 1) return min(a[i], b[j]);
+        int ai = min(i + k / 2, (int)a.size());        // a的第k/2个位置(不越界)
+        int bj = min(j + k / 2, (int)b.size());
+        int va = a[ai - 1], vb = b[bj - 1];
+        if (va &lt; vb) return kth(a, ai, b, j, k - (ai - i));   // 淘汰a前(ai-i)个
+        return kth(a, i, b, bj, k - (bj - j));                // 淘汰b前(bj-j)个
+    }
+public:
+    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
+        int m = nums1.size(), n = nums2.size(), total = m + n;
+        if (total % 2) return kth(nums1, 0, nums2, 0, total / 2 + 1);
+        return (kth(nums1, 0, nums2, 0, total / 2)
+              + kth(nums1, 0, nums2, 0, total / 2 + 1)) / 2.0;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-seqbin">第四部分·5.1</a>｜<a href="stl.html#s-nth">1.16 中位数</a>｜2011年真题"等长有序数组中位数"二分比较法是本题特例</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-sortheap"><h3>模块8 · 排序与堆（5题）</h3><p>对应：第四部分第6章排序 + 第三部分1.8/1.16。核心套路：快速选择、TopK堆、排序预处理、三路划分。</p></div>
+
+  <div class="prob" id="lc215" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 215</span><span class="pname">数组中的第K个最大元素</span><span class="diff d-mid">中等</span><span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组/堆 ｜ STL：nth_element、priority_queue ｜ 算法：快速选择 ｜ 突破口：第k大=第n−k+1小；Partition后单边递归</div>
+    <p class="prob-desc">无序数组找第k大。必须O(n)均摊（不许sort）。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>快排Partition后枢轴位置p：p==目标位即答案，否则只递归一侧（n+n/2+…≈2n→平均O(n)）。三种写法：手写快选、nth_element一行、k大小的小根堆O(nlogk)。</p>
+<pre class="code" data-t="LC215 · 快速选择（手写，可默写）"><code>class Solution {
+    int partition(vector&lt;int&gt;&amp; a, int low, int high) {   // 与408快排Partition相同
+        int pivot = a[low];
+        while (low &lt; high) {
+            while (low &lt; high &amp;&amp; a[high] &gt;= pivot) high--;
+            a[low] = a[high];
+            while (low &lt; high &amp;&amp; a[low] &lt;= pivot) low++;
+            a[high] = a[low];
+        }
+        a[low] = pivot;
+        return low;
+    }
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        int target = nums.size() - k;        // 第k大=升序第target位
+        int low = 0, high = nums.size() - 1;
+        while (true) {
+            int p = partition(nums, low, high);
+            if (p == target) return nums[p];
+            else if (p &lt; target) low = p + 1;     // 只递归一侧
+            else high = p - 1;
+        }
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-sortquick">第四部分·6.3 Partition</a>｜<a href="stl.html#s-nth">1.16 nth_element</a>｜堆解法：<a href="practice.html#e4">第六部分·实战实战4A</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc347" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 347</span><span class="pname">前 K 个高频元素</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：哈希+堆 ｜ STL：unordered_map、priority_queue、pair ｜ 算法：计数+TopK ｜ 突破口：先统计频次，再对(频次,元素)取前k大</div>
+    <p class="prob-desc">返回出现频率前k高的元素。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>unordered_map计数→转成pair数组→k大小的小根堆维护前k大频次（或直接nth_element/sort）。三段式"统计-选择-输出"。</p>
+<pre class="code" data-t="LC347 · 计数+小根堆"><code>class Solution {
+public:
+    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) {
+        unordered_map&lt;int, int&gt; cnt;         // ①统计频次
+        for (int x : nums) cnt[x]++;
+        vector&lt;pair&lt;int,int&gt;&gt; v;             // (频次, 元素)
+        for (unordered_map&lt;int,int&gt;::iterator it = cnt.begin();
+             it != cnt.end(); ++it)
+            v.push_back({it-&gt;second, it-&gt;first});
+        // ②k大小的小根堆：pair按first比较，频次小者堆顶
+        priority_queue&lt; pair&lt;int,int&gt;, vector&lt;pair&lt;int,int&gt;&gt;,
+                        greater&lt;pair&lt;int,int&gt;&gt; &gt; q;
+        for (int i = 0; i &lt; (int)v.size(); i++) {
+            if ((int)q.size() &lt; k) q.push(v[i]);
+            else if (v[i].first &gt; q.top().first) {
+                q.pop();
+                q.push(v[i]);
+            }
+        }
+        vector&lt;int&gt; res;                      // ③输出
+        while (!q.empty()) { res.push_back(q.top().second); q.pop(); }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="practice.html#e5">第六部分·实战实战5B（统计+排序）</a>｜<a href="practice.html#e4">实战4A TopK</a>｜<a href="stl.html#s-cmp">1.20 pair比较方向</a></p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc75" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 75</span><span class="pname">颜色分类</span><span class="diff d-mid">中等</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：swap ｜ 算法：三指针一次扫描（荷兰国旗/三路划分） ｜ 突破口：遇0换左端、遇2换右端、1中间跳过</div>
+    <p class="prob-desc">只含0,1,2的数组原地排序成0...1...2。一趟扫描、O(1)空间。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>三指针：low指0区右界、high指2区左界、i扫描。nums[i]==0换到low（i++因为换来的必是1）、==2换到high（<b>i不动</b>，换来的未检查）、==1跳过。这正是快排三路划分思想。</p>
+<pre class="code" data-t="LC75 · 荷兰国旗"><code>class Solution {
+public:
+    void sortColors(vector&lt;int&gt;&amp; nums) {
+        int low = 0, high = nums.size() - 1, i = 0;
+        while (i &lt;= high) {
+            if (nums[i] == 0)      swap(nums[i++], nums[low++]);  // 0进左区
+            else if (nums[i] == 2) swap(nums[i], nums[high--]);   // 2进右区，i不动
+            else i++;                                             // 1留中间
+        }
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-sortquick">第四部分·6.3 划分思想</a>｜<a href="algorithms.html#a-twoptr">1.3 双指针</a>｜408"三色旗"变体常考</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc56" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 56</span><span class="pname">合并区间</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：区间（pair） ｜ STL：sort、pair、vector ｜ 算法：排序+线性扫描合并 ｜ 突破口：按左端点排序，重叠则扩右端</div>
+    <p class="prob-desc">合并所有重叠的区间。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>按左端点排序后，只需依次比较当前区间与结果最后一个：start≤last.end则合并（右端取大），否则新开区间。</p>
+<pre class="code" data-t="LC56 · 排序合并"><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; merge(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) {
+        sort(intervals.begin(), intervals.end());   // 按左端点升序
+        vector&lt;vector&lt;int&gt;&gt; res;
+        for (int i = 0; i &lt; (int)intervals.size(); i++) {
+            int l = intervals[i][0], r = intervals[i][1];
+            if (!res.empty() &amp;&amp; l &lt;= res.back()[1])
+                res.back()[1] = max(res.back()[1], r);   // 重叠：扩右端
+            else
+                res.push_back({l, r});                   // 不重叠：新开
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-pair">第三部分·1.19 pair区间排序</a>｜<a href="stl.html#s-sort">1.10</a>｜区间类"排序后线性扫"通用范式</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc148" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 148</span><span class="pname">排序链表</span><span class="diff d-mid">中等</span><span class="tag tag-lc">真题对应</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：单链表 ｜ STL：无 ｜ 算法：归并排序（快慢指针找中点+合并） ｜ 突破口：链表无法随机访问→用归并不用快排</div>
+    <p class="prob-desc">O(nlogn)对链表排序，O(1)级递归栈。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>链表排序选<b>归并</b>（快排依赖随机访问）：①快慢指针找中点断开；②递归排序两半；③有序链表合并（LC21）。三个子问题全部是408必会模板。</p>
+<pre class="code" data-t="LC148 · 链表归并排序"><code>class Solution {
+    ListNode* merge(ListNode* a, ListNode* b) {       // 有序链表合并
+        ListNode dummy(0);
+        ListNode *r = &amp;dummy;
+        while (a &amp;&amp; b) {
+            if (a-&gt;val &lt;= b-&gt;val) { r-&gt;next = a; a = a-&gt;next; }
+            else                   { r-&gt;next = b; b = b-&gt;next; }
+            r = r-&gt;next;
+        }
+        r-&gt;next = a ? a : b;
+        return dummy.next;
+    }
+public:
+    ListNode* sortList(ListNode* head) {
+        if (!head || !head-&gt;next) return head;        // 递归出口
+        ListNode *slow = head, *fast = head-&gt;next;    // 找中点(fast先一步→前中点)
+        while (fast &amp;&amp; fast-&gt;next) {
+            slow = slow-&gt;next;
+            fast = fast-&gt;next-&gt;next;
+        }
+        ListNode *mid = slow-&gt;next;
+        slow-&gt;next = NULL;                            // 断开
+        return merge(sortList(head), sortList(mid));  // 排序+合并
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="algorithms.html#a-slowfast">第四部分·1.4 找中点</a>｜<a href="algorithms.html#a-sortmerge">6.5 归并</a>｜<a href="#lc21">LC21 合并</a>｜"链表为何选归并不选快排"是408简答好题</p>
+    </div></details>
+  </div>
+
+  <div class="chap-head" id="p4-greedydp"><h3>模块9 · 贪心与基础动态规划（6题·仅数据结构强相关）</h3><p>对应：第四部分各章递推思想 + 第三部分工具。核心套路：状态定义→转移方程→滚动压缩；LIS的贪心+二分。</p></div>
+
+  <div class="prob" id="lc70" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 70</span><span class="pname">爬楼梯</span><span class="diff d-easy">简单</span><span class="tag tag-tpl">必考模板</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：递推 ｜ STL：无 ｜ 算法：线性DP（斐波那契） ｜ 突破口：f(n)=f(n−1)+f(n−2)，滚动变量</div>
+    <p class="prob-desc">每次爬1或2阶，求n阶的爬法数。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>最后一步跨1阶来自f(n−1)、跨2阶来自f(n−2)。只需两个滚动变量，O(n)/O(1)。</p>
+<pre class="code" data-t="LC70 · 滚动递推"><code>class Solution {
+public:
+    int climbStairs(int n) {
+        int a = 1, b = 1;                    // f(0)=1, f(1)=1
+        for (int i = 2; i &lt;= n; i++) {
+            int c = a + b;                   // f(i)=f(i-1)+f(i-2)
+            a = b; b = c;
+        }
+        return b;
+    }
+};</code></pre>
+      <p class="mapline">📌 递推思想贯穿408：AVL最少结点数N(h)=N(h−1)+N(h−2)+1（<a href="algorithms.html#a-avl">第四部分5.3</a>）同型</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc118" data-diff="easy">
+    <div class="prob-head"><span class="pnum">LC 118</span><span class="pname">杨辉三角</span><span class="diff d-easy">简单</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二维数组 ｜ STL：vector ｜ 算法：逐行递推 ｜ 突破口：res[i][j]=res[i−1][j−1]+res[i−1][j]</div>
+    <p class="prob-desc">生成前numRows行杨辉三角。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>每行首尾为1，中间=上一行相邻两数之和；用vector按行push_back，练二维vector构造。</p>
+<pre class="code" data-t="LC118 · 二维vector"><code>class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; generate(int numRows) {
+        vector&lt;vector&lt;int&gt;&gt; res;
+        for (int i = 0; i &lt; numRows; i++) {
+            vector&lt;int&gt; row(i + 1, 1);       // 每行i+1个，首尾1
+            for (int j = 1; j &lt; i; j++)
+                row[j] = res[i - 1][j - 1] + res[i - 1][j];
+            res.push_back(row);
+        }
+        return res;
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-vector">第三部分·1.1 二维vector</a>｜组合数递推与哈夫曼/AVL递推同为"表法DP"</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc198" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 198</span><span class="pname">打家劫舍</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：max ｜ 算法：线性DP（不相邻选取） ｜ 突破口：f(i)=max(f(i−1), f(i−2)+nums[i])</div>
+    <p class="prob-desc">非负数组选不相邻元素求最大和。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>第i家"偷或不偷"：不偷继承f(i−1)，偷则f(i−2)+nums[i]。两个滚动变量。</p>
+<pre class="code" data-t="LC198 · 线性DP"><code>class Solution {
+public:
+    int rob(vector&lt;int&gt;&amp; nums) {
+        int prev = 0, cur = 0;               // f(i-2), f(i-1)
+        for (int x : nums) {
+            int t = max(cur, prev + x);      // 不偷 / 偷
+            prev = cur;
+            cur = t;
+        }
+        return cur;
+    }
+};</code></pre>
+      <p class="mapline">📌 "选与不选"决策递推与408背包类选择题同源</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc64" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 64</span><span class="pname">最小路径和</span><span class="diff d-mid">中等</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：二维网格 ｜ STL：vector ｜ 算法：网格DP（原地压缩） ｜ 突破口：dp[i][j]=grid+min(上,左)，首行首列前缀和</div>
+    <p class="prob-desc">m×n网格从左上到右下（只能右/下），路径数字和最小。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>到达(i,j)只能来自上或左→dp取二者较小加自身；直接在grid上原地改，空间O(1)。首行/首列只有一条来路=前缀和。</p>
+<pre class="code" data-t="LC64 · 网格DP"><code>class Solution {
+public:
+    int minPathSum(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int n = grid.size(), m = grid[0].size();
+        for (int i = 0; i &lt; n; i++)
+            for (int j = 0; j &lt; m; j++) {
+                if (i == 0 &amp;&amp; j == 0) continue;
+                else if (i == 0)  grid[i][j] += grid[i][j - 1];   // 首行
+                else if (j == 0)  grid[i][j] += grid[i - 1][j];   // 首列
+                else grid[i][j] += min(grid[i - 1][j], grid[i][j - 1]);
+            }
+        return grid[n - 1][m - 1];
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-vector">1.1 二维vector</a>｜网格DP是408动态规划思想题的图形化</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc300" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 300</span><span class="pname">最长递增子序列</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：数组 ｜ STL：lower_bound、vector ｜ 算法：贪心+二分O(nlogn)（或DP O(n²)） ｜ 突破口：tails[i]=长度i+1的LIS最小结尾，恒有序</div>
+    <p class="prob-desc">求最长严格递增子序列长度。</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>DP：f(i)=1+max{f(j)|j&lt;i且a[j]&lt;a[i]}，O(n²)。优化：维护tails（各长度LIS的最小结尾，非降序），x二分找第一个≥x替换/追加——tails越长说明LIS越长。完整程序见第六部分·实战e9。</p>
+<pre class="code" data-t="LC300 · 贪心+二分"><code>class Solution {
+public:
+    int lengthOfLIS(vector&lt;int&gt;&amp; nums) {
+        vector&lt;int&gt; tails;                   // 有序：各长度LIS的最小结尾
+        for (int x : nums) {
+            vector&lt;int&gt;::iterator it =
+                lower_bound(tails.begin(), tails.end(), x);
+            if (it == tails.end()) tails.push_back(x);   // 延长LIS
+            else *it = x;                    // 缩小结尾，留机会
+        }
+        return (int)tails.size();
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="practice.html#e9">第六部分·实战实战9B（逐行注释版）</a>｜<a href="stl.html#s-lower">1.14</a>｜严格上升用lower_bound、非降用upper_bound</p>
+    </div></details>
+  </div>
+
+  <div class="prob" id="lc5" data-diff="mid">
+    <div class="prob-head"><span class="pnum">LC 5</span><span class="pname">最长回文子串</span><span class="diff d-mid">中等</span><span class="tag tag-hot">高频考点</span></div>
+    <div class="prob-meta"><b>考点拆解</b>｜数据结构：字符串 ｜ STL：无 ｜ 算法：中心扩展（双指针） ｜ 突破口：n个奇中心+ n−1个偶中心，向外扩</div>
+    <p class="prob-desc">返回字符串的最长回文子串。（408串章节的程序化）</p>
+    <details class="ans"><summary>查看解析</summary><div class="ans-body">
+      <p><b>思路推导：</b>枚举2n−1个回文中心（每个字符=奇中心，每对相邻=偶中心），向两侧扩展到不等，记录最长起止。O(n²)/O(1)——比DP表更省且好写。</p>
+<pre class="code" data-t="LC5 · 中心扩展"><code>class Solution {
+    pair&lt;int,int&gt; expand(const string &amp;s, int l, int r) {   // 向外扩展
+        while (l &gt;= 0 &amp;&amp; r &lt; (int)s.size() &amp;&amp; s[l] == s[r]) {
+            l--; r++;
+        }
+        return {l + 1, r - 1};               // 有效回文区间
+    }
+public:
+    string longestPalindrome(string s) {
+        int bestL = 0, bestR = 0;
+        for (int i = 0; i &lt; (int)s.size(); i++) {
+            pair&lt;int,int&gt; a = expand(s, i, i);       // 奇长度中心
+            pair&lt;int,int&gt; b = expand(s, i, i + 1);   // 偶长度中心
+            if (a.second - a.first &gt; bestR - bestL) { bestL = a.first; bestR = a.second; }
+            if (b.second - b.first &gt; bestR - bestL) { bestL = b.first; bestR = b.second; }
+        }
+        return s.substr(bestL, bestR - bestL + 1);
+    }
+};</code></pre>
+      <p class="mapline">📌 <a href="stl.html#s-string">第三部分·1.2 string</a>｜<a href="algorithms.html#a-twoptr">1.3 双指针</a>｜回文判定=首尾双指针（1.2例2）的枚举中心版</p>
+    </div></details>
+  </div>
+
+  
+
+  </div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "leetcode", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

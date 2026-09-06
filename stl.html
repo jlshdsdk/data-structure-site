@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C++ STL 工具接口详解 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">燕园北大 · 数据结构自学网站<small>爱国 进步 民主 科学 ｜ 北大红 MPA版</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">未名博雅</div>
+    <div class="t2">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › C++ STL 工具接口详解</p>
+  </div>
+  <!-- ============ 第三部分 ============ -->
+  <div class="part-zone" id="p3">
+  <div class="part-head">
+    <div class="pnum">PART 03</div>
+    <h2>C++ STL 工具接口详解</h2>
+    <p>承接王道/课程部分的数据结构原理，讲C++ STL的实际调用：每个组件统一结构 —— 对应知识点 → 核心定义 → 常用接口（原型+参数+返回值+用法）→ 复杂度 → 适用/禁用场景 → 高频易错点 → 配套例题。明确标注<b>期末/408笔试能不能直接用</b>，机试直接套用。</p>
+  </div>
+
+  <section class="sec" id="p2-pre">
+    <h3>0. 应试须知：STL 考场可用边界 + 四大应试模块总览<span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L26 考试规则（STL 使用边界的老师原话）+ L1/L2 绪论 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>先明确事实：</b>408统考为纸笔考试，算法大题要求「①写出设计思想；②用C/C++/伪代码描述」。评分看<b>算法思想、关键步骤、正确性</b>。STL能不能用，取决于题目考察什么。</p>
+    <ul>
+      <li><b>红线（考场禁用STL）：</b>题目考察的数据结构/算法本身必须手写——考链表必须写链式结构与指针操作（禁用 <code class="inl">std::list</code>）；考排序必须写排序过程（禁用 <code class="inl">sort</code>）；考哈希表必须写散列函数与冲突处理（禁用 <code class="inl">unordered_map</code>）。</li>
+      <li><b>可声明调用：</b>非考察点的辅助步骤可写「调用快速排序，时间O(nlogn)」，注明算法名+复杂度即给分（真题参考答案有先例）。</li>
+      <li><b>要给定义：</b>若用vector等作答，先写一行定义说明；笔试更推荐「普通数组+length」的王道风格。</li>
+      <li><b>机试放开：</b>复试机试/刷题平台STL是提分利器，第七部分真题代码全部放开使用。</li>
+    </ul>
+    <h4>对比辨析：同一个操作，三层写法</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>需求</th><th>408笔试（规范）</th><th>机试/刷题（提分）</th><th>真题怎么考</th></tr>
+      <tr><td>排序</td><td>手写快排/归并；或注明"调用排序O(nlogn)"</td><td><code>sort(v.begin(), v.end())</code></td><td>画第i趟结果、求移动次数</td></tr>
+      <tr><td>查有序位置</td><td>手写折半查找+判定树</td><td><code>lower_bound</code> 一行</td><td>比较序列、ASL计算</td></tr>
+      <tr><td>栈/队列/堆</td><td>手写SqStack/SqQueue/堆调整</td><td><code>stack/queue/priority_queue</code></td><td>出入序列合法性、循环队列公式</td></tr>
+      <tr><td>哈希统计</td><td>计数数组 / 散列表结构定义</td><td><code>unordered_map</code></td><td>散列冲突、ASL成功/失败</td></tr>
+      <tr><td>图遍历</td><td>邻接表结构+visited数组+队列/递归</td><td><code>vector邻接表+queue</code></td><td>遍历序列、复杂度、连通分量</td></tr>
+    </table></div>
+    <div class="note"><b>四大应试模块使用法：</b>①【高频考点】标签——考前必过；②【必考模板】——要能默写（第四部分全部带此标注的代码）；③【考场禁用STL】——红线；④【真题对应】——第七部分每题的考点映射链接，学→练→考闭环。</div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础辨析题】</div>
+      <p>机试中要"对n个整数降序排序后求前k大"，写出最简STL组合。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="机试最简组合"><code>sort(v.begin(), v.end(), greater&lt;int&gt;());   // 降序
+// 前k大即 v[0..k-1]</code></pre>
+        <p>笔试则写：「采用快速排序对数组降序排序，平均时间O(nlogn)，前k个即为前k大」；若只求前k大，更快的是快速选择（LC215，见第七部分）。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格辨析题】</div>
+      <p>判断：408算法大题中，只要写对了结果，链表操作用 <code class="inl">std::list</code> 描述也应当给满分。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>错误。</b>链表操作的考察点是<b>指针修改的次序与正确性</b>（断链/防断链、先接后断），调用现成容器等于没有作答关键步骤，只能得思想分甚至不得分。正确姿势：手写 <code class="inl">LNode</code> 结构 + 显式指针操作 + 注释。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-vector">
+    <h3>1. vector —— 动态数组<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试需声明</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L5 数组与矩阵（顺序存储在慕课/教材）；机试首选容器 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：逻辑上就是顺序表。笔试作答顺序表按SqList手写；机试中vector是第一工具容器。</p>
+    <p><b>核心定义：</b>连续内存的动态数组，O(1)随机访问、尾部均摊O(1)插删、自动扩容。下标从0起，<code class="inl">v[i]</code>不做越界检查。<b>适用：</b>随机访问多、尾部增删、做邻接表/DP表。<b>禁用：</b>频繁头部/中间插删（O(n)，应换list/deque）。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>vector&lt;int&gt; v(n, 0);</code></td><td>n个0；<code>vector&lt;int&gt; w(v)</code>拷贝；二维<code>vector&lt;vector&lt;int&gt;&gt; g(n);</code></td><td>—</td><td>O(n)</td></tr>
+      <tr><td><code>v.push_back(x)</code> / <code>v.pop_back()</code></td><td>尾插（可能扩容）/ 尾删</td><td>void</td><td>均摊O(1)</td></tr>
+      <tr><td><code>v[i]</code> / <code>v.at(i)</code></td><td>随机访问；at越界抛异常</td><td>引用</td><td>O(1)</td></tr>
+      <tr><td><code>v.front()</code> / <code>v.back()</code></td><td>首/尾元素</td><td>引用</td><td>O(1)</td></tr>
+      <tr><td><code>v.insert(v.begin()+i, x)</code></td><td>下标i前插入，其后整体后移</td><td>新位置迭代器</td><td>O(n)</td></tr>
+      <tr><td><code>v.erase(v.begin()+i)</code></td><td>删除下标i元素；<b>返回下一个有效迭代器</b></td><td>迭代器</td><td>O(n)</td></tr>
+      <tr><td><code>v.size()</code> / <code>v.empty()</code> / <code>v.clear()</code></td><td>逻辑长度/判空/清空（capacity不一定变）</td><td>见名</td><td>O(1)/O(1)/O(n)</td></tr>
+      <tr><td><code>v.resize(n)</code> / <code>v.reserve(n)</code></td><td>改逻辑长度（真正生成元素）/仅预留容量</td><td>void</td><td>O(n)</td></tr>
+      <tr><td><code>v.begin()</code> / <code>v.end()</code></td><td>首元素/尾后位置（左闭右开）</td><td>迭代器</td><td>O(1)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>① size是逻辑长度、capacity是物理容量，reserve不改size；② 扩容使<b>全部</b>迭代器失效，insert/erase使操作点之后失效；③ 循环删除必须<code class="inl">it = v.erase(it)</code>；④ <code class="inl">v[i]</code>越界是未定义行为。</div>
+    <div class="cx"><span><b>访问</b> O(1)</span><span><b>尾部插删</b> 均摊O(1)</span><span><b>中间插删</b> O(n)</span><span><b>查找</b> O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>写出下面代码的输出：<code class="inl">vector&lt;int&gt; v; v.reserve(10); v.push_back(1); v.push_back(2); cout &lt;&lt; v.size() &lt;&lt; " " &lt;&lt; v.capacity();</code></p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>输出 2 10。</b>reserve只改容量（≥10），size只统计实际元素（2）。若把reserve换成resize(10)，输出为 10 10，且遍历会多出8个0——两者区别是笔试/机试双重坑。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>顺序表用 <code class="inl">vector&lt;int&gt; v</code> 存储长度n。设计O(n)、O(1)算法将其逆置，并说明能否直接调 <code class="inl">reverse(v.begin(), v.end())</code>。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="首尾双指针原地交换"><code>void Reverse(vector&lt;int&gt; &amp;v) {
+    int i = 0, j = v.size() - 1;
+    while (i &lt; j) {
+        swap(v[i], v[j]);    // 首尾交换，向中间推进
+        i++; j--;
+    }
+}</code></pre>
+        <p><b>等价。</b>std::reverse内部就是首尾双指针交换，O(n)/O(1)。笔试若逆置非考察点可写「调用reverse，O(n)」；是考察点则按上式手写。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-string">
+    <h3>2. string —— 字符串<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试多手写</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L6 字符串模式匹配（KMP 必须手写；string 是机试载体） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：串的顺序存储。KMP/BF模式匹配必须手写；string是机试串题载体。</p>
+    <p><b>核心定义：</b>可变长字符串，用法近vector，另支持<code class="inl">+</code>拼接与字典序直接比较。<b>适用：</b>机试读串/拆词/匹配。<b>禁用：</b>笔试考KMP的next数组计算——那是手写考点，string只是载体。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>s.size()</code> / <code>s.length()</code></td><td>串长</td><td>无符号整型</td><td>O(1)</td></tr>
+      <tr><td><code>s.substr(pos, len)</code></td><td>取子串（len缺省到结尾）；pos越界抛异常</td><td>string</td><td>O(len)</td></tr>
+      <tr><td><code>s.find(t)</code></td><td>找子串/字符首次出现位置</td><td>下标；无则 <code>string::npos</code></td><td>O(n·m)</td></tr>
+      <tr><td><code>s + t</code> / <code>s += t</code></td><td>拼接</td><td>string</td><td>O(n+m)</td></tr>
+      <tr><td><code>s == t</code> / <code>s &lt; t</code></td><td>字典序比较</td><td>bool</td><td>O(min(n,m))</td></tr>
+      <tr><td><code>s.push_back(c)</code> / <code>s.append(t)</code></td><td>尾插字符 / 尾接串</td><td>void</td><td>均摊O(1)</td></tr>
+      <tr><td><code>s.insert(pos, t)</code> / <code>s.erase(pos, len)</code></td><td>插入 / 删除</td><td>引用</td><td>O(n)</td></tr>
+      <tr><td><code>s.c_str()</code> / <code>to_string(x)</code> / <code>stoi(s)</code></td><td>转C串 / 数字转串 / 串转数字</td><td>指针/string/int</td><td>O(1)/O(logx)/O(n)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>① find失败返回<b>string::npos</b>（无符号），判空必须写 <code class="inl">== string::npos</code>，别与-1比；② 通用find返回迭代器，string成员find返回下标——两个find语义不同；③ substr的pos越界抛out_of_range。</div>
+    <div class="cx"><span><b>随机访问</b> O(1)</span><span><b>find</b> O(n·m)</span><span><b>拼接/插删</b> O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>统计字符串s中子串"ab"出现的次数（允许重叠）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="find循环计数"><code>int cnt = 0, pos = s.find("ab");
+while (pos != string::npos) {
+    cnt++;
+    pos = s.find("ab", pos + 1);   // 从下一位置继续找（允许重叠）
+}</code></pre>
+        <p>考点：find的<b>第二参数（起始位置）</b>与npos判等。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>设计O(n)、O(1)算法判断只含小写字母的串s是否回文。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="回文判断"><code>bool isPalindrome(const string &amp;s) {
+    int i = 0, j = s.size() - 1;
+    while (i &lt; j) {
+        if (s[i] != s[j]) return false;
+        i++; j--;
+    }
+    return true;
+}</code></pre>
+        <p><b>考点提炼：</b>首尾双指针。408变体"回文链表"：快慢指针找中点+后半段逆置（LC234，见第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-deque">
+    <h3>3. deque —— 双端队列<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span></h3>
+    <p class="lcline">🎬 对应课程：L4 队列（课件用手写循环队列，见第四部分2.2） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：笔试考"输出受限/输入受限双端队列的合法序列判断"（逻辑结构选择题）；STL deque是机试单调队列的标准载体。</p>
+    <p><b>核心定义：</b>两端均O(1)插删、支持O(1)随机访问的队列（分段连续，原理不深究）。<b>适用：</b>滑动窗口、两端操作。<b>禁用：</b>笔试写循环队列时用手写数组版更稳。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>d.push_back(x)</code> / <code>d.push_front(x)</code></td><td>尾插 / 头插</td><td>void</td><td>O(1)</td></tr>
+      <tr><td><code>d.pop_back()</code> / <code>d.pop_front()</code></td><td>尾删 / 头删</td><td>void</td><td>O(1)</td></tr>
+      <tr><td><code>d.front()</code> / <code>d.back()</code></td><td>队头 / 队尾元素</td><td>引用</td><td>O(1)</td></tr>
+      <tr><td><code>d[i]</code></td><td>随机访问</td><td>引用</td><td>O(1)</td></tr>
+      <tr><td><code>d.size()</code> / <code>d.clear()</code> / <code>d.insert / erase</code></td><td>长度 / 清空 / 中间插删（全部迭代器失效）</td><td>见名</td><td>O(1)/O(n)/O(n)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>①中间插删使<b>所有</b>迭代器失效；②STL deque（两端可进出）≠考纲"输出受限双端队列"（一端只能删）——后者是逻辑结构选择题；③408笔试的单调队列用手写数组模拟（见第四部分2.4）。</div>
+    <div class="cx"><span><b>两端插删</b> O(1)</span><span><b>随机访问</b> O(1)</span><span><b>中间插删</b> O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>用deque实现"读入n个整数，从右往左倒序输出"。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="头插倒序"><code>deque&lt;int&gt; d;
+for (int i = 0; i &lt; n; i++) { int x; cin &gt;&gt; x; d.push_front(x); }  // 头插即倒序
+for (int x : d) cout &lt;&lt; x &lt;&lt; " ";</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格选择题】</div>
+      <p><b>输出受限</b>的双端队列（两端可插、只能一端删），输入1,2,3,4，判断输出序列 4,1,3,2 是否可能。（2010年真题同型）</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>可能。</b>设右端可删：4右插→4右删；1右插→1右删；3右插、2左插→3右删→2右删，得 4,1,3,2 ✔。方法就是<b>手动模拟</b>：每步分支"插左还是插右"。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-list">
+    <h3>4. list —— 双向链表<span class="tag tag-warn">机试可用</span><span class="tag tag-no">笔试须手写</span></h3>
+    <p class="lcline">🎬 对应课程：L3 线性表的链接存储（考链表必须手写 LinkList，禁用 std::list 作答） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：考链表必手写LinkList；list用于机试快速模拟（约瑟夫环等）。</p>
+    <p><b>核心定义：</b>双向链表，已知迭代器位置插删O(1)，<b>不支持随机访问</b>（无[]）。自带成员 <code class="inl">sort()</code>（归并、稳定），因为std::sort需要随机访问迭代器。<b>适用：</b>频繁任意位置插删、splice拼接。<b>禁用：</b>频繁按下标访问（O(n)）。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>l.push_back(x)</code> / <code>l.push_front(x)</code></td><td>尾插 / 头插</td><td>void</td><td>O(1)</td></tr>
+      <tr><td><code>l.insert(it, x)</code></td><td>it之前插入</td><td>新元素迭代器</td><td>O(1)</td></tr>
+      <tr><td><code>l.erase(it)</code></td><td>删除it处元素</td><td>下一个有效迭代器</td><td>O(1)</td></tr>
+      <tr><td><code>l.remove(x)</code></td><td>删除所有等于x</td><td>void</td><td>O(n)</td></tr>
+      <tr><td><code>l.sort()</code> / <code>l.reverse()</code> / <code>l.unique()</code></td><td>成员排序（稳定归并）/逆置/相邻去重</td><td>void</td><td>O(nlogn)/O(n)/O(n)</td></tr>
+      <tr><td><code>l.splice(pos, other)</code></td><td>O(1)搬移结点拼接（list特有）</td><td>void</td><td>O(1)</td></tr>
+      <tr><td><code>l.front()</code> / <code>l.back()</code> / <code>l.size()</code></td><td>首尾元素 / 长度</td><td>引用 / 整数</td><td>O(1)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>①不能用std::sort（随机访问迭代器），只能 <code class="inl">l.sort()</code>；②erase后接返回值继续遍历；③下标访问不存在——要随机访问请用vector。</div>
+    <div class="cx"><span><b>已知位置插删</b> O(1)</span><span><b>定位</b> O(n)</span><span><b>空间</b> 每结点多2指针</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>对list降序排序并删除所有值为5的元素。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="list成员函数三连"><code>l.sort();                    // 成员排序（不能用std::sort！）
+l.sort(greater&lt;int&gt;());      // 降序：传入比较器
+l.remove(5);                 // 删除所有5</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>n人围成一圈报数，报到m者出列，求出列序列（约瑟夫问题）。用list实现。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="约瑟夫环"><code>list&lt;int&gt; l;
+for (int i = 1; i &lt;= n; i++) l.push_back(i);
+list&lt;int&gt;::iterator it = l.begin();
+while (!l.empty()) {
+    for (int k = 1; k &lt; m; k++) {          // 报数走m-1步
+        if (++it == l.end()) it = l.begin();   // 环形回绕
+    }
+    cout &lt;&lt; *it &lt;&lt; " ";
+    it = l.erase(it);                       // erase返回下一个位置
+    if (it == l.end()) it = l.begin();
+}</code></pre>
+        <p>笔试作答：手写循环单链表（尾结点next指向首元结点），思想一致。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-set">
+    <h3>5. set / multiset —— 有序集合<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L23 二叉查找树（set/map 底层即红黑树，L23 PAGE 110-112） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：逻辑上是BST/平衡树的应用。笔试考BST、AVL必手写；set是机试"有序+去重+前驱后继"神器。</p>
+    <p><b>核心定义：</b>红黑树实现（记住"有序+对数操作"即可）。set自动升序+去重；multiset允许重复。<b>适用：</b>去重、动态有序集合、前驱后继、区间统计。<b>禁用：</b>无需有序、只要判定存在——用unordered_set更快。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>s.insert(x)</code></td><td>插入；set已存在则失败</td><td>pair&lt;迭代器,bool&gt;</td><td>O(logn)</td></tr>
+      <tr><td><code>s.erase(x)</code> / <code>s.erase(it)</code></td><td>按值删（multiset删<b>全部</b>）/按位置删</td><td>个数/void</td><td>O(logn)</td></tr>
+      <tr><td><code>s.find(x)</code> / <code>s.count(x)</code></td><td>查找 / 计数（set只会0/1）</td><td>迭代器（无则end）/size_t</td><td>O(logn)</td></tr>
+      <tr><td><code>s.lower_bound(x)</code> / <code>s.upper_bound(x)</code></td><td>第一个≥x / 第一个&gt;x（成员版）</td><td>迭代器</td><td>O(logn)</td></tr>
+      <tr><td><code>s.begin()</code> / <code>s.rbegin()</code></td><td>最小 / 最大元素位置</td><td>迭代器</td><td>O(1)</td></tr>
+      <tr><td><code>s.size()</code> / <code>s.empty()</code> / <code>s.clear()</code></td><td>长度/判空/清空</td><td>见名</td><td>O(1)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>①multiset的 <code class="inl">erase(x)</code> 删<b>所有</b>等于x的元素，只删一个要 <code class="inl">erase(s.find(x))</code>；②set迭代器只读，不能 <code class="inl">*it = ...</code>；③前驱/后继 = <code class="inl">prev(it)</code> / <code class="inl">next(it)</code>（保证迭代器合法）；④自定义类型需提供比较器。</div>
+    <div class="cx"><span><b>插/删/查</b> O(logn)</span><span><b>遍历</b> 有序O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>依次 insert(3,1,2,3,5) 到set与multiset，再对multiset执行erase(3)，分别写出遍历结果。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>set：size=4，输出 <b>1 2 3 5</b>（自动去重升序）。multiset：erase(3)删掉<b>两个</b>3，输出 <b>1 2 5</b>；只删一个应写 <code class="inl">ms.erase(ms.find(3))</code>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>动态集合支持插入、删除、查询前驱/后继，要求单步O(logn)。给出set解法骨架。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="set前驱后继骨架"><code>set&lt;int&gt; s;
+s.insert(x);                        // O(logn)
+s.erase(s.find(x));                 // 只删一个
+set&lt;int&gt;::iterator it = s.lower_bound(x);   // 首个&gt;=x
+if (it == s.begin()) /* 无前驱 */; else /* *prev(it)即前驱 */;
+it = s.upper_bound(x);                      // 首个&gt;x
+if (it != s.end()) /* *it即后继 */;</code></pre>
+        <p>完整题见第六部分·实战 e6 与第七部分对应set模块。unordered_set没有lower_bound——有序性不可替代。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-map">
+    <h3>6. map / multimap —— 有序键值对<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L23 红黑树（STL map 基于&#12141;红黑树）+ L22 有序查找 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：对应"查找表/索引"。笔试考散列表、BST必手写；map是机试映射计数第一选择。</p>
+    <p><b>核心定义：</b>按key升序的键值对容器（红黑树）。value可重复、key唯一（multimap的key可重复）。<b>适用：</b>计数、编号映射、有序统计。<b>禁用：</b>不需要有序时用unordered_map更快。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>接口原型</th><th>功能/用法</th><th>返回值</th><th>复杂度</th></tr>
+      <tr><td><code>m[k]</code></td><td>取value；<b>k不存在则自动插入(k,默认值)</b></td><td>引用</td><td>O(logn)</td></tr>
+      <tr><td><code>m.at(k)</code></td><td>只取不插；不存在抛异常</td><td>引用</td><td>O(logn)</td></tr>
+      <tr><td><code>m.insert({k, v})</code></td><td>插入；<b>k已存在则失败（不覆盖）</b></td><td>pair&lt;迭代器,bool&gt;</td><td>O(logn)</td></tr>
+      <tr><td><code>m[k] = v</code></td><td>赋值/覆盖（不存在先插入）</td><td>引用</td><td>O(logn)</td></tr>
+      <tr><td><code>m.find(k)</code> / <code>m.count(k)</code> / <code>m.erase(k)</code></td><td>查找/计数/按键删</td><td>见名</td><td>O(logn)</td></tr>
+      <tr><td>遍历 <code>for (auto &amp;p : m)</code></td><td>p.first为key（const）、p.second为value，<b>按key升序</b></td><td>—</td><td>O(n)</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>① operator[]的副作用：只读判断也用m[k]会插入默认值，改变size与遍历——判断存在性一律用 find/count；② <code class="inl">m[k]=v</code>覆盖、<code class="inl">insert</code>不覆盖；③ multimap没有operator[]。</div>
+    <div class="cx"><span><b>插/删/查</b> O(logn)</span><span><b>遍历</b> 按key升序O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p><code class="inl">map&lt;char,int&gt; m; m['a']=1; if (m['c']&gt;0) cout&lt;&lt;"yes"; cout&lt;&lt;m.size();</code> 输出什么？size是多少？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>无输出，size=2。</b>m['c']的语义是"不存在则插入('c',0)再返回"——副作用插入了新键。正确只读写法：<code class="inl">auto it=m.find('c'); if (it!=m.end() &amp;&amp; it-&gt;second&gt;0)</code>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>统计n个学生的分数分布，按分数升序输出"分数:人数"，并查询[l,r]分数段总人数。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="map有序统计"><code>map&lt;int, int&gt; m;
+for (int i = 0; i &lt; n; i++) { int s; cin &gt;&gt; s; m[s]++; }
+for (auto &amp;p : m) cout &lt;&lt; p.first &lt;&lt; ":" &lt;&lt; p.second &lt;&lt; endl;  // 升序
+int total = 0;
+for (auto it = m.lower_bound(l); it != m.end() &amp;&amp; it-&gt;first &lt;= r; ++it)
+    total += it-&gt;second;</code></pre>
+        <p>笔试对应：二叉排序树的中序遍历=按键升序（第四部分5.2）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-unord">
+    <h3>7. unordered_set / unordered_map —— 哈希容器<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L25 散列（unordered_* 就是拉链法散列表的工程实现） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：笔试考散列表构造/冲突处理/ASL必须手写；unordered_*是机试O(1)判定与计数工具。哈希特性与考场注意事项见下表。</p>
+    <p><b>核心定义：</b>哈希表（拉链法）实现的set/map：<b>无序</b>、平均O(1)插删查、最坏O(n)。<b>适用：</b>存在性判定、计数、两数之和类问题（空间换时间）。<b>禁用：</b>需要有序/前驱后继/区间统计（没有lower_bound）。</p>
+    <h4>map 与 unordered_map 对比辨析（选择题必考）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>对比项</th><th>map</th><th>unordered_map</th><th>考场注意事项</th></tr>
+      <tr><td>底层</td><td>红黑树（平衡BST）</td><td>哈希表（拉链）</td><td>笔试分别按BST/散列表手写</td></tr>
+      <tr><td>有序性</td><td>按key升序</td><td>无序</td><td>要有序输出必须排序或用map</td></tr>
+      <tr><td>插删查</td><td>O(logn)稳定</td><td>平均O(1)最坏O(n)</td><td>选择题爱考"平均"二字</td></tr>
+      <tr><td>范围查询</td><td>lower_bound/upper_bound 可用</td><td>无</td><td>unordered_set不能二分</td></tr>
+      <tr><td>遍历顺序</td><td>确定（升序）</td><td>不可预期</td><td>逻辑不能依赖遍历顺序</td></tr>
+    </table></div>
+    <div class="warn"><b>高频易错点：</b>①"unordered_map查找是O(1)"不准确——是<b>平均</b>O(1)，冲突退化O(n)，选择题陷阱；②没有迭代器相减、没有按序遍历；③装填因子α=元素数/表长决定平均性能（与笔试ASL计算呼应）。</div>
+    <div class="cx"><span><b>平均插删查</b> O(1)</span><span><b>最坏</b> O(n)</span><span><b>遍历</b> 无序</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>判断整数数组中是否存在重复元素，要求O(n)。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="存在重复元素（LC217思想）"><code>unordered_set&lt;int&gt; seen;
+for (int x : a) {
+    if (seen.count(x)) return true;   // O(1)平均判定
+    seen.insert(x);
+}
+return false;</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格选择题】</div>
+      <p>关于map与unordered_map：Ⅰ.二者插入删除平均复杂度均为O(1)；Ⅱ.map有序、unordered_map无序；Ⅲ.频繁范围查询选map。正确的有？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>Ⅱ、Ⅲ正确，Ⅰ错误。</b>map插删是O(logn)；范围查询依赖有序性，unordered_map无lower_bound。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-adapt">
+    <h3>8. 容器适配器：stack / queue / priority_queue<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L4 栈和队列 + L18 堆（priority_queue 即堆） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="pos">应试定位：笔试考出入序列合法性、循环队列、手工建堆——全手写；适配器是机试利器。大根堆/小根堆写法见下方专框，必背。</p>
+    <p><b>核心定义：</b>适配器=把底层容器封装成受限接口。<b>三者都没有迭代器，不能遍历、不能按下标访问</b>。<b>适用：</b>LIFO/FIFO/取最值场景。<b>禁用：</b>需要遍历或随机访问——请改用deque/vector。</p>
+    <h4>常用接口</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>结构</th><th>核心接口</th><th>语义</th><th>复杂度</th></tr>
+      <tr><td><code>stack&lt;T&gt; s</code>（LIFO）</td><td><code>s.push(x)</code> / <code>s.pop()</code> / <code>s.top()</code></td><td>入栈 / 出栈（<b>无返回值</b>）/ 取栈顶</td><td>O(1)</td></tr>
+      <tr><td><code>queue&lt;T&gt; q</code>（FIFO）</td><td><code>q.push(x)</code> / <code>q.pop()</code> / <code>q.front()</code> / <code>q.back()</code></td><td>入队 / 出队（无返回值）/ 队头 / 队尾</td><td>O(1)</td></tr>
+      <tr><td><code>priority_queue&lt;T&gt; pq</code></td><td><code>pq.push(x)</code> / <code>pq.pop()</code> / <code>pq.top()</code></td><td>入堆 / 弹堆顶（无返回值）/ 堆顶（<b>默认大根堆</b>）</td><td>push/pop O(logn)，top O(1)</td></tr>
+      <tr><td>三者共有</td><td><code>.empty()</code> / <code>.size()</code></td><td>判空 / 长度</td><td>O(1)</td></tr>
+    </table></div>
+    <div class="ok"><b>【必考模板】大根堆 / 小根堆写法专框（一字不能错）：</b></div>
+<pre class="code" data-t="堆写法速记 · 必背"><code>priority_queue&lt;int&gt; bigQ;                          // 大根堆：堆顶最大（默认）
+priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; smallQ;   // 小根堆：堆顶最小（必背！）
+// 记忆：greater→小的先出→小根堆；需要 #include &lt;functional&gt;
+// 自定义比较器：priority_queue&lt;T, vector&lt;T&gt;, Cmp&gt;
+// 注意：Cmp中"返回true的排后面"——与sort的cmp方向相反，写完务必验证堆顶！</code></pre>
+    <div class="warn"><b>高频易错点：</b>① <b>pop()不返回值</b>：先 <code class="inl">int x = s.top(); s.pop();</code>；② 小根堆必须写全三个模板参数+greater；③ 适配器不能遍历——题目要"输出队列所有元素"时笔试用手写结构才合理。</div>
+    <div class="cx"><span><b>stack/queue插删</b> O(1)</span><span><b>优先队列push/pop</b> O(logn)</span><span><b>top</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>依次push(3,1,4,1,5)到大根堆：①top()？②pop两次后top()？③改为"最小元素优先"怎么写？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>① <b>5</b>（默认大根堆）；② 弹出5、4后top为<b>3</b>；③ <code class="inl">priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt;</code>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格选择题】</div>
+      <p>入栈序列1,2,3,4，下列出栈序列不可能的是：A. 3,4,2,1　B. 1,4,3,2　C. 4,3,1,2　D. 2,3,4,1</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>C。</b>弹4、3后栈内自底向顶为1,2，栈顶是2，下一个目标1取不到——不合法。通用方法：<b>按序入栈模拟</b>，栈顶等于目标就出栈，最后栈空即合法。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-iter">
+    <h3>9. 迭代器：分类、常用操作与全部失效场景<span class="tag tag-hot">高频考点</span><span class="tag tag-no">408必考坑</span></h3>
+    <p class="lcline">🎬 对应课程：L4 栈帧与递归（L2/L4 的均摊与扩容联动） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>核心定义：</b>迭代器="广义指针"，统一遍历方式。<code class="inl">begin()</code>指首元素、<code class="inl">end()</code>指<b>尾后位置</b>，所有区间算法均为左闭右开 [begin, end)。</p>
+    <h4>迭代器分类（能力从弱到强）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>类别</th><th>支持操作</th><th>典型容器</th><th>应试推论</th></tr>
+      <tr><td>前向迭代器</td><td>仅++</td><td>unordered_set / unordered_map</td><td>不能反向、不能二分</td></tr>
+      <tr><td>双向迭代器</td><td>++、--</td><td>list / set / map / multiset / multimap</td><td>std::sort不可用（需随机访问）</td></tr>
+      <tr><td>随机访问迭代器</td><td>it+n、it1-it2、&lt; &gt;比较</td><td>vector / string / deque / 数组指针</td><td>sort/nth_element/lower_bound 全局版可用</td></tr>
+    </table></div>
+    <h4>常用操作</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>操作</th><th>说明</th></tr>
+      <tr><td><code>for (auto it = v.begin(); it != v.end(); ++it)</code></td><td>标准遍历；C++11可 <code>for (auto &amp;x : v)</code></td></tr>
+      <tr><td><code>advance(it, n)</code> / <code>next(it, n)</code> / <code>prev(it, n)</code></td><td>移动/返回新迭代器；随机访问O(1)，双向O(n)</td></tr>
+      <tr><td><code>it = v.erase(it)</code></td><td>用返回值接续——循环删除唯一正确姿势</td></tr>
+      <tr><td><code>it - v.begin()</code></td><td>迭代器相减得下标（仅随机访问）</td></tr>
+    </table></div>
+    <h4>迭代器失效全部场景（408高频，背表）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>容器</th><th>操作</th><th>失效范围</th></tr>
+      <tr><td rowspan="3">vector / string</td><td>push_back / resize 触发<b>扩容</b></td><td><b>全部失效</b>（内存搬家）</td></tr>
+      <tr><td>insert</td><td>插入点之后全部失效</td></tr>
+      <tr><td>erase</td><td>被删元素及其后全部失效</td></tr>
+      <tr><td>deque</td><td>中间 insert/erase</td><td>全部失效；两端插删仅迭代器失效（引用不失效）</td></tr>
+      <tr><td>list</td><td>insert不失效；erase仅被删结点失效</td><td>其余稳定</td></tr>
+      <tr><td>set / map</td><td>insert不失效；erase仅被删元素失效</td><td>树形结构其余稳定</td></tr>
+      <tr><td>unordered_*</td><td>insert可能触发rehash</td><td>rehash后迭代器全部失效（引用/指针不失效）</td></tr>
+    </table></div>
+    <div class="warn"><b>经典错误：</b><code class="inl">for (it=v.begin(); it!=v.end(); ++it) if (...) v.erase(it);</code> —— erase后it已失效再++是未定义行为。正确：<code class="inl">if (...) it = v.erase(it); else ++it;</code></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础判断题】</div>
+      <p><code class="inl">vector&lt;int&gt; v={1,2,3,4,5}; auto it=v.begin()+1; v.push_back(6);</code> 后使用 *it 是否安全？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>不保证安全（选"已失效/未定义行为"）。</b>push_back可能触发扩容使全部迭代器失效；即使容量够没搬家，写题也按"全部失效"掌握，不能赌。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格选择题】</div>
+      <p>下列迭代器使用正确的是：A. 对list做std::sort　B. 对set做 <code class="inl">*it = 3</code>　C. 用 <code class="inl">it = v.erase(it)</code> 循环删除vector偶数　D. 对unordered_map做lower_bound</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>C。</b>A错（list是双向迭代器，用成员sort）；B错（set迭代器只读）；D错（哈希容器无序，没有lower_bound）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-sort">
+    <h3>10. 通用算法总览 与 sort / stable_sort<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试看考察点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p class="lcline">🎬 对应课程：L17-L21 五讲排序（考排序过程必须手写） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>核心定义：</b>通用算法以迭代器区间 [first, last)（左闭右开）为参数，与容器解耦。先总览，再逐个击破。</p>
+    <h4>通用算法速查表（背）</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>算法</th><th>原型（简化）</th><th>一句话用途</th><th>复杂度</th><th>要求</th></tr>
+      <tr><td><code>sort</code></td><td><code>sort(first, last, cmp)</code></td><td>排序（不稳定）</td><td>O(nlogn)</td><td>随机访问迭代器</td></tr>
+      <tr><td><code>stable_sort</code></td><td><code>stable_sort(first, last, cmp)</code></td><td>稳定排序（相等保序）</td><td>O(nlogn)</td><td>空间O(n)</td></tr>
+      <tr><td><code>reverse</code></td><td><code>reverse(first, last)</code></td><td>区间逆置</td><td>O(n)</td><td>双向迭代器</td></tr>
+      <tr><td><code>find</code></td><td><code>find(first, last, val)</code></td><td>线性查找</td><td>O(n)</td><td>任意迭代器</td></tr>
+      <tr><td><code>count</code></td><td><code>count(first, last, val)</code></td><td>计数</td><td>O(n)</td><td>任意迭代器</td></tr>
+      <tr><td><code>lower_bound</code></td><td><code>lower_bound(first, last, x)</code></td><td>第一个≥x</td><td>O(logn)</td><td><b>必须有序</b></td></tr>
+      <tr><td><code>upper_bound</code></td><td><code>upper_bound(first, last, x)</code></td><td>第一个&gt;x</td><td>O(logn)</td><td><b>必须有序</b></td></tr>
+      <tr><td><code>unique</code></td><td><code>unique(first, last)</code></td><td>相邻去重（逻辑删除）</td><td>O(n)</td><td>先sort再unique</td></tr>
+      <tr><td><code>nth_element</code></td><td><code>nth_element(first, nth, last)</code></td><td>第nth位就位（部分排序）</td><td>平均O(n)</td><td>随机访问迭代器</td></tr>
+      <tr><td><code>max_element / min_element</code></td><td><code>max_element(first, last)</code></td><td>最大/最小值位置</td><td>O(n)</td><td>返回迭代器</td></tr>
+      <tr><td><code>swap</code></td><td><code>swap(a, b)</code></td><td>交换（容器级O(1)）</td><td>O(1)</td><td>—</td></tr>
+    </table></div>
+    <h4>sort 与 stable_sort 对比辨析</h4>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>对比项</th><th>sort</th><th>stable_sort</th></tr>
+      <tr><td>稳定性</td><td>不稳定（相等元素相对次序可能变）</td><td><b>稳定</b>（保序）</td></tr>
+      <tr><td>复杂度</td><td>O(nlogn)，空间O(logn)</td><td>O(nlogn)，空间O(n)（归并思想）</td></tr>
+      <tr><td>选择依据</td><td>默认首选，常数小</td><td>多关键字"先按次关键字排好，再稳定排主关键字"场景</td></tr>
+    </table></div>
+    <h4>sort 三种典型用法</h4>
+<pre class="code" data-t="sort 用法模板"><code>#include &lt;algorithm&gt;
+using namespace std;
+
+struct Stu { int id; int score; };
+bool cmpScore(const Stu &amp;a, const Stu &amp;b) { return a.score &gt; b.score; }   // 函数比较器：成绩降序
+bool cmpMulti(const Stu &amp;a, const Stu &amp;b) {                               // 多关键字：成绩降序，同分id升序
+    if (a.score != b.score) return a.score &gt; b.score;
+    return a.id &lt; b.id;
+}
+
+int main() {
+    vector&lt;int&gt; v = {3, 1, 4, 1, 5};
+    sort(v.begin(), v.end());                     // 1 1 3 4 5 升序
+    sort(v.begin(), v.end(), greater&lt;int&gt;());     // 5 4 3 1 1 降序
+    sort(v.begin(), v.end(), [](const Stu &amp;a, const Stu &amp;b) { return a.score &gt; b.score; });  // lambda
+    return 0;
+}</code></pre>
+    <div class="warn"><b>高频易错点：</b>①cmp必须满足<b>严格弱序</b>：相等时返回false，写成 <code class="inl">&gt;=</code> 可能运行崩溃；②不稳定——需要保序换 stable_sort；③list不能用std::sort；④数组同样适用 sort(a, a+n)。</div>
+    <div class="cx"><span><b>sort</b> O(nlogn) 不稳定</span><span><b>stable_sort</b> O(nlogn) 稳定 空间O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>结构体数组按成绩降序、同分按学号升序排序；如果把cmp写成 <code class="inl">return a.score &gt;= b.score;</code> 会怎样？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>cmp见上方 cmpMulti。<b><code class="inl">&gt;=</code>违反严格弱序</b>：相等元素互相返回true，sort内部可能越界崩溃。规则：相等必须返回false。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>成绩单先按科目排好序，现要求按总分排序且<b>总分相同保持原相对次序</b>（按科目成绩的字典序）。选哪个排序？为什么？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>选 stable_sort（或手写归并/插入等稳定排序）。</b>"相同保持原相对次序"=稳定性要求，sort不满足。机试：<code class="inl">stable_sort(v.begin(), v.end(), cmp);</code>；笔试：写明"采用归并排序（稳定），O(nlogn)"——稳定性正是408排序章的高频考点。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-reverse">
+    <h3>11. reverse（逆置）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="lcline">🎬 对应课程：L17 插入排序思想的逆置版；L3 双指针 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">void reverse(BidirIt first, BidirIt last);</code> 逆置 [first, last)，原地双指针交换，O(n)/O(1)。</p>
+    <p><b>参数与返回值：</b>两个双向迭代器（end是尾后不参与）；无返回值，原地修改。vector/string/数组/list均可。</p>
+<pre class="code" data-t="reverse 用法"><code>vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+reverse(v.begin(), v.end());            // 5 4 3 2 1
+reverse(v.begin(), v.begin() + 3);      // 局部逆置前3个：3 4 5 2 1
+string s = "abcdef";
+reverse(s.begin() + 1, s.begin() + 4);  // "aedcbf"</code></pre>
+    <div class="note"><b>应试注意：</b>2010年真题「数组循环左移p位」最优解=<b>三次逆置法</b>，机试三行reverse搞定；笔试需手写逆置函数（见例2）。</div>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>把字符串s按单词逆序输出（单词间空格分隔），用reverse+双指针实现。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="按单词逆序"><code>reverse(s.begin(), s.end());            // 整体逆置
+int i = 0;
+while (i &lt; (int)s.size()) {
+    int j = i;
+    while (j &lt; (int)s.size() &amp;&amp; s[j] != ' ') j++;
+    reverse(s.begin() + i, s.begin() + j);   // 每个单词再逆回来
+    i = j + 1;
+}</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格应用题】</div>
+      <p>n个整数存于数组R，设计时间空间均最优的算法，将R循环左移p位。（2010年真题）</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>三次逆置法：</b>逆前p个→逆后n-p个→整体逆置。例：1,2,3,4,5左移2 → 2,1,3,4,5 → 2,1,5,4,3 → 3,4,5,1,2。</p>
+<pre class="code" data-t="循环左移"><code>void Reverse(int R[], int l, int r) {
+    for (int i = l, j = r; i &lt; j; i++, j--) {
+        int t = R[i]; R[i] = R[j]; R[j] = t;
+    }
+}
+void LeftShift(int R[], int n, int p) {
+    Reverse(R, 0, p - 1); Reverse(R, p, n - 1); Reverse(R, 0, n - 1);
+}</code></pre>
+        <p>O(n)/O(1)。机试三行：<code class="inl">reverse(a,a+p); reverse(a+p,a+n); reverse(a,a+n);</code>（LC189 轮转数组同源，见第七部分）。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-find">
+    <h3>12. find（线性查找）</h3>
+    <p class="lcline">🎬 对应课程：L22 顺序查找（O(n)） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">InputIt find(InputIt first, InputIt last, const T&amp; val);</code></p>
+    <p><b>参数与返回值：</b>线性扫描 [first, last)，返回<b>第一个等于val的迭代器</b>；找不到返回<b>last</b>。判失败：<code class="inl">find(...) != v.end()</code>。O(n)。<b>find_if</b>：谓词版 <code class="inl">find_if(first, last, 谓词)</code>。</p>
+    <div class="warn"><b>易错辨析：</b>通用find返回<b>迭代器</b>；string成员 <code class="inl">s.find(t)</code> 返回<b>下标</b>（失败为string::npos）。签名、语义、判空方式全不同。</div>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>在vector中找第一个偶数并输出其下标。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="find_if"><code>auto it = find_if(v.begin(), v.end(), [](int x) { return x % 2 == 0; });
+if (it != v.end()) cout &lt;&lt; it - v.begin() &lt;&lt; endl;</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>n个元素无序vector查找x：方案甲直接find；方案乙先sort再lower_bound。查1次谁快？查k次呢？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>查1次：甲O(n) &lt; 乙O(nlogn)+O(logn)。<b>查k次：</b>甲O(kn)，乙O(nlogn+k·logn)，k较大时乙反超——"先排序+多次二分"是408"时间尽可能高效"的常用心法。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-count">
+    <h3>13. count（计数）</h3>
+    <p class="lcline">🎬 对应课程：L22 顺序查找的计数版 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">difference_type count(InputIt first, InputIt last, const T&amp; val);</code></p>
+    <p><b>参数与返回值：</b>统计等于val的元素个数，O(n)；返回值是有符号整数类型。条件计数：<code class="inl">count_if(first, last, 谓词)</code>。</p>
+<pre class="code" data-t="count / count_if"><code>vector&lt;int&gt; v = {5, 3, 5, 8, 5};
+int c = count(v.begin(), v.end(), 5);              // 3
+int c2 = count_if(v.begin(), v.end(), [](int x) { return x &gt; 4; });   // 4</code></pre>
+    <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>统计字符串s中元音字母个数。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="count_if元音"><code>int c = count_if(s.begin(), s.end(), [](char ch) {
+    return ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u';
+});</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格应用题】</div>
+      <p>求n个整数的"主元素"（出现次数超过n/2者），时间尽量优。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>摩尔投票：</b>同则cnt++、异则cnt--，减到0换候选；最后用count验证候选。</p>
+<pre class="code" data-t="主元素"><code>int Majority(int a[], int n) {
+    int cand = a[0], cnt = 1;
+    for (int i = 1; i &lt; n; i++) {
+        if (a[i] == cand) cnt++;
+        else if (--cnt == 0) { cand = a[i]; cnt = 1; }
+    }
+    return count(a, a + n, cand) &gt; n / 2 ? cand : -1;   // 第二趟验证O(n)
+}</code></pre>
+        <p>O(n)/O(1)，笔试写明"调用线性计数O(n)"即可。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-lower">
+    <h3>14. lower_bound 与 upper_bound（二分查找）<span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L22 对半查找（BinSearchFirstPosGEK 返回 low 即 lower_bound 语义） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">ForwardIt lower_bound(first, last, x);</code>　<code class="inl">ForwardIt upper_bound(first, last, x);</code></p>
+    <p><b>语义（必背）：</b>在<b>非降序</b>区间上二分：lower_bound返回<b>第一个≥x</b>的位置；upper_bound返回<b>第一个&gt;x</b>的位置；不存在返回last。O(logn)。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>用途</th><th>写法</th></tr>
+      <tr><td>下标换算</td><td><code>int pos = lower_bound(a, a+n, x) - a;</code>（pos==n表示x比全部都大）</td></tr>
+      <tr><td>x是否存在</td><td><code>pos != n &amp;&amp; a[pos] == x</code></td></tr>
+      <tr><td>x出现次数</td><td><code>upper_bound(...) - lower_bound(...)</code></td></tr>
+      <tr><td>有序插入位置</td><td>lower_bound结果即插入点</td></tr>
+      <tr><td>set/map成员版</td><td><code>s.lower_bound(x)</code>（O(logn)；set无序禁用全局版）</td></tr>
+    </table></div>
+    <div class="danger"><b>最大坑点：</b>对<b>无序</b>区间调用结果是未定义的（不报错但结果错）。笔试的折半查找（判定树/ASL）必须手写，见第四部分5.1。</div>
+    <div class="cx"><span><b>时间</b> O(logn)</span><span><b>前提</b> 区间非降序</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>a={1,2,2,2,3}（下标0~4），lower_bound(2)与upper_bound(2)的下标？2的个数？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>1 和 4；个数3。</b>口诀：<b>左闭右开，[lb, ub) 即等值区间</b>。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>递增数组中插入x使仍递增，求插入位置；并统计x的出现次数（x可能不存在）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="插入位置+出现次数"><code>int pos = lower_bound(a, a + n, x) - a;          // 插入位置
+int cnt = upper_bound(a, a + n, x) - lower_bound(a, a + n, x);   // 出现次数</code></pre>
+        <p>笔试对应折半查找"查找失败时的比较位置即插入位置"——判定树画法见第四部分5.1；二分变形题见第七部分 LC35/LC34。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-unique">
+    <h3>15. unique（相邻去重）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="lcline">🎬 对应课程：L17 排序 + L5 数组技巧（先有序再相邻去重） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">ForwardIt unique(ForwardIt first, ForwardIt last);</code></p>
+    <p><b>语义（必背）：</b>把<b>相邻</b>重复元素"挤"到后面：不重复元素依次前移，返回<b>新逻辑尾后迭代器</b>。物理长度不变，尾部是残留值。标准用法"先sort再unique再erase"。</p>
+<pre class="code" data-t="排序去重三连"><code>vector&lt;int&gt; v = {5, 1, 3, 1, 5, 1};
+sort(v.begin(), v.end());                    // 1 1 1 3 5 5
+auto last = unique(v.begin(), v.end());      // 1 3 5 ? ? ?（逻辑尾）
+v.erase(last, v.end());                      // 1 3 5
+// 一行版：v.erase(unique(v.begin(), v.end()), v.end());  前提：已排序</code></pre>
+    <div class="warn"><b>高频易错点：</b>①只处理<b>相邻</b>重复，不排序不能全局去重；②unique本身O(n)，整体瓶颈是sort的O(nlogn)；③erase区间删除左闭右开。</div>
+    <div class="cx"><span><b>unique</b> O(n)</span><span><b>全局去重</b> O(nlogn)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础判断题】</div>
+      <p>对 v={1,2,1,2} 执行 unique 后，v内容与返回值- begin 为？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>v仍为{1,2,1,2}，返回end（差为4）。</b>没有相邻相等对，一个都不删——必须先排序。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>n个整数可能重复，输出去重后的升序序列（机试），并说明与set方案的区别。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>见上方"三连"，O(nlogn)。set方案：<code class="inl">set&lt;int&gt; s;</code> 边插边去重，代码更短但常数大、无下标访问。完整对比如第六部分·实战 e1。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-nth">
+    <h3>16. nth_element（部分排序/第k小）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="lcline">🎬 对应课程：L19 快速选择 QuickSelect（Partition 单边递归） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">void nth_element(RandomIt first, RandomIt nth, RandomIt last);</code></p>
+    <p><b>语义（必背）：</b>执行后，nth位置就是<b>完全排序后它该在的位置</b>，且左边都≤它、右边都≥它（两边内部无序）。本质=快速选择，平均O(n)。</p>
+<pre class="code" data-t="第k小/中位数"><code>nth_element(v.begin(), v.begin() + 2, v.end());    // v[2]=第3小
+int kth = v[k - 1];                                 // 先 nth_element(begin+k-1,...) 再取
+nth_element(v.begin(), v.begin() + n / 2, v.end()); // 中位数（n奇数）
+int mid = v[n / 2];</code></pre>
+    <div class="note"><b>应试注意：</b>只求第k小不必全排序——比sort便宜；笔试手写=快排Partition+单边递归（见第四部分6.3与第七部分LC215）。</div>
+    <div class="cx"><span><b>平均</b> O(n)</span><span><b>空间</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>求n个数的第k大（k≤n）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="第k大"><code>nth_element(v.begin(), v.begin() + n - k, v.end());  // 第k大=第n-k+1小
+cout &lt;&lt; v[n - k] &lt;&lt; endl;</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408真题风格应用题】</div>
+      <p>不用完整排序求n个无序整数的中位数，说明思想与复杂度。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>快速选择：</b>枢轴划分后，p==中位位置即答案；偏大只递归左半、偏小只递归右半。n+n/2+n/4+…≈2n → <b>平均O(n)</b>，最坏O(n²)；空间O(1)（迭代版）。机试一行：<code class="inl">nth_element(v.begin(), v.begin()+n/2, v.end());</code></p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-maxmin">
+    <h3>17. max / min / max_element / min_element</h3>
+    <p class="lcline">🎬 对应课程：L2 SelectMaxMin/BinarySelect 的最简版 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">max(a, b); min(a, b); max({a, b, c});</code>（C++11花括号版）<br><code class="inl">ForwardIt max_element(first, last);</code>　<code class="inl">ForwardIt min_element(first, last);</code></p>
+    <p><b>参数与返回值：</b>max/min返回<b>值</b>；max_element/min_element返回<b>迭代器</b>（多个最值取第一个），O(n)线性扫描。下标：<code class="inl">max_element(a, a+n) - a</code>。</p>
+<pre class="code" data-t="max/min 家族"><code>int a[] = {4, 9, 2, 9, 7};
+int mx = *max_element(a, a + 5);        // 9（值，记得解引用）
+int mi = max_element(a, a + 5) - a;     // 1（第一个最大值下标）
+int m = max(3, 5);
+int n = max({3, 5, 8, 1});              // 8</code></pre>
+    <div class="warn"><b>易错：</b>max_element返回<b>迭代器不是值</b>，输出要 <code class="inl">*it</code>；笔试求最值下标建议手写一行for。</div>
+    <div class="cx"><span><b>max/min</b> O(1)</span><span><b>*_element</b> O(n)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础判断题】</div>
+      <p><code class="inl">cout &lt;&lt; max_element(a, a+5);</code> 输出9吗？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>不是</b>——输出的是地址（int*）。应写 <code class="inl">*max_element(a, a+5)</code> 取值。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>顺序表求最大值与最小值，要求比较次数尽量少（进阶）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>基础：两次扫描O(2n)。<b>优化：</b>成对比较（先比一对大小，大者与max比、小者与min比），比较次数降为 <b>⌈3n/2⌉−2</b>——408"比较次数优化"经典结论。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-swap">
+    <h3>18. swap（交换）</h3>
+    <p class="lcline">🎬 对应课程：L3 链表插入删除的原子操作 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>原型：</b><code class="inl">void swap(T&amp; a, T&amp; b);</code></p>
+    <p><b>两级语义：</b>①元素级 <code class="inl">swap(v[i], v[j])</code> O(1)——排序/双指针高频；②容器级 <code class="inl">swap(v1, v2)</code> 只换内部指针，<b>O(1)不搬元素</b>，迭代器随容器互换。</p>
+<pre class="code" data-t="swap 两级语义"><code>swap(a[0], a[2]);         // 元素级 O(1)
+swap(a, b);               // 容器级 O(1)，只交换内部指针/size/capacity
+vector&lt;int&gt;().swap(v);    // 技巧：与空vector交换，真正释放内存</code></pre>
+    <div class="cx"><span><b>元素级</b> O(1)</span><span><b>容器级</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p><code class="inl">swap(v1, v2)</code>（两个满vector）的时间复杂度与 <code class="inl">v1 = v2</code> 的区别？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p>swap是<b>O(1)</b>（只换三个字段）；赋值是O(n)复制。迭代器swap后"跟着数据走"。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>手写swap交换两个整型变量（不用临时变量的进阶写法）。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="swap两种写法"><code>void mySwap(int &amp;a, int &amp;b) { int t = a; a = b; b = t; }        // 标准写法（笔试首选）
+void xorSwap(int &amp;a, int &amp;b) { a ^= b; b ^= a; a ^= b; }        // 异或版（仅当a、b不同址）</code></pre>
+        <p>笔试写临时变量版——异或版a、b同一地址时会把自身清0，属于隐藏坑。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-pair">
+    <h3>19. 工具类：pair（二元组）<span class="tag tag-ok">机试可用</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L11 哈夫曼（结点权值+编号入堆）、L15 堆优化 Dijkstra ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>核心定义：</b>捆绑两个值：<code class="inl">pair&lt;T1,T2&gt;</code>，成员 first/second。map的元素就是pair。支持<b>字典序</b>（先first后second）→ 可直接sort、可直接进set。</p>
+<pre class="code" data-t="pair 全家桶"><code>pair&lt;int, int&gt; p(1, 2);              // 直接构造
+auto q = make_pair(3, 4);            // 工厂函数自动推导
+pair&lt;int, string&gt; r = {5, "x"};      // C++11列表初始化
+
+vector&lt;pair&lt;int, int&gt;&gt; v;
+v.push_back({3, 7});
+sort(v.begin(), v.end());            // 默认first升序，first相同second升序
+
+// first升序、second降序：必须自写cmp
+sort(v.begin(), v.end(),
+     [](const pair&lt;int,int&gt; &amp;a, const pair&lt;int,int&gt; &amp;b) {
+         if (a.first != b.first) return a.first &lt; b.first;
+         return a.second &gt; b.second;
+     });</code></pre>
+    <div class="cx"><span><b>构造/访问</b> O(1)</span><span><b>比较</b> 字典序</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础选择题】</div>
+      <p>vector&lt;pair&lt;int,int&gt;&gt; 直接sort（不传cmp）的排序规则？</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>first升序；first相同按second升序（字典序）。</b>要"第二维降序"必须自写cmp。</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格应用题】</div>
+      <p>n个区间 [lᵢ, rᵢ]，按左端点升序排列（左端点相同按右端点降序），为"合并区间"做准备。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="区间排序cmp"><code>sort(v.begin(), v.end(), [](const pair&lt;int,int&gt; &amp;a, const pair&lt;int,int&gt; &amp;b) {
+    if (a.first != b.first) return a.first &lt; b.first;
+    return a.second &gt; b.second;
+});</code></pre>
+        <p>这正是LC56合并区间的预处理步骤（第七部分），笔试常以"区间调度"变体出现。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <section class="sec" id="s-tuple">
+    <h3>20. 工具类：tuple（多元组）<span class="tag tag-ok">了解即可</span></h3>
+    <p><b>核心介绍：</b>pair 的n元推广。408机试中三元以上才用得上（如"(边权,端点1,端点2)"），一般 pair 嵌套或小结构体更清晰。掌握三件事：构造、get取值、tie解包。</p>
+<pre class="code" data-t="tuple 基本用法"><code>tuple&lt;int, string, double&gt; t = make_tuple(1, "w", 3.5);
+int id = get&lt;0&gt;(t);                  // 按编译期下标取值
+string name = get&lt;1&gt;(t);
+
+int a; string b; double c;
+tie(a, b, c) = t;                    // 解包到已有变量；用ignore占位：tie(a, ignore, c)
+auto [x, y, z] = t;                  // 结构化绑定是C++17语法，408按C++11作答请用tie！</code></pre>
+    <div class="warn"><b>注意：</b>结构化绑定 <code class="inl">auto [x,y,z]</code> 是 <b>C++17</b> 语法。408按C++11标准作答，代码示例一律用 <code class="inl">tie</code> 或 <code class="inl">get&lt;i&gt;</code>，避免阅卷环境不兼容。</div>
+    <div class="cx"><span><b>get&lt;i&gt;</b> O(1)</span><span><b>tie解包</b> O(1)</span></div>
+    <div class="ex">
+      <div class="ex-t">【例题·408风格·选择题】</div>
+      <p>下列哪种写法<b>不符合</b>C++11标准？A. <code class="inl">make_tuple(1,2)</code>　B. <code class="inl">get&lt;0&gt;(t)</code>　C. <code class="inl">auto [a,b] = t;</code>　D. <code class="inl">tie(a,b) = t;</code></p>
+      <details class="ans"><summary>查看答案</summary><div class="ans-body">
+        <p><b>C。</b>结构化绑定是C++17引入。408机试/复试环境若只支持C++11，该写法无法编译——这也是本手册所有代码遵守C++11的原因。</p>
+      </div></details>
+    </div>
+  </section>
+  
+
+  <section class="sec" id="s-cmp">
+    <h3>21. 工具类：自定义比较函数 / 仿函数（cmp重载写法必考）<span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="lcline">🎬 对应课程：L18 优先队列比较方向（greater→小根堆）、L11 建树排序 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p><b>核心定义：</b>凡是带比较器的场合（sort/stable_sort/set/map/priority_queue），比较器都要求<b>严格弱序</b>：①cmp(a,a)==false；②对称反对称；③可传递。<b>相等必须返回false</b>是铁律。</p>
+    <h4>四种比较器写法 + 三大容器比较器方向对照</h4>
+<pre class="code" data-t="比较器写法大全 · 必背"><code>// ① 普通函数（sort用）
+bool cmp(const Stu &amp;a, const Stu &amp;b) { return a.score &gt; b.score; }
+sort(v.begin(), v.end(), cmp);
+
+// ② 仿函数（函数对象）：重载 operator()
+struct CmpScore {
+    bool operator()(const Stu &amp;a, const Stu &amp;b) const { return a.score &gt; b.score; }
+};
+sort(v.begin(), v.end(), CmpScore());
+
+// ③ lambda（C++11，机试推荐）
+sort(v.begin(), v.end(), [](const Stu &amp;a, const Stu &amp;b) { return a.score &gt; b.score; });
+
+// ④ 预置仿函数：greater&lt;T&gt;() 降序、less&lt;T&gt;() 升序
+sort(v.begin(), v.end(), greater&lt;int&gt;());
+
+// ===== 容器比较器方向对照（最易混，必背） =====
+// sort:     cmp(a,b)==true  → a排在b前面
+// set/map:  cmp(a,b)==true  → a排在b前面（同sort，默认less升序）
+// priority_queue: cmp(a,b)==true → a优先级"低"、排在后面！
+//   默认less → 大根堆；greater → 小根堆（方向与sort相反）</code></pre>
+    <div class="warn"><b>高频易错点：</b>①priority_queue的比较器方向与sort<b>相反</b>（greater得出小根堆）——写完必须验证一次堆顶；②set/map自定义类型比较器要加 <code class="inl">const</code>（两个形参与函数本身）；③相等返回true（≥/≤）会让sort崩溃。</div>
+    <div class="cx"><span><b>比较器本身</b> O(1)</span><span><b>方向陷阱</b> priority_queue 与 sort 相反</span></div>
+    <div class="ex">
+      <div class="ex-t">【例1·基础用法题】</div>
+      <p>定义结构体Point{x,y}，按x升序、x相同按y降序，分别用函数、仿函数、lambda三种方式写比较器。</p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+<pre class="code" data-t="三种cmp写法"><code>struct Point { int x, y; };
+bool cmpF(const Point &amp;a, const Point &amp;b) {
+    return a.x != b.x ? a.x &lt; b.x : a.y &gt; b.y;
+}
+struct CmpO { bool operator()(const Point &amp;a, const Point &amp;b) const {
+    return a.x != b.x ? a.x &lt; b.x : a.y &gt; b.y; } };
+auto cmpL = [](const Point &amp;a, const Point &amp;b) { return a.x != b.x ? a.x &lt; b.x : a.y &gt; b.y; };
+sort(p.begin(), p.end(), cmpF);   // 或 CmpO() / cmpL</code></pre>
+      </div></details>
+    </div>
+    <div class="ex">
+      <div class="ex-t">【例2·408风格辨析题】</div>
+      <p>想要"最小元素优先"的优先队列，下面两种写法哪个对？为什么？<br>A. <code class="inl">priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt;</code>　B. <code class="inl">priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt;&gt;</code></p>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body">
+        <p><b>A对。</b>priority_queue中"比较返回true=优先级低、靠后"，greater(int)表示"大的靠后"，堆顶即最小。B是默认行为=大根堆。这就是"比较器方向与sort相反"的典型体现。</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- ============ 第四部分 ============ -->
+  </div>
+
+</main>
+<div class="thu-watermark">北大</div>
+<footer>🏛️ 燕园北大 · 数据结构自学网站 🏛️<br>爱国 进步 民主 科学 —— 博雅塔下宜聆教，未名湖畔好读书 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">视觉主题风格致敬北京大学（北大红配色），非官方站点 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "stl", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>
