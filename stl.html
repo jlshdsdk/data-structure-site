@@ -86,6 +86,7 @@
     <h3>1. vector —— 动态数组<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试需声明</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L5 数组与矩阵（顺序存储在慕课/教材）；机试首选容器 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：逻辑上就是顺序表。笔试作答顺序表按SqList手写；机试中vector是第一工具容器。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c2s2">第2章 顺序表的定义与操作</a> —— 顺序表按位存取O(1)、插删O(n)的原理。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>连续内存的动态数组，O(1)随机访问、尾部均摊O(1)插删、自动扩容。下标从0起，<code class="inl">v[i]</code>不做越界检查。<b>适用：</b>随机访问多、尾部增删、做邻接表/DP表。<b>禁用：</b>频繁头部/中间插删（O(n)，应换list/deque）。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -129,6 +130,7 @@
     <h3>2. string —— 字符串<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试多手写</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L6 字符串模式匹配（KMP 必须手写；string 是机试载体） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：串的顺序存储。KMP/BF模式匹配必须手写；string是机试串题载体。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c4s1">第4章 串的定义与KMP模式匹配</a> —— 串的顺序存储、BF与KMP手写考点。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>可变长字符串，用法近vector，另支持<code class="inl">+</code>拼接与字典序直接比较。<b>适用：</b>机试读串/拆词/匹配。<b>禁用：</b>笔试考KMP的next数组计算——那是手写考点，string只是载体。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -177,6 +179,7 @@ while (pos != string::npos) {
     <h3>3. deque —— 双端队列<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span></h3>
     <p class="lcline">🎬 对应课程：L4 队列（课件用手写循环队列，见第四部分2.2） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：笔试考"输出受限/输入受限双端队列的合法序列判断"（逻辑结构选择题）；STL deque是机试单调队列的标准载体。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c3s7">第3章 双端队列</a> —— 输出/输入受限双端队列合法序列判断。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>两端均O(1)插删、支持O(1)随机访问的队列（分段连续，原理不深究）。<b>适用：</b>滑动窗口、两端操作。<b>禁用：</b>笔试写循环队列时用手写数组版更稳。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -211,6 +214,7 @@ for (int x : d) cout &lt;&lt; x &lt;&lt; " ";</code></pre>
     <h3>4. list —— 双向链表<span class="tag tag-warn">机试可用</span><span class="tag tag-no">笔试须手写</span></h3>
     <p class="lcline">🎬 对应课程：L3 线性表的链接存储（考链表必须手写 LinkList，禁用 std::list 作答） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：考链表必手写LinkList；list用于机试快速模拟（约瑟夫环等）。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c2s9">第2章 双链表与链式存储</a> —— 链表结点、双向指针操作。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>双向链表，已知迭代器位置插删O(1)，<b>不支持随机访问</b>（无[]）。自带成员 <code class="inl">sort()</code>（归并、稳定），因为std::sort需要随机访问迭代器。<b>适用：</b>频繁任意位置插删、splice拼接。<b>禁用：</b>频繁按下标访问（O(n)）。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -258,6 +262,7 @@ while (!l.empty()) {
     <h3>5. set / multiset —— 有序集合<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L23 二叉查找树（set/map 底层即红黑树，L23 PAGE 110-112） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：逻辑上是BST/平衡树的应用。笔试考BST、AVL必手写；set是机试"有序+去重+前驱后继"神器。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s5">第7章 二叉排序树与有序查找</a> —— set底层红黑树=有序集合，中序遍历有序。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>红黑树实现（记住"有序+对数操作"即可）。set自动升序+去重；multiset允许重复。<b>适用：</b>去重、动态有序集合、前驱后继、区间统计。<b>禁用：</b>无需有序、只要判定存在——用unordered_set更快。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -298,6 +303,7 @@ if (it != s.end()) /* *it即后继 */;</code></pre>
     <h3>6. map / multimap —— 有序键值对<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L23 红黑树（STL map 基于&#12141;红黑树）+ L22 有序查找 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：对应"查找表/索引"。笔试考散列表、BST必手写；map是机试映射计数第一选择。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s5">第7章 查找结构</a> —— map=关键字有序查找表。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>按key升序的键值对容器（红黑树）。value可重复、key唯一（multimap的key可重复）。<b>适用：</b>计数、编号映射、有序统计。<b>禁用：</b>不需要有序时用unordered_map更快。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -337,6 +343,7 @@ for (auto it = m.lower_bound(l); it != m.end() &amp;&amp; it-&gt;first &lt;= r; 
     <h3>7. unordered_set / unordered_map —— 哈希容器<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L25 散列（unordered_* 就是拉链法散列表的工程实现） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：笔试考散列表构造/冲突处理/ASL必须手写；unordered_*是机试O(1)判定与计数工具。哈希特性与考场注意事项见下表。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s14">第7章 散列表</a> —— unordered系列底层就是哈希表（拉链法）。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>哈希表（拉链法）实现的set/map：<b>无序</b>、平均O(1)插删查、最坏O(n)。<b>适用：</b>存在性判定、计数、两数之和类问题（空间换时间）。<b>禁用：</b>需要有序/前驱后继/区间统计（没有lower_bound）。</p>
     <h4>map 与 unordered_map 对比辨析（选择题必考）</h4>
     <div class="tbl-wrap"><table class="api">
@@ -374,6 +381,7 @@ return false;</code></pre>
     <h3>8. 容器适配器：stack / queue / priority_queue<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span><span class="tag tag-hot">高频考点</span></h3>
     <p class="lcline">🎬 对应课程：L4 栈和队列 + L18 堆（priority_queue 即堆） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：笔试考出入序列合法性、循环队列、手工建堆——全手写；适配器是机试利器。大根堆/小根堆写法见下方专框，必背。</p>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c3s1">第3章 栈和队列 + 第8章堆</a> —— stack/queue对应第3章，priority_queue对应第8章堆排序。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>适配器=把底层容器封装成受限接口。<b>三者都没有迭代器，不能遍历、不能按下标访问</b>。<b>适用：</b>LIFO/FIFO/取最值场景。<b>禁用：</b>需要遍历或随机访问——请改用deque/vector。</p>
     <h4>常用接口</h4>
     <div class="tbl-wrap"><table class="api">
@@ -409,6 +417,7 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; smallQ;   // �
 
   <section class="sec" id="s-iter">
     <h3>9. 迭代器：分类、常用操作与全部失效场景<span class="tag tag-hot">高频考点</span><span class="tag tag-no">408必考坑</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c2s11">链表与指针语义</a> —— 迭代器失效≈指针失效，链表删除仅失效当前。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L4 栈帧与递归（L2/L4 的均摊与扩容联动） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>核心定义：</b>迭代器="广义指针"，统一遍历方式。<code class="inl">begin()</code>指首元素、<code class="inl">end()</code>指<b>尾后位置</b>，所有区间算法均为左闭右开 [begin, end)。</p>
     <h4>迭代器分类（能力从弱到强）</h4>
@@ -456,6 +465,7 @@ priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; smallQ;   // �
 
   <section class="sec" id="s-sort">
     <h3>10. 通用算法总览 与 sort / stable_sort<span class="tag tag-ok">机试可用</span><span class="tag tag-warn">笔试看考察点</span><span class="tag tag-tpl">必考模板</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c8s1">第8章 排序总论</a> —— 各排序复杂度/稳定性对比。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L17-L21 五讲排序（考排序过程必须手写） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>核心定义：</b>通用算法以迭代器区间 [first, last)（左闭右开）为参数，与容器解耦。先总览，再逐个击破。</p>
     <h4>通用算法速查表（背）</h4>
@@ -518,6 +528,7 @@ int main() {
 
   <section class="sec" id="s-reverse">
     <h3>11. reverse（逆置）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c2s3">第2章 顺序表逆置</a> —— 首尾双指针原地交换。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L17 插入排序思想的逆置版；L3 双指针 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">void reverse(BidirIt first, BidirIt last);</code> 逆置 [first, last)，原地双指针交换，O(n)/O(1)。</p>
     <p><b>参数与返回值：</b>两个双向迭代器（end是尾后不参与）；无返回值，原地修改。vector/string/数组/list均可。</p>
@@ -562,6 +573,7 @@ void LeftShift(int R[], int n, int p) {
 
   <section class="sec" id="s-find">
     <h3>12. find（线性查找）</h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s2">第7章 顺序查找</a> —— 无序线性查找O(n)。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L22 顺序查找（O(n)） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">InputIt find(InputIt first, InputIt last, const T&amp; val);</code></p>
     <p><b>参数与返回值：</b>线性扫描 [first, last)，返回<b>第一个等于val的迭代器</b>；找不到返回<b>last</b>。判失败：<code class="inl">find(...) != v.end()</code>。O(n)。<b>find_if</b>：谓词版 <code class="inl">find_if(first, last, 谓词)</code>。</p>
@@ -586,6 +598,7 @@ if (it != v.end()) cout &lt;&lt; it - v.begin() &lt;&lt; endl;</code></pre>
 
   <section class="sec" id="s-count">
     <h3>13. count（计数）</h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s2">第7章 顺序查找</a> —— 按值统计即线性扫描。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L22 顺序查找的计数版 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">difference_type count(InputIt first, InputIt last, const T&amp; val);</code></p>
     <p><b>参数与返回值：</b>统计等于val的元素个数，O(n)；返回值是有符号整数类型。条件计数：<code class="inl">count_if(first, last, 谓词)</code>。</p>
@@ -622,6 +635,7 @@ int c2 = count_if(v.begin(), v.end(), [](int x) { return x &gt; 4; });   // 4</c
 
   <section class="sec" id="s-lower">
     <h3>14. lower_bound 与 upper_bound（二分查找）<span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s3">第7章 折半查找</a> —— lower_bound即折半查找下界版。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L22 对半查找（BinSearchFirstPosGEK 返回 low 即 lower_bound 语义） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">ForwardIt lower_bound(first, last, x);</code>　<code class="inl">ForwardIt upper_bound(first, last, x);</code></p>
     <p><b>语义（必背）：</b>在<b>非降序</b>区间上二分：lower_bound返回<b>第一个≥x</b>的位置；upper_bound返回<b>第一个&gt;x</b>的位置；不存在返回last。O(logn)。</p>
@@ -655,6 +669,7 @@ int cnt = upper_bound(a, a + n, x) - lower_bound(a, a + n, x);   // 出现次数
 
   <section class="sec" id="s-unique">
     <h3>15. unique（相邻去重）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c8s2">第8章 排序应用</a> —— 先排序后去重的经典组合。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L17 排序 + L5 数组技巧（先有序再相邻去重） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">ForwardIt unique(ForwardIt first, ForwardIt last);</code></p>
     <p><b>语义（必背）：</b>把<b>相邻</b>重复元素"挤"到后面：不重复元素依次前移，返回<b>新逻辑尾后迭代器</b>。物理长度不变，尾部是残留值。标准用法"先sort再unique再erase"。</p>
@@ -683,6 +698,7 @@ v.erase(last, v.end());                      // 1 3 5
 
   <section class="sec" id="s-nth">
     <h3>16. nth_element（部分排序/第k小）<span class="tag tag-tpl">必考模板</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c8s7">第8章 堆与快速选择</a> —— TopK问题：堆O(nlogk)思想。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L19 快速选择 QuickSelect（Partition 单边递归） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">void nth_element(RandomIt first, RandomIt nth, RandomIt last);</code></p>
     <p><b>语义（必背）：</b>执行后，nth位置就是<b>完全排序后它该在的位置</b>，且左边都≤它、右边都≥它（两边内部无序）。本质=快速选择，平均O(n)。</p>
@@ -711,6 +727,7 @@ cout &lt;&lt; v[n - k] &lt;&lt; endl;</code></pre>
 
   <section class="sec" id="s-maxmin">
     <h3>17. max / min / max_element / min_element</h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c8s6">第8章 简单选择排序</a> —— 一趟选最值=选择排序思想。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L2 SelectMaxMin/BinarySelect 的最简版 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">max(a, b); min(a, b); max({a, b, c});</code>（C++11花括号版）<br><code class="inl">ForwardIt max_element(first, last);</code>　<code class="inl">ForwardIt min_element(first, last);</code></p>
     <p><b>参数与返回值：</b>max/min返回<b>值</b>；max_element/min_element返回<b>迭代器</b>（多个最值取第一个），O(n)线性扫描。下标：<code class="inl">max_element(a, a+n) - a</code>。</p>
@@ -739,6 +756,7 @@ int n = max({3, 5, 8, 1});              // 8</code></pre>
 
   <section class="sec" id="s-swap">
     <h3>18. swap（交换）</h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c2s3">第2章 顺序表操作</a> —— 逆置/交换的基础操作。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L3 链表插入删除的原子操作 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>原型：</b><code class="inl">void swap(T&amp; a, T&amp; b);</code></p>
     <p><b>两级语义：</b>①元素级 <code class="inl">swap(v[i], v[j])</code> O(1)——排序/双指针高频；②容器级 <code class="inl">swap(v1, v2)</code> 只换内部指针，<b>O(1)不搬元素</b>，迭代器随容器互换。</p>
@@ -766,6 +784,7 @@ void xorSwap(int &amp;a, int &amp;b) { a ^= b; b ^= a; a ^= b; }        // 异�
 
   <section class="sec" id="s-pair">
     <h3>19. 工具类：pair（二元组）<span class="tag tag-ok">机试可用</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c7s5">第7章 查找表存储</a> —— 二元组<关键字,卫星数据>。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L11 哈夫曼（结点权值+编号入堆）、L15 堆优化 Dijkstra ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>核心定义：</b>捆绑两个值：<code class="inl">pair&lt;T1,T2&gt;</code>，成员 first/second。map的元素就是pair。支持<b>字典序</b>（先first后second）→ 可直接sort、可直接进set。</p>
 <pre class="code" data-t="pair 全家桶"><code>pair&lt;int, int&gt; p(1, 2);              // 直接构造
@@ -805,6 +824,7 @@ sort(v.begin(), v.end(),
 
   <section class="sec" id="s-tuple">
     <h3>20. 工具类：tuple（多元组）<span class="tag tag-ok">了解即可</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c6s10">第6章 图的边结构</a> —— 多元组存"(边权,端点)"是Dijkstra/Kruskal标配。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心介绍：</b>pair 的n元推广。408机试中三元以上才用得上（如"(边权,端点1,端点2)"），一般 pair 嵌套或小结构体更清晰。掌握三件事：构造、get取值、tie解包。</p>
 <pre class="code" data-t="tuple 基本用法"><code>tuple&lt;int, string, double&gt; t = make_tuple(1, "w", 3.5);
 int id = get&lt;0&gt;(t);                  // 按编译期下标取值
@@ -827,6 +847,7 @@ auto [x, y, z] = t;                  // 结构化绑定是C++17语法，408按C+
 
   <section class="sec" id="s-cmp">
     <h3>21. 工具类：自定义比较函数 / 仿函数（cmp重载写法必考）<span class="tag tag-tpl">必考模板</span><span class="tag tag-hot">高频考点</span></h3>
+    <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c8s1">第8章 排序稳定性与比较</a> —— 自定义比较=排序题的核心考点。原理精讲见王道精讲页对应小节。</p>
     <p class="lcline">🎬 对应课程：L18 优先队列比较方向（greater→小根堆）、L11 建树排序 ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p><b>核心定义：</b>凡是带比较器的场合（sort/stable_sort/set/map/priority_queue），比较器都要求<b>严格弱序</b>：①cmp(a,a)==false；②对称反对称；③可传递。<b>相等必须返回false</b>是铁律。</p>
     <h4>四种比较器写法 + 三大容器比较器方向对照</h4>
