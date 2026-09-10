@@ -91,7 +91,7 @@
     if (!side || $(".thu-side", side)) return;
     var d = document.createElement("div");
     d.className = "thu-side";
-    d.innerHTML = "<div class=\"t1\">未名博雅</div><div class=\"t2\">北京大学 · 数据结构<br><b>爱国 · 进步 · 民主 · 科学</b></div>";
+    d.innerHTML = "<div class=\"t1\">学而时习</div><div class=\"t2\">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>";
     side.insertBefore(d, side.firstChild);
   }
 
@@ -266,7 +266,7 @@
     }
     if (!hits.length) {
       var extra = PAGE.search === "local"
-        ? ' <a href="index.html?q=' + encodeURIComponent(q) + '" style="color:#94070a">在全网搜索「' + esc(q) + "」→</a>"
+        ? ' <a href="index.html?q=' + encodeURIComponent(q) + '" style="color:#2563eb">在全网搜索「' + esc(q) + "」→</a>"
         : "";
       searchList.innerHTML = '<div class="search-empty">本页未找到与「' + esc(q) + "」相关的内容。" + extra + "</div>";
     } else {
@@ -387,7 +387,7 @@
   function injectCheat() {
     if ($("#cheatPanel")) return;
     var fab = document.createElement("button");
-    fab.className = "cheat-fab"; fab.id = "cheatFab"; fab.textContent = "📋 燕园速查卡";
+    fab.className = "cheat-fab"; fab.id = "cheatFab"; fab.textContent = "📋 速查卡";
     var panel = document.createElement("div");
     panel.className = "cheat-panel"; panel.id = "cheatPanel";
     var quick = CHEAT_LINKS.map(function (p) {
