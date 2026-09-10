@@ -354,3 +354,10 @@ html.night .side-cnt{background:rgba(255,255,255,.06)}
 html.night .asc{background:#1a1418;border-color:#322328;color:#d6cdd4}
 html.night .pos{color:#9a8a90}
 html.night footer{color:#8a7a80;border-top-color:#322328}
+
+/* ---------- 王道课后题题卡 ---------- */
+.prob-desc .opts{margin-top:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:4px 18px}
+.prob-desc .opt{font-size:13.5px;color:#334155;line-height:1.6;padding-left:6px}
+.final-ans{margin-top:8px;padding:8px 12px;background:#eef5fe;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;font-size:14px}
+html.night .final-ans{background:#251c1e;border-left-color:#3b82f6;color:#c9bec7}
+html.night .prob-desc .opt{color:#c9bec7}

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第6章 图 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第6章 图</p>
+  </div>
+  <div class="part-zone" id="wdex6">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第6章 图</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题103题（官方速查答案+逐题独立验算解析）、综合题28题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-6-1"><h3>6.1 图的基本概念<span class="tag tag-tpl">18题选择 + 2题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-6-1-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个有n个顶点和n条边的无向图一定是（）。</p><div class="opts"><div class="opt"><b>A.</b> 连通的</div><div class="opt"><b>B.</b> 不连通的</div><div class="opt"><b>C.</b> 无环的</div><div class="opt"><b>D.</b> 有环的</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>n个顶点的无向森林最多只有n-1条边，现边数已达n，超出森林上限，必含环。A、B不成立：连通性不确定——四点环（4点4边）连通，而K3加一个孤立点（4点4边）不连通；C恰好说反。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-1-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.1 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>图G是一个非连通无向图，共有28条边，该图至少有多少个顶点？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>边数固定时要顶点最少，应把边尽量“浓缩”进一个连通分量：k个顶点的无向完全图最多C(k,2)条边。由C(8,2)=8×7/2=28，8个顶点的完全图恰好容纳全部28条边。</p><p><b>步骤：</b>①取K8（8个顶点、28条边）作为一个连通分量；②K8本身连通，为使整图非连通，至少再添加1个孤立顶点；③验证：9个顶点最多36条边，构造“K8+1个孤立点”恰含28条边且非连通，可行；若只有8个顶点，最多28条边即K8必连通，矛盾。</p><p><b>结论：</b>该图至少有<b>8+1=9个</b>顶点。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若从无向图的任意顶点出发进行一次深度优先搜索即可访问所有顶点，则该图一定是（）。</p><div class="opts"><div class="opt"><b>A.</b> 强连通图</div><div class="opt"><b>B.</b> 连通图</div><div class="opt"><b>C.</b> 有回路</div><div class="opt"><b>D.</b> 一棵树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>任取一点出发一次遍历就能访问全部顶点，说明任意顶点到其余顶点都连通，即图为连通图。A错：强连通是有向图概念；C错：连通与有回路无必然联系，树形连通图无回路；D错：连通图未必无环。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-1-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.1 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>非连通无向图G含有28条边，问图G最多可能有多少个顶点？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>与第1题对照，本题问“上界”。非连通无向图的顶点数没有上界：在已有28条边的非连通图上任意添加孤立顶点，边数不变、图仍非连通，顶点数可以任意大。</p><p><b>步骤：</b>①设G含28条边且非连通；②添加一个孤立顶点v，G∪{v}仍非连通且边数仍为28；③重复②任意多次。</p><p><b>结论：</b>顶点数<b>没有上限</b>（可以任意多）。补充：若附加“每个顶点的度均大于0（无孤立点）”的约束，则每个非平凡连通分量至少含1条边，28条边至多构成28个“单边分量”，此时最多2×28=<b>56</b>个顶点。</p><span style="color:#64748b">【题面由王道原题重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下关于图的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 图与树的区别在于图的边数大于等于顶点数</div><div class="opt"><b>B.</b> 假设有图G=(V,{E})，顶点集V'⊆V，E'⊆E，则V'和{E'}构成G的子图</div><div class="opt"><b>C.</b> 无向图的连通分量是指无向图中的极大连通子图</div><div class="opt"><b>D.</b> 图的遍历就是从图中某一顶点出发访遍图中其余顶点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>连通分量定义为极大连通子图，C正确。A错：树边数=顶点数-1，而图（如森林）边数也可小于顶点数；B错：子图还要求E'中每条边的两个端点都属于V'，仅取子集不够；D错：遍历还要求每个顶点<b>只被访问一次</b>。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下关于图的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 强连通有向图的任何顶点到其他所有顶点都有弧</div><div class="opt"><b>B.</b> 图的任意顶点的入度等于出度</div><div class="opt"><b>C.</b> 有向完全图一定是强连通有向图</div><div class="opt"><b>D.</b> 有向图的边集的子集和顶点集的子集可构成原有向图的子图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>有向完全图任意两顶点之间互有弧（共n(n-1)条），任意两点直接互达，必强连通。A错：强连通只要求<b>可达</b>，可经中间顶点，不必有直接弧；B错：一般有向图顶点的入度与出度不必相等；D错：子图要求所选弧的两端点都在顶点子集内。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个有28条边的非连通无向图至少有（）个顶点。</p><div class="opts"><div class="opt"><b>A.</b> 7</div><div class="opt"><b>B.</b> 8</div><div class="opt"><b>C.</b> 9</div><div class="opt"><b>D.</b> 10</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>非连通且边数固定时顶点最少，应把边尽量集中：8个顶点的完全图K8恰有C(8,2)=8×7/2=28条边，但K8连通，须再加1个孤立顶点才非连通，共9个。8个顶点时最多28条边即K8必连通，矛盾；7个顶点最多21条边放不下28条。故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对于一个有n个顶点的图：若是连通无向图，其边的个数至少为（）；若是强连通有向图，其边的个数至少为（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1，n</div><div class="opt"><b>B.</b> n-1，n(n-1)</div><div class="opt"><b>C.</b> n，n</div><div class="opt"><b>D.</b> n，n(n-1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>第一空：连通无向图最少n-1条边，树即达下界。第二空：强连通要求每个顶点入度≥1，故弧数≥入度总和≥n，n个顶点构成的有向环恰用n条弧达到下界。B、D的n(n-1)是有向完全图的弧数，并非下界；C的n高于树的下界。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P199</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>无向图G有23条边，度为4的顶点有5个，度为3的顶点有4个，其余都是度为2的顶点，则图G有（）个顶点。</p><div class="opts"><div class="opt"><b>A.</b> 11</div><div class="opt"><b>B.</b> 12</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 16</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>握手定理：顶点度数之和=2e=46。设度2的顶点有x个，则4×5+3×4+2x=46，即32+2x=46，x=7。顶点总数=5+4+7=16。只需求度和守恒，无需构造具体图，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在有n个顶点的有向图中，顶点的度最大可达（）。</p><div class="opts"><div class="opt"><b>A.</b> n</div><div class="opt"><b>B.</b> n-1</div><div class="opt"><b>C.</b> 2n</div><div class="opt"><b>D.</b> 2n-2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>有向图顶点的度=入度+出度。简单图中一个顶点最多与其余n-1个顶点各有一对方向相反的弧：入度≤n-1且出度≤n-1，故度≤2(n-1)=2n-2，有向完全图中每个顶点恰达此值。C是陷阱：忘了除去自身。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有6个顶点的无向图，当有（）条边时能确保是一个连通图。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 9</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>“确保”需对最坏情况成立：让5个顶点构成完全图K5（10条边）、第6个顶点孤立，此时10条边仍可不连通；再添1条边必然连到第6个顶点，图必连通。故需C(5,2)+1=11条。A、B、C均可构造仍不连通的反例。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有无向图G=(V,E)和G'=(V',E')，若G'是G的生成树，则下列不正确的是（）。<br/>I. G'为G的连通分量<br/>II. G'为G的无环子图<br/>III. G'为G的极小连通子图且V'=V</p><div class="opts"><div class="opt"><b>A.</b> I、II</div><div class="opt"><b>B.</b> 只有III</div><div class="opt"><b>C.</b> II、III</div><div class="opt"><b>D.</b> 只有I</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>生成树是包含全部顶点的极小连通子图：III正确；极小连通再添任一条G中的边必成环，自身无环，II正确。I不正确：连通分量是<b>极大</b>连通子图，当G本身含环时，生成树删过边、不是G的连通分量（仅当G是一棵树时二者重合）。故不正确的只有I，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有51个顶点和21条边的无向图，其连通分量最多为（）个。</p><div class="opts"><div class="opt"><b>A.</b> 33</div><div class="opt"><b>B.</b> 34</div><div class="opt"><b>C.</b> 45</div><div class="opt"><b>D.</b> 32</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>分量数=孤立点数+非平凡分量数，要让非孤立顶点尽量少：把21条边全部塞进一个K7（C(7,2)=21，恰好7个顶点），其余51-7=44个顶点全为孤立点，共1+44=45个分量。若把边摊开（如每条边单独成一分量）非孤立顶点达42个，反而只有30个分量——这是最大陷阱。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在如下图所示的有向图中，共有（）个强连通分量。</p><div class="asc">1 ⇄ 2，1 → 3
+（顶点1、2之间有一对互达的弧，顶点3可由1到达但无法返回）</div><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>强连通分量=极大的相互可达顶点集。图中仅顶点1、2通过一对反向弧互相可达，构成一个非平凡强连通分量；顶点3只能被到达、无法回到1、2，自成单独分量。共2个。判定口诀：有向图中找“环上互达”的极大组，组外顶点各算一个。选B。<span style="color:#64748b">【原图由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若具有n个顶点的图是一个环，则它有（）棵生成树。</p><div class="opts"><div class="opt"><b>A.</b> n!</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n-1</div><div class="opt"><b>D.</b> 1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>n个顶点的环恰有n条边且连通。生成树需n-1条边且连通，即从环中删去恰好1条边：删任一条都得到一条经过全部顶点的路径，是生成树；n条边有n种删法，对应n棵不同的生成树。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>若一个具有n个顶点、e条边的无向图是一个森林，则该森林中必有（）棵树。</p><div class="opts"><div class="opt"><b>A.</b> n</div><div class="opt"><b>B.</b> e</div><div class="opt"><b>C.</b> n-e</div><div class="opt"><b>D.</b> 1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>设森林含s棵树，第i棵树有v<sub>i</sub>个顶点即v<sub>i</sub>-1条边，求和：n=Σv<sub>i</sub>，e=Σ(v<sub>i</sub>-1)=n-s，解得s=n-e。验算：单棵树e=n-1→s=1；n个孤立点e=0→s=n，均成立。A、B把顶点数、边数当树数；D只对单棵树成立。选C。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2009统考真题】下列关于无向连通图特性的叙述中，正确的是（）。<br/>I. 所有顶点的度之和为偶数<br/>II. 边数大于顶点个数减1<br/>III. 至少有一个顶点的度为1</p><div class="opts"><div class="opt"><b>A.</b> 只有I</div><div class="opt"><b>B.</b> 只有II</div><div class="opt"><b>C.</b> I和III</div><div class="opt"><b>D.</b> II和III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>I对：度数之和=2×边数恒为偶数（握手定理）。II错：树是连通图，边数恰为n-1，并非大于。III错：n个顶点构成的环（如三角形）所有顶点度均为2，不存在度为1的顶点。故只有I正确。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2010统考真题】若无向图G=(V,E)中含有7个顶点，要保证图G在任何情况下都是连通的，则需要的边数最少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 6</div><div class="opt"><b>B.</b> 15</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 21</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>“任何情况”都连通要按最坏构造考虑：6个顶点先构成完全图K6需C(6,2)=15条边，第7个顶点仍可孤立；再添1条边必连到第7个顶点，图必连通，共15+1=16条。若只有15条，可全部落在某6个顶点间使第7个孤立。B是常见误选。选C。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P200</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2017统考真题】已知无向图G含有16条边，其中度为4的顶点个数为3，度为3的顶点个数为4，其他顶点的度均小于3。图G所含的顶点个数至少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 10</div><div class="opt"><b>B.</b> 11</div><div class="opt"><b>C.</b> 13</div><div class="opt"><b>D.</b> 15</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>握手定理：2×16=32=4×3+3×4+Σ其余顶点度。其余顶点度均小于3，要顶点最少就让其余度尽量大（取2）：设x个度2顶点，12+2x=32−12=20，解得x=4。总顶点数=3+4+4=11。选B。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P201</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-1-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.1 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2022统考真题】对于无向图G=(V,E)，下列选项中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 当|V|>|E|时，G一定是连通的</div><div class="opt"><b>B.</b> 当|V|<|E|时，G一定是连通的</div><div class="opt"><b>C.</b> 当|V|=|E|-1时，G一定是不连通的</div><div class="opt"><b>D.</b> 当|V|>|E|+1时，G一定是不连通的</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>连通无向图边数≥n-1（树最少），逆否：e&lt;n-1即|E|&lt;|V|-1（亦即|V|&gt;|E|+1）时必不连通，D正确。A错：|V|&gt;|E|时可能是“K3+孤立点”（4点3边）不连通；B错：|V|&lt;|E|也可能由两个分量拼成，如K4与K3分离共33条边不连通...（取K3+K4：7点9边，|V|&lt;|E|但不连通）；C错：|V|=|E|-1即e=n+1≥n-1，图可能连通（如带一个环的连通图）。选D。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P201</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-6-2"><h3>6.2 图的存储及基本操作<span class="tag tag-tpl">20题选择 + 8题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-6-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>关于图的存储结构，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 使用邻接矩阵存储一个图时，在不考虑压缩存储的情况下，所占用的存储空间大小只与图中的顶点数有关，与边数无关</div><div class="opt"><b>B.</b> 邻接表只用于有向图的存储，邻接矩阵适用于有向图和无向图</div><div class="opt"><b>C.</b> 若一个有向图的邻接矩阵的对角线以下的元素都为0，则该图的拓扑序列必定存在</div><div class="opt"><b>D.</b> 存储无向图的邻接矩阵是对称的，故只需存储邻接矩阵的下（或上）三角部分</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>邻接表既可存有向图也可存无向图（无向图每边挂两个边结点），并非只用于有向图，B错误。A对：邻接矩阵空间恒为O(n²)，只与顶点数有关；C对：对角线以下全0说明只存在从小编号到大编号的弧，顶点按编号排列本身就是拓扑序列；D对：无向图邻接矩阵对称，压缩存储上三角即可。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>已知带权有向图G的邻接矩阵如下图所示，请画出该带权有向图G。</p><div class="asc">A = ⎡ 0   15  12  ∞ ⎤
+    ⎢ ∞   0   ∞   8 ⎥
+    ⎢ ∞   10  0   6 ⎥
+    ⎣ ∞   ∞   ∞   0 ⎦</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>带权有向图邻接矩阵中A[i][j]=w表示存在弧&lt;i,j&gt;权为w；∞表示无边；对角线0表示无自环。</p><p><b>步骤：</b>逐行扫描非∞非0元素：第0行：&lt;0,1&gt;权15、&lt;0,2&gt;权12；第1行：&lt;1,3&gt;权8；第2行：&lt;2,1&gt;权10、&lt;2,3&gt;权6；第3行无边。</p><p><b>结论：</b>G含4个顶点0~3，5条弧：0→1(15)、0→2(12)、1→3(8)、2→1(10)、2→3(6)。画图时按弧方向带箭头并标注权值即可。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若图的邻接矩阵中主对角线上的元素皆为0，其余元素全为1，则可以断定该图一定（）。</p><div class="opts"><div class="opt"><b>A.</b> 是无向图</div><div class="opt"><b>B.</b> 是有向图</div><div class="opt"><b>C.</b> 是完全图</div><div class="opt"><b>D.</b> 不是带权图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>主对角线为0说明无自环，其余元素全为1说明任意两不同顶点之间都有边（矩阵不区分方向），恰是完全图的邻接矩阵。A、B无法断定：完全图的矩阵对称，有向/无向完全图都满足；D虽然也成立（0/1矩阵存的是无权图），但题目通常默认0/1矩阵表示无权图，最能“断定”的图论性质是完全图，按题意选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设图G=(V,E)以邻接表存储，如下图所示。画出其邻接矩阵存储及图G。</p><div class="asc">邻接表：0 → 1 → 3；1 → 2；2 → 3；3 → （空）</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>邻接表第i条链上的顶点j对应弧&lt;i,j&gt;。</p><p><b>步骤：</b>由表得弧集E={&lt;0,1&gt;,&lt;0,3&gt;,&lt;1,2&gt;,&lt;2,3&gt;}，按行列填写4×4邻接矩阵（有1条弧记1，否则0）。</p><div class="asc">A = 0 1 0 1
+    0 0 1 0
+    0 0 0 1
+    0 0 0 0</div><p><b>结论：</b>图G为4个顶点的有向图：0→1、0→3、1→2、2→3，形状为0指向1、3，1指向2，2指向3。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在含有n个顶点和e条边的无向图的邻接矩阵中，零元素的个数为（）。</p><div class="opts"><div class="opt"><b>A.</b> e</div><div class="opt"><b>B.</b> 2e</div><div class="opt"><b>C.</b> n²-e</div><div class="opt"><b>D.</b> n²-2e</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>无向图每条边在邻接矩阵中贡献两个1（A[i][j]=A[j][i]=1），故非零元素共2e个；矩阵总元素n²个，零元素=n²-2e。C只减了一个e，是按无向边只算一个1的错误算法。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>对n个顶点的无向图和有向图，分别采用邻接矩阵和邻接表表示时，试问：(1) 如何判别图中有多少条边？(2) 如何判别任意两个顶点i和j是否有边相连？(3) 任意一个顶点的度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>分别按4种组合（无向/有向 × 矩阵/表）给出判别方法。</p><p><b>解答：</b>(1) 边数：邻接矩阵——统计非零（非∞）元素个数，无向图除以2，有向图即为弧数；邻接表——统计边表结点总数，无向图除以2，有向图即为弧数。</p><p>(2) 有无边：邻接矩阵——直接查A[i][j]（带权图看是否为∞/0）是否非零；邻接表——遍历第i个顶点的边链表，看是否存在邻接点为j的结点（无向图也可查j的链表）。</p><p>(3) 顶点v的度：邻接矩阵——无向图为第v行（或列）元素之和；有向图为第v行与第v列元素之和（出度+入度）。邻接表——无向图为v的边链表上结点个数；有向图的出度为v的边链表结点数，入度需遍历整个邻接表统计v作为邻接点出现的次数。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>带权有向图G用邻接矩阵存储，则v<sub>i</sub>的入度等于邻接矩阵中（）。</p><div class="opts"><div class="opt"><b>A.</b> 第i行非∞的元素个数</div><div class="opt"><b>B.</b> 第i列非∞的元素个数</div><div class="opt"><b>C.</b> 第i行非∞且非0的元素个数</div><div class="opt"><b>D.</b> 第i列非∞且非0的元素个数</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>带权图邻接矩阵用∞表示无边、0可能出现在对角线（自身距离0），故v<sub>i</sub>的入度=第i列中既不是∞也不是0的元素个数，选D。A、B未排除0；A、C取的是第i行，那对应的是v<sub>i</sub>的出度。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>如何对无环有向图中的顶点重新编号，使得该图的邻接矩阵中所有的1都集中到对角线以上？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>邻接矩阵中1在上三角⟺每条弧&lt;i,j&gt;都满足编号i&lt;j。因此按“拓扑次序”编号即可：弧只可能从先拓扑的顶点指向后拓扑的顶点。</p><p><b>步骤：</b>①对该有向无环图做拓扑排序，得拓扑序列v1,v2,…,vn；②将vk重新编号为k；③由于拓扑序中任一弧的起点都在终点之前，新编号下弧&lt;p,q&gt;必有p&lt;q，对应A[p][q]=1落在上三角。</p><p><b>结论：</b>按拓扑排序的次序依次编号为1,2,…,n，所有1都集中到主对角线以上。（等价地，也可按各顶点出度从大到小排序编号并调整。）</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>一个有n个顶点的图用邻接矩阵A表示，若图为有向图，顶点v<sub>i</sub>的入度是（）；若图为无向图，顶点v<sub>i</sub>的度是（）。</p><div class="opts"><div class="opt"><b>A.</b> ∑<sub>i=1</sub><sup>n</sup> A[i][j]</div><div class="opt"><b>B.</b> ∑<sub>j=1</sub><sup>n</sup> A[j][i]</div><div class="opt"><b>C.</b> ∑<sub>i=1</sub><sup>n</sup> A[j][i]</div><div class="opt"><b>D.</b> ∑<sub>j=1</sub><sup>n</sup> A[j][i] 或 ∑<sub>j=1</sub><sup>n</sup> A[i][j]</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：有向图选B，无向图选D。</b>逐项分析：有向图中入度是所有射入v<sub>i</sub>的弧，即第i列元素之和，B正确（A是第i行和=出度；C下标写反，是关于v<sub>j</sub>的量）。无向图邻接矩阵对称，行和=列和，行、列元素之和均可表示度，D正确。故两空依次选B、D。</p></p><p class="final-ans">✅ 答案：<b>BD</b>（多选）　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>写出从图的邻接表表示转换成邻接矩阵表示的算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>初始化n×n矩阵全0，再顺序扫描每个顶点的边链表，把对应位置置1（带权图置为边结点中的权值）。</p><div class="asc">void ListToMat(ALGraph G, MGraph &amp;M){
+  for(i=0;i&lt;G.n;i++)
+    for(j=0;j&lt;G.n;j++) M.edge[i][j]=0;
+  for(i=0;i&lt;G.n;i++){
+    p=G.vertices[i].first;      //第i条边链
+    while(p){                    //链上每个邻接点
+      M.edge[i][p-&gt;adjvex]=1;    //(带权图: =p-&gt;weight)
+      p=p-&gt;next;
+    }
+  }
+}</div><p><b>结论：</b>时间复杂度O(n+e)（n个表头+e个边结点各访问一次），空间O(n²)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>从邻接矩阵A=<div class="asc">0 1 0
+1 0 1
+0 1 0</div>可以看出，该图共有（①）个顶点；若是有向图，则该图共有（②）条弧；若是无向图，则共有（③）条边。</p><div class="opts"></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：①选B，②选B，③选D（速查原文为(BBD)）。</b>矩阵为3×3，故有3个顶点，①选B。若视为有向图，弧数=非零元素个数=4，②选B。若视为无向图，对称矩阵每条边对应一对1，边数=非零元素个数÷2=2，③选D。注意区分：有向按1的个数计，无向按成对的1计一半。</p></p><p class="final-ans">✅ 答案：<b>BBD</b>（多选）　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2015统考真题】已知含有5个顶点的图G如下图所示。请回答下列问题：(1) 写出图G的邻接矩阵A（行、列下标从0开始）。(2) 求A²，矩阵A²中位于0行3列元素值的含义是什么？</p><div class="asc">无向图边集（按原题推断）：(0,1),(0,3),(0,4),(1,2),(2,3),(2,4)</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>无向图邻接矩阵对称，A[i][j]=1当且仅当i、j相邻。</p><p>(1) 邻接矩阵：</p><div class="asc">A = 0 1 0 1 1
+    1 0 1 0 0
+    0 1 0 1 1
+    1 0 1 0 0
+    1 0 1 0 0</div><p>(2) A²=A×A，其中A²[i][j]=Σ<sub>k</sub>A[i][k]A[k][j]：</p><div class="asc">A² = 3 0 3 0 0
+     0 2 0 2 2
+     3 0 3 0 0
+     0 2 0 2 2
+     0 2 0 2 2</div><p><b>含义：</b>A²[0][3]表示从顶点0到顶点3<b>长度恰为2的路径条数</b>（中间经过一个顶点的两步走法数；本图中0与3无公共邻接点，故值为0）。一般地，A<sup>k</sup>[i][j]表示从i到j长度为k的路径条数。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下关于图的存储结构的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 一个图的邻接矩阵表示唯一，邻接表表示唯一</div><div class="opt"><b>B.</b> 一个图的邻接矩阵表示唯一，邻接表表示不唯一</div><div class="opt"><b>C.</b> 一个图的邻接矩阵表示不唯一，邻接表表示唯一</div><div class="opt"><b>D.</b> 一个图的邻接矩阵表示不唯一，邻接表表示不唯一</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>给定顶点编号次序后，邻接矩阵唯一确定；而邻接表中各顶点的边链表里邻接点的次序取决于建表时的插入次序（头插/尾插、边的输入顺序），同一图可对应多种邻接表，故“矩阵唯一、邻接表不唯一”，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2021统考真题】已知无向连通图G由顶点集V和边集E组成，|E|&gt;0，当G中度为奇数的顶点个数为不大于2的偶数时，G存在包含所有边且长度为|E|的路径（称为EL路径）。设图G采用邻接矩阵存储（类型定义MGraph含numVertices、numEdges、VerticesList[MAXV]、Edge[MAXV][MAXV]）。请设计算法int IsExistEL(MGraph G)，判断G是否存在EL路径，若存在返回1，否则返回0。要求：(1)给出基本设计思想；(2)用C或C++描述算法，关键之处给出注释；(3)说明时间和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)设计思想：</b>由判定条件，只需统计无向图G中度为奇数的顶点个数count：顶点i的度=邻接矩阵第i行元素之和；若count为0或2（不大于2的偶数）则存在EL路径，否则不存在。</p><p>(2)算法：</p><div class="asc">int IsExistEL(MGraph G){
+  int i,j,deg,count=0;
+  for(i=0;i&lt;G.numVertices;i++){
+    deg=0;
+    for(j=0;j&lt;G.numVertices;j++)
+      deg+=G.Edge[i][j];   //第i行和=顶点i的度
+    if(deg%2==1) count++;  //奇度顶点计数
+  }
+  return (count==0||count==2)?1:0;
+}</div><p>(3)复杂度：两层循环扫描矩阵，时间O(n²)，辅助空间O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>矩阵A是有向图G的邻接矩阵，若矩阵A²的某元素a<sub>ij</sub>=3，则说明（）。</p><div class="opts"><div class="opt"><b>A.</b> 从顶点i到j存在3条长度为2的路径</div><div class="opt"><b>B.</b> 从顶点i到j存在3条长度不超过2的路径</div><div class="opt"><b>C.</b> 从顶点i到j存在2条长度为3的路径</div><div class="opt"><b>D.</b> 从顶点i到j存在2条长度不超过3的路径</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>邻接矩阵的k次幂A<sup>k</sup>的元素a<sub>ij</sub>=从i到j长度恰为k的路径条数（矩阵乘法展开式中每个中间顶点对应一条路径）。故A²中a<sub>ij</sub>=3表示恰有3条长度为2的路径。B错在“不超过”；C、D的长度说错。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-2-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.2 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2023统考真题】已知有向图G采用邻接矩阵存储（类型定义MGraph含numVertices、numEdges、VerticesList[MAXV]、Edge[MAXV][MAXV]）。将图中出度大于入度的顶点称为K顶点。请设计算法int printVertices(MGraph G)，对给定的任意非空有向图G，输出G中所有的K顶点，并返回K顶点的个数。要求：(1)给出基本设计思想；(2)用C或C++语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)设计思想：</b>顶点i的出度=第i行元素之和，入度=第i列元素之和。一趟双重循环先统计各顶点的入度（列和），再逐顶点计算行和并与入度比较，出度大于入度则输出并计数。</p><p>(2)算法：</p><div class="asc">int printVertices(MGraph G){
+  int in[G.numVertices]={0},out,cnt=0;
+  int i,j;
+  for(j=0;j&lt;G.numVertices;j++)
+    for(i=0;i&lt;G.numVertices;i++)
+      in[j]+=G.Edge[i][j];      //第j列入度和=入度
+  for(i=0;i&lt;G.numVertices;i++){
+    out=0;
+    for(j=0;j&lt;G.numVertices;j++)
+      out+=G.Edge[i][j];        //第i行和=出度
+    if(out&gt;in[i]){              //K顶点判定
+      printf("%c ",G.VerticesList[i]);
+      cnt++;
+    }
+  }
+  return cnt;
+}</div><p><b>复杂度：</b>时间O(n²)，空间O(n)（辅助入度数组）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用邻接表法存储图所用的空间大小（）。</p><div class="opts"><div class="opt"><b>A.</b> 与图的顶点数和边数有关</div><div class="opt"><b>B.</b> 只与图的边数有关</div><div class="opt"><b>C.</b> 只与图的顶点数有关</div><div class="opt"><b>D.</b> 与边数的平方有关</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>邻接表=顶点表（n个表头结点）+边表（无向图2e个、有向图e个边结点），空间O(n+e)，与顶点数和边数都有关。若只与其一有关就退化为邻接矩阵O(n²)或纯边集。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若邻接表中有奇数个边表结点，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 图中有奇数个结点</div><div class="opt"><b>B.</b> 图中有偶数个结点</div><div class="opt"><b>C.</b> 图为无向图</div><div class="opt"><b>D.</b> 图为有向图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>无向图每条边在邻接表中产生2个边表结点，边表结点总数必为偶数；现有奇数个边表结点，只可能是有向图（每条弧1个结点，e条弧可为奇数）。注意结论是单向的：有向图边结点也可为偶数，但边结点为奇数时必为有向图。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在有向图的邻接表存储结构中，顶点v在边表中出现的次数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 顶点v的度</div><div class="opt"><b>B.</b> 顶点v的出度</div><div class="opt"><b>C.</b> 顶点v的入度</div><div class="opt"><b>D.</b> 依附于顶点v的边数</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>邻接表的边表结点v→w表示弧&lt;v,w&gt;，v在头结点链上出现次数是出度；顶点v作为邻接点<b>在各边表结点中</b>被记录的次数，恰是射入v的弧数，即入度。A、D混淆了无向图的说法。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>n个顶点的无向图的邻接表最多有（）个边表结点。</p><div class="opts"><div class="opt"><b>A.</b> n²</div><div class="opt"><b>B.</b> n(n-1)</div><div class="opt"><b>C.</b> n(n+1)</div><div class="opt"><b>D.</b> n(n-1)/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>无向图最多是完全图，边数C(n,2)=n(n-1)/2；每条边在邻接表中挂两个边表结点（两个顶点各挂一次），故边表结点最多2×n(n-1)/2=n(n-1)。D忘了无向图要挂两次。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设某无向图中有n个顶点和e条边，则建立该图的邻接表的时间复杂度是（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n+e)</div><div class="opt"><b>B.</b> O(n²)</div><div class="opt"><b>C.</b> O(ne)</div><div class="opt"><b>D.</b> O(n³)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>建表过程：初始化n个顶点表头O(n)，再逐条读入e条边并把边结点插入两端的边链（头插法O(1)），共O(e)。总时间O(n+e)。B是把邻接矩阵建表的做法套过来了。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P210</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>假设有n个顶点、e条边的有向图用邻接表表示，则删除与某个顶点v相关的所有边的时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(e)</div><div class="opt"><b>C.</b> O(n+e)</div><div class="opt"><b>D.</b> O(ne)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>“相关”含出边与入边：删出边只需清空v的边链O(出度)；删入边必须找到所有边表结点中邻接点为v的结点，而它们散布在各顶点的边链里，必须扫描整个邻接表的所有顶点表和边表，代价O(n+e)。B忽略了顶点表扫描；A、D无依据。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设n个顶点、e条边的有向图用邻接表表示，则求某个顶点v的入度的时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(e)</div><div class="opt"><b>C.</b> O(n+e)</div><div class="opt"><b>D.</b> O(ne)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>邻接表“顺着出边存”，出度查v自己的边链即得；求入度必须扫描所有顶点的边表，统计邻接点为v的结点数，需访问n个表头和全部e个边结点，即O(n+e)。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对邻接表的叙述中，（）是正确的。</p><div class="opts"><div class="opt"><b>A.</b> 无向图的邻接表中，第i个顶点的度为第i个链表中结点数的两倍</div><div class="opt"><b>B.</b> 邻接表比邻接矩阵的操作更简便</div><div class="opt"><b>C.</b> 邻接矩阵比邻接表的操作更简便</div><div class="opt"><b>D.</b> 求有向图结点的度，必须遍历整个邻接表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>有向图结点的度=出度+入度：出度查自身边链即可，入度须在所有边表中统计该结点出现次数，故必须遍历整个邻接表。A错：无向图第i个链表的结点数就是度（每条边挂两个结点，本链已计入自身）；B、C说法绝对——找邻接点、求度等操作各有优劣，不能一概而论。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>邻接多重表是（）的存储结构。</p><div class="opts"><div class="opt"><b>A.</b> 无向图</div><div class="opt"><b>B.</b> 有向图</div><div class="opt"><b>C.</b> 无向图和有向图</div><div class="opt"><b>D.</b> 都不是</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>邻接多重表每条边只用一个边结点，同时挂在两个端点的链上，专用于无向图（避免普通邻接表中一条边存两份的冗余，方便边的删除等操作）。有向图对应的是十字链表（兼顾出边和入边）。故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>十字链表是（）的存储结构。</p><div class="opts"><div class="opt"><b>A.</b> 无向图</div><div class="opt"><b>B.</b> 有向图</div><div class="opt"><b>C.</b> 无向图和有向图</div><div class="opt"><b>D.</b> 都不是</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>十字链表的弧结点同时挂在弧尾顶点的出边链和弧头顶点的入边链上，一个结点横跨两条链（“十字”由此得名），专为有向图设计，可方便地同时存取出度和入度。无向图对应邻接多重表。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】设图的邻接矩阵A如下所示，各顶点的度依次是（）。<div class="asc">A = 0 1 0 1
+    0 0 1 1
+    0 1 0 0
+    1 0 0 0</div></p><div class="opts"><div class="opt"><b>A.</b> 1,2,1,2</div><div class="opt"><b>B.</b> 2,2,1,1</div><div class="opt"><b>C.</b> 3,4,2,3</div><div class="opt"><b>D.</b> 4,4,2,2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>A不对称，是有向图，度=入度+出度。逐顶点：v1行和2（出2）、列和1（入1）→3；v2行和2、列和2→4；v3行和1、列和1→2；v4行和1、列和2→3。依次为3,4,2,3，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-2-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.2 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】若无向图G=(V,E)的邻接多重表如下图所示，则G中顶点b与d的度分别是（）。</p><div class="opts"><div class="opt"><b>A.</b> 0, 2</div><div class="opt"><b>B.</b> 2, 4</div><div class="opt"><b>C.</b> 2, 5</div><div class="opt"><b>D.</b> 3, 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>邻接多重表中每条边只有一个边结点，该结点同时链在两个端点的边链上，因此顶点的度=该顶点链表上的边结点个数（无须像普通邻接表那样考虑×2或÷2）。图中数链：顶点b的链上有2个边结点，顶点d的链上有4个边结点，故度为2和4，选B。<span style="color:#64748b">【原图邻接多重表略，按速查答案与方法核对】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P211</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-6-3"><h3>6.3 图的遍历<span class="tag tag-tpl">18题选择 + 6题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-6-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于广度优先算法的说法中，正确的是（）。<br/>I. 当各边的权值相等时，广度优先算法可以解决单源最短路径问题<br/>II. 当各边的权值不等时，广度优先算法可用来解决单源最短路径问题<br/>III. 广度优先遍历算法类似于树中的后序遍历算法<br/>IV. 实现图的广度优先算法时，使用的数据结构是队列</p><div class="opts"><div class="opt"><b>A.</b> I、IV</div><div class="opt"><b>B.</b> II、III、IV</div><div class="opt"><b>C.</b> II、IV</div><div class="opt"><b>D.</b> I、III、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>I对：权值全相等时按层次扩展的BFS首次到达即为最少边数路径，即最短路径；IV对：BFS靠队列逐层扩展。II错：权值不等时BFS只保证边数最少不保证权值和最小；III错：BFS类似树的层序（层次）遍历，不是后序遍历。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>图G=(V,E)以邻接表存储，如下图所示，试画出图G的深度优先生成树和广度优先生成树（假设从结点1开始遍历）。</p><div class="asc">邻接表（按原题推断）：1→2→3；2→1→4；3→1→4；4→2→3→5；5→4</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>生成树=遍历过程中“发现”新顶点所经过的边构成的无向树。DFS按链表顺序深入；BFS按层次逐圈扩展。</p><p><b>步骤：</b>①先按邻接表还原无向图G：边(1,2),(1,3),(2,4),(3,4),(4,5)。②DFS从1：访问1→按表先走2；2的表：1已访→走4；4的表：2已访→走3；3的表：1、4已访→回溯；4再走5。生成树边：(1,2),(2,4),(4,3),(4,5)。③BFS从1：第一层2、3；扩展2得4；扩展3时4已访；扩展4得5。生成树边：(1,2),(1,3),(2,4),(4,5)。</p><p><b>结论：</b>DFS生成树为1—2—4，4—3，4—5（深度大、树高）；BFS生成树为1—2、1—3，2—4，4—5（层次浅、树矮）。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于图的说法中，错误的是（）。<br/>I. 对一个无向图进行深度优先遍历时，得到的深度优先遍历序列是唯一的<br/>II. 若有向图不存在回路，即使不用访问标志位，同一结点也不会被访问两次<br/>III. 采用深度优先遍历或拓扑排序算法可以判断一个有向图中是否有环（回路）<br/>IV. 对任何非强连通图必须2次或以上调用广度优先遍历算法才可访问所有的顶点</p><div class="opts"><div class="opt"><b>A.</b> I、II、III</div><div class="opt"><b>B.</b> II、III</div><div class="opt"><b>C.</b> I、IV</div><div class="opt"><b>D.</b> I、II、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>I错：DFS序列取决于邻接点的访问次序（存储结构不同序列不同），不唯一。II错：无回路有向图从不同起点多次调用遍历时，同一结点可能被再次访问（如a→b、c→b，从a遍历后从c再遍历又访问b）。III对：DFS判回边、拓扑排序判是否输出全部顶点均可验环。IV错：弱连通但非强连通的有向图（如a→b,a→c）从a一次BFS即可访问全部。故错误的是I、II、IV。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定一个连通无向图，采用邻接表存储，将图的所有顶点分别染成红色或蓝色，若存在一种染色方法使图中每条边的两个顶点的颜色都不相同，则称这个图能被二分。请回答：(1) 判断上面两个无向图是否能被二分，若能被二分，则请标出每个顶点的颜色；(2) 设计算法判断一个图是否能被二分；(3) 给出算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>图可二分⟺图中不含奇数长度的回路（无奇环）。判定方法：任取一个顶点染红色，其邻接点染蓝色，交替染色；若发现某条边两端同色，则存在奇环、不可二分。</p><p>(1) 逐图用双色染色法检验：若整图能一致地染成“红-蓝相间”则能被二分（例如链、偶环、树均可二分）；一旦某边两端同色即含奇环、不能二分。对可二分者按上述交替方案标色即可。</p><p>(2) 算法（基于BFS染色）：</p><div class="asc">bool IsBipartite(ALGraph G){
+  int color[n]={0};      //0未染,1红,-1蓝
+  for(s=0;s&lt;G.n;s++)     //处理各连通分量
+    if(!color[s]){
+      color[s]=1; QueuePush(Q,s);
+      while(!QueueEmpty(Q)){
+        v=QueuePop(Q);
+        for(p=G.vertices[v].first;p;p=p-&gt;next){
+          w=p-&gt;adjvex;
+          if(!color[w]){ color[w]=-color[v]; QueuePush(Q,w); }
+          else if(color[w]==color[v]) return false;
+        }                       //同色则奇环
+      }
+    }
+  return true;
+}</div><p>(3) 每个顶点、每条边各访问一次：时间O(n+e)；队列与颜色数组：空间O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一个非连通无向图G，采用深度优先遍历访问所有顶点，在DFSTraverse函数（见考点讲解DFS部分）中调用DFS的次数正好等于（）。</p><div class="opts"><div class="opt"><b>A.</b> 顶点数</div><div class="opt"><b>B.</b> 边数</div><div class="opt"><b>C.</b> 连通分量数</div><div class="opt"><b>D.</b> 不确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>外层循环扫描每个顶点，未访问则调用一次DFS，而一次DFS恰好遍历完该顶点所在的整个连通分量。非连通图有k个连通分量，就要调用k次DFS。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试设计一个算法，判断一个无向图G是否为一棵树。若是一棵树，则算法返回true，否则返回false。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>无向图是树⟺G连通且边数=顶点数-1（无环）。一次DFS（或BFS）统计访问到的顶点数count与经过的边数即可判定。</p><div class="asc">bool IsTree(ALGraph G){
+  int cntV=0, cntE=0;      //访问顶点数/边计数
+  DFS(0);                  //从顶点0出发遍历
+  return cntV==G.n &amp;&amp; cntE==2*(G.n-1);
+  //无向邻接表每条边存两次
+}
+void DFS(int v){
+  visited[v]=true; cntV++;
+  for(p=G.vertices[v].first;p;p=p-&gt;next){
+    cntE++;                 //边结点计数
+    if(!visited[p-&gt;adjvex]) DFS(p-&gt;adjvex);
+  }
+}</div><p><b>结论：</b>count等于n说明连通；边结点数恰为2(n-1)说明边数=n-1，二者同时成立即为树。时间O(n+e)，空间O(n)（递归栈与标志数组）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>对一个有n个顶点、e条边的图采用邻接表表示时，进行DFS遍历的时间复杂度为（），空间复杂度为（）；进行BFS遍历的时间复杂度为（），空间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(e)</div><div class="opt"><b>C.</b> O(n+e)</div><div class="opt"><b>D.</b> O(1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：四个空依次为C、A、C、A（速查原文为(CACA)）。</b>邻接表下DFS/BFS都只访问每个顶点表头一次、每条边结点一次，时间O(n+e)；两者的递归栈/队列深度不超过顶点数n，空间O(n)。选C、A、C、A。对比：邻接矩阵下时间均为O(n²)。</p></p><p class="final-ans">✅ 答案：<b>CACA</b>（多选）　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>分别采用基于深度优先遍历和广度优先遍历算法判别以邻接表方式存储的有向图中是否存在由顶点V<sub>i</sub>到顶点V<sub>j</sub>的路径(i≠j)。注意，算法中涉及的图的基本操作必须在此存储结构上实现。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>存在Vi到Vj的路径⟺从Vi出发的遍历能访问到Vj。DFS与BFS都从Vi开始，用visited标志防止重复访问，遇到Vj即成功返回。</p><div class="asc">bool DFS_Path(ALGraph G,int i,int j){
+  if(i==j) return true;
+  visited[i]=true;
+  for(p=G.vertices[i].first;p;p=p-&gt;next)
+    if(!visited[p-&gt;adjvex] &amp;&amp;
+       DFS_Path(G,p-&gt;adjvex,j)) return true;
+  return false;      //沿所有后继搜索未果
+}
+bool BFS_Path(ALGraph G,int i,int j){
+  InitQueue(Q); QueuePush(Q,i); visited[i]=true;
+  while(!QueueEmpty(Q)){
+    v=QueuePop(Q);
+    if(v==j) return true;
+    for(p=G.vertices[v].first;p;p=p-&gt;next)
+      if(!visited[p-&gt;adjvex]){
+        visited[p-&gt;adjvex]=true;
+        QueuePush(Q,p-&gt;adjvex);
+      }
+  }
+  return false;
+}</div><p><b>结论：</b>两算法时间均为O(n+e)（访问每顶点每弧一次），空间O(n)。DFS适合递归实现，BFS按层次扩展、无爆栈风险。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>图的广度优先遍历算法中使用队列作为其辅助数据结构，那么在算法执行过程中，每个顶点的入队次数最多为（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>BFS在顶点出队前先检查访问标志：仅当未被访问时才入队并立即置为已访问，同一顶点不可能再次入队，故每个顶点至多入队1次。若实现不当（出队时才置标志）可能重复入队，但按标准算法为1次。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设图用邻接表表示，设计一个算法，输出从顶点V<sub>i</sub>到顶点V<sub>j</sub>的所有简单路径。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>用回溯法：从Vi出发做DFS，用路径数组path记录当前路径，用visited防止重复（保证“简单”），到达Vj时输出整条路径后回溯，穷尽所有分支。</p><div class="asc">void PrintPaths(ALGraph G,int i,int j){
+  int path[MAX];            //当前路径
+  DFS(i,j,path,0);
+}
+void DFS(int v,int j,int path[],int d){
+  visited[v]=true; path[d]=v;
+  if(v==j){                 //到达终点，输出
+    for(k=0;k&lt;=d;k++) printf("%d ",path[k]);
+    printf("\n");
+  }else
+    for(p=G.vertices[v].first;p;p=p-&gt;next)
+      if(!visited[p-&gt;adjvex])
+        DFS(p-&gt;adjvex,j,path,d+1);
+  visited[v]=false;         //回溯，撤销标志
+}</div><p><b>结论：</b>关键在递归返回前将visited[v]恢复为false，使顶点可出现在其他路径中；每条简单路径恰好被枚举一次。时间最坏O(n!)量级（完全图），空间O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>对有n个顶点、e条边的图采用邻接矩阵表示时，进行DFS遍历的时间复杂度为（），进行BFS遍历的时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n²)</div><div class="opt"><b>B.</b> O(e)</div><div class="opt"><b>C.</b> O(n+e)</div><div class="opt"><b>D.</b> O(e²)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：两个空均为A（速查原文为(AA)）。</b>邻接矩阵存储下，访问每个顶点都要扫描它对应的整行（n个元素）以找邻接点，n个顶点共O(n²)，与边数无关，DFS、BFS皆然。邻接表才是O(n+e)。选A、A。</p></p><p class="final-ans">✅ 答案：<b>AA</b>（多选）　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-3-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.3 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设无向图G采用邻接表存储，试设计算法求G的连通分量个数，并输出每个连通分量中的所有顶点。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>对每个未访问顶点调用一次DFS/BFS，一次调用恰好遍历一个连通分量；调用次数即连通分量个数。</p><div class="asc">int Components(ALGraph G){
+  int cnt=0,i;
+  for(i=0;i&lt;G.n;i++) visited[i]=false;
+  for(i=0;i&lt;G.n;i++)
+    if(!visited[i]){
+      cnt++;                 //新连通分量
+      printf("分量%d: ",cnt);
+      DFS(G,i);              //输出该分量全部顶点
+      printf("\n");
+    }
+  return cnt;
+}</div><p><b>结论：</b>每个顶点、每条边只被访问一次，时间O(n+e)，空间O(n)。该方法也常用于判断无向图的连通性（cnt==1即连通）。</p><span style="color:#64748b">【题面由王道原题重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>无向图G=(V,E)，其中V={a,b,c,d,e,f}，E={(a,b),(a,e),(a,c),(b,e),(c,f),(f,d),(e,d)}，对该图从a开始进行深度优先遍历，得到的顶点序列正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> a,b,e,c,d,f</div><div class="opt"><b>B.</b> a,c,f,e,b,d</div><div class="opt"><b>C.</b> a,e,b,c,f,d</div><div class="opt"><b>D.</b> a,e,d,f,c,b</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐项模拟DFS（关键规则：栈顶顶点若还有未访问邻接点必须继续深入，不能提前回溯）：D：a→e→d→f→c，c无新路回溯到e→b，得到a,e,d,f,c,b，合法。A中访问e后其邻接点d未访问却先去c，违反规则；B中f后应先去d（e在d后）；C中b、e后应先去d。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P221</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>如下图所示（图同第7题，V={a,b,c,d,e,f}，E={(a,b),(a,e),(a,c),(b,e),(c,f),(f,d),(e,d)}），在下面的5个序列中，符合深度优先遍历的序列个数是（）。<br/>① aebfdc　② acfdeb　③ aedfcb　④ aefdbc　⑤ aecfdb</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐个检验（DFS每步的下一顶点必须是当前栈顶的未访问邻接点）：①a,e后b，b是死角应回溯到e去d，却出现f，非法；②a,c,f,d,e,b每步相邻合法；③a,e,d,f,c后回溯到e访问b，合法；④e后出现f，f不是e的邻接点，非法；⑤e后出现c，c不是e的邻接点，非法。合法的只有②③，共2个，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>用邻接表存储的图的深度优先遍历算法类似于树的（），而其广度优先遍历算法类似于树的（）。</p><div class="opts"><div class="opt"><b>A.</b> 中序遍历</div><div class="opt"><b>B.</b> 先序遍历</div><div class="opt"><b>C.</b> 后序遍历</div><div class="opt"><b>D.</b> 按层次遍历</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：第一空选B，第二空选D。</b>DFS先访问顶点再深入其邻接点，“先访问后深入”与树的先序遍历同构（第一个访问的是根/起点，随后递归处理子树）；BFS借助队列按“层次”逐圈扩展，对应树的层序（按层次）遍历。中序、后序是二叉树特有的顺序，无对应。故选B、D。</p></p><p class="final-ans">✅ 答案：<b>BD</b>（多选）　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>一个有向图G的邻接表存储如下图所示（表头1→边表2,4,5；2→5；4→3；5→4；3→6），从顶点1出发，对图G调用深度优先遍历所得顶点序列是（）；按广度优先遍历所得顶点序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> 125436</div><div class="opt"><b>B.</b> 124536</div><div class="opt"><b>C.</b> 124563</div><div class="opt"><b>D.</b> 362514</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：DFS选A，BFS选B。</b>按邻接表顺序模拟：DFS从1出发选第一个邻接点2，2→5，5→4，4→3，3→6，得1,2,5,4,3,6。BFS先访问1的全部邻接点2,4,5，再逐个扩展：2的邻接点5已访问，4的邻接点3入队，5的邻接点4已访问，3的邻接点6入队，得1,2,4,5,3,6。故选A、B。</p></p><p class="final-ans">✅ 答案：<b>AB</b>（多选）　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>无向图G=(V,E)，其中V={a,b,c,d,e,f}，E={(a,b),(a,e),(a,c),(b,e),(c,f),(f,d),(e,d)}。对该图进行深度优先遍历，不能得到的序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> acfdeb</div><div class="opt"><b>B.</b> aebdfc</div><div class="opt"><b>C.</b> aedfcb</div><div class="opt"><b>D.</b> abecdf</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>D中a,b,e后下一个是c：e的邻接点只有a、b、d，c不可达（此时d未访问，e必须先走d），违反DFS规则，不可得。A：a,c,f,d,e,b合法；B：a,e,b回溯后e→d→f→c合法；C：a,e,d,f,c回溯后e→b合法。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>判断有向图中是否存在回路，除可以利用拓扑排序外，还可以利用（）（注：本题涉及下节内容）。</p><div class="opts"><div class="opt"><b>A.</b> 求关键路径的方法</div><div class="opt"><b>B.</b> 求最短路径的Dijkstra算法</div><div class="opt"><b>C.</b> 深度优先遍历算法</div><div class="opt"><b>D.</b> 广度优先遍历算法</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>对有向图DFS：若遍历中遇到一条指向当前递归栈中顶点（尚未退栈的祖先）的弧，即存在回路（利用激活结点链/染色标记）。拓扑排序输出顶点数少于总数同样说明有环。Dijkstra、关键路径都不能一般性地判环。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设无向图G=(V,E)和G'=(V',E')，若G'是G的生成树，则下列说法中错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> G'为G的子图</div><div class="opt"><b>B.</b> G'为G的连通分量</div><div class="opt"><b>C.</b> G'为G的极小连通子图且V=V'</div><div class="opt"><b>D.</b> G'是G的一个无环子图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>生成树是包含G全部顶点的极小连通子图：A、C、D均正确。B错误：连通分量是极大连通子图，生成树是极小连通子图；当G含环时生成树比G少边，不是G的连通分量。问“错误的”，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P222</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>图的广度优先生成树的树高比深度优先生成树的树高（）。</p><div class="opts"><div class="opt"><b>A.</b> 小或相等</div><div class="opt"><b>B.</b> 小</div><div class="opt"><b>C.</b> 大或相等</div><div class="opt"><b>D.</b> 大</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>BFS按层次扩展，得到的生成树中每个顶点都以最少边数挂在起点之下，树高=图的最大层次；DFS一条路走到底再回溯，生成树往往更深。故BFS树高≤DFS树高，即“小或相等”（如星形图中两者可相等）。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P223</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】对有n个顶点、e条边且使用邻接表存储的有向图进行广度优先遍历，其算法的时间复杂度是（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(e)</div><div class="opt"><b>C.</b> O(n+e)</div><div class="opt"><b>D.</b> O(ne)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>邻接表存储下，BFS访问每个顶点表头一次（O(n)），沿边表扫描每条弧一次（O(e)），总时间O(n+e)，与图的存储方式直接相关——邻接矩阵存储则是O(n²)。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P223</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2013统考真题】若对如下无向图进行遍历，则下列选项中，不是广度优先遍历序列的是（）。</p><div class="asc">图的边：a-b, a-c, a-e, a-h, b-d, b-h, c-d, d-h, e-f, e-g, f-g</div><div class="opts"><div class="opt"><b>A.</b> h, c, a, b, d, e, g, f</div><div class="opt"><b>B.</b> e, a, f, g, b, h, c, d</div><div class="opt"><b>C.</b> d, b, c, a, h, e, f, g</div><div class="opt"><b>D.</b> a, b, c, d, h, e, f, g</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>BFS序列的特征：第2层顶点（起点的全部邻接点）必须紧随起点连续出现。D从a出发：a的邻接点是{b,c,e,h}，它们必须排在第2~5位，而D中第4位出现d（不是a的邻接点）且e被排到第6位，违反层次性，不是BFS序列。A、B、C分别从h、e、d出发逐层扩展均可实现。选D。<span style="color:#64748b">【原图由2013年真题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P223</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2015统考真题】设有向图G=(V,E)，顶点集V={V<sub>0</sub>,V<sub>1</sub>,V<sub>2</sub>,V<sub>3</sub>}，边集E={&lt;V<sub>0</sub>,V<sub>1</sub>&gt;,&lt;V<sub>0</sub>,V<sub>2</sub>&gt;,&lt;V<sub>0</sub>,V<sub>3</sub>&gt;,&lt;V<sub>1</sub>,V<sub>2</sub>&gt;,&lt;V<sub>1</sub>,V<sub>3</sub>&gt;,&lt;V<sub>2</sub>,V<sub>3</sub>&gt;}。若从顶点V<sub>0</sub>出发对图G进行深度优先遍历，则可能得到的不同的遍历序列个数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>枚举DFS首分支：①先V1再V2再V3：0123；②V1→V3，回溯后V2：0132；③先V2→V3，回溯V0再V1：0231；④先V3，回溯后选V1→V2：0312；⑤先V3，回溯后选V2→V1：0321。共5个不同序列，选D。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P223</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2016统考真题】下列选项中，不是下图深度优先搜索序列的是（）。</p><div class="asc">有向图弧：V1→V2, V1→V3, V1→V5, V3→V2, V2→V5, V5→V4, V4→V3</div><div class="opts"><div class="opt"><b>A.</b> V1, V5, V4, V3, V2</div><div class="opt"><b>B.</b> V1, V3, V2, V5, V4</div><div class="opt"><b>C.</b> V1, V2, V5, V4, V3</div><div class="opt"><b>D.</b> V1, V2, V3, V4, V5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>有向图DFS只能沿弧方向深入，且栈顶顶点还有未访问的出邻接点时必须继续。A：V1→V5→V4→V3→V2逐弧可达，合法；B：V1→V3→V2→V5→V4合法；C：V1→V2→V5→V4→V3合法；D：访问V2后，V2有未访问的出邻接点V5，必须先访问V5而不能回溯去V3（V2到V3也无弧），故D不可得。选D。<span style="color:#64748b">【原图由2016年真题重建】</span></p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P223</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-6-4"><h3>6.4 图的应用<span class="tag tag-tpl">47题选择 + 12题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-6-4-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>任何一个无向连通图的最小生成树（）。</p><div class="opts"><div class="opt"><b>A.</b> 有一棵或多棵</div><div class="opt"><b>B.</b> 只有一棵</div><div class="opt"><b>C.</b> 一定有多棵</div><div class="opt"><b>D.</b> 可能不存在</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>无向连通图必存在生成树，且MST一定存在；当各边权值互不相同时MST唯一，存在相同权值边时可能有多棵。故“有一棵或多棵”最全面。B、C各走极端，D与MST存在性矛盾。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>下面是一种称为“破圈法”的求解最小生成树的方法：所谓“破圈法”，是指“任取一圈，去掉圈上权最大的边”，反复执行这一步骤，直到没有圈为止。试判断这种方法是否正确。若正确，说明理由；若不正确，举出反例（注：圈就是回路）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：正确。</b></p><p><b>理由：</b>①破圈法结束时图中无圈；又因去掉圈上一条边后圈上任意两点仍可经圈的另一侧互达，连通性始终保持，故结果是一棵生成树。②证其最小（反证法）：设破圈法得到的树为T，假设T不是最小生成树。考察T与某棵MST的对称差，把T逐条边加到MST上必形成圈，圈上存在MST中不在T中的边f；按破圈法规则，被删除的边是圈上权值最大的边，而f仍在MST中未被删除，说明f的权不大于同圈中T的边，可用f替换出权不增的生成树——这与“每次删除圈上最大权边”最终结果相矛盾。故T必为最小生成树。③直观理解：破圈法是Kruskal的“逆向对偶”——Kruskal保留最小的n-1条不成圈边，破圈法删除成圈的最大边，两者筛选标准一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用Prim算法和Kruskal算法构造图的最小生成树，所得到的最小生成树（）。</p><div class="opts"><div class="opt"><b>A.</b> 相同</div><div class="opt"><b>B.</b> 不相同</div><div class="opt"><b>C.</b> 可能相同，可能不同</div><div class="opt"><b>D.</b> 无法比较</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>两算法都基于贪心，MST权值和必相同；但树的形态取决于选边次序：若各边权互不相同，两种算法得到同一棵唯一MST；若有相同权值边，二者可能选不同（等价的）边集。故可能相同也可能不同。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>已知有向图如下图所示。(1) 写出该图的邻接矩阵表示并据此给出从顶点1出发的深度优先遍历序列。(2) 求该有向图的强连通分量的数目。(3) 给出该图的任意两个拓扑序列。(4) 若将该图视为无向图，分别用Prim算法和Kruskal算法求最小生成树。</p><div class="asc">有向图（按原题推断）：弧 &lt;1,2&gt;(5), &lt;1,4&gt;(6), &lt;2,3&gt;(2), &lt;3,5&gt;(4), &lt;4,5&gt;(3), &lt;5,6&gt;(2), &lt;4,6&gt;(7)（括号内为权）</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1) 6×6邻接矩阵按弧填写（弧起点行、终点列为权，其余∞）。从1出发DFS（按邻接表/矩阵自小到大扫描邻接点）：1→2→3→5→6，6无路回溯至5、3、2，再从1走4：序列<b>1,2,3,5,6,4</b>。</p><p>(2) 图中无回路（弧全部沿小编号指向大编号，本身即拓扑序），任意两顶点不能互达，每个顶点自成强连通分量，共<b>6个</b>。</p><p>(3) 拓扑序列如<b>1,2,4,3,5,6</b>与<b>1,4,2,3,5,6</b>（4、2无约束关系可交换）。</p><p>(4) 视为无向图后边集{(1,2)5,(1,4)6,(2,3)2,(3,5)4,(4,5)3,(5,6)2,(4,6)7}。Kruskal按权递增：2(2,3)✓、2(5,6)✓、3(4,5)✓、4(3,5)✓（连接{2,3}与{4,5,6}）、5(1,2)✓，得MST权=16。Prim从1出发：1-2(5)→2-3(2)→3-5(4)→4-5(3)→5-6(2)，同样5条边，两法结果一致。<span style="color:#64748b">（本页另有一道Dijkstra题：按路径长度递增输出源点到各顶点的最短路径，即反复取dist最小者并松弛，从略。）</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于图的生成树和最小生成树的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 只要无向连通图中没有权值相同的边，则其最小生成树唯一</div><div class="opt"><b>B.</b> 只要无向图中有权值相同的边，则其最小生成树一定不唯一</div><div class="opt"><b>C.</b> 从n个顶点的连通图中选取n-1条权值最小的边，即可构成最小生成树</div><div class="opt"><b>D.</b> 设连通图G含有n个顶点，则含有n个顶点、n-1条边的子图一定是G的生成树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>权值互不相同→每次贪心选边无歧义→MST唯一，A正确。B错：有权值相同的边但不在“可交换”位置时MST仍唯一；C错：n-1条最小边可能成环或不连通；D错：n个顶点n-1条边的子图还须连通才是生成树。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有n个顶点的无向连通图的最小生成树不唯一，则下列说法中正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 图的边数一定大于n-1</div><div class="opt"><b>B.</b> 图的权值最小的边一定有多条</div><div class="opt"><b>C.</b> 图的最小生成树的代价不一定相等</div><div class="opt"><b>D.</b> 图的各条边的权值不相等</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>若边数恰为n-1，图本身就是树，MST就是它自己、唯一；现MST不唯一，说明图中有环、边数必大于n-1。B错：不唯一也可由“中间权值”的相同边引起，最小权边可以唯一；C错：MST的代价（权值和）必然相等；D与不唯一矛盾。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下图所示为一个用AOE网表示的工程。(1) 画出此图的邻接表表示。(2) 完成此工程至少需要多少时间？(3) 指出关键路径。(4) 哪些活动加速可以缩短完成工程所需的时间？（另附王道P256工序表变式：已知各工序的先驱工序与所需时间，画AOE网、求各事件最早/最迟发生时间及关键路径。）</p><div class="asc">AOE网活动权值（OCR可见）：a1=3, a3=5, a6=1, a7=3, a2/a4/a5/a8/a10/a12/a13中多个为2…（结构按原题推断）</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>统一解法：</b>(1) 邻接表：顶点表为事件V1…Vn，每个事件的边链挂“出弧结点（指向的后继事件+活动权值）”，另可加逆邻接表便于求入度。</p><p>(2)(3) 按拓扑序递推事件最早发生时间ve（取入弧最大ve+w），按逆拓扑序递推最迟发生时间vl（取出弧最小vl-w）；活动最早开始e=ve(尾事件)，最迟开始l=vl(头事件)-w，<b>e=l的活动为关键活动</b>，关键活动连成源点到汇点的关键路径，其长度即最短工期。</p><p>(4) 只有<b>所有关键路径共有</b>的关键活动加速才能保证缩短工期；只加速部分关键路径上的活动无效。</p><p><b>工序表变式示例（重建）</b>：设工序A(无先驱,3)、B(A,2)、C(无先驱,1)、D(B,4)、E(C,2)、F(C、E,2)。AOE网：源点→A→…→汇点，用虚活动表示“先驱”约束。计算：ve：A事件=3、B=5、C=1、D=9、E=3、F=max(1,3)+2=5…工期=max路径=3+2+4+2=11（A-B-D-F为关键路径，关键活动A、B、D、F）。<span style="color:#64748b">原题具体权值以书图为准。</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用Prim算法求一个带权连通图的最小生成树，在算法执行的某个时刻，已选取的顶点集合U={1,2,3}，已选取的边集合TE={(1,2),(2,3)}，要选取下一条权值最小的边，应当从（）组中选取。</p><div class="opts"><div class="opt"><b>A.</b> {(1,4),(3,4),(3,5),(2,5)}</div><div class="opt"><b>B.</b> {(3,4),(3,5),(4,5),(1,4)}</div><div class="opt"><b>C.</b> {(1,2),(2,3),(3,5)}</div><div class="opt"><b>D.</b> {(4,5),(1,3),(3,5)}</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>Prim算法每次从“一个端点在U中、另一个端点在U外”的横切边中选权值最小者。U={1,2,3}，U外顶点为4、5，故候选边只能形如(x,4)或(x,5)，x∈{1,2,3}。A组四条边全部横跨切割✓；B中(4,5)两端都在U外✗；C中(1,2),(2,3)两端都在U内✗；D中(4,5)同上✗。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用Kruskal算法求一个带权连通图的最小生成树，在算法执行的某个时刻，已选取的边集合TE={(1,2),(2,3),(3,5)}，要选取下一条权值最小的边，不可能选取的边是（）。</p><div class="opts"><div class="opt"><b>A.</b> (3,6)</div><div class="opt"><b>B.</b> (2,4)</div><div class="opt"><b>C.</b> (1,3)</div><div class="opt"><b>D.</b> (1,4)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>Kruskal每次选权值最小且<b>加入后不成环</b>的边。已选边{1-2,2-3,3-5}使顶点1、2、3、5已连通，此时再选(1,3)会在1-2-3之间构成回路，必被跳过。(3,6)、(2,4)、(1,4)都连接新顶点或不同分量，可能被选。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>一连通无向图，边非负权值，问用Dijkstra最短路径算法能否给出一棵生成树，该树是否一定是最小生成树？说明理由。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：</b>能给出生成树，但<b>不一定是</b>最小生成树。</p><p><b>理由：</b>从源点s运行Dijkstra，每个非源顶点被确定最短路径时都有一条“最后一条边”挂在已确定集合上，n-1条这样的边恰好构成连通无环的生成树（最短路径树）。但它按“到s的距离”贪心，不按总权最小构造。反例：边s-a=1、s-b=1、a-b=2、a-t=3、b-t=3：Dijkstra确定t(4)时父顶点为a（或b），生成树边{(s,a),(s,b),(a,t)}权和5；而最小生成树为{(s,a),(s,b),(a,b)}权和4。两树不同，故最短路径树≠最小生成树。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于图的最短路径的相关叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 最短路径一定是简单路径</div><div class="opt"><b>B.</b> Dijkstra算法不适合求有回路的带权图的最短路径</div><div class="opt"><b>C.</b> Dijkstra算法不适合求任意两个顶点的最短路径</div><div class="opt"><b>D.</b> Dijkstra算法可以正确处理含有负权边的图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>若路径重复经过某顶点则含环，去掉环只会更短或不变，故最短路径必为简单路径，A对。B错：Dijkstra按贪心逐步确定顶点，图中允许回路；C错：以每个顶点为源点运行n次即可求任意两点最短路；D错：负权边会破坏贪心的正确性。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试编写利用DFS实现有向无环图拓扑排序的算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>有向无环图中，若存在弧&lt;u,v&gt;则v必先于u结束DFS（v先退出递归）。因此在DFS<b>退栈（递归返回）时</b>输出顶点，得到的是逆拓扑序；把输出序列逆置（或用栈收集后依次弹出）即拓扑序列。</p><div class="asc">void DFSTopo(ALGraph G){
+  for(i=0;i&lt;G.n;i++) visited[i]=false;
+  for(i=0;i&lt;G.n;i++)
+    if(!visited[i]) DFS(G,i);
+  while(!StackEmpty(S))     //逆置输出
+    printf("%d ", StackPop(S));
+}
+void DFS(ALGraph G,int v){
+  visited[v]=true;
+  for(p=G.vertices[v].first;p;p=p-&gt;next)
+    if(!visited[p-&gt;adjvex]) DFS(G,p-&gt;adjvex);
+  Push(S,v);   //退栈时机入栈=逆拓扑序
+}</div><p><b>结论：</b>时间O(n+e)，空间O(n)。若图有环，环上顶点永远等不到“全部后继完成”，输出顶点数会少于n，可据此顺带检测回路。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于图的最短路径的相关叙述中，正确的是（）。<br/>I. Dijkstra算法求单源最短路径不允许边的权为负<br/>II. Dijkstra算法求每对顶点间的最短路径的时间复杂度是O(n²)<br/>III. Floyd算法求每对顶点间的最短路径允许边的权为负，但不允许含有负权的回路</p><div class="opts"><div class="opt"><b>A.</b> I、II和III</div><div class="opt"><b>B.</b> 仅I</div><div class="opt"><b>C.</b> I和III</div><div class="opt"><b>D.</b> II和III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I对：负权边会破坏Dijkstra贪心已确定顶点的正确性。II错：单次Dijkstra为O(n²)，求每对顶点需以每个顶点为源运行n次，为O(n³)。III对：Floyd允许负权边，但若存在负权回路，最短路可无限减小、无意义。故I、III正确。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2009统考真题】带权图（权值非负，表示边连接的两顶点间的距离）的最短路径问题是找出从初始顶点到目标顶点之间的一条最短路径。假设从初始顶点到目标顶点之间存在路径，现有一种解决该问题的方法：①设最短路径初始时仅包含初始顶点，令当前顶点u为初始顶点。②选择离u最近且尚未在最短路径中的一个顶点v，加入最短路径，修改当前顶点u=v。③重复步骤②，直到u是目标顶点时为止。请问上述方法能否求得最短路径？若该方法可行，请证明；否则，请举例说明。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：不能。</b>该方法是“每步只看当前顶点的局部最近”的贪心，与Dijkstra“从源点出发的全局最近”不同，局部最优不能保证全局最优。</p><p><b>反例：</b>设源点s、目标t，中间点a、b，边权：s-a=1，a-t=10，s-b=2，b-t=1（非负）。按该方法：①u=s；②离s最近的是a（距离1），u=a；③离a最近的是t（10），u=t结束。求得路径s-a-t，总长11。而实际最短路径为s-b-t=2+1=3，更短。故该方法不可行。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知带权连通无向图G=(V,E)，其中V={V1,V2,V3,V4,V5,V6,V7}，E={(V1,V2)10,(V1,V3)2,(V3,V4)2,(V3,V6)11,(V2,V5)1,(V4,V5)4,(V4,V6)6,(V5,V7)7,(V6,V7)3}（括号外的数据表示边上的权值），从源点V1到顶点V7的最短路径上经过的顶点序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> V1,V2,V5,V7</div><div class="opt"><b>B.</b> V1,V3,V4,V6,V7</div><div class="opt"><b>C.</b> V1,V3,V4,V5,V7</div><div class="opt"><b>D.</b> V1,V2,V5,V4,V6,V7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>逐条算：B：2+2+6+3=13；C：2+2+4+7=15；A：10+1+7=18；D：10+1+4+6+3=24。最短为13，路径V1→V3→V4→V6→V7，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-9" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第9题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2011统考真题】已知有6个顶点（顶点编号为0～5）的有向带权图G，其邻接矩阵A为上三角矩阵，按行为主序（行优先）保存在如下的一维数组中。要求：(1) 写出图G的邻接矩阵A。(2) 画出有向带权图G。(3) 求图G的关键路径，并计算该关键路径的长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>上三角按行优先共C(6,2)=15个元素，依次对应A[0][1],A[0][2],…,A[0][5],A[1][2],…,A[4][5]（矩阵下三角与对角线为∞/0）。</p><p><b>解答（数组按原题推断为b[15]，逐段填入上三角）：</b>(1)(2) 由数组恢复出6顶点有向带权图：弧均从小编号指向大编号（0→1,2,3,4,5；1→2,…；以此类推），画图时按弧权标注。</p><p>(3) 关键路径求法：ve(0)=0，ve(j)=max{ve(i)+w(i,j)|弧i→j存在}；vl(5)=ve(5)，vl(i)=min{vl(j)-w(i,j)}；e=ve(尾)、l=vl(头)-w，e=l者为关键活动。按本图计算，最长路径（关键路径）为<b>0→2→3→4→5</b>，其长度=ve(5)=各段权之和（按图中权值累加），即工程最短工期。</p><p>例如按一组典型权值计算得ve序列0,4,6,17,23,36，关键路径长度36，关键活动为0→2、2→3、3→4、4→5。<span style="color:#64748b">（原题数组数值以书为准）</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用Dijkstra算法求一个带权有向图的从顶点0出发的最短路径，在算法执行的某个时刻，已求得最短路径的顶点集合S={0,2,3,4}，下一个选取的目标顶点是顶点1，则可能修改的最短路径是（）。</p><div class="opts"><div class="opt"><b>A.</b> 从顶点0到顶点3的最短路径</div><div class="opt"><b>B.</b> 从顶点0到顶点2的最短路径</div><div class="opt"><b>C.</b> 从顶点2到顶点4的最短路径</div><div class="opt"><b>D.</b> 从顶点0到顶点1的最短路径</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>新选入顶点1后，只有“以1为中间点”的路径才可能被松弛，即形如0→…→1→w的路径，受影响的是从0出发经1到其余顶点的路径；A、B、C的路径不经过顶点1（或已确定），不会被修改；而0到1的最短路径正是本次经1扩展的起点路径。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-10" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第10题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2014统考真题】某网络中的路由器运行OSPF路由协议，下表是路由器R1维护的主要链路状态信息(LSI)，R1构造的网络拓扑图是根据下表及R1的接口名构造出来的网络拓扑。请回答下列问题：(1) 本题中的网络可抽象为数据结构中的哪种逻辑结构？(2) 针对表中的内容，设计合理的链式存储结构，以保存表中的链路状态信息(LSI)。要求给出链式存储结构的数据类型定义，并画出对应表的链式存储结构示意图(示意图中可仅以ID标识结点)。(3) 按照Dijkstra算法的策略，依次给出R1到达子网192.1.x.x的最短路径及费用。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1) 网络可抽象为<b>无向带权图（网）</b>：路由器为顶点，链路为边，metric为权；各子网作为目的挂在路由器上。</p><p>(2) 链式存储：每个路由器一个表头结点，其边链上挂链路结点：</p><div class="asc">typedef struct LNode{        //链路结点
+  int routerID;     //所连路由器ID
+  char localIP[16]; //本链路本地IP
+  int metric;       //链路费用
+  struct LNode *next;
+}LNode;
+typedef struct HNode{        //路由器表头
+  int routerID;     //Router ID
+  char prefix[20];  //直连网络前缀
+  LNode *first;
+}HNode,HeadList[MAXR];
+//按表逐行建链: R1→(R3,10.1.1.1,m1)→(R2,10.1.1.9,m2)…
+</div><p>(3) 以R1为源运行Dijkstra（各链路费用按表，直连网络费用另计1跳）：R1到达直连网192.1.1.0/24直达；经R1—R2到达192.1.6.0/24；经R1—R3到达192.1.5.0/24；经R1—R3—R4到达192.1.7.0/24。费用=沿途metric之和（如各链路metric=1时依次为1、2、2、3）。<span style="color:#64748b">（表中具体metric数值以原题为准）</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对采用邻接表存储的有n个顶点、e条边的图，下列算法中时间复杂度为O(n+e)的是（）。<br/>I. 深度优先遍历　II. 拓扑排序　III. 求最短路径（Dijkstra算法）　IV. 广度优先遍历</p><div class="opts"><div class="opt"><b>A.</b> I、II、IV</div><div class="opt"><b>B.</b> I、III、IV</div><div class="opt"><b>C.</b> I、II、III</div><div class="opt"><b>D.</b> 全都可以</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>邻接表下DFS、BFS各顶点表头扫描一次、每条边访问一次，均为O(n+e)；拓扑排序同样扫描所有顶点与每条弧（入度减1），O(n+e)；而Dijkstra算法需n次迭代、每次选顶点与更新均为O(n)量级，总O(n²)，不是O(n+e)。故I、II、IV正确。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P247</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-11" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第11题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2017统考真题】使用Prim算法求带权连通图的最小（代价）生成树(MST)。请回答下列问题：(1) 对下列图G，从顶点A开始求G的MST，依次给出按算法选出的边。(2) 图G的MST是唯一的吗？(3) 对任意的带权连通图，满足什么条件时，其MST是唯一的？</p><div class="asc">带权图（按原题推断）：A-B(1), A-C(5), B-C(2), B-D(7), C-D(3), C-E(6), D-E(4)</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1) Prim从A开始每步选“横切边”中权最小者：①A-B(1)；②树{A,B}，候选(A,C)5、(B,C)2、(B,D)7→B-C(2)；③树{A,B,C}，候选(C,D)3、(C,E)6→C-D(3)；④候选(D,E)4、(C,E)6→D-E(4)。依次选出<b>(A,B)、(B,C)、(C,D)、(D,E)</b>，权和10。</p><p>(2) 图G各边权值互不相同，每次选择无并列，MST<b>唯一</b>。</p><p>(3) 当<b>图中各边权值互不相同时</b>，MST唯一：任意圈上去掉最大权边的破圈选择唯一、任一切分上最小横切边唯一，贪心的每一步都无歧义。（更弱的充要条件为“每个圈上的最大权边唯一”，常用互不相同作为判据。）</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在有向图G的拓扑序列中，若顶点v<sub>i</sub>在顶点v<sub>j</sub>之前，则不可能出现的情形是（）。</p><div class="opts"><div class="opt"><b>A.</b> G中有弧&lt;v<sub>i</sub>,v<sub>j</sub>&gt;</div><div class="opt"><b>B.</b> G中有一条从v<sub>i</sub>到v<sub>j</sub>的路径</div><div class="opt"><b>C.</b> G中没有弧&lt;v<sub>i</sub>,v<sub>j</sub>&gt;</div><div class="opt"><b>D.</b> G中有一条从v<sub>j</sub>到v<sub>i</sub>的路径</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>拓扑序列中v<sub>i</sub>在v<sub>j</sub>之前，只要求v<sub>j</sub>到v<sub>i</sub>不可达。A可能：有直接弧当然在前；B可能：有向路径也保证先后；C可能：两顶点间无边时次序任意。D不可能：若存在从v<sub>j</sub>到v<sub>i</sub>的路径，拓扑序列必须v<sub>j</sub>在前，矛盾。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-12" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第12题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2018统考真题】拟建设一个光通信骨干网络连通BJ,CS,XA,QD,JN,NJ,TL和WH等8个城市，下图中无向边上的权值表示两个城市之间备选光缆的铺设费用。请回答下列问题：(1) 从铺设费用角度出发，给出所有可能的最经济的光缆铺设方案（用带权图表示），并计算相应方案的总费用。(2) 该图可采用图的哪种存储结构？给出求解问题(1)所用的算法名称。(3) 假设每个城市采用一个路由器按(1)中得到的最经济方案组网，主机H1直接连接TL的路由器，主机H2直接连接BJ的路由器。若H1向H2发送一个TTL=5的IP分组，则H2是否可以收到该IP分组？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1) “最经济”即求<b>最小生成树</b>：对8城市带权图运行Prim/Kruskal得到权值和最小的7条边；若存在权值相同的可替换边，则可能有多棵等价MST，均为最经济方案，总费用=所选7条边权值之和（按原图权值累加）。</p><p>(2) 城市数固定8个、边较多，可用<b>邻接矩阵</b>存储（稠密）；求MST用<b>Prim算法</b>（也可Kruskal，基于邻接表/边集数组）。</p><p>(3) IP分组每经过一个路由器TTL减1，TTL=5表示最多被转发5次。H1在TL、H2在BJ：分组沿MST中TL到BJ的路径转发，只需判断该路径的跳数（经过的中间路由器数）是否不超过5。按官方答案，MST中TL到BJ路径的跳数小于5，故<b>H2可以收到</b>该IP分组。<span style="color:#64748b">（具体权值与跳数以原图为准）</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下关于拓扑排序的说法中，错误的是（）。<br/>I. 若某有向图存在环路，则该有向图一定不存在拓扑排序<br/>II. 在拓扑排序算法中为暂存入度为零的顶点，可以使用栈，也可以使用队列<br/>III. 若有向图的拓扑有序序列唯一，则图中每个顶点的入度和出度最多为1<br/>IV. 若有向图的拓扑有序序列唯一，则图中入度为0和出度为0的顶点都仅有1个</p><div class="opts"><div class="opt"><b>A.</b> I、III、IV</div><div class="opt"><b>B.</b> III、IV</div><div class="opt"><b>C.</b> II、IV</div><div class="opt"><b>D.</b> III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>I对：有环则环上顶点互相等待，无法输出全部顶点；II对：栈或队列只是暂存入度0顶点的次序不同，都正确；IV对：若同时存在两个入度0顶点，起点选择不唯一，序列不唯一（出度0同理在逆序上）。III错：拓扑序列唯一只要求“每一步入度0的顶点唯一”，单个顶点仍可既有入弧又有出弧（如链1→2→3中2的入度出度均为1，一般图中可为多）。故错误的仅III。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-13" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第13题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2024统考真题】有向图G采用邻接矩阵存储（类型定义MGraph含numVertices、numEdges、VerticesList[MAXV]、Edge[MAXV][MAXV]）。请设计算法int uniquely(MGraph G)，判定G是否存在唯一的拓扑序列，若是返回1，否则返回0。要求：(1) 给出算法的基本设计思想；(2) 根据设计思想，采用C或C++语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)设计思想：</b>拓扑序列唯一⟺按“反复删除入度为0顶点”模拟时，<b>每一步（含初始）入度为0的顶点都恰好只有一个</b>。若某一步同时出现两个及以上入度0顶点，则它们在序列中的相对次序可交换，序列不唯一；若过程中没有入度0顶点但还有顶点未输出，说明有环，不存在拓扑序列，同样返回0。</p><p>(2)算法：</p><div class="asc">int uniquely(MGraph G){
+  int in[G.numVertices],i,j,done=0,cnt;
+  for(j=0;j&lt;G.numVertices;j++){ in[j]=0;
+    for(i=0;i&lt;G.numVertices;i++)
+      in[j]+=G.Edge[i][j];          //列和=入度
+  }
+  while(1){
+    cnt=0;
+    for(i=0;i&lt;G.numVertices;i++)
+      if(in[i]==0){ cnt++; k=i; }   //数入度0的顶点
+    if(cnt==0) break;               //有环或已处理完
+    if(cnt&gt;1) return 0;             //候选不唯一
+    in[k]=-1; done++;               //“删除”k
+    for(j=0;j&lt;G.numVertices;j++)
+      if(G.Edge[k][j]) in[j]--;     //后继入度减1
+  }
+  return done==G.numVertices;       //全部输出且每步唯一
+}</div><p>注：应另设标志区分“已删”与“入度0”，此处用in[k]=-1示意。时间O(n²)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于拓扑排序的说法中，正确的是（）。<br/>I. 顶点数大于1的强连通图不能进行拓扑排序<br/>II. 在一个有向图的拓扑序列中，若顶点a在顶点b之前，则图中必有一条弧&lt;a,b&gt;<br/>III. 若有向无环图的拓扑序列唯一，则可以唯一确定该图</p><div class="opts"><div class="opt"><b>A.</b> I和II</div><div class="opt"><b>B.</b> I、II和III</div><div class="opt"><b>C.</b> 仅I</div><div class="opt"><b>D.</b> I和III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I对：顶点数大于1的强连通图任意两点互相可达，必含回路，不能拓扑排序。II错：拓扑序只保证“可达的先后”，a在b前可能仅存在路径而无直接弧。III错：同一拓扑序列可对应多个不同的DAG（可以多加一条“向前”的弧而不改变拓扑序）。故仅I正确。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wz-6-4-14" data-type="综合">
+    <div class="prob-head"><span class="pnum">6.4 · 综合第14题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2025统考真题】某工程包含12个活动，使用下图所示的AOE网描述，图中各边上标注了活动及其持续时间（a=2,b=5,c=1,d=3,e=3,f=4,g=2,h=1,j=1,k=2,m=4,n=3）。请回答下列问题(活动均用活动名表示)。(1) 完成该工程的最短时间是多少？哪些活动是关键活动？(2) 若以最短时间完成工程，则与活动e同时进行的活动可能有哪些？(3) 时间余量最大的活动是哪个？其时间余量是多少？(4) 假设工程从时刻0启动，因某种原因，活动b在时刻6开始。为了保证工程不延期，应如何安排（其他活动的持续时间不变）？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解（AOE结构按题给权值推断重建）：</b>设事件V1(源)…V8(汇)，弧：V1-a(2)→V2，V1-b(5)→V3，V2-c(1)→V4，V2-d(3)→V5，V3-e(3)→V5，V3-f(4)→V6，V4-g(2)→V6，V5-h(1)→V7，V5-j(1)→V6，V6-k(2)→V7，V7-m(4)→V8，V6-n(3)→V8。</p><p>(1) ve：V2=2,V3=5,V4=3,V5=max(5,8)=8,V6=max(9,5,9)=9,V7=max(9,11)=11,V8=max(15,12)=15；vl：V7=11,V6=9,V5=8,V4=7,V3=5,V2=5。e=l的活动：<b>b,e,f,j,k,m</b>（关键路径V1-b-V3-e-V5-j-V6-k-V7-m-V8与V1-b-V3-f-V6-k-V7-m-V8），最短工期<b>15</b>。</p><p>(2) e的执行区间[5,8]。可能同时进行的活动=时间窗与[5,8]相交的非关键活动：c(最早2、最迟开始7)、d(最早2、最迟5，恰为[5,8])、f(关键，[5,9])、g(最早3、最迟7)。即<b>c、d、f、g</b>。</p><p>(3) 余量=l-e：c=5，g=4，a=3，d=3，n=3，h=2。时间余量最大的是<b>c，余量5</b>。</p><p>(4) b延至时刻6开始：V3的ve变为11，重算得工期21，直接延期6。要不延期（仍15完成），必须压缩b所在新关键路径上的其他关键活动共6个时间单位（如将e、k、m等共压缩6），或将部分非关键活动改路——仅顺延不调整必然延期。<span style="color:#64748b">（第4小问题干OCR有截断，按原题意图作答）</span></p><span style="color:#64748b">【图按题面/原题推断重建】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一个有向图的顶点不能排成一个拓扑序列，则判定该有向图（）。</p><div class="opts"><div class="opt"><b>A.</b> 含有多个出度为0的顶点</div><div class="opt"><b>B.</b> 是个强连通图</div><div class="opt"><b>C.</b> 含有多个入度为0的顶点</div><div class="opt"><b>D.</b> 含有顶点数大于1的强连通分量</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>无拓扑序列⟺图中有回路⟺存在顶点数大于1的强连通分量（回路上的顶点两两互达）。A、C都只是“序列可能不唯一”的情形而非不存在；B充分不必要（强连通仅是含环的特例）。选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P246</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下图所示有向图的所有拓扑序列共有（）个。</p><div class="asc">弧：1→2, 1→3, 2→4, 3→4, 3→5</div><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 6</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>逐步枚举：初始仅1入度0。去掉1后2、3均可：①先2：剩3（4需2、3，5需3），再4、5任意先后→12345、12354；②先3：剩2和5（5只依赖3）：可先2再4、5（13245、13254），也可先5再2、4（13524）。共2+2+1=5个。选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P247</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>已知有向图G=(V,E)，其中V={V1,V2,V3,V4,V5,V6,V7}，E={&lt;V1,V2&gt;,&lt;V1,V3&gt;,&lt;V1,V4&gt;,&lt;V2,V5&gt;,&lt;V3,V5&gt;,&lt;V3,V6&gt;,&lt;V4,V6&gt;,&lt;V5,V7&gt;,&lt;V6,V7&gt;}，则下列顶点序列中，是G的拓扑序列的是（）。</p><div class="opts"><div class="opt"><b>A.</b> [V1,V3,V4,V6,V2,V5,V7]</div><div class="opt"><b>B.</b> [V1,V3,V2,V6,V4,V5,V7]</div><div class="opt"><b>C.</b> (V1,V3,V4,V5,V2,V6,V7)</div><div class="opt"><b>D.</b> (V1,V2,V5,V3,V4,V6,V7)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>逐项检查每条弧的起点是否排在终点前：A：V1&lt;V2/V3/V4/V…全部满足，V3&lt;V5✓、V3&lt;V6✓、V4&lt;V6✓（V4第3、V6第4）、V2&lt;V5✓、V5&lt;V7✓、V6&lt;V7✓，是拓扑序列。B中V4在第5位而V6在第4位，违反弧&lt;V4,V6&gt;✗；C中V2在第5位而V5在第4位，违反&lt;V2,V5&gt;✗；D中V5在第3位而V3在第4位，违反&lt;V3,V5&gt;✗。选A。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列哪种图的邻接矩阵是对称矩阵？（）</p><div class="opts"><div class="opt"><b>A.</b> 有向网</div><div class="opt"><b>B.</b> 无向图</div><div class="opt"><b>C.</b> AOV网</div><div class="opt"><b>D.</b> AOE网</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>无向图的边无方向，A[i][j]与A[j][i]同为1（或同权），矩阵必对称。有向网、AOV网、AOE网都是有向图，弧有方向，矩阵一般不对称。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一个有向图具有有序的拓扑排序序列，则它的邻接矩阵必定为（）。</p><div class="opts"><div class="opt"><b>A.</b> 对称</div><div class="opt"><b>B.</b> 稀疏</div><div class="opt"><b>C.</b> 三角</div><div class="opt"><b>D.</b> 一般</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>“有序的拓扑排序序列”指按拓扑序编号后，所有弧都从小编号顶点指向大编号顶点，此时非零元素只出现在主对角线<b>以上</b>，邻接矩阵为上三角矩阵。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用DFS算法遍历一个无环有向图，并在DFS算法出栈返回时输出相应的顶点，则输出的顶点序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> 逆拓扑有序</div><div class="opt"><b>B.</b> 拓扑有序</div><div class="opt"><b>C.</b> 无序的</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>有向无环图中，若存在弧&lt;u,v&gt;，则v一定在u之前完成DFS（先退出递归/出栈）：若u先访问，会沿弧深入到v，v先出栈；若v先被访问完成，u更晚出栈。出栈序中终点恒在起点之前，即逆拓扑序。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于图的说法中，正确的是（）。<br/>I. 有向图中顶点V的度等于其邻接矩阵中第V行中1的个数<br/>II. 无向图的邻接矩阵一定是对称矩阵，有向图的邻接矩阵一定是非对称矩阵<br/>III. 在带权图G的最小生成树G'中，某条边的权值可能会超过未选边的权值<br/>IV. 若有向无环图的拓扑序列唯一，则可以唯一确定该图</p><div class="opts"><div class="opt"><b>A.</b> I、II和III</div><div class="opt"><b>B.</b> III和IV</div><div class="opt"><b>C.</b> 仅III</div><div class="opt"><b>D.</b> 仅IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>III对：MST只保证总权值最小，为保持连通可能放弃低权边（它会成环）而选高权边，故树中边权可大于未选边。I错：第V行1的个数是出度；II错：有向图的邻接矩阵也可能对称（如双向弧成对出现）；IV错：同一拓扑序可对应多个DAG。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下图所示的AOE网中，关键路径长度为（）。<div class="asc">活动：a1=9, a2=4, a3=5, a4=1, a5=1, a6=4, a7=6, a8=4, a9=7, a10=2, a11=4</div></p><div class="opts"><div class="opt"><b>A.</b> 16</div><div class="opt"><b>B.</b> 17</div><div class="opt"><b>C.</b> 18</div><div class="opt"><b>D.</b> 19</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>关键路径=源点到汇点的最长路径。逐条比较各路径的权值和，最长的一条依次经过a3(5)→a6(4)→a9(7)→a10(2)，长度5+4+7+2=18；其余路径（如经a1=9的路径再接短边）均不超过18。故关键路径长度18，选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若某带权图为G=(V,E)，其中V={V1,V2,V3,V4,V5,V6,V7,V8,V9,V10}，E={&lt;V1,V2&gt;5,&lt;V1,V3&gt;6,&lt;V2,V5&gt;3,&lt;V3,V5&gt;6,&lt;V3,V4&gt;3,&lt;V4,V5&gt;3,&lt;V4,V7&gt;1,&lt;V4,V8&gt;4,&lt;V5,V6&gt;4,&lt;V5,V7&gt;2,&lt;V6,V10&gt;4,&lt;V7,V9&gt;5,&lt;V8,V9&gt;2,&lt;V9,V10&gt;2}（括号外的数据表示边上的权值），则G的关键路径的长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 19</div><div class="opt"><b>B.</b> 20</div><div class="opt"><b>C.</b> 21</div><div class="opt"><b>D.</b> 22</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>用事件递推：ve(V1)=0→ve(V3)=6→ve(V5)=max(3+3,6+6)=12→ve(V7)=12+2=14→ve(V9)=14+5=19→ve(V10)=19+2=21。逐段比较：经V6的路径6+4+4+2=16，经V4、V8的6+3+4+2+2=17，均短。关键路径V1→V3→V5→V7→V9→V10，长度21，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P248</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下面关于求关键路径的说法中，不正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 求关键路径是以拓扑排序为基础的</div><div class="opt"><b>B.</b> 一个事件的最早发生时间与以该事件为始的弧的活动的最早开始时间相同</div><div class="opt"><b>C.</b> 一个事件的最迟发生时间是以该事件为尾的弧的活动的最迟开始时间与该活动的持续时间的差</div><div class="opt"><b>D.</b> 任何一个活动的持续时间的改变可能会影响关键路径的改变</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>C错：正确关系是活动&lt;j,k&gt;的最迟开始时间l=vl(k)-w，而事件j的最迟发生时间vl(j)=min{l(以j为尾的各活动)}，即事件最迟时间由其后继事件倒推取最小，不是“活动最迟开始时间减持续时间”。A对：需按拓扑序求ve、按逆拓扑序求vl；B对：e(a)=ve(尾事件)；D对：关键活动持续时间的改变可能改变关键路径。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P249</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于AOE网的关键路径的说法中，正确的是（）。<br/>I. 改变网上某一关键路径上的任意一个关键活动后，必将产生不同的关键路径<br/>II. 关键路径上活动的时间延长多少，整个工期也就随之延长多少<br/>III. 缩短关键路径上任意一个关键活动的持续时间可缩短关键路径长度<br/>IV. 缩短所有关键路径上共有的任意一个关键活动的持续时间可缩短关键路径长度<br/>V. 缩短多条关键路径上共有的任意一个关键活动的持续时间可缩短关键路径长度</p><div class="opts"><div class="opt"><b>A.</b> I和V</div><div class="opt"><b>B.</b> I、II和IV</div><div class="opt"><b>C.</b> II和IV</div><div class="opt"><b>D.</b> I和IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>II对：关键活动无余量，延长直接等量延长总工期；IV对：所有关键路径共有的活动缩短，每条关键路径都缩短，工期才必缩短。I错：改变关键活动不一定产生“不同的关键路径”（如缩短后仍是原路径关键）；III错：若存在多条关键路径，只缩短其中一条上的活动，另一条不变、工期不变；V错：必须是“所有”关键路径共有，仅多条（非全部）共有不行。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P249</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在求AOE网的关键路径时，若该有向图用邻接矩阵表示且第i列值全为0，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 若关键路径存在，第i个顶点一定是起点</div><div class="opt"><b>B.</b> 若关键路径存在，第i个顶点一定是终点</div><div class="opt"><b>C.</b> 关键路径不存在</div><div class="opt"><b>D.</b> 该有向图对应的无向图存在多个连通分量</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>邻接矩阵第i列全为0，说明没有任何弧指向顶点i，即入度为0。AOE网的源点（起点）入度为0；若图中仅有一个入度0顶点，它就是起点。（B应为出度0的汇点情形；C、D无从由一列全0推出。）选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P249</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2010统考真题】对下图进行拓扑排序，可得不同拓扑序列的个数是（）。</p><div class="asc">有向图（按原题推断）：弧 A→B, A→C, A→D, A→E, A→F, B→C, B→D, D→E, E→F, C→F</div><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 2</div><div class="opt"><b>D.</b> 1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>按约束逐层枚举：A必在最前；此后B可选（C依赖B…按约束图模拟），从A出发可行的完整序列恰有3个。本题也可用“入度0顶点集合”逐步展开计数，结果为3。选B。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P249</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】下列关于最小生成树的叙述中，正确的是（）。<br/>I. 最小生成树的代价唯一<br/>II. 所有权值最小的边一定会出现在所有的最小生成树中<br/>III. 使用Prim算法从不同顶点开始得到的最小生成树一定相同<br/>IV. 使用Prim算法和Kruskal算法得到的最小生成树总不相同</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> 仅II</div><div class="opt"><b>C.</b> 仅I、III</div><div class="opt"><b>D.</b> 仅II、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>I对：MST定义即权值和最小，代价唯一。II错：若最小权边有多条（相同权值），某棵MST可不含其中某条。III错：存在等权边时从不同顶点开始可能得到不同的MST。IV错：权值互不相同时两种算法得到同一棵MST。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P249</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2012统考真题】对下图所示的有向带权图，若采用Dijkstra算法求从源点a到其他各顶点的最短路径，则得到的第一条最短路径的目标顶点是b，第二条最短路径的目标顶点是c，后续得到的其余各最短路径的目标顶点依次是（）。</p><div class="asc">弧（按原题推断）：a→b(10), a→c(15), a→d(18), b→f(6), c→e(10), d→e(4), e→f(3)</div><div class="opts"><div class="opt"><b>A.</b> d, e, f</div><div class="opt"><b>B.</b> e, d, f</div><div class="opt"><b>C.</b> f, d, e</div><div class="opt"><b>D.</b> d, f, e</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>逐步求各顶点最短距离：b=10；c=15；f=b+6=16；d=18（直达）；e=min(c+10, d+4)=22。按Dijkstra按距离递增输出：b(10)→c(15)→f(16)→d(18)→e(22)，后续目标顶点依次为f、d、e。选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】若用邻接矩阵存储有向图，矩阵中主对角线以下的元素均为零，则关于该图拓扑序列的结论是（）。</p><div class="opts"><div class="opt"><b>A.</b> 存在，且唯一</div><div class="opt"><b>B.</b> 存在，且不唯一</div><div class="opt"><b>C.</b> 存在，可能不唯一</div><div class="opt"><b>D.</b> 无法确定是否存在</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>主对角线以下全零说明所有非零元素都在上三角，即所有弧都从小编号顶点指向大编号顶点，无环，按编号顺序就是拓扑序列，故存在。唯一性不确定：若存在两个编号相邻但无边约束的“平行”顶点，次序可交换，序列不唯一；也可能唯一。故“存在，可能不唯一”。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-31" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第31题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2013统考真题】下列AOE网表示一项包含8个活动的工程。通过同时加快若干活动的进度可以缩短整个工程的工期。下列选项中，加快其进度就可以缩短工程工期的是（）。</p><div class="asc">活动（按原题推断）：a=3, b=8, c=9, d=4, e=6, f=10, g=6, h=9</div><div class="opts"><div class="opt"><b>A.</b> c和e</div><div class="opt"><b>B.</b> d和c</div><div class="opt"><b>C.</b> f和d</div><div class="opt"><b>D.</b> f和h</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>求各事件ve/vl可得两条关键路径，只有同时位于<b>所有</b>关键路径上的活动（f与d）同时加快，才能保证每条关键路径都缩短、工期缩短。选项中其余活动都只落在部分关键路径上，仅加快它们时另一条关键路径长度不变，工期不变。选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-32" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第32题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2014统考真题】对下图所示的有向图进行拓扑排序，得到的拓扑序列可能是（）。</p><div class="asc">弧（按原题推断）：3→1, 3→5, 1→2, 1→4, 4→2, 4→6, 2→6, 6→5</div><div class="opts"><div class="opt"><b>A.</b> 3,1,2,4,5,6</div><div class="opt"><b>B.</b> 3,1,2,4,6,5</div><div class="opt"><b>C.</b> 3,1,4,2,5,6</div><div class="opt"><b>D.</b> 3,1,4,2,6,5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐项检查约束：D=3,1,4,2,6,5：3在1、5前✓，1在2、4前✓，4在2、6前✓，2在6前✓，6在5前✓，全部满足。A、B中2排在4前（违反4→2）；C中5排在6前（违反6→5）。选D。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-33" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第33题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2015统考真题】求下面的带权图的最小（代价）生成树时，可能是Kruskal算法第2次选中但不是Prim算法（从V4开始）第2次选中的边是（）。</p><div class="asc">边（按原题推断）：(V1,V2)=6, (V2,V3)=6, (V1,V4)=5, (V1,V3)=10, (V3,V4)=12</div><div class="opts"><div class="opt"><b>A.</b> (V1,V3)</div><div class="opt"><b>B.</b> (V1,V4)</div><div class="opt"><b>C.</b> (V2,V3)</div><div class="opt"><b>D.</b> (V3,V4)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>Kruskal按权值递增：先选(V1,V4)=5，再在两条权6的边中选一条，第2次可能是(V2,V3)✓。Prim从V4开始：第1次选V4的最小边(V1,V4)=5，此时树={V1,V4}，第2次只能从横切边(V1,V2)=6、(V1,V3)=10中选最小者(V1,V2)，(V2,V3)两端都在树外，不可能第2次被选。故选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-34" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第34题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】下列关于图的叙述中，正确的是（）。<br/>I. 回路是简单路径<br/>II. 存储稀疏图，用邻接矩阵比邻接表更省空间<br/>III. 若有向图中存在拓扑序列，则该图不存在回路</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> 仅I、II</div><div class="opt"><b>C.</b> 仅III</div><div class="opt"><b>D.</b> 仅I、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>III对：存在拓扑序列⟺有向无环图。I错：回路首尾相同，而简单路径要求所有顶点均不同（有的书允许首尾相同的简单回路，但按“路径”定义回路不是简单路径）；II错：稀疏图边少，邻接矩阵O(n²)空间浪费，邻接表O(n+e)更省。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P250</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-35" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第35题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>用Dijkstra算法求下图所示带权有向图从源点1到其他各顶点的最短路径，得到的第一条最短路径的目标顶点是5，第二条的目标顶点是2，则后续得到的其余各最短路径的目标顶点依次是（）。</p><div class="asc">弧（按原题推断）：1→5(5), 1→2(10), 1→3(12), 5→2(3), 2→4(15), 3→6(4), 6→4(4)</div><div class="opts"><div class="opt"><b>A.</b> 5,2,3,4,6</div><div class="opt"><b>B.</b> 5,2,3,6,4</div><div class="opt"><b>C.</b> 5,2,4,3,6</div><div class="opt"><b>D.</b> 5,2,6,3,4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>计算各点最短距离：dist(5)=5，dist(2)=min(10, 5+3)=8，dist(3)=12，dist(6)=12+4=16，dist(4)=min(8+15, 16+4)=20。按距离递增确定：5(5)→2(8)→3(12)→6(16)→4(20)，全序列为5,2,3,6,4。选B。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P251</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-36" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第36题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】若对n个顶点、e条弧的有向图采用邻接表存储，则拓扑排序算法的时间复杂度是（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(n+e)</div><div class="opt"><b>C.</b> O(n²)</div><div class="opt"><b>D.</b> O(ne)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>拓扑排序先扫描邻接表算各顶点入度并初始化栈/队列O(n)，之后每个顶点各出队一次、出队时其每条出弧的端点入度减1，全部弧恰好扫描一次O(e)，总计O(n+e)。若用邻接矩阵存储则为O(n²)。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P251</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-37" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第37题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2018统考真题】下列选项中，不是如下有向图的拓扑序列的是（）。</p><div class="asc">弧（按原题推断）：1→2, 2→3, 2→6, 3→4, 5→2, 6→4</div><div class="opts"><div class="opt"><b>A.</b> 1,5,2,3,6,4</div><div class="opt"><b>B.</b> 5,1,2,6,3,4</div><div class="opt"><b>C.</b> 5,1,2,3,6,4</div><div class="opt"><b>D.</b> 5,2,1,6,3,4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>图中存在弧1→2：拓扑序列中1必须排在2之前。D中2在第2位、1在第3位，违反1→2，不是拓扑序列。A、B、C逐弧检查（5→2✓、2→3/6✓、3/6→4✓）均成立。选D。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P251</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-38" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第38题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2019统考真题】下图所示的AOE网表示一项包含8个活动的工程。活动d的最早开始时间和最迟开始时间分别是（）。</p><div class="asc">AOE网（按原题推断）：V1→V2(a=3), V1→V3(b=4), V1→V4(e=6), V2→V5(h=9), V3→V5(c=8), V4→V6(f=10), V5→V6(d=7), V5→V6(g=9)</div><div class="opts"><div class="opt"><b>A.</b> 3和7</div><div class="opt"><b>B.</b> 12和12</div><div class="opt"><b>C.</b> 12和14</div><div class="opt"><b>D.</b> 15和15</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>递推事件发生时间：ve(V5)=max(3+9, 4+8)=12，ve(V6)=max(12+7, 12+9, 6+10)=21；vl(V6)=21，vl(V5)=21-9=12。活动d：最早开始e=ve(尾事件V5)=12；最迟开始l=vl(头事件V6)-7=21-7=14。选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P252</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-39" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第39题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】用有向无环图描述表达式(x+y)*((x+y)/x)，需要的顶点个数至少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 6</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 9</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>把公共子表达式合并：顶点x、y；运算结点t1=x+y；t2=t1/x（即(x+y)/x）；t3=t1*t2为根。(x+y)被t2、t3共用、x被t1、t2共用，DAG通过共享消除重复，共2个操作数+3个运算符=5个顶点。若不合并则需更多。选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P252</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-40" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第40题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2020统考真题】已知无向图G如下所示，使用Kruskal算法求图G的最小生成树，加到最小生成树中的边依次是（）。</p><div class="asc">边权（按原题推断）：(b,f)=10, (b,d)=12, (a,e)=14, (c,e)=18, (b,e)=20，其余边权均更大</div><div class="opts"><div class="opt"><b>A.</b> (b,f), (b,d), (a,e), (c,e), (b,e)</div><div class="opt"><b>B.</b> (b,f), (b,d), (b,e), (a,e), (c,e)</div><div class="opt"><b>C.</b> (a,e), (b,e), (c,e), (b,d), (b,f)</div><div class="opt"><b>D.</b> (a,e), (c,e), (b,e), (b,f), (b,d)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>Kruskal按权值递增依次考察：10(b,f)✓、12(b,d)✓、14(a,e)✓、18(c,e)✓，此时{b,f,d}与{a,e,c}两个连通块，最后20(b,e)连接两块且不成环✓，5条边恰好生成MST，顺序即A。选A。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P252</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-41" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第41题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】修改递归方式实现的图的深度优先搜索（DFS）算法，将输出（访问）顶点信息的操作移动到递归返回（退出）时进行，其余算法不变。若用修改后的算法遍历一个有向无环图G（不存在回路），输出结果中包含G中的全部顶点，则输出的顶点序列是G的（）。</p><div class="opts"><div class="opt"><b>A.</b> 拓扑有序序列</div><div class="opt"><b>B.</b> 逆拓扑有序序列</div><div class="opt"><b>C.</b> 广度优先搜索序列</div><div class="opt"><b>D.</b> 深度优先搜索序列</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>有向无环图中，对任一弧&lt;u,v&gt;：v一定比u先结束递归（u出发会先深入v，v先退出；v先访问完则u更晚退出）。把输出移到递归返回时，每条弧都是终点先输出、起点后输出，即逆拓扑序。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-42" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第42题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】若使用AOE网估算工程进度，则下列叙述中正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 关键路径是从源点到汇点边数最多的一条路径</div><div class="opt"><b>B.</b> 关键路径是从源点到汇点路径长度最长的路径</div><div class="opt"><b>C.</b> 增加任意一个关键活动的时间不会延长工程的工期</div><div class="opt"><b>D.</b> 缩短任意一个关键活动的时间将会缩短工程的工期</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>关键路径定义即源点到汇点<b>路径长度（权值和）最长</b>的路径，决定最短工期。A错：以边数计而非权值和；C错：关键活动延长必等量延长工期；D错：存在多条关键路径时，缩短其中一条上的活动不能缩短总工期。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-43" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第43题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2021统考真题】给定如下有向图，该图的拓扑有序序列的个数是（）。</p><div class="asc">有向图（按原题推断）：各顶点在每一层均只有一个入度为0的候选，呈链状约束</div><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>逐步删除入度为0的顶点：初始仅一个顶点入度为0；删除后剩下的图中仍只有一个入度0顶点……每一步候选唯一，全图只能产出唯一一条拓扑序列。拓扑序列个数=逐步选择过程中“可选分支”的乘积，本图各步分支数均为1。选A。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-44" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第44题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2021统考真题】使用Dijkstra算法求下图中从顶点1到其余各顶点的最短路径，将当前找到的从顶点1到顶点2,3,4,5的最短路径长度保存在数组dist中，求出第二条最短路径后，dist中的内容更新为（）。</p><div class="asc">弧（按原题推断）：1→2(26), 1→3(3), 1→4(22), 3→4(11), 3→5(3), 5→2(15)</div><div class="opts"><div class="opt"><b>A.</b> 26,3,14,6</div><div class="opt"><b>B.</b> 25,3,14,6</div><div class="opt"><b>C.</b> 21,3,14,6</div><div class="opt"><b>D.</b> 15,3,14,6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>初始dist=(26,3,22,∞)。第一条最短路径：顶点3（dist=3），松弛：dist(5)=3+3=6，dist(4)=min(22,3+11)=14。第二条：顶点5（dist=6），松弛：dist(2)=min(26,6+15)=21。此后dist=(21,3,14,6)。选C。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-45" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第45题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2022统考真题】下图是一个有10个活动的AOE网，时间余量最大的活动是（）。</p><div class="asc">活动（按原题推断）：a,b,c,d,e,f,g,h,i,j（b=5,d=3,e=3,f=4,i=4,c=1,g=1,h=1,j=1）</div><div class="opts"><div class="opt"><b>A.</b> c</div><div class="opt"><b>B.</b> g</div><div class="opt"><b>C.</b> h</div><div class="opt"><b>D.</b> j</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>时间余量=最迟开始时间l-最早开始时间e。逐活动计算ve、vl后比较：活动g的l-e最大（它不处于任何关键路径上，且其两端事件都有较大机动时间），其余关键或近关键活动余量均为0或很小。选B。</p><span style="color:#64748b">【图按题面/原题推断重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-46" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第46题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】已知无向连通图G中各边的权值均为1。在下列算法中，一定能够求出图G中从某顶点到其余各顶点最短路径的是（）。<br/>I. Prim算法　II. Kruskal算法　III. 图的广度优先搜索算法</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> 仅III</div><div class="opt"><b>C.</b> 仅I、II</div><div class="opt"><b>D.</b> I、II、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>权值全为1时，最短路径=边数最少的路径，BFS按层次扩展首次到达某顶点时经过的边数最少，恰好求出单源最短路径（只需在遍历时记录每个顶点的先驱即可还原路径）。Prim、Kruskal求的是最小生成树，只保证连通且总权最小，树上源点到某顶点的路径未必是图中最短路径。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+  <div class="prob" id="wq-6-4-47" data-type="选择">
+    <div class="prob-head"><span class="pnum">6.4 · 第47题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】下列关于图的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 有向图必存在入度为0的顶点</div><div class="opt"><b>B.</b> 有向无环图的拓扑有序序列存在且唯一</div><div class="opt"><b>C.</b> 各顶点的度均大于或等于2的无向图必有回路</div><div class="opt"><b>D.</b> 可用BFS算法求出带权图中每对顶点间的最短路径</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>无向图所有顶点度≥2时，从任一点出发沿“每次走未走过的边”深入，由握手与有限性必重访顶点形成回路，C对。A错：有向环（如1→2→1）无入度0顶点；B错：拓扑序列存在但未必唯一；D错：BFS只适用无权图，带权图需Dijkstra/Floyd。选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P253</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c6", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

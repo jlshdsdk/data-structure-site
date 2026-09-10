@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第3章 栈、队列和数组 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第3章 栈、队列和数组</p>
+  </div>
+  <div class="part-zone" id="wdex3">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第3章 栈、队列和数组</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题91题（官方速查答案+逐题独立验算解析）、综合题10题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-3-1"><h3>3.1 栈<span class="tag tag-tpl">31题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-3-1-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>栈和队列具有相同的（）</p><div class="opts"><div class="opt"><b>A.</b> 抽象数据类型</div><div class="opt"><b>B.</b> 逻辑结构</div><div class="opt"><b>C.</b> 存储结构</div><div class="opt"><b>D.</b> 运算</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>栈和队列都是线性结构，元素之间均为一对一关系，逻辑结构相同；二者差别在于运算的限定：栈只允许在栈顶进出（LIFO），队列只允许队尾入、队头出（FIFO），故D不同。存储结构顺序、链式均可任选，C不对；抽象数据类型=逻辑结构+运算，运算不同则ADT不同，A不对。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P69</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-1-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.1 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>有5个元素，其入栈次序为A、B、C、D、E，在各种可能的出栈次序中，第一个出栈元素为C且第二个出栈元素为D的出栈序列有哪几个？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>第一个出栈为C，说明A、B已入栈（B压在A上）；第二个出栈为D，说明D一入栈立即出栈。此后栈内仅剩A、B且只能按B、A顺序出栈，E可在任意时刻入栈穿插。</p><p><b>枚举：</b>C、D出栈后，剩余B、A在栈中、E未入栈，可能的后续操作只有“何时让E入栈出栈”三种：</p><p>① E先入即出，再B、A出：C D E B A；<br/>② B先出，E入即出，A出：C D B E A；<br/>③ B、A出完，E入即出：C D B A E。</p><p><b>结论：</b>满足条件的出栈序列共3个：CDEBA、CDBEA、CDBAE。（验算：每种序列均可写出一组合法的S/X操作序列，如CDEBA对应的操作序列为SSSX SX SX XX，即A、B、C入栈，C出栈，D入即出，E入即出，B、A再出栈，逐步合法。）</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>栈是一种（）</p><div class="opts"><div class="opt"><b>A.</b> 顺序存储的线性结构</div><div class="opt"><b>B.</b> 链式存储的非线性结构</div><div class="opt"><b>C.</b> 限制存取点的线性结构</div><div class="opt"><b>D.</b> 限制存储点的非线性结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>栈是操作受限的线性表：插入、删除被限制在表的一端（栈顶）进行，即限制存取点的线性结构。它并未限定存储方式（顺序栈、链栈都行），排除A；它仍是线性结构而非非线性结构，排除B、D。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P69</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-1-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.1 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若元素的进栈序列为A、B、C、D、E，运用栈操作，能否得到出栈序列BCAED和DBACE？为什么？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>判断一个序列是否为合法出栈序列，用模拟法：按给定出栈目标，逐个把进栈序列元素入栈，栈顶等于目标就弹出；若元素耗尽而栈顶不匹配则不合法。</p><p><b>序列BCAED：</b>操作为A入、B入、B出、C入、C出、A出、D入、E入、E出、D出，每步合法，得到BCAED，<b>可能</b>。</p><p><b>序列DBACE：</b>D第一个出栈要求A、B、C先全部入栈，此时栈内自顶向下为C、B、A；D入即出后，下一个输出目标是B，但栈顶是C，B被C压住无法先出，矛盾，故<b>不可能</b>。</p><p><b>结论：</b>BCAED可以得到；DBACE得不到，原因是D先出栈迫使A、B、C全入栈，破坏了“B先于C出栈”的要求。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列选项中，（）不是栈的基本操作。</p><div class="opts"><div class="opt"><b>A.</b> 删除栈顶元素</div><div class="opt"><b>B.</b> 删除栈底元素</div><div class="opt"><b>C.</b> 判断栈是否为空</div><div class="opt"><b>D.</b> 将栈置为空栈</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>栈的插入、删除只能在栈顶进行：删栈顶即出栈Pop，判空StackEmpty、置空ClearStack都是常规基本操作；而“删除栈底元素”违反后进先出的操作限定，栈不提供这样的基本操作。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P69</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-1-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.1 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>栈的初态和终态均为空，以I和O分别表示入栈和出栈操作，则出入栈的操作序列可表示为由I和O组成的序列，可以操作的序列称为合法序列，否则称为非法序列。</p><p>(1) 对给定的若干I/O序列，如何判定哪些是合法的？<br/>(2) 通过对(1)的分析，写出一个算法，判定所给的操作序列是否合法。若合法，返回true，否则返回false（假定被判定的操作序列已存入一维数组中）。<span style="color:#64748b">【第(1)问的具体序列图OCR缺失，按王道原题以判定规则补全】</span></p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1) 判定规则：</b>操作序列合法当且仅当：①任意前缀中O的个数不超过I的个数（栈空不能再出栈）；②整个序列中I与O的个数相等（终态为空）。例如IOIIOIOO合法；IOOIOIIO第3个字符前O已有2个而I只有1个，非法；OOIOIIOI第1个字符即出栈，非法。</p><p><b>(2) 算法（计数法）：</b>设数组a[0..n-1]存放操作序列，用cnt记录栈中元素个数：遇I加1，遇O减1；一旦cnt&lt;0立即返回false；扫描结束后cnt==0则合法。</p><div class="asc">bool Judge(char a[], int n) {<br/>&nbsp;&nbsp;int cnt = 0;&nbsp;&nbsp;// 栈中元素计数<br/>&nbsp;&nbsp;for (int i = 0; i &lt; n; i++) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;if (a[i] == 'I') cnt++;<br/>&nbsp;&nbsp;&nbsp;&nbsp;else {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cnt--;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cnt &lt; 0) return false; // 空栈出栈，非法<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;return (cnt == 0); // 终态须为空<br/>}</div><p>时间复杂度O(n)，空间复杂度O(1)。双验算：对IOIIOIOO模拟cnt依次为1,0,1,2,1,2,1,0，无负值且终值0，返回true，与规则一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定利用数组a[n]存储一个栈，初始栈顶指针top=-1，则元素x入栈的操作为（）</p><div class="opts"><div class="opt"><b>A.</b> a[--top] = x</div><div class="opt"><b>B.</b> a[top--] = x</div><div class="opt"><b>C.</b> a[++top] = x</div><div class="opt"><b>D.</b> a[top++] = x</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>top=-1表示栈空，top始终指向栈顶元素（先移指针再存取）。入栈应先把指针加1移到新的栈顶位置，再存入元素：<code class="inl">a[++top]=x</code>。B、D先存后移，会把x写到-1等无效下标；A是出栈方向的指针移动。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-1-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.1 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设单链表的表头指针为L，结点结构由data和next两个域构成，其中data域为字符型。试设计算法判断该链表的全部n个字符是否中心对称。例如xyx、xyyx都是中心对称。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>利用栈的后进先出特性：把链表前半部分（⌊n/2⌋个字符）依次入栈，然后扫描后半部分，每走一步与出栈字符比较；若全部相等则中心对称。n为奇数时中间字符自然跳过（不入栈不比较）。</p><div class="asc">bool dc(LinkList L, int n) {<br/>&nbsp;&nbsp;char S[n/2]; int top = -1; // 顺序栈存前半<br/>&nbsp;&nbsp;LNode *p = L-&gt;next;<br/>&nbsp;&nbsp;for (int i = 0; i &lt; n/2; i++) { // 前半入栈<br/>&nbsp;&nbsp;&nbsp;&nbsp;S[++top] = p-&gt;data; p = p-&gt;next;<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;if (n % 2 == 1) p = p-&gt;next; // 奇数跳过中点<br/>&nbsp;&nbsp;while (p != NULL) {&nbsp;&nbsp;// 后半与出栈比较<br/>&nbsp;&nbsp;&nbsp;&nbsp;if (p-&gt;data != S[top--]) return false;<br/>&nbsp;&nbsp;&nbsp;&nbsp;p = p-&gt;next;<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;return true;<br/>}</div><p><b>验算：</b>xyy x（n=4）：“xy”入栈后p指向y，y==S[top]=y、x==S[top]=x，返回true；abc（n=3）：a入栈，跳过b，c≠a返回false，均正确。时间复杂度O(n)，空间复杂度O(n/2)=O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定用数组data[1…n]存储一个栈，初始栈顶指针top=1，则元素x入栈的操作是（）</p><div class="opts"><div class="opt"><b>A.</b> data[top--] = x</div><div class="opt"><b>B.</b> data[top++] = x</div><div class="opt"><b>C.</b> data[--top] = x</div><div class="opt"><b>D.</b> data[++top] = x</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>此处top指向下一个可存放的空闲单元（初始为1，第一个元素存入data[1]），属“先存后移”约定：入栈执行<code class="inl">data[top++]=x</code>，存入后top指向新的空闲位置。A、C、D都会把元素写到无效或错误位置，与该约定矛盾。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定用数组data[1…n]存储一个栈，初始栈顶指针top=n+1，则元素x入栈的操作是（）</p><div class="opts"><div class="opt"><b>A.</b> data[--top] = x</div><div class="opt"><b>B.</b> data[top++] = x</div><div class="opt"><b>C.</b> data[top--] = x</div><div class="opt"><b>D.</b> data[++top] = x</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>top=n+1表示栈空且指针位于数组右端外侧，栈向低地址方向增长：入栈先把指针减1，再存入元素，即<code class="inl">data[--top]=x</code>，第一个元素落在data[n]。B、D方向相反；C是出栈方向的写法。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有一个空栈，栈顶指针为1000H，每个元素需要一个存储单元，执行Push、Push、Pop、Push、Pop、Push、Pop、Push操作后，栈顶指针为（）</p><div class="opts"><div class="opt"><b>A.</b> 1002H</div><div class="opt"><b>B.</b> 1003H</div><div class="opt"><b>C.</b> 1004H</div><div class="opt"><b>D.</b> 1005H</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>8次操作中共5次Push、3次Pop，指针每入栈加1、出栈减1，净变化+2，故栈顶指针=1000H+2=1002H。无需逐步模拟，只数操作次数差即可。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>和顺序栈相比，链栈有一个比较明显的优势，即（）</p><div class="opts"><div class="opt"><b>A.</b> 通常不会出现栈满的情况</div><div class="opt"><b>B.</b> 通常不会出现栈空的情况</div><div class="opt"><b>C.</b> 插入操作更容易实现</div><div class="opt"><b>D.</b> 删除操作更容易实现</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>链栈结点动态分配，无需预先划定连续空间，只要内存还能申请到结点就不会栈满；顺序栈受数组容量限制会产生上溢。栈空与否与存储方式无关，B错；两种结构的进栈、出栈都是O(1)的指针（下标）操作，谈不上谁更容易，C、D错。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设链表不带头结点且所有操作均在表头进行，则下列最不适合作为链栈的是（）</p><div class="opts"><div class="opt"><b>A.</b> 只有表头结点指针，没有表尾指针的双向循环链表</div><div class="opt"><b>B.</b> 只有表尾结点指针，没有表头指针的双向循环链表</div><div class="opt"><b>C.</b> 只有表头结点指针，没有表尾指针的单向循环链表</div><div class="opt"><b>D.</b> 只有表尾结点指针，没有表头指针的单向循环链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>作为链栈需在表头一端O(1)完成进栈与出栈。C只有表头指针且单向：出栈O(1)，但进栈要把新结点接到链尾（表头结点的前驱），单向链表无法直达前驱，须遍历O(n)，故最不适合。A可由表头的prior直达表尾；B、D中表头=表尾指针的next，三种均能O(1)定位两端。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于栈的说法中，正确的是（）</p><p>Ⅰ．采用非递归方式重写递归程序时，必须使用栈<br/>Ⅱ．函数调用时，系统要用栈保存必要的信息<br/>Ⅲ．只要确定了入栈次序，即可确定出栈次序<br/>Ⅳ．栈是一种受限的线性表，允许在其两端进行操作</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ</div><div class="opt"><b>B.</b> 仅Ⅰ、Ⅱ、Ⅲ</div><div class="opt"><b>C.</b> 仅Ⅱ</div><div class="opt"><b>D.</b> 仅Ⅱ、Ⅲ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>只有Ⅱ正确：函数调用时返回地址、参数等现场信息由系统栈保存。Ⅰ错：尾递归等可直接改写为循环，不必用栈；Ⅲ错：入栈次序确定后出栈序列仍有多种（如1,2,3有5种出栈序列）；Ⅳ错：栈只允许在栈顶一端插入和删除，两端操作的是双端队列或队列。故选C。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>链栈（不带头结点）执行Pop操作，并将出栈的元素存放在x中，应该执行（）</p><div class="opts"><div class="opt"><b>A.</b> x = top; top = top-&gt;next</div><div class="opt"><b>B.</b> x = top-&gt;data</div><div class="opt"><b>C.</b> top = top-&gt;next; x = top-&gt;data</div><div class="opt"><b>D.</b> x = top-&gt;data; top = top-&gt;next</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>出栈须先取栈顶结点的数据域存入x，再把栈顶指针下移到后继结点：<code class="inl">x=top-&gt;data; top=top-&gt;next;</code>。A中x得到的是结点地址而非元素值；B只赋值未摘链，栈顶指针没动；C先断链再取数据，取到的是新栈顶的值，出栈元素丢失。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>经过以下栈的操作后，变量x的值为（）</p><div class="asc">InitStack(st); Push(st, a); Push(st, b);<br/>Pop(st, x); GetTop(st, x);</div><div class="opts"><div class="opt"><b>A.</b> a</div><div class="opt"><b>B.</b> b</div><div class="opt"><b>C.</b> NULL</div><div class="opt"><b>D.</b> false</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>依次执行：a、b入栈后栈内自底向上为a、b；Pop把栈顶b弹出送入x，此时x=b；随后GetTop只取当前栈顶a赋给x（不出栈），x被覆盖为a。故最终x=a。注意GetTop与Pop的区别：一个只读、一个删除。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>三个不同元素依次入栈，能得到（）种不同的出栈序列。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>n个不同元素依次入栈的出栈序列数为卡特兰数C(n)=1/(n+1)·C(2n,n)。n=3时C(3)=1/4×C(6,3)=20/4=5，即123、132、213、231、321五种（312不可能）。逐一枚举与公式一致，故选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设a、b、c、d、e、f以所给的次序入栈，若在入栈操作时允许出栈操作，则下面不会出现的序列是（）</p><div class="opts"><div class="opt"><b>A.</b> fedcba</div><div class="opt"><b>B.</b> bcafed</div><div class="opt"><b>C.</b> dcefba</div><div class="opt"><b>D.</b> cabdef</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>D项cabdef：c第一个出栈说明a、b已在栈内且b压在a上；c出栈后下一个要输出a，但栈顶是b，a被压住无法先出，矛盾，故不可能。A项全部入栈后逆序出栈；B项b出、c出、a出后d、e、f入完逆序出；C项d出后c可立即出、再e出、f出、b、a出，均可模拟实现。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P70</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>4个元素依次入栈的次序为a、b、c、d，则以c、d开头的出栈序列的个数为（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>c第一个出栈，则a、b已入栈（b在a上）；d第二个出栈，只能是d一入栈立即出栈。此后栈内仅剩a、b且b在上，只能按b、a的顺序出栈，再无其他元素可插入变化，故唯一序列为cdba，共1个。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用S表示入栈操作，用X表示出栈操作，若元素的入栈顺序是1、2、3、4，为了得到1342的出栈顺序，相应的S和X的操作序列为（）</p><div class="opts"><div class="opt"><b>A.</b> SXSXSSXX</div><div class="opt"><b>B.</b> SSSXXSXX</div><div class="opt"><b>C.</b> SXSSXXSX</div><div class="opt"><b>D.</b> SXSSXSXX</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>对目标1342模拟：1入1出（SX）；2、3入（SS）；3出（X）；4入（S）；4、2依次出（XX），得SXSSXSXX，即D。逐项验证：A（SXSXSSXX）输出1243，B（SSSXXSXX）输出3241，C（SXSSXXSX）输出1324，均非1342。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一个栈的输入序列是1,2,3,…,n，输出序列的第一个元素是n，则第i个输出元素是（）</p><div class="opts"><div class="opt"><b>A.</b> 不确定</div><div class="opt"><b>B.</b> n-i</div><div class="opt"><b>C.</b> n-i-1</div><div class="opt"><b>D.</b> n-i+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>第一个输出的是n，说明n个元素已全部入栈，之后只能按逆序n,n-1,…,2,1依次出栈，别无选择。第i个输出元素为n-i+1。代入i=1得n验证成立。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个栈的输入序列为1,2,3,…,n，输出序列的第一个元素是i，则第j个输出元素是（）</p><div class="opts"><div class="opt"><b>A.</b> i-j-1</div><div class="opt"><b>B.</b> i-j</div><div class="opt"><b>C.</b> j-i+1</div><div class="opt"><b>D.</b> 不确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>第一个输出i时，1…i-1仍在栈中（顺序已固定为1在底、i-1在顶），但i+1…n何时入栈、何时出栈可自由交错，第j个输出可能是栈中残留元素，也可能是尚未入栈的新元素，随操作序列而变，故无法确定。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某栈的输入序列为a、b、c、d，下面的4个序列中，不可能为其输出序列的是（）</p><div class="opts"><div class="opt"><b>A.</b> abcd</div><div class="opt"><b>B.</b> badc</div><div class="opt"><b>C.</b> dcab</div><div class="opt"><b>D.</b> acbd</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>C项dcab：d第一个出栈说明a、b、c已全部入栈且c在b、a之上；d出栈后接下来只能按c、b、a逆序出栈，而dcab要求先出a——a被压在栈底，矛盾。A项进一个出一个；B项a、b入后b、a出，c、d同理；D项a进出、bc入后c、b出、d进出，均可实现。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若栈的输入序列是P₁,P₂,…,Pₙ，输出序列是1,2,3,…,n，若P₃=1，则P₁的值（）</p><div class="opts"><div class="opt"><b>A.</b> 可能是2</div><div class="opt"><b>B.</b> 一定是2</div><div class="opt"><b>C.</b> 不可能是2</div><div class="opt"><b>D.</b> 不可能是3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>P₃=1且输出序列从1开始：P₁、P₂先入栈（P₂压在P₁上），第三个进来的1立即出栈。若P₁=2，则下一个应输出2，但栈顶是P₂≠2，须先输出P₂，矛盾，故P₁不可能是2。而P₁=3、P₂=2时可依次出栈1、2、3，说明D“不可能是3”错误；B“一定是2”显然不成立。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若栈的输入序列是P₁,P₂,…,Pₙ，输出序列是1,2,3,…,n，若P₃=3，则P₁的值（）</p><div class="opts"><div class="opt"><b>A.</b> 可能是2</div><div class="opt"><b>B.</b> 不可能是1</div><div class="opt"><b>C.</b> 一定是1</div><div class="opt"><b>D.</b> 一定是2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>构造P₁=2、P₂=1、P₃=3：push2、push1后pop出1（输出1），再pop出2（输出2），3入即出（输出3），后续依次进出，输出恰为1,2,3,…，合法，故P₁可能是2，选A。又P₁=1（如P₁=1,P₂=2,P₃=3，依次进出）也可行，P₁取值不唯一，故B、C、D中“一定”“不可能”的说法均错。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知一个栈的入栈序列是1,2,3,4，其出栈序列为P₁,P₂,P₃,P₄，则P₂、P₄不可能是（）</p><div class="opts"><div class="opt"><b>A.</b> 2,4</div><div class="opt"><b>B.</b> 2,1</div><div class="opt"><b>C.</b> 4,3</div><div class="opt"><b>D.</b> 3,4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>P₂=4说明4第二个出栈，此时1、2、3已全部入栈（3在顶、1在底），4出栈后剩余元素只能按栈序逆序输出。穷举P₂=4的合法序列：1432、2431、3421，P₄分别取2、1、1，绝不会是3，故选C。其余均可构造：A（P₂=2,P₄=4）如1234，B（P₂=2,P₄=1）如2341（1压栈底，2、3、4依次越过它出栈），D（P₂=3,P₄=4）如1324。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设栈的初始状态为空，当字符序列"n1_"作为栈的输入时，输出长度为3且可用作C语言标识符的序列有（）个。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>3个字符的出栈序列共5个：n1_、n_1、1n_、1_n、_1n。C语言标识符不能以数字开头，含前导数字的1n_、1_n被排除；n1_、n_1、_1n均合法（下划线、字母可开头），共3个。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P71</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>采用共享栈的好处是（）</p><div class="opts"><div class="opt"><b>A.</b> 减少存取时间，降低发生上溢的可能</div><div class="opt"><b>B.</b> 节省存储空间，降低发生上溢的可能</div><div class="opt"><b>C.</b> 减少存取时间，降低发生下溢的可能</div><div class="opt"><b>D.</b> 节省存储空间，降低发生下溢的可能</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>两个栈共用一段连续空间、栈顶相向增长，只有两栈顶相邻时才满：一个栈浅另一个可深，空间互济，既节省存储空间又降低了单个栈提前上溢的可能。存取仍是O(1)下标操作，时间并不减少；下溢（空栈再出栈）与是否共享无关，排除A、C、D。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P72</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有一个顺序共享栈Share[0…n-1]，其中第一个栈顶指针top1的初值为-1，第二个栈顶指针top2的初值为n，则判断共享栈满的条件是（）</p><div class="opts"><div class="opt"><b>A.</b> top2 - top1 == 1</div><div class="opt"><b>B.</b> top1 - top2 == 1</div><div class="opt"><b>C.</b> top1 == top2</div><div class="opt"><b>D.</b> 都不对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>栈1从低端-1向右增长（入栈先++top1），栈2从高端n向左增长（入栈先--top2），两栈顶相邻即<code class="inl">top1+1==top2</code>，等价于top2-top1==1时再无空单元，栈满。top1==top2不会出现（两栈顶不会指向同一单元，满的判据是相邻）；B方向相反。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P72</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】设栈S和队列Q的初始状态均为空，元素abcdefg依次进入栈S。若每个元素出栈后立即进入队列Q，且7个元素出队的顺序是bdcfeag，则栈S的容量至少是（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>按出队序b,d,c,f,e,a,g模拟：a入，b入，b出；c、d入，d出，c出；e、f入，f出，e出，a出；g入，g出。过程中栈内最多同时存a、c、d（或a、e、f）共3个元素，故容量至少为3。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P72</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】若元素a,b,c,d,e,f依次入栈，允许入栈、出栈操作交替进行，但不允许连续3次进行出栈操作，不可能得到的出栈序列是（）</p><div class="opts"><div class="opt"><b>A.</b> dcebfa</div><div class="opt"><b>B.</b> cbdaef</div><div class="opt"><b>C.</b> bcaefd</div><div class="opt"><b>D.</b> afedcb</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>D项afedcb：a入a出后，要输出f,e,d,c,b只能把b~f全部入栈再连续5次出栈，违反“不允许连续3次出栈”的约束，故不可能。A项d出后c出（连续2次），e入e出、b出、f入f出、a出；B、C项均无3次连续出栈，均可行。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P72</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】元素a、b、c、d、e依次进入初始为空的栈中，若元素入栈后可停留、可出栈，直到所有元素都出栈，则在所有可能的出栈序列中，以元素d开头的序列个数是（）</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>d第一个出栈，则a、b、c已在栈中（c在顶），d入即出。此后栈内a、b、c受栈序约束，e可在任意时刻入栈穿插：枚举得decba、dceba、dcbea、dcbae共4个。也可用“d后第一个出栈者只能是c或e”分类枚举验证，结果一致。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P72</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】一个栈的入栈序列为1,2,3,…,n，出栈序列是P₁,P₂,P₃,…,Pₙ。若P₂=3，则P₃可能取值的个数是（）</p><div class="opts"><div class="opt"><b>A.</b> n-3</div><div class="opt"><b>B.</b> n-2</div><div class="opt"><b>C.</b> n-1</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>分情况：P₁=1时，1出栈、2和3入栈、3出栈（P₂=3），栈内剩2，P₃可取2或4…n，共n-2个；P₁=2时，1、2入栈、2出栈、3入即出，栈内剩1，P₃可取1或4…n，共n-2个。两情况P₁不同时发生，取值并集{1,2,4,5,…,n}共n-1个。P₃≠3（已出），故恰为n-1。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P73</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】对空栈S进行Push和Pop操作，入栈序列为a,b,c,d,e，经过Push、Push、Pop、Push、Pop、Push、Push、Pop操作后得到的出栈序列是（）</p><div class="opts"><div class="opt"><b>A.</b> b,a,c</div><div class="opt"><b>B.</b> b,a,e</div><div class="opt"><b>C.</b> b,c,a</div><div class="opt"><b>D.</b> b,c,e</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐步模拟：Push a、Push b、Pop出b；Push c、Pop出c；Push d、Push e、Pop出e。出栈序列为b,c,e，选D。注意栈内a、d、e的叠加关系：e最后入故先出。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P73</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-1-31" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.1 · 第31题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】给定有限符号集S，in和out均为S中所有元素的任意排列。对于初始为空的栈ST，下列叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 若in是ST的入栈序列，则不能判断out是否为其可能的出栈序列</div><div class="opt"><b>B.</b> 若out是ST的出栈序列，则不能判断in是否为其可能的入栈序列</div><div class="opt"><b>C.</b> 若in是ST的入栈序列，out是对应in的出栈序列，则in与out一定不同</div><div class="opt"><b>D.</b> 若in是ST的入栈序列，out是对应in的出栈序列，则in与out可能互为倒序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>D正确：把全部元素依次入栈后再依次出栈，出栈序列恰为入栈序列的倒序（如入栈1,2,3出栈3,2,1），故“可能互为倒序”成立。A、B错误：给定一侧序列，另一序列是否可行可用贪心模拟法在多项式时间判定，并非不能判断；C错误：单元素集合时in与out必然相同，逐一入栈即出时也相同。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P73</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-3-2"><h3>3.2 队列<span class="tag tag-tpl">24题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-3-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>栈和队列的主要区别在于（）</p><div class="opts"><div class="opt"><b>A.</b> 它们的逻辑结构不一样</div><div class="opt"><b>B.</b> 它们的存储结构不一样</div><div class="opt"><b>C.</b> 所包含的元素不一样</div><div class="opt"><b>D.</b> 插入、删除操作的限定不一样</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>栈限定在同一端（栈顶）插入和删除，后进先出；队列限定一端插入（队尾）、另一端删除（队头），先进先出——本质区别是运算限定不同。二者逻辑结构都是线性结构（A错）；存储结构均可顺序或链式（B错）；元素类型不受限制（C错）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P84</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若希望循环队列中的元素都能得到利用，则需设置一个标志域tag，并以tag的值为0或1来区分队头指针front和队尾指针rear相同时的队列状态是“空”还是“满”。试编写与此结构相应的入队和出队算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>队列类型含数组data[MaxSize]、front、rear和tag。约定front指向队首元素的前一个位置、rear指向队尾元素，入队先移rear再存，出队先移front再取。tag=0表示空、1表示满；仅当front==rear时才看tag判空满。</p><div class="asc">typedef struct {<br/>&nbsp;&nbsp;ElemType data[MaxSize];<br/>&nbsp;&nbsp;int front, rear, tag;<br/>} Queue;<br/><br/>bool EnQueue(Queue &amp;Q, ElemType x) {<br/>&nbsp;&nbsp;if (Q.front == Q.rear &amp;&amp; Q.tag == 1) return false; // 队满<br/>&nbsp;&nbsp;Q.rear = (Q.rear + 1) % MaxSize;<br/>&nbsp;&nbsp;Q.data[Q.rear] = x;<br/>&nbsp;&nbsp;if (Q.front == Q.rear) Q.tag = 1; // 入队后重合则满<br/>&nbsp;&nbsp;return true;<br/>}<br/><br/>bool DeQueue(Queue &amp;Q, ElemType &amp;x) {<br/>&nbsp;&nbsp;if (Q.front == Q.rear &amp;&amp; Q.tag == 0) return false; // 队空<br/>&nbsp;&nbsp;Q.front = (Q.front + 1) % MaxSize;<br/>&nbsp;&nbsp;x = Q.data[Q.front];<br/>&nbsp;&nbsp;if (Q.front == Q.rear) Q.tag = 0; // 出队后重合则空<br/>&nbsp;&nbsp;return true;<br/>}</div><p><b>验算：</b>设MaxSize=3，依次入a、b、c后rear绕回与front重合、tag置1（满，3个元素全部利用）；出队a、b、c后front追上rear、tag置0（空），与预期一致。两算法均为O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>队列的“先进先出”特性是指（）</p><p>Ⅰ．最后插入队列中的元素总是最后被删除<br/>Ⅱ．当同时进行插入、删除操作时，总是插入操作优先<br/>Ⅲ．每当有删除操作时，总要先做一次插入操作<br/>Ⅳ．每次从队列中删除的总是最早插入的元素</p><div class="opts"><div class="opt"><b>A.</b> Ⅰ</div><div class="opt"><b>B.</b> Ⅰ和Ⅳ</div><div class="opt"><b>C.</b> Ⅱ和Ⅲ</div><div class="opt"><b>D.</b> Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>先进先出：最早插入的元素最先被删除（Ⅳ对），等价地最后插入的元素最后被删除（Ⅰ对）。Ⅱ、Ⅲ把插入、删除的先后关系强加给队列操作，FIFO并无此规定——插入与删除可独立进行，与“优先”“先做”无关。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>Q是一个队列，S是一个空栈，实现将队列中的元素逆置的算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>队列先进先出、栈后进先出。把Q中元素依次出队压入S，再从S依次弹出送回Q，每个元素在栈中完成一次“顺序颠倒”，队列即被逆置。</p><div class="asc">void Reverse(Queue &amp;Q, Stack &amp;S) {<br/>&nbsp;&nbsp;ElemType x;<br/>&nbsp;&nbsp;while (!QueueEmpty(Q)) { // Q全部转入S<br/>&nbsp;&nbsp;&nbsp;&nbsp;DeQueue(Q, x); Push(S, x);<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;while (!StackEmpty(S)) { // S弹回Q<br/>&nbsp;&nbsp;&nbsp;&nbsp;Pop(S, x); EnQueue(Q, x);<br/>&nbsp;&nbsp;}<br/>}</div><p><b>验算：</b>设Q=（a,b,c，a在队首）：第一轮后S自底向顶为a,b,c；第二轮依次弹出c,b,a入队，Q=（c,b,a），逆置成功。时间复杂度O(n)，空间O(n)（栈），没有更优的纯队列自身逆置方法。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>允许对队列进行的操作有（）</p><div class="opts"><div class="opt"><b>A.</b> 对队列中的元素排序</div><div class="opt"><b>B.</b> 取出最近进队的元素</div><div class="opt"><b>C.</b> 在队列元素之间插入元素</div><div class="opt"><b>D.</b> 删除队首元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>队列只允许在队尾插入（入队）、在队头删除（出队）两种受限操作，“删除队首元素”即出队，是合法操作。A排序、B取最近进队元素（那是栈或双端队列行为）、C在队中间插入，都破坏队列的操作受限性，不允许。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-2-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.2 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>利用两个栈S1和S2来模拟一个队列，已知栈的4个运算定义如下：Push(S,x)（元素x入栈S）、Pop(S,x)（S出栈并将出栈的值赋给x）、StackEmpty(S)（判断栈是否为空）、StackOverflow(S)（判断栈是否满）。如何利用栈的运算来实现该队列的3个运算（形参由读者根据要求自己设计）：Enqueue（将元素x入队）、Dequeue（出队，并将出队元素存储在x中）、QueueEmpty（判断队列是否为空）？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>S1作入队缓冲栈、S2作出队缓冲栈。入队压S1；出队从S2弹，S2空时把S1全部元素倒入S2（顺序经过两次颠倒恢复先进先出）。只有当S1满且S2非空时才真正溢出。</p><div class="asc">void Enqueue(Stack &amp;S1, Stack &amp;S2, ElemType x) {<br/>&nbsp;&nbsp;if (!StackOverflow(S1)) Push(S1, x);<br/>&nbsp;&nbsp;else if (StackEmpty(S2)) { // S1满且S2空：倒仓后再入<br/>&nbsp;&nbsp;&nbsp;&nbsp;ElemType t;<br/>&nbsp;&nbsp;&nbsp;&nbsp;while (!StackEmpty(S1)) { Pop(S1, t); Push(S2, t); }<br/>&nbsp;&nbsp;&nbsp;&nbsp;Push(S1, x);<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;else printf("队列满"); // S1满且S2非空<br/>}<br/><br/>bool Dequeue(Stack &amp;S1, Stack &amp;S2, ElemType &amp;x) {<br/>&nbsp;&nbsp;ElemType t;<br/>&nbsp;&nbsp;if (!StackEmpty(S2)) Pop(S2, x);<br/>&nbsp;&nbsp;else if (!StackEmpty(S1)) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;while (!StackEmpty(S1)) { Pop(S1, t); Push(S2, t); }<br/>&nbsp;&nbsp;&nbsp;&nbsp;Pop(S2, x);<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;else return false; // 两栈皆空，队空<br/>&nbsp;&nbsp;return true;<br/>}<br/><br/>bool QueueEmpty(Stack S1, Stack S2) {<br/>&nbsp;&nbsp;return StackEmpty(S1) &amp;&amp; StackEmpty(S2);<br/>}</div><p><b>验算：</b>依次入a,b,c（S1: a,b,c），出队一次：S1倒入S2（c,b,a）后弹出a——正确先入先出；再入d后出队得b，符合队列次序。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>经过以下队列的操作后，变量x的值为（）</p><div class="asc">InitQueue(qu); EnQueue(qu, a); EnQueue(qu, b);<br/>DeQueue(qu, x); GetHead(qu, x);</div><div class="opts"><div class="opt"><b>A.</b> a</div><div class="opt"><b>B.</b> b</div><div class="opt"><b>C.</b> NULL</div><div class="opt"><b>D.</b> false</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>a、b依次入队后队列自队首到队尾为a、b；DeQueue删除队首a送入x，x=a；随后GetHead取当前队首元素（b）赋给x而不删除，x被覆盖为b。注意与栈的对应操作对比：栈版本（Pop后GetTop）得到的是a，本题是队列，结果相反。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设有两个栈S1、S2都采用顺序栈方式，并共享一个存储区[0…maxsize-1]，为了尽量利用空间、减少溢出的可能，可采用栈顶相向、迎面增长的存储方式。试设计S1、S2有关入栈和出栈的操作算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>设栈顶指针top1初值-1（S1从低端向右增长）、top2初值maxsize（S2从高端向左增长）。栈满条件是top1+1==top2（两栈顶相邻）；任一栈自身空判top1==-1、top2==maxsize。</p><div class="asc">#define maxsize 100<br/>typedef struct {<br/>&nbsp;&nbsp;ElemType data[maxsize];<br/>&nbsp;&nbsp;int top1 = -1, top2 = maxsize;<br/>} DStack;<br/><br/>bool Push(DStack &amp;s, int i, ElemType x) { // i=1或2<br/>&nbsp;&nbsp;if (s.top1 + 1 == s.top2) return false; // 共享空间满<br/>&nbsp;&nbsp;if (i == 1) s.data[++s.top1] = x;<br/>&nbsp;&nbsp;else&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.data[--s.top2] = x;<br/>&nbsp;&nbsp;return true;<br/>}<br/><br/>bool Pop(DStack &amp;s, int i, ElemType &amp;x) {<br/>&nbsp;&nbsp;if (i == 1) {<br/>&nbsp;&nbsp;&nbsp;&nbsp;if (s.top1 == -1) return false;&nbsp;&nbsp;// 栈1空<br/>&nbsp;&nbsp;&nbsp;&nbsp;x = s.data[s.top1--];<br/>&nbsp;&nbsp;} else {<br/>&nbsp;&nbsp;&nbsp;&nbsp;if (s.top2 == maxsize) return false; // 栈2空<br/>&nbsp;&nbsp;&nbsp;&nbsp;x = s.data[s.top2++];<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;return true;<br/>}</div><p><b>验算：</b>maxsize=5时S1连入a,b,c（top1=2），S2连入x,y（top2=3）：top1+1==top2判满，5个单元全被利用且未溢出；弹出b后（top1=1）又可入一个元素。两栈总和不超过maxsize即可任意分配，这正是共享栈的意义。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>循环队列存储在数组A[0…n]中，入队时的操作为（）</p><div class="opts"><div class="opt"><b>A.</b> rear = rear+1</div><div class="opt"><b>B.</b> rear = (rear+1) mod (n-1)</div><div class="opt"><b>C.</b> rear = (rear+1) mod n</div><div class="opt"><b>D.</b> rear = (rear+1) mod (n+1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>数组A[0…n]共有n+1个存储单元，下标须在0~n内循环，越过n就回卷到0，故入队<code class="inl">rear=(rear+1) mod (n+1)</code>。A越界；B、C的模取n-1、n会浪费单元且映射错误。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知循环队列的存储空间为数组A[21]，front指向队首元素的前一个位置，rear指向队尾元素，假设当前front和rear的值分别为8和3，则该队列的长度为（）</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 6</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 17</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>数组A[21]即A[0…20]，容量m=21。front指队首前一位置、rear指队尾元素时，长度=(rear-front+m) mod m=(3-8+21) mod 21=16。检验：若不取模直接3-8=-5显然不符；B(6)是反向(front-rear)错误，D(17)多加了一。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若用数组A[0…5]来实现循环队列，且当前rear和front的值分别为1和5，当从队列中删除一个元素，再加入两个元素后，rear和front的值分别为（）</p><div class="opts"><div class="opt"><b>A.</b> 3和4</div><div class="opt"><b>B.</b> 3和0</div><div class="opt"><b>C.</b> 5和0</div><div class="opt"><b>D.</b> 5和1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>容量为6。删除一个元素：front=(5+1) mod 6=0；加入两个元素：rear=(1+1) mod 6=2，再=(2+1) mod 6=3。故rear=3、front=0，选B。其余选项漏做取模或只加了一个元素。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设用数组Q[MaxSize]实现循环队列，队首指针front指向队首元素的前一位置，队尾指针rear指向队尾元素，则判断该队列为空的条件是（）</p><div class="opts"><div class="opt"><b>A.</b> Q.rear == (Q.front+1)%MaxSize</div><div class="opt"><b>B.</b> (Q.rear+1)%MaxSize == Q.front+1</div><div class="opt"><b>C.</b> (Q.rear+1)%MaxSize == Q.front</div><div class="opt"><b>D.</b> Q.rear == Q.front</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>队空时没有任何元素，front指队首前一位置、rear指队尾元素，二者重合，即Q.rear==Q.front。C恰是“牺牲一个单元”法判队满的条件（front在rear后一格）；A、B把指针关系写反。注意该约定下队满与队空条件冲突，正是需牺牲单元或设tag的原因。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设循环队列Q[MaxSize]的队首指针为front，队尾指针为rear，队列的最大容量为MaxSize，此外该队列再没有其他数据成员，则判断该队列已满的条件是（）</p><div class="opts"><div class="opt"><b>A.</b> Q.front == Q.rear</div><div class="opt"><b>B.</b> Q.front+Q.rear &gt;= MaxSize</div><div class="opt"><b>C.</b> Q.front == (Q.rear+1)%MaxSize</div><div class="opt"><b>D.</b> Q.rear = (Q.front+1)%MaxSize</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>队列没有tag等附加成员时只能牺牲一个存储单元区分队空队满：入队前先判<code class="inl">front==(rear+1)%MaxSize</code>，成立则满（实际最多存MaxSize-1个元素）。A是队空条件；B是数值和的伪条件；D为赋值语句而非判断，且方向反了。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设用A[0…n]实现循环队列，front、rear分别指向队首元素的前一个位置和队尾元素。若用(rear+1)%(n+1)==front作为队满标志，则（）</p><div class="opts"><div class="opt"><b>A.</b> 可用front==rear作为队空标志</div><div class="opt"><b>B.</b> 队列中最多可有n+1个元素</div><div class="opt"><b>C.</b> 可用front&gt;rear作为队空标志</div><div class="opt"><b>D.</b> 可用(front+1)%(n+1)==rear作为队空标志</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>判满用牺牲单元法，队满时rear紧贴front之后一格，此时front==rear仅出现在队空，故队空标志取front==rear，A对、C错（rear回卷后大小关系无意义）。因牺牲一个单元，容量n+1的数组最多存n个元素，B错；D的条件含义是“队中恰有一个元素”，不是队空。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>与顺序队列相比，链式队列（）</p><div class="opts"><div class="opt"><b>A.</b> 优点是队列的长度不受限制</div><div class="opt"><b>B.</b> 优点是进队和出队时间效率更高</div><div class="opt"><b>C.</b> 缺点是不能进行顺序访问</div><div class="opt"><b>D.</b> 缺点是不能根据队首指针和队尾指针计算队列的长度</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>循环顺序队列可由<code class="inl">(rear-front+MaxSize)%MaxSize</code>直接算出长度，而链式队列的结点分散存放，仅凭front、rear无法算出元素个数，须遍历统计，这是其实际缺点，D对。A不选：顺序队列同样可通过动态扩充增加容量，长度受限并非顺序队列本质；B错：两者进出队都是O(1)；C错：链表本身可顺序遍历。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列描述的几种链表中，最适合用作队列的是（）</p><div class="opts"><div class="opt"><b>A.</b> 带队首指针和队尾指针的循环单链表</div><div class="opt"><b>B.</b> 带队首指针和队尾指针的非循环单链表</div><div class="opt"><b>C.</b> 只带队首指针的非循环单链表</div><div class="opt"><b>D.</b> 只带队首指针的循环单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>队列需队头出、队尾进均O(1)：带队首、队尾两个指针的非循环单链表即可做到（删头、接尾），结构最简单，最适合。C无尾指针，入队须遍历O(n)；D只带队首指针的循环单链表，链尾=队首前驱，单向找前驱仍需遍历；A功能上也可O(1)，但循环结构对带双指针的队列是多余的。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P85</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列描述的几种链表中，最不适合用作链式队列的是（）</p><div class="opts"><div class="opt"><b>A.</b> 只带队首指针的非循环双链表</div><div class="opt"><b>B.</b> 只带队首指针的循环双链表</div><div class="opt"><b>C.</b> 只带队尾指针的循环双链表</div><div class="opt"><b>D.</b> 只带队尾指针的循环单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>要队头删、队尾进都O(1)。A只带队首指针且非循环：队尾（表尾）无法直达，入队须从队首遍历O(n)，最不适合。B可由队首的prior直达队尾；C、D中队头=队尾结点的next，均可O(1)完成两端操作。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在用单链表实现队列时，队首设在链表的（）位置。</p><div class="opts"><div class="opt"><b>A.</b> 链头</div><div class="opt"><b>B.</b> 链尾</div><div class="opt"><b>C.</b> 链中</div><div class="opt"><b>D.</b> 以上都可以</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>单链表删头O(1)、删尾需找前驱O(n)。出队在队首，故队首必须设在链头才能高效删除；入队在队尾接一个结点同样O(1)（设尾指针）。若队首设在链尾，每次出队都要遍历找前驱，效率最差。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用链式存储方式的队列进行删除操作时需要（）</p><div class="opts"><div class="opt"><b>A.</b> 仅修改头指针</div><div class="opt"><b>B.</b> 仅修改尾指针</div><div class="opt"><b>C.</b> 头尾指针都要修改</div><div class="opt"><b>D.</b> 头尾指针可能都要修改</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>一般情况出队只把front后移（仅改头指针）；但当删除前队列中只有一个元素时，该结点既是队首又是队尾，删除后队列为空，rear也必须置为与front相同（指向头结点/空），即头尾指针都要修改。故“可能都要修改”最准确。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一个链队列中，假设队首指针为front，队尾指针为rear，x所指向的元素需要入队，则需要执行的操作为（）</p><div class="opts"><div class="opt"><b>A.</b> front=x，front=front-&gt;next</div><div class="opt"><b>B.</b> x-&gt;next=front-&gt;next，front=x</div><div class="opt"><b>C.</b> rear-&gt;next=x，rear=x</div><div class="opt"><b>D.</b> rear-&gt;next=x，x-&gt;next=NULL，rear=x</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>入队在队尾：先把x链到尾结点之后（rear-&gt;next=x），再断开x的原后继避免脏指针（x-&gt;next=NULL），最后尾指针后移（rear=x）。C漏了置x-&gt;next=NULL，若x原带有后继会破坏链；A、B动的是队首，方向完全错误。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设循环单链表表示的队列长度为n，队首固定在链表头，若只设头指针，则进队操作的时间复杂度为（）</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(1)</div><div class="opt"><b>C.</b> O(n²)</div><div class="opt"><b>D.</b> O(nlog₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>进队要把新结点插到队尾，而队首固定在链表头、只设头指针时队尾在链表尾。单链表插入须先取得插入位置的前驱结点（链尾结点），从头指针出发要经过n-1个结点才能到达，故为O(n)。若改设一个指向链尾的指针（或队首固定在链表尾、只设尾指针），插尾即可O(1)。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设输入序列为1,2,3,4,5，利用两个队列进行出入队操作，不可能输出的序列是（）</p><div class="opts"><div class="opt"><b>A.</b> 1,2,3,4,5</div><div class="opt"><b>B.</b> 5,2,3,4,1</div><div class="opt"><b>C.</b> 1,3,2,4,5</div><div class="opt"><b>D.</b> 4,1,5,2,3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>每个队列各自先进先出，输出序列是两个“保序子列”的交错。B中5第一个输出，说明1~4均已入队且都排在5之前（5须独占一队且立即出队）；随后第二个输出2时，2所在队列中队首仍是1，必须先输出1，矛盾，故B不可能。A依次进出；C中1出队后2、3分别入两队列即可按3、2输出；D中1,2,3排队列1、4排队列2先出即可。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若以1,2,3,4作为双端队列的输入序列，则既不能由输入受限的双端队列得到，又不能由输出受限的双端队列得到的输出序列是（）</p><div class="opts"><div class="opt"><b>A.</b> 1,2,3,4</div><div class="opt"><b>B.</b> 4,1,3,2</div><div class="opt"><b>C.</b> 4,2,3,1</div><div class="opt"><b>D.</b> 4,2,1,3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>对4,2,3,1：输入受限（一端入、两端出）时4第一个出须1、2、3全部入队，之后队内另一侧是1、靠近入端是3，2夹在中间，第二个出不了2；输出受限（两端入、一端出）时出队序列是可达排列的逆序，可达排列左段按输入序递减、右段递增，4,2,3,1的逆排列1,3,2,4的右段3,2,4非递增，不可构造。两种受限均得不到C。B可由输入受限得到（4、1、3、2交替从两端出）；D可由输出受限得到（排列3,1,2,4逆序输出）；A显然可行。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】某队列允许在其两端进行入队操作，但仅允许在一端进行出队操作。若元素a,b,c,d,e依次入此队列后再进行出队操作，则不可能得到的出队序列是（）</p><div class="opts"><div class="opt"><b>A.</b> b,a,c,d,e</div><div class="opt"><b>B.</b> d,b,a,c,e</div><div class="opt"><b>C.</b> d,b,c,a,e</div><div class="opt"><b>D.</b> e,d,c,b,a</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>两端入、一端（设右端）出：全部入队后从右端逐个出队，出队序列是最终排列的逆序；而按a~e顺序每步选左/右端插入，可得排列的形态必为“左段按输入序递减+中段a+右段按输入序递增”。C的d,b,c,a,e对应排列e,a,c,b,d，其右段a,c,b,d中c排在b之前，违反递增性，不可构造，故C不可能。A对应排列e,d,c,a,b（c、d、e依次左插，b右插）；B对应e,c,a,b,d（c、e左插，b、d右插）；D对应a,b,c,d,e（全部右插），均可实现。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】已知循环队列存储在一维数组A[0…n-1]中，且队列非空时front和rear分别指向队首元素和队尾元素。若初始时队列为空，且要求第一个进入队列的元素存储在A[0]处，则初始时front和rear的值分别是（）</p><div class="opts"><div class="opt"><b>A.</b> 0,0</div><div class="opt"><b>B.</b> 0,n-1</div><div class="opt"><b>C.</b> n-1,0</div><div class="opt"><b>D.</b> n-1,n-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>front指队首元素：空队第一次入队后队首为A[0]，故front初值0且入队不改动它（front=(front+1)只在出队时）。rear指队尾元素，入队先移后存：rear=(rear+1) mod n。要求第一次入队落在A[0]，需(rear₀+1) mod n=0，即rear₀=n-1。故front=0、rear=n-1。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P86</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】循环队列放在一维数组A[0…M-1]中，end1指向队首元素，end2指向队尾元素的后一个位置。假设队列两端均可进行入队和出队操作，队列中最多能容纳M-1个元素。初始时为空。下列判断队空和队满的条件中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 队空：end1==end2；队满：end1==(end2+1) mod M</div><div class="opt"><b>B.</b> 队空：end1==end2；队满：end2==(end1+1) mod (M-1)</div><div class="opt"><b>C.</b> 队空：end2==(end1+1) mod M；队满：end1==(end2+1) mod M</div><div class="opt"><b>D.</b> 队空：end1==(end2+1) mod M；队满：end2==(end1+1) mod (M-1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>end2指队尾元素后一位置：队空时无元素，end1与end2重合，即end1==end2。最多存M-1个元素说明用牺牲一个单元法判满：队满时end1恰在end2后一格，即end1==(end2+1) mod M。B、D的mod(M-1)以假想容量M-1取模，与数组实际长度M不符，会算出错误甚至越界的下标，混淆了“最多容纳M-1个元素”与“数组长度为M”两件事；C把空满条件写反。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P87</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】现有队列Q与栈S，初始时Q中的元素依次是1,2,3,4,5,6（1在队首），S为空。若仅允许下列3种操作：①出队并输出出队元素；②出队并将出队元素入栈；③出栈并输出出栈元素，则不能得到的输出序列是（）</p><div class="opts"><div class="opt"><b>A.</b> 1,2,5,6,4,3</div><div class="opt"><b>B.</b> 2,3,4,5,6,1</div><div class="opt"><b>C.</b> 3,4,5,6,1,2</div><div class="opt"><b>D.</b> 6,5,4,3,2,1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>队列保序、栈逆序：先进栈的1、2只能按2、1的顺序出栈。C要求输出3,4,5,6后接1,2：前4个出队输出后剩1、2在队列中（1在前），要输出1只能先把1、2出队入栈，出栈时2在1之上先弹出，得到的是…,2,1而非1,2，矛盾。A中1、2直接输出，3、4入栈后5、6输出、再4、3出栈；B中1入栈后2~6依次输出、最后1出栈；D中1~5全部入栈后6输出、再5~1依次出栈，均可。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P87</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-2-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.2 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】初始为空的队列Q的一端仅能进行入队操作，另外一端既能进行入队操作又能进行出队操作。若Q的入队序列是1,2,3,4,5，则不能得到的出队序列是（）</p><div class="opts"><div class="opt"><b>A.</b> 5,4,3,1,2</div><div class="opt"><b>B.</b> 5,3,1,2,4</div><div class="opt"><b>C.</b> 4,2,1,3,5</div><div class="opt"><b>D.</b> 4,1,3,2,5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>这是输出受限双端队列（左端仅入，右端入+出）。D中4第一个出队，说明1、2、3已全部入队且未出队、4从右端入即出；之后4个输出中1须在2、3之前出。枚举1、2、3两端插入的全部排列（3,2,1）、（2,3,1）、（3,1,2）、（1,2,3），从右端弹出顺序分别为1,2,3、1,3,2、2,1,3、3,2,1——能以1开头的只有前两种，但它们后续分别是2,3与3,2，均无法匹配D要求的1,3,2，故D不可能。A构造：排列[2,1,3]再右插4、5即出5,4,3,1,2；B构造[4,2,1,3]右插5；C构造[3,1,2]出4,2,1后5左插，均可实现。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P87</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-3-3"><h3>3.3 栈与队列的应用<span class="tag tag-tpl">20题选择 + 2题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-3-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>栈的应用不包括（）</p><div class="opts"><div class="opt"><b>A.</b> 递归</div><div class="opt"><b>B.</b> 表达式求值</div><div class="opt"><b>C.</b> 括号匹配</div><div class="opt"><b>D.</b> 缓冲区</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>栈的典型应用：递归调用与返回地址保存、表达式（中缀转后缀、求值）中的运算符/操作数栈、括号匹配检查、进制转换、迷宫求解等。缓冲区（如打印机输出缓冲）要求先来先服务，是队列的应用，不属于栈。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P96</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-3-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.3 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设一个算术表达式中包含圆括号、方括号和花括号3种类型的括号，编写一个算法来判别表达式中的括号是否配对，以字符"0"作为算术表达式的结束符。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>顺序扫描表达式，遇到左括号（(、[、{）压入栈；遇到右括号则弹出栈顶，若栈顶是与它同类型的左括号则继续，否则不配对；扫描到结束符"0"时栈空则配对成功。括号匹配的本质是“最后打开的括号最先关闭”，正是栈的LIFO特性。</p><div class="asc">bool Match(char exp[]) { // exp以'0'结尾<br/>&nbsp;&nbsp;char S[MaxSize]; int top = -1, i = 0;<br/>&nbsp;&nbsp;while (exp[i] != '0') {<br/>&nbsp;&nbsp;&nbsp;&nbsp;char c = exp[i];<br/>&nbsp;&nbsp;&nbsp;&nbsp;if (c=='(' || c=='[' || c=='{') S[++top] = c; // 入栈<br/>&nbsp;&nbsp;&nbsp;&nbsp;else if (c==')' || c==']' || c=='}') {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (top == -1) return false;&nbsp;&nbsp;&nbsp;&nbsp;// 右括号多余<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;char t = S[top--];<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if ((c==')' &amp;&amp; t!='(') || (c==']' &amp;&amp; t!='[')<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| (c=='}' &amp;&amp; t!='{')) return false; // 类型不符<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;i++;<br/>&nbsp;&nbsp;}<br/>&nbsp;&nbsp;return (top == -1); // 有剩余左括号则不配对<br/>}</div><p><b>双验算：</b>"(a[b]{c})0"：入(、[、]，弹]对[、}对{、)对(，结束栈空，返回true；"(a[b)0"：弹)时栈顶为[，类型不符返回false；"a[b0"：结束符时栈中剩[，返回false。三种情况均正确。时间复杂度O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>表达式a*(b+c)-d的后缀表达式是（）</p><div class="opts"><div class="opt"><b>A.</b> abcd*+-</div><div class="opt"><b>B.</b> abc+*d-</div><div class="opt"><b>C.</b> abc*+d-</div><div class="opt"><b>D.</b> -+*abcd</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>按运算次序：先算b+c得后缀bc+，再与a相乘得abc+*，最后减d得abc+*d-。A的abcd*+-先做c*d再连续加减，运算对象错位；C的abc*+d-对应a*b+c-d一类结构，括号丢失；D把运算符全前置，既非后缀形式次序也不对。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wz-3-3-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">3.3 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2019统考真题】请设计一个队列，要求满足：①初始时队列为空；②入队时，允许增加队列占用空间；③出队后，出队元素所占用的空间可重复使用，即整个队列所占用的空间只增不减；④入队操作和出队操作的时间复杂度始终保持为O(1)。请回答：<br/>(1) 该队列是应选择链式存储结构，还是应选择顺序存储结构？<br/>(2) 画出队列的初始状态，并给出判断队空和队满的条件。<br/>(3) 画出第一个元素入队后的队列状态。<br/>(4) 给出入队操作和出队操作的基本过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)</b> 应选择<b>链式存储结构</b>。理由：要求入队时能增加占用空间且入队、出队始终保持O(1)——顺序存储容量固定，扩容需整体搬迁，无法满足；采用带头结点的循环单链表并只设一个尾指针rear，入队时动态申请新结点（或复用出队留下的空闲结点），出队结点不释放而挂回链上，恰好实现“空间只增不减、可重复使用”。</p><p><b>(2)</b> 初始状态：只有头结点，rear指向头结点。</p><div class="asc">初始：&nbsp;rear → [头结点] ⇂ (空)<br/>队空条件：rear-&gt;next == rear（尾指针指向自身/头结点）<br/>链式队列无固定容量，一般不判队满（仅当内存申请失败视为满）</div><p><b>(3)</b> 第一个元素a1入队后：</p><div class="asc">&nbsp;&nbsp;[头结点] → [a1] ⇂<br/>&nbsp;&nbsp;rear 指向 a1，头结点自指被打破：rear-&gt;next = a1结点</div><p><b>(4)</b> 入队EnQueue(x)：申请新结点s（若出队留有空闲结点则直接复用），插入rear之后：s-&gt;next=rear-&gt;next; rear-&gt;next=s; rear=s；若原队空则rear=s。出队DeQueue(x)：p=rear-&gt;next（头结点），取q=p-&gt;next（队首），x=q-&gt;data；p-&gt;next=q-&gt;next；若删后队空（即被删结点恰是rear所指的唯一元素结点，p-&gt;next==rear）则令rear=p重新指向头结点；结点q挂回链上备用或释放（题目要求空间可重复使用，则回挂）。两个操作均只做有限次指针修改，时间复杂度均为<b>O(1)</b>。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下面（）用到了队列。</p><div class="opts"><div class="opt"><b>A.</b> 括号匹配</div><div class="opt"><b>B.</b> 表达式求值</div><div class="opt"><b>C.</b> 递归</div><div class="opt"><b>D.</b> FIFO页面替换算法</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>FIFO页面替换算法淘汰最先进入内存的页面，正对应队列先进先出的特性。括号匹配、表达式求值（运算符栈、操作数栈）、递归（系统栈保存现场）都依赖栈的后进先出特性。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>利用栈求表达式的值时，设立运算数栈OPEN。假设OPEN只有两个存储单元，则在下列表达式中，不会发生溢出的是（）</p><div class="opts"><div class="opt"><b>A.</b> A-B*(C-D)</div><div class="opt"><b>B.</b> (A-B)*C-D</div><div class="opt"><b>C.</b> (A-B*C)-D</div><div class="opt"><b>D.</b> (A-B)*(C-D)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>求值时看后缀式执行中操作数栈的峰值。B的后缀为AB-C*D-：A、B入栈（2个），弹出算A-B压回（1个），C入（2个），弹出算乘压回（1个），D入（2个），峰值恰为2，不溢出。A的后缀ABCD-*-中B、C、D连同A峰值达4；C的后缀ABC*-D-中A、B、C同时占栈峰值3；D的后缀AB-CD-*算C-D时A-B的结果仍在栈中，峰值3——均超过2个单元而溢出。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>执行完下列语句段后，i的值为（）</p><div class="asc">int f(int x) {<br/>&nbsp;&nbsp;return ((x&gt;0) ? x*f(x-1) : 2);<br/>}<br/>int i;<br/>i = f(f(1));</div><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 无限递归</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>先算内层f(1)=1*f(0)，f(0)不满足x&gt;0返回2，故f(1)=2；再算f(f(1))=f(2)=2*f(1)=2×2=4。递归有两层出口（x≤0时返回2），不会无限递归，i=4。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有如下递归函数，则计算F(8)需要调用该递归函数的次数为（）</p><div class="asc">int F(int n) {<br/>&nbsp;&nbsp;if (n &lt;= 3) return 1;<br/>&nbsp;&nbsp;else return F(n-2) + F(n-4) + 1;<br/>}</div><div class="opts"><div class="opt"><b>A.</b> 7</div><div class="opt"><b>B.</b> 8</div><div class="opt"><b>C.</b> 9</div><div class="opt"><b>D.</b> 10</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>展开调用树并计数（含F(8)自身）：F(8)→F(6)+F(4)；F(6)→F(4)+F(2)；两个F(4)各→F(2)+F(0)。结点：F(8)、F(6)、F(4)、F(4)、F(2)×3、F(0)×2，共9次调用。注意F(4)会被重复计算两次，这是朴素递归的特点。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有如下递归函数，在func(func(5))的执行过程中，第4个被执行的func函数是（）</p><div class="asc">int func(int x) {<br/>&nbsp;&nbsp;if (x &lt;= 3) return 2;<br/>&nbsp;&nbsp;else return func(x-2) + func(x-4);<br/>}</div><div class="opts"><div class="opt"><b>A.</b> func(2)</div><div class="opt"><b>B.</b> func(3)</div><div class="opt"><b>C.</b> func(4)</div><div class="opt"><b>D.</b> func(5)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>执行序：第1个func(5)调用func(3)（第2个，返回2），再调用func(1)（第3个，返回2），func(5)返回4；随后外层参数求出，执行func(4)（第4个）。故第4个被执行的是func(4)，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一个问题的递归算法求解和其相对应的非递归算法求解，（）</p><div class="opts"><div class="opt"><b>A.</b> 递归算法通常效率高一些</div><div class="opt"><b>B.</b> 非递归算法通常效率高一些</div><div class="opt"><b>C.</b> 两者相同</div><div class="opt"><b>D.</b> 无法比较</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>递归依赖系统栈保存返回地址、参数、局部变量，产生大量函数调用与栈帧建立/销毁开销，还可能重复计算子问题；转为非递归（循环或显式栈）后省去这些开销，通常效率更高。两者求解同一问题、结果相同，但时空开销不同。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>执行函数时，其局部变量一般采用（）进行存储。</p><div class="opts"><div class="opt"><b>A.</b> 树形结构</div><div class="opt"><b>B.</b> 静态链表</div><div class="opt"><b>C.</b> 栈结构</div><div class="opt"><b>D.</b> 队列结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>函数调用时局部变量、形参、返回地址随活动记录（栈帧）压入系统栈，调用结束按后进先出次序弹出，与函数嵌套调用“最后调用最先返回”的次序吻合，故用栈结构。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>执行（）操作时，需要使用队列作为辅助存储空间。</p><div class="opts"><div class="opt"><b>A.</b> 查找散列（哈希）表</div><div class="opt"><b>B.</b> 广度优先搜索图</div><div class="opt"><b>C.</b> 先序（根）遍历二叉树</div><div class="opt"><b>D.</b> 深度优先搜索图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>广度优先搜索按“先被发现的顶点先扩展”进行，用队列保存已发现未扩展的顶点。深度优先搜索、先序遍历用栈（或递归系统栈）；散列表查找按关键字直接定位，无需辅助队列。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列说法中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 消除递归不一定需要使用栈</div><div class="opt"><b>B.</b> 对同一输入序列进行两组不同的合法入栈和出栈组合操作，所得的输出序列也一定相同</div><div class="opt"><b>C.</b> 通常使用队列来处理函数或过程调用</div><div class="opt"><b>D.</b> 队列和栈都是运算受限的线性表，只允许在表的两端进行运算</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>尾递归、单向递归等可直接改写为循环而不借助栈，“不一定需要”成立。B错：同一入栈序列不同进出栈组合可得到不同输出序列；C错：函数调用用栈保存现场，不是队列；D错：栈只允许在栈顶一端运算，队列才是两端各司其职（且也只能一端入一端出，并非“只允许在两端进行运算”的笼统说法）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在主机和打印机之间设置一个打印数据缓冲区，主机将要输出的数据依次写入该缓冲区，而打印机则依次从该缓冲区中取出数据。该缓冲区的逻辑结构应该是（）</p><div class="opts"><div class="opt"><b>A.</b> 栈</div><div class="opt"><b>B.</b> 队列</div><div class="opt"><b>C.</b> 树</div><div class="opt"><b>D.</b> 图</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>主机先写入的数据应先被打印机取出打印，即先来先服务，这正是队列先进先出的逻辑特性。若用栈（后进先出），先写入的数据反而最后打印，且打印中间结果次序颠倒，不合要求。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P97</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】已知操作符包括"+"、"-"、"*"、"/"、"("和")"。将中缀表达式a+b-a*((c+d)/e)-f+g转换为等价的后缀表达式ab+acd+e/f-*-g+时，用栈来存放暂时还不能确定运算次序的操作符。当栈初始为空时，转换过程中同时保存在栈中的操作符的最大个数是（）</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 7</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>逐字符扫描a+b-a*((c+d)/e)-f+g：扫描到a*((c+d的"+"时，栈内自底向顶为-、*、(、(、+，共5个操作符——这是过程中的峰值；随后")"弹出+、/依次入出，均不超过5。故最大个数为5。关键是最外层a后先来的是"-"（a+b-中的减号先入栈），再压*与两个左括号。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P98</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】假设栈初始为空，将中缀表达式a/b+(c*d-e*f)/g转换为等价的后缀表达式的过程中，当扫描到f时，栈中的元素依次是（）</p><div class="opts"><div class="opt"><b>A.</b> +(*-</div><div class="opt"><b>B.</b> +(-*</div><div class="opt"><b>C.</b> /+(-*</div><div class="opt"><b>D.</b> /+-*</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>模拟到f之前：a输出；/入栈；b输出；+到来弹出/再入栈；c输出；(入栈；d输出；-到来（栈顶(不让）入栈；e输出；*到来（高于-）入栈。此时栈自底向顶为+、(、-、*，即“+(-*”。注意括号在栈中占位且扫描到f时/早已被弹出。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P98</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】已知程序如下：</p><div class="asc">int S(int n) {<br/>&nbsp;&nbsp;return (n &lt;= 0) ? 0 : S(n-1) + n;<br/>}<br/>void main() {<br/>&nbsp;&nbsp;cout &lt;&lt; S(1);<br/>}</div><p>程序执行时，函数调用的正确顺序是（）</p><div class="opts"><div class="opt"><b>A.</b> main() → S(1) → S(0)</div><div class="opt"><b>B.</b> S(0) → S(1) → main()</div><div class="opt"><b>C.</b> main() → S(0) → S(1)</div><div class="opt"><b>D.</b> S(1) → S(0) → main()</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>从main出发调用S(1)；S(1)中先求S(n-1)即S(0)，S(0)满足n≤0返回0；随后逐层返回。调用（压栈）次序为main()→S(1)→S(0)，返回次序则相反。B、D颠倒了调用方向，C中S(0)不可能先于S(1)被调用。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】设有如下图所示的火车车轨，入口到出口之间有n条轨道，列车的行进方向均为从左至右，列车可驶入任意一条轨道。现有编号为1～9的9列列车，驶入的次序依次是8,4,2,5,3,9,1,6,7。若期望驶出的次序依次为1～9，则n至少是（）</p><div class="asc">入口 ─→ [轨道1][轨道2][轨道3][轨道4] ─→ 出口<br/>（每条轨道内的列车后进先出，可随时从轨道右端驶出）</div><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>每条轨道是一个栈，且须保持“每条轨道内从底到顶编号递减”才能按1~9顺序驶出。驶入8,4,2可叠同一轨道[8,4,2]；5、3无处可叠（2上不能放5），另开轨道[5,3]；9再开[9]；1可叠到[8,4,2,1]；6叠到[9,6]；7无处可放（各轨道顶1、3、6均小于7），须第4条[7]。此时按1,2,3,4,5,6,7,8,9依次出轨道恰好可行，共需4条。3条时驶入7必然违反栈序，故至少4。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2017统考真题】下列关于栈的叙述中，错误的是（）</p><div class="opts"><div class="opt"><b>A.</b> 采用非递归方式重写递归程序时，不一定需要使用栈</div><div class="opt"><b>B.</b> 函数调用时，系统要用栈保存必要的信息</div><div class="opt"><b>C.</b> 只要确定了入栈次序，即可确定出栈次序</div><div class="opt"><b>D.</b> 栈是一种受限的线性表，只允许在表的一端进行插入和删除运算</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>C错误：入栈次序确定后，出栈时机可与入栈交错，出栈序列有多种（如1,2,3有5种），并非唯一确定。A正确：尾递归、简单累加型递归可直接改为循环，不必用栈；B正确：返回地址、参数等现场信息由系统栈（栈帧）保存；D正确：栈只允许在栈顶一端插入和删除。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】若栈S1中保存整数，栈S2中保存运算符，函数F()依次执行下述各步操作：①从S1中依次弹出两个操作数a和b；②从S2中弹出一个运算符op；③执行相应的运算b op a；④将运算结果压入S1中。假定S1中的操作数依次是5,8,3,2（2在栈顶），S2中的运算符依次是*、-、+（+在栈顶）。调用3次F()后，S1栈顶保存的值是（）</p><div class="opts"><div class="opt"><b>A.</b> -15</div><div class="opt"><b>B.</b> 15</div><div class="opt"><b>C.</b> -20</div><div class="opt"><b>D.</b> 20</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第一次：弹a=2、b=3，op=+，算3+2=5压回，S1剩5,8,5；第二次：弹a=5、b=8，op=-，算8-5=3压回，S1剩5,3；第三次：弹a=3、b=5，op=*，算5*3=15压回，S1剩5,15，栈顶为15。注意运算方向是b op a（先弹出的a在右边）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】与表达式x+y*(z-u)/v等价的后缀表达式是（）</p><div class="opts"><div class="opt"><b>A.</b> xyzu-*v/+</div><div class="opt"><b>B.</b> xyzu-v/*+</div><div class="opt"><b>C.</b> +x/*y-zuv</div><div class="opt"><b>D.</b> +x*y/-zuv</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>按优先级与结合性：先算z-u得zu-，再乘y得yzu-*，再除以v得yzu-*v/，最后加x得xyzu-*v/+，即A。B解码为x+y*((z-u)/v)，除法先于乘法执行，与原式(y*(z-u))/v运算次序不同，不等价；C、D把运算符放在操作数前面，是错误的前缀式混排，均非后缀表达式。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-3-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.3 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】已知算法A用于检查字符串中各类括号是否匹配，A执行过程中使用初始为空的栈保存遇到的左括号。若栈的容量是3，则下列选项中，A不能处理（将发生溢出）的是（）</p><div class="opts"><div class="opt"><b>A.</b> (a+[b+(c+d)/e]+f)+g-h</div><div class="opt"><b>B.</b> [a*((b+c)/(d-e)+f/g)-h]</div><div class="opt"><b>C.</b> [a*(b-(c-d)*e/(f+g))-h]</div><div class="opt"><b>D.</b> [a-(b+[c*(d+e)-f]+g+h)]</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>左括号入栈、遇右括号即弹栈，栈深等于当前未匹配左括号的嵌套层数。A的最大嵌套为(、[、(共3层；B为[、(、(共3层；C为[、(、(共3层——峰值均恰为3，不超过容量。D中[a-(b+[c*(d+e)…依次出现[、(、[、(四个未匹配左括号，深度达4，超过容量3，发生溢出，A不能处理。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P99</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-3-4"><h3>3.4 数组和特殊矩阵<span class="tag tag-tpl">16题选择</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-3-4-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对特殊矩阵采用压缩存储的主要目的是（）</p><div class="opts"><div class="opt"><b>A.</b> 使表达变得简单</div><div class="opt"><b>B.</b> 对矩阵元素的存取变得简单</div><div class="opt"><b>C.</b> 去掉矩阵中的多余元素</div><div class="opt"><b>D.</b> 减少不必要的存储空间</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>对称矩阵、三角矩阵、对角矩阵中存在大量值相同（可映射到同一单元）或恒为0的元素，压缩存储只为其中“有效”元素分配空间，主要目的就是节省存储空间。它反而使存取需要换算下标（B错），与表达是否简单无关（A错），相同元素并非“多余”元素而是必要信息（C错）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P104</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对n阶对称矩阵压缩存储时，需要表长为（）的顺序表。</p><div class="opts"><div class="opt"><b>A.</b> n/2</div><div class="opt"><b>B.</b> n×n/2</div><div class="opt"><b>C.</b> n(n+1)/2</div><div class="opt"><b>D.</b> n(n-1)/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>对称矩阵只需存储下三角（含对角线）：第1行1个、第2行2个、…、第n行n个，共1+2+…+n=n(n+1)/2个元素，上三角元素由对称性映射即可。D的n(n-1)/2漏掉对角线；A、B数量级或构成不对。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P105</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有一个n×n的对称矩阵A，将其下三角部分按行存放在一维数组B中，而A[0][0]存放于B[0]中，则第i+1行的对角元素A[i][i]存放于B中的（）处。</p><div class="opts"><div class="opt"><b>A.</b> (i+3)i/2</div><div class="opt"><b>B.</b> (i+1)i/2</div><div class="opt"><b>C.</b> (2n-i+1)i/2</div><div class="opt"><b>D.</b> (2n-i-1)i/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>行号从0计：第0行存1个、第1行存2个、…、第i-1行存i个，故第i行之前共有1+2+…+i=i(i+1)/2个元素；对角元素A[i][i]是第i行（含对角线）的第i+1个，再偏移i，得i(i+1)/2+i=i(i+3)/2。代入i=0得0（A[0][0]在B[0]）验证成立。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P105</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设二维数组A[0…9][0…9]的每个元素占3个存储单元，从首地址SA开始按行优先方式顺序连续存放。在这种情况下，元素A[8][5]的起始地址为（）</p><div class="opts"><div class="opt"><b>A.</b> SA+141</div><div class="opt"><b>B.</b> SA+144</div><div class="opt"><b>C.</b> SA+222</div><div class="opt"><b>D.</b> SA+255</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>按行优先：A[8][5]之前有完整的8行（每行10个元素）加本行前5个元素，共8×10+5=85个元素，每个占3个存储单元，故起始地址=SA+85×3=SA+255。其余选项是按列优先计数、漏乘或多乘单元数等下标换算错误的干扰值。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P105</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>二维数组A按行优先存储，其中每个元素占1个存储单元。若A[1][1]的存储地址为420，A[3][3]的存储地址为446，则A[5][5]的存储地址为（）</p><div class="opts"><div class="opt"><b>A.</b> 472</div><div class="opt"><b>B.</b> 471</div><div class="opt"><b>C.</b> 458</div><div class="opt"><b>D.</b> 457</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>设每行n个元素：A[3][3]-A[1][1]=2n+2=26，解得n=12。则A[5][5]=A[1][1]+4n+4=420+48+4=472。验算：446+2n+2=446+26=472一致，故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将三对角矩阵A[1…100][1…100]按行优先存入一维数组B[1…298]，数组A中元素A[66][65]在数组B中的位置k为（）</p><div class="opts"><div class="opt"><b>A.</b> 198</div><div class="opt"><b>B.</b> 195</div><div class="opt"><b>C.</b> 197</div><div class="opt"><b>D.</b> 196</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>三对角矩阵第1行只有2个非零元，第2~99行各3个。第r行（2≤r≤99）首元素A[r][r-1]之前共有2+3(r-2)个元素，故其B下标为3r-3。r=66：A[66][65]恰为第66行首元素，k=3×66-3=195。验算：前65行共2+3×64=194个元素，A[66][65]是第195个。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若将n阶上三角矩阵A按列优先级压缩存放在一维数组B[1…n(n+1)/2+1]中，则存放到B[k]中的非零元素a<sub>i,j</sub>（1≤i,j≤n）的下标i、j与k的对应关系是（）</p><div class="opts"><div class="opt"><b>A.</b> i(i+1)/2+j</div><div class="opt"><b>B.</b> i(i-1)/2+j-1</div><div class="opt"><b>C.</b> j(j-1)/2+i</div><div class="opt"><b>D.</b> j(j-1)/2+i-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>按列优先存上三角：第1列1个元素、第2列2个、…、第j-1列j-1个，共j(j-1)/2个；第j列内自上而下a₁ⱼ,a₂ⱼ,…,aᵢⱼ，aᵢⱼ是该列第i个，故k=j(j-1)/2+i。代入a₁,₁：k=1（存B[1]）验证；D少1错位。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若将n阶下三角矩阵A按列优先顺序压缩存放在一维数组B[1…n(n+1)/2+1]中，则存放到B[k]中的非零元素a<sub>i,j</sub>（1≤i,j≤n）的下标i、j与k的对应关系是（）</p><div class="opts"><div class="opt"><b>A.</b> (j-1)(2n-j+1)/2+i-j</div><div class="opt"><b>B.</b> (j-1)(2n-j+2)/2+i-j+1</div><div class="opt"><b>C.</b> (j-1)(2n-j+2)/2+i-j</div><div class="opt"><b>D.</b> (j-1)(2n-j+1)/2+i-j-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>按列优先存下三角：第c列有n-c+1个元素（自a<sub>c,c</sub>到a<sub>n,c</sub>），前j-1列共(j-1)(2n-j+2)/2个；第j列内自上而下，a<sub>i,j</sub>之前有i-j个，故k=(j-1)(2n-j+2)/2+i-j+1。代入a₁,₁：k=(0)+0+1=1验证成立。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>稀疏矩阵采用压缩存储后的缺点主要是（）</p><div class="opts"><div class="opt"><b>A.</b> 无法判断矩阵的行列数</div><div class="opt"><b>B.</b> 丧失随机存取的特性</div><div class="opt"><b>C.</b> 无法由行、列值查找某个矩阵元素</div><div class="opt"><b>D.</b> 使矩阵元素之间的逻辑关系更复杂</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>三元组表、十字链表等稀疏矩阵压缩存储中，元素按非零元顺序存放，不能像二维数组那样由下标经一次计算直接定位（随机存取），存取须经查找，这是主要缺点。行列数可另行记录（A错）；按行、列值仍可查到元素（C错）；逻辑关系并未复杂化（D错）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于矩阵的说法中，正确的是（）</p><p>Ⅰ．在n（n＞3）阶三对角矩阵中，每行都有3个非零元<br/>Ⅱ．稀疏矩阵的特点是矩阵中的元素较少</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ</div><div class="opt"><b>B.</b> 仅Ⅱ</div><div class="opt"><b>C.</b> Ⅰ和Ⅱ</div><div class="opt"><b>D.</b> 无正确项</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>Ⅰ错：三对角矩阵的首行和末行只有2个非零元，其余行才有3个；Ⅱ错：稀疏矩阵的特点是非零元个数远小于矩阵元素总数且分布无规律，而非“元素较少”——矩阵元素总数是固定的m×n。两条均错，选无正确项。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】有一个100阶的三对角矩阵M，其元素m<sub>i,j</sub>（1≤i,j≤100）按行优先依次压缩存入下标从0开始的一维数组N中。元素m<sub>30,30</sub>在N中的下标是（）</p><div class="opts"><div class="opt"><b>A.</b> 86</div><div class="opt"><b>B.</b> 87</div><div class="opt"><b>C.</b> 88</div><div class="opt"><b>D.</b> 89</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第1行2个元素，第2~99行各3个。前29行共2+3×28=86个元素，占据N[0…85]；第30行的3个元素依次为m<sub>30,29</sub>、m<sub>30,30</sub>、m<sub>30,31</sub>，m<sub>30,30</sub>是其中第2个，下标86+1=87。通式k=3(i-2)+2+(j-i+1)=2i+j-3，代入i=j=30同样得87。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P106</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】适用于压缩存储稀疏矩阵的两种存储结构是（）</p><div class="opts"><div class="opt"><b>A.</b> 三元组表和十字链表</div><div class="opt"><b>B.</b> 三元组表和邻接矩阵</div><div class="opt"><b>C.</b> 十字链表和二叉链表</div><div class="opt"><b>D.</b> 邻接矩阵和十字链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>稀疏矩阵只存非零元：三元组（行、列、值）顺序表是最常用的顺序压缩结构；十字链表把同行、同列非零元分别链起来，便于插入删除，是链式压缩结构。邻接矩阵本身用于存图且是满阵式存储；二叉链表用于存二叉树，均不适合。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P107</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】设有一个12×12的对称矩阵M，将其上三角部分的元素m<sub>i,j</sub>（1≤i≤j≤12）按行优先存入C语言的一维数组N中，元素m<sub>6,6</sub>在N中的下标是（）</p><div class="opts"><div class="opt"><b>A.</b> 50</div><div class="opt"><b>B.</b> 51</div><div class="opt"><b>C.</b> 55</div><div class="opt"><b>D.</b> 66</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>上三角按行优先：第r行有13-r个元素（m<sub>r,r</sub>…m<sub>r,12</sub>）。前5行共(12+11+10+9+8)=50个元素，占据N[0..49]；m<sub>6,6</sub>是第6行的第一个元素，下标恰为50。B少算了第5行或对角元素归属。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P107</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】将一个10×10对称矩阵M的上三角部分的元素m<sub>i,j</sub>（1≤i≤j≤10）按列优先存入C语言的一维数组N中，元素m<sub>7,2</sub>在N中的下标是（）</p><div class="opts"><div class="opt"><b>A.</b> 15</div><div class="opt"><b>B.</b> 16</div><div class="opt"><b>C.</b> 22</div><div class="opt"><b>D.</b> 23</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>m<sub>7,2</sub>的i＞j不在上三角，由对称性按m<sub>2,7</sub>存储。按列优先存上三角：第c列有c个元素（m<sub>1,c</sub>…m<sub>c,c</sub>），前6列共1+2+…+6=21个，占据N[0..20]；第7列中m<sub>1,7</sub>、m<sub>2,7</sub>…，m<sub>2,7</sub>是该列第2个，下标21+1=22。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P107</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】二维数组A按行优先方式存储，每个元素占用1个存储单元。若元素A[0][0]的存储地址是100，A[3][3]的存储地址是220，则元素A[5][5]的存储地址是（）</p><div class="opts"><div class="opt"><b>A.</b> 295</div><div class="opt"><b>B.</b> 300</div><div class="opt"><b>C.</b> 301</div><div class="opt"><b>D.</b> 306</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</p><p>设每行n个元素：A[3][3]-A[0][0]=3n+3=120，解得n=39。则A[5][5]=A[0][0]+5n+5=100+195+5=300。验算：A[5][5]-A[3][3]=2n+2=80，220+80=300，一致。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P107</p></div></details>
+  </div>
+  <div class="prob" id="wq-3-4-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">3.4 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】若采用三元组表存储结构存储稀疏矩阵M，则除三元组表外，下列数据中还需要保存的是（）</p><p>Ⅰ．M的行数<br/>Ⅱ．M中包含非零元素的行数<br/>Ⅲ．M的列数<br/>Ⅳ．M中包含非零元素的列数</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ、Ⅲ</div><div class="opt"><b>B.</b> 仅Ⅱ、Ⅳ</div><div class="opt"><b>C.</b> 仅Ⅰ、Ⅱ、Ⅲ</div><div class="opt"><b>D.</b> Ⅰ、Ⅱ、Ⅲ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>三元组（行下标、列下标、值）只能反映非零元本身，无法还原矩阵规模，必须另外记录矩阵的行数和列数（Ⅰ、Ⅲ），否则同一张三元组表对应多种不同规模的矩阵。非零元所在的行数、列数（Ⅱ、Ⅳ）可由三元组表统计得到，无需单独保存。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P107</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c3", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

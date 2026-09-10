@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题总览 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题</p>
+  </div>
+  <div class="part-zone" id="wdexhub">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 总览（2027版全量）</h2>
+    <p>《2027王道数据结构》课后题全收录：选择题 641 题（官方答案速查 + 逐题独立验算解析）+ 综合题 155 题（完整解答）。目录沿用王道8章，题号与书一致，解析标注王道书页码便于回查。</p>
+  </div>
+  <section class="sec" id="wdex-overview">
+    <h3>刷题指南<span class="tag tag-tpl">共 796 题</span></h3>
+    <p class="intro">🎤 建议节奏：学完「王道精讲」对应章 → 立刻来本章刷选择题 → 错题回精讲小节补原理 → 综合题先动手写再对解答。每题解析首句是独立验算结论，与官方速查不一致的题已在解析中写明分歧与裁定，重点关照。</p>
+    <div class="tbl-wrap"><table class="api">
+      <tr><th>章节</th><th>选择题</th><th>综合题</th><th>独立验算</th><th>重建题面</th></tr>
+      <tr><td><a href="wdex-c1.html">第1章 绪论</a></td><td>23</td><td>3</td><td>✅ 全部一致</td><td>1</td></tr><tr><td><a href="wdex-c2.html">第2章 线性表</a></td><td>53</td><td>29</td><td>✅ 全部一致</td><td>7</td></tr><tr><td><a href="wdex-c3.html">第3章 栈、队列和数组</a></td><td>91</td><td>10</td><td>✅ 全部一致</td><td>5</td></tr><tr><td><a href="wdex-c4.html">第4章 串</a></td><td>12</td><td>3</td><td>✅ 全部一致</td><td>2</td></tr><tr><td><a href="wdex-c5.html">第5章 树与二叉树</a></td><td>127</td><td>32</td><td>✅ 全部一致</td><td>13</td></tr><tr><td><a href="wdex-c6.html">第6章 图</a></td><td>103</td><td>28</td><td>✅ 全部一致</td><td>45</td></tr><tr><td><a href="wdex-c7.html">第7章 查找</a></td><td>109</td><td>25</td><td>✅ 全部一致</td><td>8</td></tr><tr><td><a href="wdex-c8.html">第8章 排序</a></td><td>123</td><td>25</td><td>3题分歧（解析中已裁定注明）</td><td>12</td></tr>
+    </table></div>
+    <div class="wd-kd"><b>📌 使用提示</b>①选择题先自己作答再展开「查看解析与答案」；②多选题答案为字母组合（如 AD）；③带「重建题」标签的题面由王道原题校订恢复；④做完点题头「已学」，进度页自动统计各章刷题进度。</div>
+  </section>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

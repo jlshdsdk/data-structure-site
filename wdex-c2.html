@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第2章 线性表 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第2章 线性表</p>
+  </div>
+  <div class="part-zone" id="wdex2">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第2章 线性表</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题53题（官方速查答案+逐题独立验算解析）、综合题29题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-2-1"><h3>2.1 线性表的定义和基本操作<span class="tag tag-tpl">4题选择</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-2-1-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.1 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>线性表是具有 n 个（）的有限序列。</p><div class="opts"><div class="opt"><b>A.</b> 数据表</div><div class="opt"><b>B.</b> 字符</div><div class="opt"><b>C.</b> 数据元素</div><div class="opt"><b>D.</b> 数据项</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>线性表的定义是 n（n≥0）个<b>数据元素</b>构成的有限序列，元素之间存在一对一的线性关系。数据项是构成数据元素的、不可再分的最小单位（字段），比数据元素低一层，不能作为线性表的基本单位；“数据表”“字符”均不是定义中的措辞，字符只是数据元素可能的具体类型。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P14</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-1-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.1 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列几种描述中，（）是一个线性表。</p><div class="opts"><div class="opt"><b>A.</b> 由 n 个实数组成的集合</div><div class="opt"><b>B.</b> 由 100 个字符组成的序列</div><div class="opt"><b>C.</b> 所有整数组成的序列</div><div class="opt"><b>D.</b> 邻接表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>线性表必须同时满足“有限个元素”和“有序（序列）”两点。B 是 100 个字符的序列，有限且有序，符合定义。A 是集合，元素间没有先后关系；C 中所有整数是无穷序列，违反“有限”；D 邻接表是图的链式存储结构，根本不是线性结构。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P15</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-1-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.1 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在线性表中，除开始元素外，每个元素（）</p><div class="opts"><div class="opt"><b>A.</b> 只有唯一的前驱元素</div><div class="opt"><b>B.</b> 只有唯一的后继元素</div><div class="opt"><b>C.</b> 有多个前驱元素</div><div class="opt"><b>D.</b> 有多个后继元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>线性关系是 1:1 的关系：除开始元素（无前驱）外，任一元素的直接前驱唯一且存在，故 A 对。B 错：最后一个元素没有后继；C、D 错：若某元素有多个前驱或多个后继，结构就变成树或图，不再是线性表。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P15</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-1-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.1 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若非空线性表中的元素既没有直接前驱，又没有直接后继，则该表中有（）个元素。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>无直接前驱的只能是开始元素，无直接后继的只能是结束元素。要求同一个元素既无前驱又无后继，只能开始元素与结束元素重合，即表中恰好只有 1 个元素（它既是首又是尾）。若元素个数不少于 2，首元素必有后继、尾元素必有前驱，均不满足题意。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P15</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-2-2"><h3>2.2 线性表的顺序表示<span class="tag tag-tpl">13题选择 + 14题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-2-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列叙述中，（）是顺序存储结构的优点。</p><div class="opts"><div class="opt"><b>A.</b> 存储密度大</div><div class="opt"><b>B.</b> 插入运算方便</div><div class="opt"><b>C.</b> 删除运算方便</div><div class="opt"><b>D.</b> 方便地运用于各种逻辑结构的存储表示</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>顺序存储用一段连续空间紧凑存放数据，无需指针域，<b>存储密度为 1（最大）</b>，且支持随机存取。B、C 恰是其缺点：插入、删除平均要移动约一半元素；D 错：顺序存储要求先预留连续空间，只适合线性结构及少数特殊结构，树的顺序存储、图的邻接矩阵都要附加复杂约定，谈不上“方便地运用于各种逻辑结构”。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P21</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>从顺序表中删除具有最小值的元素（假设唯一）并由函数返回被删元素的值。空出的位置由最后一个元素填补，若顺序表为空，则显示出错信息并退出运行。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>顺序扫描一遍求出最小值元素的下标 idx，用返回参数带回其值；按题意用表尾元素填到 idx 处，再把表长减 1，避免成片移动元素。</p><div class='asc'>bool Del_Min(SqList &amp;L, ElemType &amp;value) {<br>  if (L.length == 0) return false;          // 空表：报错退出<br>  int idx = 0;                              // 最小值元素下标<br>  for (int i = 1; i &lt; L.length; i++)<br>    if (L.data[i] &lt; L.data[idx]) idx = i;<br>  value = L.data[idx];                      // 返回被删元素值<br>  L.data[idx] = L.data[L.length - 1];       // 尾元素填补空位<br>  L.length--;                               // 表长减1<br>  return true;<br>}</div><p><b>复杂度：</b>一趟扫描定位最小值，时间 O(n)；只用常数个辅助变量，空间 O(1)。若不用尾元素填补而改为前移，删除后还要 O(n) 移动，效率更低。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于顺序表的叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 顺序表可以利用一维数组表示，因此顺序表与一维数组在逻辑结构上是相同的</div><div class="opt"><b>B.</b> 在顺序表中，逻辑上相邻的元素物理位置上不一定相邻</div><div class="opt"><b>C.</b> 顺序表和一维数组一样，都可以进行随机存取</div><div class="opt"><b>D.</b> 在顺序表中，每个元素的类型不必相同</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>顺序表按序号存取元素可由首地址加偏移一次算出，一维数组同样支持下标随机访问，C 正确。A 错：顺序表是线性表的顺序存储实现，表长可动态增长，而数组是编译时定长的数据类型，二者并非同一概念；B 错：顺序存储的定义就是逻辑相邻必物理相邻；D 错：顺序表通过“元素序号×元素大小”定位，要求所有元素类型相同、等长。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P21</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个高效算法，将顺序表 L 的所有元素逆置，要求算法的空间复杂度为 O(1)。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>就地逆置：设置双指针 i、j 分别指向表首和表尾，两者相向而行，每前进一步交换一对元素，相遇即止，不需要辅助数组。</p><div class='asc'>void Reverse(SqList &amp;L) {<br>  ElemType t;<br>  for (int i = 0, j = L.length - 1; i &lt; j; i++, j--) {<br>    t = L.data[i]; L.data[i] = L.data[j]; L.data[j] = t;<br>  }<br>}</div><p><b>复杂度：</b>共交换 ⌊n/2⌋ 对元素，时间 O(n)；仅用 1 个临时变量，空间 O(1)，满足要求。<b>验算：</b>(a₁,a₂,a₃,a₄) 逆置：交换 (1,4)、(2,3) 两对后得 (a₄,a₃,a₂,a₁)，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>通常说顺序表具有随机存取的特性，指的是（）</p><div class="opts"><div class="opt"><b>A.</b> 查找值为 x 的元素的时间与顺序表中元素个数 n 无关</div><div class="opt"><b>B.</b> 查找值为 x 的元素的时间与顺序表中元素个数 n 有关</div><div class="opt"><b>C.</b> 查找序号为 i 的元素的时间与顺序表中元素个数 n 无关</div><div class="opt"><b>D.</b> 查找序号为 i 的元素的时间与顺序表中元素个数 n 有关</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>“随机存取”指按<b>序号</b>存取：第 i 个元素的地址 = 首地址 + (i-1)×元素大小，一次计算即可到达，与表长 n 无关，故 C 对。而“按值查找”必须逐个比较，平均要与约 n/2 个元素比对，时间与 n 有关，A、B 混淆了按序号存取与按值查找两种操作。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P21</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>对长度为 n 的顺序表 L 编写一个时间复杂度为 O(n)、空间复杂度为 O(1) 的算法，该算法删除线性表中所有值为 x 的数据元素。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路（用 k 记录已碰到的 x 的个数）：</b>从头到尾扫描，凡遇到不等于 x 的元素就前移 k 位（k 是目前为止等于 x 的元素个数），遇到 x 只累计 k。这样每个保留元素只搬动一次，最后表长减 k。</p><div class='asc'>void del_x(SqList &amp;L, ElemType x) {<br>  int k = 0;                               // 已删除（等于x）的元素个数<br>  for (int i = 0; i &lt; L.length; i++)<br>    if (L.data[i] != x) L.data[i - k] = L.data[i];<br>    else k++;<br>  L.length -= k;<br>}</div><p><b>复杂度：</b>一趟扫描，时间 O(n)、空间 O(1)。<b>验算：</b>L=(1,2,3,2,4)，x=2：i=0,1 正常；i=2 时 k=0 原位；i=3 累计 k=1；i=4 时前移到下标 3，得 (1,3,4)，表长 5-2=3，正确。亦可用“保留位置指针 j + 扫描指针 i”等价实现。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个顺序表所占用的存储空间大小与（）无关。</p><div class="opts"><div class="opt"><b>A.</b> 表的长度</div><div class="opt"><b>B.</b> 元素的存放顺序</div><div class="opt"><b>C.</b> 元素的类型</div><div class="opt"><b>D.</b> 元素中各字段的类型</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>顺序表占用空间 = 表长 × 每个元素占用空间 = L.length × sizeof(ElemType)，只与元素个数和元素（及其各字段）类型有关。元素先来后到、左右排列次序的改变既不改变个数也不改变元素大小，不影响总空间。注意题目问的是“与（）无关”，勿选成有关的项。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P21</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>从顺序表中删除其值在给定值 s 与 t 之间（包含 s 和 t，要求 s&lt;t）的所有元素，若 s 或 t 不合理或顺序表为空，则显示出错信息并退出运行。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>第 3 题的一般化：先做合法性检查（空表、s≥t 均不合法）；再用 k 统计当前已删除的 [s,t] 区间内元素个数，保留元素统一前移 k 位，最后表长减 k，一趟完成。</p><div class='asc'>bool Del_s_t(SqList &amp;L, ElemType s, ElemType t) {<br>  if (s >= t || L.length == 0) return false;   // 不合理或空表<br>  int k = 0;<br>  for (int i = 0; i &lt; L.length; i++)<br>    if (L.data[i] >= s &amp;&amp; L.data[i] &lt;= t) k++; // 落入[s,t]：删除计数<br>    else L.data[i - k] = L.data[i];             // 否则前移k位<br>  L.length -= k;<br>  return true;<br>}</div><p><b>复杂度：</b>时间 O(n)、空间 O(1)。<b>验算：</b>L=(1,2,3,4,5,6)，s=2，t=4：2、3、4 被删，k 累计到 3，5、6 分别前移至下标 1、2，得 (1,5,6)，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若线性表最常用的操作是存取第 i 个元素及其前驱和后继元素的值，为了提高效率，应采用（）的存储方式。</p><div class="opts"><div class="opt"><b>A.</b> 单链表</div><div class="opt"><b>B.</b> 双向链表</div><div class="opt"><b>C.</b> 循环单链表</div><div class="opt"><b>D.</b> 顺序表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>存取“第 i 个、第 i-1 个、第 i+1 个”都是按序号定位：顺序表 O(1) 直接算出地址；而无论单链表、双链表还是循环单链表，都不能随机定位，都要从表头逐个结点走，平均 O(n)。操作以按序号存取为主时，顺序表效率最高。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>从有序顺序表中删除所有其值重复的元素，使表中所有元素的值均不同。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>利用“有序”条件：重复元素必然相邻。用 i 指向已保留的最后一个不同元素，j 向后扫描，遇到 L.data[j] != L.data[i] 时就把它存到 ++i 处，类似建表的去重插入。</p><div class='asc'>bool Del_Same(SqList &amp;L) {<br>  if (L.length == 0) return false;<br>  int i = 0;                                  // 已保留部分的最后一个下标<br>  for (int j = 1; j &lt; L.length; j++)<br>    if (L.data[j] != L.data[i])               // 新的不同值<br>      L.data[++i] = L.data[j];<br>  L.length = i + 1;<br>  return true;<br>}</div><p><b>复杂度：</b>时间 O(n)、空间 O(1)。<b>验算：</b>(1,2,2,2,3,3,4)：j 扫描中 1 保留；两个 2 跳过；3 写入下标 2；第二个 3 跳过；4 写入下标 3，最终 (1,2,3,4)，正确。注意本题若表无序则不能这样做，需先排序或改用哈希判重。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个线性表最常用的操作是存取任意一个指定序号的元素并在最后进行插入、删除操作，则利用（）存储方式可以节省时间。</p><div class="opts"><div class="opt"><b>A.</b> 顺序表</div><div class="opt"><b>B.</b> 双链表</div><div class="opt"><b>C.</b> 带头结点的循环双链表</div><div class="opt"><b>D.</b> 循环单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>“存取任意指定序号”需要随机存取，只有顺序表 O(1) 能做到；插入、删除又仅限于表尾进行，顺序表在尾部插删无需移动任何元素，同样 O(1)。各种链表定位序号都需 O(n)，故选顺序表。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>将两个有序顺序表合并为一个新的有序顺序表，并由函数返回结果顺序表。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>归并：i、j、k 分别指向 A、B、C 的当前位置，每次把二者中较小者（相等时先取 A，保证稳定）放入 C，一方取尽后把另一方剩余元素批量接上。</p><div class='asc'>bool Merge(SqList A, SqList B, SqList &amp;C) {<br>  if (A.length + B.length > C.MaxSize) return false;  // 空间不足<br>  int i = 0, j = 0, k = 0;<br>  while (i &lt; A.length &amp;&amp; j &lt; B.length)<br>    C.data[k++] = (A.data[i] &lt;= B.data[j]) ? A.data[i++] : B.data[j++];<br>  while (i &lt; A.length) C.data[k++] = A.data[i++];   // A有剩余<br>  while (j &lt; B.length) C.data[k++] = B.data[j++];   // B有剩余<br>  C.length = k;<br>  return true;<br>}</div><p><b>复杂度：</b>每个元素恰好放入 C 一次，时间 O(n+m)；除结果表外只用常数变量。<b>验算：</b>(1,3,5) 与 (2,4,6) 归并得 (1,2,3,4,5,6)，正确。这是后面归并排序的基础操作。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在 n 个元素的线性表的数组表示中，时间复杂度为 O(1) 的操作是（）</p><p>I. 访问第 i（1≤i≤n）个元素的值<br>II. 在最后一个结点后插入一个新的结点<br>III. 删除第 1 个结点<br>IV. 在第 i（1≤i≤n）个结点后插入一个结点</p><div class="opts"><div class="opt"><b>A.</b> I</div><div class="opt"><b>B.</b> I、III</div><div class="opt"><b>C.</b> I、II</div><div class="opt"><b>D.</b> I、II、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I：按序号访问，随机存取 O(1)；II：在表尾插入，其后已无元素，无需移动，O(1)；III：删除第 1 个元素需把后面 n-1 个元素全部前移，O(n)；IV：在第 i 个结点后插入平均要移动约 (n-i) 个元素，O(n)。故 O(1) 的是 I、II。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知在一维数组 A[m+n] 中依次存放两个线性表 (a₁,a₂,a₃,…,aₘ) 和 (b₁,b₂,b₃,…,bₙ)。编写一个函数，将数组中两个线性表的位置互换，即将 (a₁,…,aₘ,b₁,…,bₙ) 变换为 (b₁,…,bₙ,a₁,…,aₘ)。</p><p><span style='color:#64748b'>【题干缺失部分按王道原题补全】</span></p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路（三次逆置法）：</b>先整体逆置，再分别逆置前 n 个和后 m 个元素：逆置后 a、b 两段各自内部次序恢复，而两段的位置恰好互换。每个元素至多被移动两次，无需辅助数组。</p><div class='asc'>void Reverse(ElemType A[], int lo, int hi) {   // 逆置A[lo..hi]<br>  ElemType t;<br>  for (; lo &lt; hi; lo++, hi--) { t = A[lo]; A[lo] = A[hi]; A[hi] = t; }<br>}<br>void Exchange(ElemType A[], int m, int n) {<br>  Reverse(A, 0, m + n - 1);   // (b_n..b_1, a_m..a_1)<br>  Reverse(A, 0, n - 1);       // (b_1..b_n, a_m..a_1)<br>  Reverse(A, n, m + n - 1);   // (b_1..b_n, a_1..a_m)<br>}</div><p><b>复杂度：</b>时间 O(m+n)，空间 O(1)。<b>验算：</b>m=3、n=2，(a₁,a₂,a₃,b₁,b₂)：整体逆置→(b₂,b₁,a₃,a₂,a₁)；逆前 2→(b₁,b₂,a₃,a₂,a₁)；逆后 3→(b₁,b₂,a₁,a₂,a₃)，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设线性表有 n 个元素，严格说来，以下操作中，（）在顺序表上实现要比在链表上实现的效率高。</p><p>I. 输出第 i（1≤i≤n）个元素值<br>II. 交换第 3 个元素与第 4 个元素的值<br>III. 顺序输出这 n 个元素的值</p><div class="opts"><div class="opt"><b>A.</b> I</div><div class="opt"><b>B.</b> I、III</div><div class="opt"><b>C.</b> I、II</div><div class="opt"><b>D.</b> II、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I：顺序表按序号 O(1) 取值，链表要从头走 i-1 步 O(n)；II：顺序表 O(1) 定位第 3、4 个元素后交换，链表定位本身就要 O(n)；III：顺序输出全部元素两者都恰好扫描一遍，均为 O(n)，谈不上谁更高效。故严格说来只有 I、II 在顺序表上效率更高。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>线性表 (a₁,a₂,a₃,…,aₙ) 中的元素递增有序且按顺序存储于计算机内。要求设计一个算法，将元素 x 插入表中并使表中元素仍递增有序。</p><p><span style='color:#64748b'>【题干缺失部分按王道原题补全】</span></p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>从表尾向前边比较边后移：凡是大于 x 的元素依次右移一位，遇到第一个不大于 x 的位置即插入点，腾出的空位写入 x。比较与移动合并在同一趟内完成，不必先查找再统一移动。</p><div class='asc'>void Insert(SqList &amp;L, ElemType x) {<br>  int i = L.length - 1;<br>  while (i >= 0 &amp;&amp; L.data[i] > x) {        // 大于x者后移<br>    L.data[i + 1] = L.data[i];<br>    i--;<br>  }<br>  L.data[i + 1] = x;                       // 插入<br>  L.length++;<br>}</div><p><b>复杂度：</b>最好 0 次移动（x 最大）、最坏 n 次移动（x 最小），平均约 n/2 次，时间 O(n)，空间 O(1)。<b>验算：</b>(1,3,5,7) 插入 4：7、5 后移，4 放入下标 2，得 (1,3,4,5,7)，正确。也可先折半查找定位再成块后移，但移动次数不变，仍为 O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在一个长度为 n 的顺序表中删除第 i（1≤i≤n）个元素时，需向前移动（）个元素。</p><div class="opts"><div class="opt"><b>A.</b> n</div><div class="opt"><b>B.</b> i-1</div><div class="opt"><b>C.</b> n-i</div><div class="opt"><b>D.</b> n-i+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>删除第 i 个元素后，为填补空位，第 i+1 至第 n 个元素要依次前移，共移动 n-(i+1)+1 = n-i 个。验证两端：删第 1 个移动 n-1 个，删最后一个移动 0 个，均与 n-i 吻合。B 是在第 i 个之前插入时的移动数，D 是在第 i 个之后插入的情形，均属干扰项。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-9" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第9题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定三个序列 A、B、C，长度均为 n，且均为无重复元素的递增序列，请设计一个时间上尽可能高效的算法，逐行输出同时存在于这三个序列中的所有元素。例如，数组 A 为 (1,2,3)，数组 B 为 (2,3,4)，数组 C 为 (-1,0,2)，则输出 2。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想：</b>三序列均递增，用三个下标 i、j、k 同步扫描：若三者当前元素相等，则该值必为公共元素，输出后三者同时前移；否则只有<b>最小</b>的指针前移——最小值不可能再与后面的更大元素匹配，可安全跳过。</p><div class='asc'>void Common(int A[], int B[], int C[], int n) {<br>  int i = 0, j = 0, k = 0;<br>  while (i &lt; n &amp;&amp; j &lt; n &amp;&amp; k &lt; n) {<br>    if (A[i] == B[j] &amp;&amp; B[j] == C[k]) {   // 三者相等：公共元素<br>      output(A[i]); i++; j++; k++;<br>    } else {                               // 否则移动最小者（可并列）<br>      int mn = A[i];<br>      if (B[j] &lt; mn) mn = B[j];<br>      if (C[k] &lt; mn) mn = C[k];<br>      if (A[i] == mn) i++;<br>      if (B[j] == mn) j++;<br>      if (C[k] == mn) k++;<br>    }<br>  }<br>}</div><p><b>复杂度：</b>每轮至少一个指针前进，指针总数最多移动 3n 次，时间 O(n)，空间 O(1)。<b>验算：</b>A=(1,2,3)、B=(2,3,4)、C=(-1,0,2)：C 先走两步到 2，A 走一步到 2，此时三者均为 2，输出 2，与题面一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对于顺序表，访问第 i 个位置的元素和在第 i 个位置插入一个元素的时间复杂度分别为（）</p><div class="opts"><div class="opt"><b>A.</b> O(n)，O(n)</div><div class="opt"><b>B.</b> O(n)，O(1)</div><div class="opt"><b>C.</b> O(1)，O(n)</div><div class="opt"><b>D.</b> O(1)，O(1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>访问第 i 个元素利用随机存取特性，地址 = 首地址 + (i-1)×元素大小，O(1)；在第 i 个位置插入需把第 i 至第 n 个元素整体后移一位，最坏 n 次、平均 n/2 次，为 O(n)。两者一快一慢，恰体现顺序表“存取易、插删难”的特点。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-10" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第10题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2010 统考真题】设将 n（n&gt;1）个整数存放到一维数组 R 中。设计一个在时间和空间两方面都尽可能高效的算法，将 R 中保存的序列循环左移 p（0&lt;p&lt;n）个位置，即将 R 中的数据由 (X₀,X₁,…,X_(n-1)) 变换为 (X_p,X_(p+1),…,X_(n-1),X₀,X₁,…,X_(p-1))。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明你所设计算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（三次逆置）：</b>将数组视为前 p 个、后 n-p 个两段：先逆置前段，再逆置后段，最后整体逆置，即得循环左移 p 位的结果。每个元素至多移动两次，无需辅助数组。</p><div class='asc'>void Reverse(int R[], int lo, int hi) {      // 逆置R[lo..hi]<br>  int t;<br>  for (; lo &lt; hi; lo++, hi--) { t = R[lo]; R[lo] = R[hi]; R[hi] = t; }<br>}<br>void LeftShift(int R[], int n, int p) {      // 循环左移p位<br>  Reverse(R, 0, p - 1);      // (X_(p-1)..X_0, X_p..X_(n-1))<br>  Reverse(R, p, n - 1);      // (X_(p-1)..X_0, X_(n-1)..X_p)<br>  Reverse(R, 0, n - 1);      // (X_p..X_(n-1), X_0..X_(p-1))<br>}</div><p><b>复杂度：</b>三次逆置共约 2n 次元素交换，时间 O(n)、空间 O(1)。<b>双法验算：</b>(1,2,3,4,5,6)，p=4：逆前 4 得 (4,3,2,1,5,6)，逆后 2 得 (4,3,2,1,6,5)，整体逆置得 (5,6,1,2,3,4)；按定义直接左移 4 位结果同为 (5,6,1,2,3,4)，正确。另一思路是辅助数组拼接，时间 O(n) 但空间 O(n)，不满足“空间尽可能高效”。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对于顺序存储的线性表，其算法时间复杂度为 O(1) 的运算应该是（）</p><div class="opts"><div class="opt"><b>A.</b> 将 n 个元素从小到大排序</div><div class="opt"><b>B.</b> 删除第 i（1≤i≤n）个元素</div><div class="opt"><b>C.</b> 改变第 i（1≤i≤n）个元素的值</div><div class="opt"><b>D.</b> 在第 i（1≤i≤n）个元素后插入一个新元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>改变第 i 个元素的值：按序号随机定位后一次赋值，O(1)。A 排序至少 O(nlog₂n)；B 删除平均移动 (n-1)/2 个元素，O(n)；D 插入平均移动 n/2 个元素，O(n)。凡涉及成片元素移动或全局重排的运算都不可能是 O(1)。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-11" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第11题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2011 统考真题】一个长度为 L（L≥1）的升序序列 S，处在第 ⌈L/2⌉ 个位置的数称为 S 的中位数。例如，若序列 S₁=(11,13,15,17,19)，则 S₁ 的中位数是 15。两个序列的中位数是含它们所有元素的升序序列的中位数。例如，若 S₂=(2,4,6,8,20)，则 S₁ 和 S₂ 的中位数是 11。现在有两个等长升序序列 A 和 B，试设计一个在时间和空间两方面都尽可能高效的算法，找出两个序列 A 和 B 的中位数。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（二分逐次丢弃）：</b>分别求 A、B 当前区间的中位数 a、b：若 a==b，它就是合并后的中位数；若 a&lt;b，则中位数落在 A 的后半段和 B 的前半段，丢弃 A 的左半（含 a 时保留 a）与 B 的右半（保留 b），两区间<b>丢弃个数相等</b>，中位数不变；a&gt;b 时对称处理。区间各剩一个元素时，较小者即答案。</p><div class='asc'>int MidSearch(int A[], int B[], int n) {<br>  int s1 = 0, e1 = n - 1, s2 = 0, e2 = n - 1;   // 两表的检索区间<br>  while (s1 != e1 || s2 != e2) {<br>    int m1 = (s1 + e1) / 2, m2 = (s2 + e2) / 2;<br>    if (A[m1] == B[m2]) return A[m1];<br>    if (A[m1] &lt; B[m2]) {                    // 舍A左半、B右半<br>      if ((s1 + e1) % 2 == 0) s1 = m1; else s1 = m1 + 1;<br>      e2 = m2;<br>    } else {                                 // 舍B左半、A右半<br>      if ((s2 + e2) % 2 == 0) s2 = m2; else s2 = m2 + 1;<br>      e1 = m1;<br>    }<br>  }<br>  return A[s1] &lt; B[s2] ? A[s1] : B[s2];<br>}</div><p><b>复杂度：</b>每轮区间长度约减半，时间 O(log₂n)，空间 O(1)。<b>双法验算：</b>题面例 S₁=(11,13,15,17,19)、S₂=(2,4,6,8,20)：第一轮 15&gt;6，保留 A[0..2]、B[2..4]；第二轮 13&gt;8，保留 A[0..1]、B[3..4]；第三轮 11&gt;8，保留 A[0..0]、B[4..4]；min(11,20)=11，与题面一致；若改用归并计数法（数到第 n 个元素）同样得 11，但那是 O(n) 时间。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>顺序表的插入算法中，当 n 个空间已满时，可再申请增加分配 m 个空间，若申请失败，则说明系统没有（）可分配的存储空间。</p><div class="opts"><div class="opt"><b>A.</b> m 个</div><div class="opt"><b>B.</b> m 个连续</div><div class="opt"><b>C.</b> n+m 个</div><div class="opt"><b>D.</b> n+m 个连续</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>顺序表扩充不是原地续接：需要新申请一块能容纳原 n 个元素再加新 m 个元素的<b>连续</b>空间，把原表整体复制过去。因此申请失败说明系统中不存在 n+m 个连续的空闲单元。只答 m 个（漏算原表搬迁）或答 n+m 个（漏“连续”二字）都不准确，这正是动态分配顺序表的特点。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-12" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第12题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2013 统考真题】已知一个整数序列 A=(a₀,a₁,…,a_(n-1))，其中 0≤aᵢ&lt;n（0≤i&lt;n）。若存在 a_(p₁)=a_(p₂)=…=a_(p_m)=x 且 m&gt;n/2（0≤p_k&lt;n，1≤k≤m），则称 x 为 A 的主元素。例如 A=(0,5,5,3,5,7,5,5)，则 5 为主元素；又如 A=(0,5,5,3,5,1,5,7)，则 A 中没有主元素。假设 A 中的 n 个元素保存在一个一维数组中，请设计一个尽可能高效的算法，找出 A 的主元素。若存在主元素，则输出该元素；否则输出 -1。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（候选抵消法）：</b>顺序扫描，用 c 记候选主元素、cnt 计数：cnt 为 0 时把当前元素设为候选；与候选相同则加 1，不同则减 1（视作一对一抵消）。主元素出现次数过半，全部抵消后它必然幸存为候选；再第二遍扫描验证候选的真实出现次数是否大于 n/2。</p><div class='asc'>int Majority(int A[], int n) {<br>  int c, cnt = 0;<br>  for (int i = 0; i &lt; n; i++) {          // 第一遍：找候选<br>    if (cnt == 0) { c = A[i]; cnt = 1; }<br>    else if (A[i] == c) cnt++;<br>    else cnt--;                          // 异己抵消<br>  }<br>  cnt = 0;<br>  for (int i = 0; i &lt; n; i++)           // 第二遍：验证<br>    if (A[i] == c) cnt++;<br>  return (cnt > n / 2) ? c : -1;<br>}</div><p><b>复杂度：</b>两趟扫描，时间 O(n)、空间 O(1)，已是理论上限。<b>双法验算：</b>A=(0,5,5,3,5,7,5,5)：候选最终为 5，验证 5 出现 5 次 &gt; 4，输出 5；A=(0,5,5,3,5,1,5,7)：候选为 5，出现 4 次，4&gt;4 不成立，输出 -1，均与题面一致。若用哈希表统计也能 O(n) 但需 O(n) 空间，不如抵消法。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2023 统考真题】在下列对顺序存储的有序表（长度为 n）实现给定操作的算法中，平均时间复杂度为 O(1) 的是（）</p><div class="opts"><div class="opt"><b>A.</b> 查找包含指定值元素的算法</div><div class="opt"><b>B.</b> 插入包含指定值元素的算法</div><div class="opt"><b>C.</b> 删除第 i（1≤i≤n）个元素的算法</div><div class="opt"><b>D.</b> 获取第 i（1≤i≤n）个元素的算法</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>获取第 i 个元素利用随机存取，O(1)。A：有序表按值查找虽可折半，也只是 O(log₂n)，不是 O(1)；B：插入需先定位置并将后续元素成片后移，平均 O(n)；C：删除需成片前移，平均 O(n)。“有序”这一条件只能改善按值查找，改变不了插删要移动元素的本质。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P22</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-13" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第13题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2018 统考真题】给定一个含 n（n≥1）个整数的数组，请设计一个在时间上尽可能高效的算法，找出数组中未出现的最小正整数。例如，数组 (-5,3,2,3) 中未出现的最小正整数是 1；数组 (1,2,3) 中未出现的最小正整数是 4。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想：</b>答案必定落在 1~n+1 之间——若 1~n 全部出现则答案是 n+1，否则是第一个缺位的正整数。采用“归位法”：扫描数组，凡值 v 满足 1≤v≤n 且 A[v-1] != v 就交换过去，把 v 放到下标 v-1 处；最终第一个满足 A[i] != i+1 的下标 i 即缺 i+1。</p><div class='asc'>int FindMissMin(int A[], int n) {<br>  for (int i = 0; i &lt; n; i++)<br>    while (A[i] >= 1 &amp;&amp; A[i] &lt;= n &amp;&amp; A[A[i] - 1] != A[i]) {<br>      int t = A[A[i] - 1];                // 把A[i]换到它应在的位置<br>      A[A[i] - 1] = A[i]; A[i] = t;<br>    }<br>  for (int i = 0; i &lt; n; i++)<br>    if (A[i] != i + 1) return i + 1;      // 第一个缺位<br>  return n + 1;                          // 1~n都在<br>}</div><p><b>复杂度：</b>每次交换至少使一个元素永久归位，总交换次数不超过 n，均摊后时间 O(n)、空间 O(1)。<b>双法验算：</b>(-5,3,2,3)：归位后 A[1]=2、A[2]=3，A[0]=-5 != 1，返回 1；(1,2,3)：全部在位，返回 4，均与题面一致。另解：开长度 n+1 的标记数组记录出现的 1~n，同样 O(n) 时间但需 O(n) 空间。</p></p></div></details>
+  </div>
+  <div class="prob" id="wz-2-2-14" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.2 · 综合第14题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2020 统考真题】定义三元组 (a,b,c)（a、b、c 均为整数）的距离 D=|a-b|+|b-c|+|c-a|。给定 3 个非空整数集合 S₁、S₂ 和 S₃，按升序分别存储在 3 个数组中。请设计一个尽可能高效的算法，计算并输出所有可能的三元组 (a,b,c)（a∈S₁，b∈S₂，c∈S₃）中的最小距离。例如 S₁={-1,0,9}，S₂={-25,-10,10,11}，S₃={2,9,17,30,41}，则最小距离为 2，相应的三元组为 (9,10,9)。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 语言或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想：</b>关键恒等式：D=|a-b|+|b-c|+|c-a|=2×(max{a,b,c}-min{a,b,c})，即距离只由三元素中的最大、最小值决定。三集合均升序，用 i、j、k 指向当前位置：算出当前 D 后，<b>前移三者中最小元素</b>的指针——最小者若不动，其余指针右移只会拉大差距，不可能得到更小的距离；任一指针走到末尾即可终止。</p><div class='asc'>long dist(int a, int b, int c) {<br>  int mx = a, mn = a;<br>  if (b > mx) mx = b; if (b &lt; mn) mn = b;<br>  if (c > mx) mx = c; if (c &lt; mn) mn = c;<br>  return 2L * (mx - mn);              // D=2*(max-min)<br>}<br>long MinDist(int S1[], int n1, int S2[], int n2, int S3[], int n3) {<br>  long best = dist(S1[0], S2[0], S3[0]);<br>  int i = 0, j = 0, k = 0;<br>  while (i &lt; n1 &amp;&amp; j &lt; n2 &amp;&amp; k &lt; n3) {<br>    long d = dist(S1[i], S2[j], S3[k]);<br>    if (d &lt; best) best = d;<br>    if (S1[i] &lt;= S2[j] &amp;&amp; S1[i] &lt;= S3[k]) i++;     // 移动最小者<br>    else if (S2[j] &lt;= S1[i] &amp;&amp; S2[j] &lt;= S3[k]) j++;<br>    else k++;<br>  }<br>  return best;<br>}</div><p><b>复杂度：</b>每轮恰有一个指针前进，最多移动 n₁+n₂+n₃-2 次，时间 O(n)，空间 O(1)。<b>双法验算：</b>题面例按“移动最小者”走：(-1,-25,2)→(-1,-10,2)→(-1,10,2)→(0,10,2)→(9,10,2)→(9,10,9)，此时 D=2×(10-9)=2，随后指针到头终止，与题面答案 2 及三元组 (9,10,9) 完全一致；暴力枚举 n₁n₂n₃ 个三元组亦得 2，但为 O(n³)。</p></p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-2-3"><h3>2.3 线性表的链式表示<span class="tag tag-tpl">36题选择 + 15题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-2-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于线性表的存储结构的描述中，正确的是（）</p><p>I. 线性表的顺序存储结构优于其链式存储结构<br>II. 链式存储结构比顺序存储结构能更方便地表示各种逻辑结构<br>III. 若频繁使用插入和删除结点操作，则顺序存储结构更优于链式存储结构<br>IV. 顺序存储结构和链式存储结构都可以进行顺序存取</p><div class="opts"><div class="opt"><b>A.</b> I、II、III</div><div class="opt"><b>B.</b> II、IV</div><div class="opt"><b>C.</b> I、II</div><div class="opt"><b>D.</b> III、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>I 错：两种结构各有优劣（顺序表利于存取，链表利于插删）；II 对：链式用指针维系关系，不必要求连续空间，能灵活表示线性表乃至树、图等各种逻辑结构；III 错：频繁插删恰是链式结构的优势，顺序表要成片移动元素；IV 对：顺序表、链表都支持从头到尾依次扫描（顺序存取），只是顺序表还额外支持随机存取。故 II、IV 正确。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P45</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>在带头结点的单链表 L 中，删除所有值为 x 的结点，并释放其空间，假设值为 x 的结点不唯一，试编写算法以实现上述操作。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路（法一，前驱指针法）：</b>用 p 从首元起扫描，pre 始终指向 p 的前驱。p 结点值为 x 时：pre->next 跨过 p 并 free(p)，p 更新为 pre 的后继；否则 pre、p 同步后移。带头结点保证删首元结点也无需修改头指针，与其它位置统一。</p><div class='asc'>void Del_X(LinkList &amp;L, ElemType x) {<br>  LNode *p = L->next, *pre = L, *q;<br>  while (p != NULL) {<br>    if (p->data == x) {              // 删除p<br>      q = p;  p = p->next;<br>      pre->next = p;  free(q);<br>    } else {                         // 同步后移<br>      pre = p;  p = p->next;<br>    }<br>  }<br>}</div><p><b>另解：</b>尾插法——令 r 指向已保留链的尾，扫描到的非 x 结点接在 r 后，x 结点直接释放，一遍完成。<b>复杂度：</b>两法均只扫描一趟，时间 O(n)、空间 O(1)。<b>验算：</b>L=(1,2,2,3,2)，x=2：依次删去三个结点，得 (1,3)，头指针链完好。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一个线性表，既要求能够进行较快速地插入和删除，又要求存储结构能反映数据之间的逻辑关系，则应该用（）</p><div class="opts"><div class="opt"><b>A.</b> 顺序存储方式</div><div class="opt"><b>B.</b> 链式存储方式</div><div class="opt"><b>C.</b> 散列存储方式</div><div class="opt"><b>D.</b> 以上均可以</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>链式存储中结点由数据域和指针域组成，用指针显式表达元素间的逻辑关系，插入、删除只需修改常数个指针、无需移动元素，两点要求同时满足。顺序表插删要成片移动元素；散列存储按关键字散列定位，不保留线性表的前后次序关系。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>链式存储设计时，结点内的存储单元地址（）</p><div class="opts"><div class="opt"><b>A.</b> 一定连续</div><div class="opt"><b>B.</b> 一定不连续</div><div class="opt"><b>C.</b> 不一定连续</div><div class="opt"><b>D.</b> 部分连续，部分不连续</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>注意区分两个层面：结点<b>之间</b>可以不连续（靠指针链接）；而每个结点内部的数据域、指针域是作为一个整体（结构体）一次分配的，结点内各存储单元地址<b>一定连续</b>。这是常考的概念辨析点，C 是把“结点之间不连续”误推到结点内部。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试编写算法将带头结点的单链表就地逆置，所谓“就地”是指辅助空间复杂度为 O(1)。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路（头插法）：</b>头插法建表天然产生逆序：将头结点与原链断开成空表，再依次取原链结点插到表头，取完即得逆置链，只用常数个辅助指针。</p><div class='asc'>void Reverse_1(LinkList &amp;L) {<br>  LNode *p = L->next, *r;<br>  L->next = NULL;                  // 断开，L作为新表的头<br>  while (p != NULL) {<br>    r = p->next;                   // 暂存后继，防断链<br>    p->next = L->next;             // 头插到L<br>    L->next = p;<br>    p = r;<br>  }<br>}</div><p><b>另解（指针反转法）：</b>用 pre/p/r 三个指针，边扫边把每个结点的 next 反指向其前驱，最后把头结点接到原尾结点。<b>复杂度：</b>均为一趟扫描，时间 O(n)、空间 O(1)。<b>验算：</b>(a₁,a₂,a₃) 头插过程依次得 (a₁)、(a₂,a₁)、(a₃,a₂,a₁)，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于线性表说法中，正确的是（）</p><p>I. 顺序存储方式只能用于存储线性结构<br>II. 在一个设有头指针和尾指针的单链表中，删除表尾元素的时间复杂度与表长无关<br>III. 带头结点的循环单链表中不存在空指针<br>IV. 在一个长度为 n 的有序单链表中插入一个新结点并仍保持有序的时间复杂度为 O(n)<br>V. 若用单链表来表示队列，则应该选用带尾指针的循环链表</p><div class="opts"><div class="opt"><b>A.</b> I、II</div><div class="opt"><b>B.</b> I、III、IV、V</div><div class="opt"><b>C.</b> IV、V</div><div class="opt"><b>D.</b> III、IV、V</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>I 错：树（如堆的数组表示）和图（邻接矩阵）也可顺序存储；II 错：单链表删表尾必须先找到其前驱，即使有尾指针也要从头遍历 O(n)，与表长有关；III 对：带头结点的循环单链表所有指针都有指向（空表时头结点指向自身），无 NULL；IV 对：有序插入需先顺序找位置，平均 O(n)；V 对：带尾指针的循环单链表可使入队、出队都 O(1)。故选 III、IV、V。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设在一个带表头结点的单链表中，所有结点的元素值无序，试编写一个函数，删除表中所有处于给定的两个值（作为函数参数给出）之间的元素（若存在）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>与顺序表版不同，链表删除无需移动元素：p 扫描、pre 记前驱，凡 p->data 落在 (a,b) 开区间内就令 pre->next 跨过 p 并释放之，否则 pre、p 同步前进。无序也不影响，只是逐个判断。</p><div class='asc'>void Del_a_b(LinkList &amp;L, ElemType a, ElemType b) {<br>  LNode *p = L->next, *pre = L, *q;<br>  while (p != NULL) {<br>    if (p->data > a &amp;&amp; p->data &lt; b) {   // 处于(a,b)之间：删除<br>      q = p;  p = p->next;<br>      pre->next = p;  free(q);<br>    } else {<br>      pre = p;  p = p->next;<br>    }<br>  }<br>}</div><p><b>复杂度：</b>一趟扫描，时间 O(n)、空间 O(1)。<b>验算：</b>(5,1,8,4,3)，a=2，b=5：删除 4、3（若按开区间，端点 2、5 保留），得 (5,1,8)，链完整。若题意要求闭区间，把条件改为 p->data&gt;=a &amp;&amp; p->data&lt;=b 即可。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设线性表中有 2n 个元素，（）在单链表上实现要比在顺序表上实现效率更高。</p><div class="opts"><div class="opt"><b>A.</b> 删除所有值为 x 的元素</div><div class="opt"><b>B.</b> 在最后一个元素的后面插入一个新元素</div><div class="opt"><b>C.</b> 顺序输出前 k 个元素</div><div class="opt"><b>D.</b> 交换第 i 个元素和第 2n-i-1 个元素的值（i=0,…,n-1）</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>A：链表删除结点只改指针，一遍扫描即可；顺序表每删一个都可能引起成片移动，代价大得多，链表更高效。B：顺序表尾部插入 O(1) 且不移动元素，更快；C：按序号顺序输出前 k 个，顺序表可随机直达，更快；D：按序号交换对称位置的元素，顺序表 O(1) 定位，链表要 O(n) 找位置。故只有 A 链表占优。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定两个单链表，试分析找出两个链表的公共结点的思想（不用写代码）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>关键性质：</b>两个单链表一旦出现公共结点，从该结点起后续所有结点完全共享（每个结点只有一个 next，后缀必然重合），呈“Y”字形，故公共结点只可能从两链“尾部对齐”的位置开始。</p><p><b>算法思想：</b>第一步分别遍历求出两表长度 len1、len2；第二步让较长的链表先走 |len1-len2| 个结点，使两工作指针到达“距各自表尾等距”的位置；第三步两指针同步后移，每走一步比较两者是否相等（地址相等，不是值相等），第一个相同的结点即为首个公共结点；若同时走到表尾也未相遇，则两表无公共结点。</p><p><b>复杂度：</b>时间 O(len1+len2)（每指针至多走两趟），空间 O(1)。<b>验算：</b>长 5 与长 3 的两链共享最后 2 个结点：|差|=2，长链先走 2 步后同步比较，走 1 步即相遇于首个公共结点。若用暴力法对每个结点配对比较则需 O(len1×len2)，远逊于此法。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一个单链表中，已知 q 所指结点是 p 所指结点的前驱结点，若在 q 和 p 之间插入结点 s，则执行（）</p><div class="opts"><div class="opt"><b>A.</b> s->next = p->next; p->next = s;</div><div class="opt"><b>B.</b> s->next = q; q->next = s;</div><div class="opt"><b>C.</b> q->next = s; s->next = p;</div><div class="opt"><b>D.</b> p->next = s; s->next = q;</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>在 q、p 之间插入 s：先让 s 接住后继（s->next = p），再让前驱指向 s（q->next = s），两条语句先后皆可，链不断开。A 实际把 s 插到了 p 之后；B 第二句把 q->next 改成 s 后，s->next 又指回 q，形成 q⇄s 的环且 p 丢失；D 使 p→s→q 反接成环、丢失原后继。</p><p><span style='color:#64748b'>【个别选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设 C={a₁,b₁,a₂,b₂,…,aₙ,bₙ} 为线性表，采用带头结点的单链表存放，设计一个就地算法，将其拆分为两个线性表，使得 A={a₁,a₂,…,aₙ}，B={bₙ,…,b₂,b₁}。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>扫描 C，奇数位的 a 结点用<b>尾插法</b>接在 A 后保持原序；偶数位的 b 结点用<b>头插法</b>插到 B 表头——B 恰好自动形成 (bₙ,…,b₁) 的逆序，无需再逆置。A 沿用 C 的头结点，B 新建头结点。</p><div class='asc'>void Split(LinkList &amp;A, LinkList &amp;B, LinkList C) {<br>  B = (LinkList)malloc(sizeof(LNode));<br>  B->next = NULL;                  // B的头插法表<br>  A = C;                           // A沿用C的头结点<br>  LNode *p = C->next, *ra = A, *q;<br>  while (p != NULL) {<br>    ra->next = p;  ra = p;         // a结点尾插到A<br>    q = p->next;                   // 暂存b结点<br>    p = q ? q->next : NULL;        // 下一a结点<br>    if (q) { q->next = B->next; B->next = q; }  // b头插到B<br>  }<br>  ra->next = NULL;                 // A收尾<br>}</div><p><b>复杂度：</b>一趟扫描，时间 O(n)、空间 O(1)（仅新建 B 的头结点）。<b>验算：</b>C=(a₁,b₁,a₂,b₂)：a₁、a₂ 尾插得 A=(a₁,a₂)；b₁、b₂ 依次头插得 B=(b₂,b₁)，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>给定有 n 个元素的一维数组，建立一个有序单链表的最低时间复杂度是（）</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(n)</div><div class="opt"><b>C.</b> O(n²)</div><div class="opt"><b>D.</b> O(nlog₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>链表不能随机存取，逐个把元素按序插入有序链表，每次定位平均比较 n/2 次，总代价 O(n²)；更优的做法是先对数组排序（比较排序下界 Ω(nlog₂n)，如快排、归并 O(nlog₂n)），再依序尾插建表 O(n)，总 O(nlog₂n)，这已是下界，无法更低。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>在一个递增有序的单链表中，存在重复的元素。设计一个算法删除重复的元素，例如 (7,10,10,21,30,42,42,42,51,70) 将变为 (7,10,21,30,42,51,70)。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>递增表中重复元素必相邻。p 指向当前保留结点，反复检查其直接后继：若 p->next->data == p->data，说明后继重复，跨过并释放之（p 不动，继续检查新的后继）；否则 p 后移一格。</p><div class='asc'>void Del_Same(LinkList &amp;L) {<br>  LNode *p = L->next, *q;<br>  if (p == NULL) return;<br>  while (p->next != NULL) {<br>    if (p->data == p->next->data) {   // 后继重复：删除<br>      q = p->next;<br>      p->next = q->next;<br>      free(q);<br>    } else p = p->next;              // 无重复：后移<br>  }<br>}</div><p><b>复杂度：</b>一趟扫描，时间 O(n)、空间 O(1)。<b>验算：</b>(7,10,10,21,30,42,42,42,51,70)：p 停在 10 删一个 10，停在 42 连删两个 42，最终 (7,10,21,30,42,51,70)，与题面一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将长度为 n 的单链表链接在长度为 m 的单链表后面，其算法的时间复杂度采用大 O 形式表示应该是（）</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(n)</div><div class="opt"><b>C.</b> O(m)</div><div class="opt"><b>D.</b> O(n+m)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>链接前必须先沿第二条（长度 m 的）链表走到其尾结点，耗时 O(m)；找到尾后修改两条指针 O(1)。整个过程与 n 无关（第一条链表不需要扫描），故为 O(m)。若误以为要遍历两条链表，就会错选 D。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设 A 和 B 是两个单链表（带头结点），其中元素递增有序。设计一个算法从 A 和 B 中的公共元素产生单链表 C，要求不破坏 A、B 的结点。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>归并式双指针：pa、pb 分别扫 A、B。值小者独有，其后移；值相等即为公共元素——由于“不破坏 A、B 的结点”，不能摘链，必须 malloc 新结点拷贝该值，尾插到 C；然后两指针同时后移。</p><div class='asc'>void Common(LinkList A, LinkList B, LinkList &amp;C) {<br>  C = (LinkList)malloc(sizeof(LNode));<br>  C->next = NULL;<br>  LNode *pa = A->next, *pb = B->next, *rc = C, *s;<br>  while (pa &amp;&amp; pb) {<br>    if (pa->data &lt; pb->data) pa = pa->next;<br>    else if (pa->data > pb->data) pb = pb->next;<br>    else {                          // 公共元素：新建结点<br>      s = (LNode *)malloc(sizeof(LNode));<br>      s->data = pa->data;<br>      rc->next = s;  rc = s;        // 尾插到C<br>      pa = pa->next;  pb = pb->next;<br>    }<br>  }<br>  rc->next = NULL;<br>}</div><p><b>复杂度：</b>时间 O(lenA+lenB)，空间 O(1)（C 为结果表）。<b>验算：</b>A=(1,3,5,7)，B=(2,3,7,9)：相等元素 3、7 依次新建结点链入，C=(3,7)，A、B 原链不动。若允许破坏，则可摘下结点复用，但本题不允许。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>单链表中，增加一个头结点的目的是（）</p><div class="opts"><div class="opt"><b>A.</b> 使单链表至少有一个结点</div><div class="opt"><b>B.</b> 标识表结点中首结点的位置</div><div class="opt"><b>C.</b> 方便运算的实现</div><div class="opt"><b>D.</b> 说明单链表是线性表的链式存储</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>设置头结点后，首元结点的地址保存在头结点的指针域中，对首元结点的插入、删除与表中其它位置完全统一（都修改“前驱”的指针域），空表与非空表的处理也一致，无需对“是否修改头指针”分类讨论——目的就是<b>方便运算的实现</b>。它不承担数据存储，A、B、D 的说法均不成立。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一个长度为 n 的带头结点的单链表 h 上，设有尾指针 r，则执行（）操作与链表的表长有关。</p><div class="opts"><div class="opt"><b>A.</b> 删除单链表中的第一个元素</div><div class="opt"><b>B.</b> 删除单链表中的最后一个元素</div><div class="opt"><b>C.</b> 在单链表第一个元素前插入一个新元素</div><div class="opt"><b>D.</b> 在单链表最后一个元素后插入一个新元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>A：h->next 即首元，两步删除 O(1)；C：在头结点与首元之间插入 O(1)；D：有尾指针 r，直接在 r 后接新结点并更新 r，O(1)；B：删除尾结点 r 需先找到它的<b>前驱</b>，而单链表指针单向，只能从 h 一直走到倒数第二个结点，O(n)，与表长有关。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-10" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第10题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>两个整数序列 A={a₁,a₂,a₃,…,aₘ} 和 B={b₁,b₂,b₃,…,bₙ} 已经存入两个单链表中，设计一个算法，判断序列 B 是否是序列 A 的连续子序列。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路（朴素模式匹配）：</b>start 记录 A 中本趟匹配的起点，pa、pb 为两工作指针。相等则同进；一旦失配，start 后移一格，pa 回到新 start、pb 回到 B 的首元，重新比较。B 被完整走完即匹配成功；A 先耗尽则失败。</p><div class='asc'>bool IsSub(LinkList A, LinkList B) {<br>  LNode *start = A->next;<br>  while (start) {<br>    LNode *pa = start, *pb = B->next;<br>    while (pa &amp;&amp; pb &amp;&amp; pa->data == pb->data) {<br>      pa = pa->next;  pb = pb->next;   // 匹配则同进<br>    }<br>    if (pb == NULL) return true;       // B走完：是其子序列<br>    start = start->next;               // 失配：起点后移<br>  }<br>  return false;<br>}</div><p><b>复杂度：</b>最坏 O(m×n)（如 A 全同、B 仅末位不同），空间 O(1)。<b>验算：</b>A=(1,2,3,4,5)，B=(3,4)：start 走到 3 后 pa、pb 连续匹配两步，pb 为空，返回 true；B=(3,5) 则各趟均失配，返回 false。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>对于一个头指针为 head 的带头结点的单链表，判定该表为空表的条件是（）；对于不带头结点的单链表，判定空表的条件为（）</p><div class="opts"><div class="opt"><b>A.</b> head == NULL</div><div class="opt"><b>B.</b> head->next == NULL</div><div class="opt"><b>C.</b> head->next == head</div><div class="opt"><b>D.</b> head != NULL</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AB（双选）。</b>带头结点时，head 指向头结点、恒非空，空表意味着头结点后再无结点，即 head->next == NULL（B）。不带头结点时，head 直接指向首元结点，表空则没有首元，head == NULL（A）。C 是带头结点<b>循环</b>单链表的判空条件，此处无循环，属干扰项。</p></p><p class="final-ans">✅ 答案：<b>AB</b>（多选）　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-11" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第11题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个算法用于判断带头结点的循环双链表是否对称。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>利用循环双链表可双向遍历：p 从首元结点向右、q 从尾结点（L->prior）向左同步推进，逐对比较 data。两者相遇（结点数为奇）或 q 的 next 越过 p（即 q->next==p，结点数为偶）时停止；途中任何一对不等即不对称。空表视为对称。</p><div class='asc'>bool Symmetric(DLinkList L) {<br>  DNode *p = L->next, *q = L->prior;   // 双向工作指针<br>  while (p != q &amp;&amp; q->next != p) {<br>    if (p->data != q->data) return false;<br>    p = p->next;    q = q->prior;<br>  }<br>  return true;<br>}</div><p><b>复杂度：</b>两指针合计走约 n/2 对，时间 O(n)、空间 O(1)。<b>验算：</b>(1,2,3,2,1)：p/q 比较 1 与 1、2 与 2 后 p==q 于 3，返回 true；(1,2,2,3)：比较 1 与 3 即 false；空表时 p==q==L 直接 true。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在线性表 (a₀, a₁, …, a₁₀₀) 中，删除元素 a₅₀ 需要移动（）个元素。</p><div class="opts"><div class="opt"><b>A.</b> 0</div><div class="opt"><b>B.</b> 50</div><div class="opt"><b>C.</b> 51</div><div class="opt"><b>D.</b> 0 或 50</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>陷阱在于“线性表”只是<b>逻辑结构</b>，题目并未指明存储结构：若采用顺序存储，删除 a₅₀ 后 a₅₁…a₁₀₀ 共 50 个元素要前移；若采用链式存储，只需修改指针，无需移动任何元素（0 个）。两种情形都有可能，故选“0 或 50”。直接默认顺序表而选 50 是最常见的失误。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-12" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第12题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>有两个循环单链表，链表头指针分别为 h1 和 h2，编写一个函数将链表 h2 链接到链表 h1 之后，要求链接后的链表仍保持循环链表形式。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>分别遍历找到两表的尾结点 p（h1 的尾）与 q（h2 的尾），随后只需改两条指针：h1 的尾接 h2 的首元结点，h2 的尾指回 h1（的头结点），整体仍成环。设两表均带头结点，链接后 h2 的头结点被绕过、释放即可。</p><div class='asc'>LinkList Link_h1_h2(LinkList &amp;h1, LinkList &amp;h2) {<br>  LNode *p = h1, *q = h2;<br>  while (p->next != h1) p = p->next;   // 找h1的尾结点<br>  while (q->next != h2) q = q->next;   // 找h2的尾结点<br>  p->next = h2->next;   // h1尾 接 h2首元结点<br>  q->next = h1;         // h2尾 指回h1，保持循环<br>  free(h2);             // h2头结点不再需要<br>  return h1;<br>}</div><p><b>复杂度：</b>两次找尾，时间 O(len1+len2)、空间 O(1)。<b>验算：</b>h1=(1,2)，h2=(3,4)（均带头结点）：链接后从头结点走为 1→2→3→4→回到 h1 头结点，循环保持。若两表不带头结点，改为 p->next=h2、q->next=h1 即可。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>通过含有 n（n&gt;1）个元素的数组 a，采用头插法建立单链表 L，则 L 中的元素次序（）</p><div class="opts"><div class="opt"><b>A.</b> 与数组 a 的元素次序相同</div><div class="opt"><b>B.</b> 与数组 a 的元素次序相反</div><div class="opt"><b>C.</b> 与数组 a 的元素次序无关</div><div class="opt"><b>D.</b> 以上都错误</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>头插法每读入一个新元素都把它插在链表最前端：先读的元素被不断压向表尾，后读的位于表头。设数组为 (a₁,a₂,a₃)，则建表过程依次得到 a₁ / a₂→a₁ / a₃→a₂→a₁，链表次序恰与数组相反。这也是“用头插法逆置链表”的原理。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P46</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-13" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第13题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设有一个带头结点的非循环双链表 L，其每个结点中除有 prior、data 和 next 域外，还有一个访问频度域 freq，其值均初始化为零。每当在链表中进行一次 Locate(L,x) 运算时，令值为 x 的结点中 freq 域的值增 1，并使此链表中的结点保持按访问频度递减的顺序排列，且最近访问的结点排在频度相同的结点之前，以便使频繁访问的结点总是靠近表头。试编写符合上述要求的 Locate(L,x) 函数，返回找到结点的地址，类型为指针型。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>① 从首元起查找值为 x 的结点 p，找不到返回空指针；② p->freq 加 1；③ 将 p 从链上摘下；④ 从表头起寻找插入位置：跳过 freq 严格大于 p 的结点，停在“后继的 freq ≤ p->freq”的 q 之后——如此 p 位于所有频度更大者之后、频度相同者之前，满足“递减且最近访问在前”；⑤ 把 p 插到 q 之后。</p><div class='asc'>DNode *Locate(DLinkList &amp;L, ElemType x) {<br>  DNode *p = L->next, *q;<br>  while (p &amp;&amp; p->data != x) p = p->next;   // ① 查找<br>  if (!p) return NULL;                     // 未找到<br>  p->freq++;                               // ② 频度+1<br>  p->prior->next = p->next;                // ③ 摘下p<br>  if (p->next) p->next->prior = p->prior;<br>  q = L->next;                             // ④ 找插入位置<br>  while (q &amp;&amp; q->freq > p->freq) q = q->next;<br>  if (q) { p->next = q;  p->prior = q->prior;   // ⑤ 插到q之前<br>          q->prior->next = p;  q->prior = p; }<br>  else { DNode *t = L;                      // p频度最大，插表尾<br>         while (t->next) t = t->next;<br>         t->next = p;  p->prior = t;  p->next = NULL; }<br>  return p;<br>}</div><p><b>复杂度：</b>查找与定位至多各扫全表，时间 O(n)、空间 O(1)。<b>验算：</b>表(5,4,4)按题述访问某 4 后：其 freq 变 1，摘下重插到 5 之后、旧 4 之前，得 (5,4新,4)，次序符合要求。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下面关于线性表的一些说法中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 对一个设有头指针和尾指针的单链表执行删除最后一个元素的操作与链表长度无关</div><div class="opt"><b>B.</b> 线性表中每个元素都有一个直接前驱和一个直接后继</div><div class="opt"><b>C.</b> 为了方便插入和删除数据，可以使用双链表存放数据</div><div class="opt"><b>D.</b> 取线性表第 i 个元素的时间与 i 的大小有关</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>C 对：双链表每个结点带前驱指针，插入、删除时无需遍历寻找前驱，确实方便。A 错：单链表删尾必须从头找前驱，O(n)；B 错：首元素无前驱、尾元素无后继；D 错：该说法只对链式成立，顺序表按序号取元素是 O(1)、与 i 无关，作为对“线性表”的一般论断不成立。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在双链表中向 p 所指的结点之前插入一个结点 q 的操作为（）</p><div class="opts"><div class="opt"><b>A.</b> p->prior = q; q->next = p; p->prior->next = q; q->prior = p->prior;</div><div class="opt"><b>B.</b> q->next = p; p->prior = q; q->prior = p->prior; p->prior->next = q;</div><div class="opt"><b>C.</b> q->next = p; q->prior = p->prior; p->prior = q; p->prior->next = q;</div><div class="opt"><b>D.</b> q->prior = p->prior; p->prior->next = q; q->next = p; p->prior = q;</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>插入必须遵守的次序原则：凡是要使用 p->prior 原值（q->prior 赋值、p->prior->next 赋值）的语句，都要在“p->prior = q”改写之前执行。D 先记下 q->prior = p->prior、并让原前驱的 next 指向 q，再接 q->next = p，最后才改 p->prior = q，次序正确。A/C 中 p->prior->next 在 p->prior 已被改为 q 后执行，变成 q->next = q；B 中末句同理失效。</p><p><span style='color:#64748b'>【选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-15" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第15题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2025 统考真题】有两个长度均为 n 的一维整型数组 A 和 res，对数组 A 中的每个元素 A[i]，计算 A[i] 与 A[j]（0≤i≤j≤n-1）乘积的最大值，并将其保存到 res[i] 中。例如，当 A[]={1,4,-9,6} 时，得到 res[]={6,24,81,36}。现给定数组 A，设计一个时间和空间上尽可能高效的算法 calMulMax，求 res 中各元素的值。函数原型为 void calMulMax(int A[], int res[], int n)。要求如下：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 语言或 C++ 语言描述算法，关键之处给出注释。(3) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想：</b>对固定的 i，j 只能在 [i, n-1] 内取，A[i] 的符号固定，故乘积最大值只可能是两种之一：A[i] 乘后缀最大值，或 A[i] 乘后缀最小值（负数乘负数可能更大，且 j 可等于 i）。维护后缀最大值 mx、后缀最小值 mn 两个变量，从右往左一趟扫描即可同步更新并直接得出每个 res[i]。</p><div class='asc'>void calMulMax(int A[], int res[], int n) {<br>  int mx = A[n-1], mn = A[n-1];       // A[i..n-1]的最大、最小值<br>  for (int i = n - 1; i >= 0; i--) {<br>    if (A[i] > mx) mx = A[i];<br>    if (A[i] &lt; mn) mn = A[i];<br>    int c1 = A[i] * mx;               // 与后缀最大之积<br>    int c2 = A[i] * mn;               // 与后缀最小之积<br>    res[i] = c1 > c2 ? c1 : c2;       // 取较大者<br>  }<br>}</div><p><b>复杂度：</b>一趟从右向左扫描，时间 O(n)；除结果数组外只用常数变量，空间 O(1)。<b>双法验算：</b>A=(1,4,-9,6)：i=3 时 mx=mn=6，res[3]=36；i=2 时 mx=6、mn=-9，max(-54,81)=81；i=1 时 max(24,-36)=24；i=0 时 max(6,-9)=6，得 {6,24,81,36}，与题面一致；若用暴力双重循环对每个 i 遍历所有 j 同样得到该结果，但需 O(n²) 时间。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在双向链表存储结构中，删除 p 所指的结点时必须修改指针（）</p><div class="opts"><div class="opt"><b>A.</b> p->prior->next = p->next; p->next->prior = p->prior;</div><div class="opt"><b>B.</b> p->next = p->prior->next; p->prior = p->next->prior;</div><div class="opt"><b>C.</b> p->prior = p->next; p->next = p->prior;</div><div class="opt"><b>D.</b> p->next->prior = p; p->prior->next = p;</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>删除 p 只需把 p 的两个邻居互相接起来：前驱的 next 越过 p 直指 p->next，后继的 prior 直指 p->prior，共两条语句，之后 free(p) 即可。B 修改的是 p 自身的两个指针域，邻接关系未建立；C 令 p 的两个域互指；D 让邻居反过来仍指向 p，p 都没有被真正摘除。</p><p><span style='color:#64748b'>【选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在如下图所示的双链表中，已知指针 p 指向结点 A，若要在结点 A 和 C 之间插入指针 q 所指的结点 B，则依次执行的语句序列可以是（）</p><p>① q->next = p->next;<br>② q->prior = p;<br>③ p->next = q;<br>④ p->next->prior = q;</p><div class="opts"><div class="opt"><b>A.</b> ②①④③</div><div class="opt"><b>B.</b> ①②③④</div><div class="opt"><b>C.</b> ②③①④</div><div class="opt"><b>D.</b> ③①②④</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>关键约束：④（p->next->prior = q）和①（q->next = p->next）都必须使用 p->next 的<b>原值</b>（指向 C），故二者都要在③（p->next = q）之前完成；② 与 p->next 无关，位置随意。A 选项 ②→①→④→③ 满足约束；B、C、D 都把 ③ 排在了 ① 或 ④ 之前，此时 p->next 已变为 q，再执行 ④ 得 q->prior = q，链被破坏。</p><p><span style='color:#64748b'>【选项序号按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-17" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第17题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2009 统考真题】已知一个带有表头结点的单链表，结点结构为 data、link。假设该链表只给出了头指针 list。在不改变链表的前提下，请设计一个尽可能高效的算法，查找链表中倒数第 k 个位置上的结点（k 为正整数）。若查找成功，算法输出该结点的 data 域的值，并返回 1；否则，只返回 0。要求：(1) 描述算法的基本设计思想。(2) 描述算法的详细实现步骤。(3) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（时间差双指针）：</b>令 p、q 同时指向首元结点，p 先行：p 每前进一结点，计数器 count 加 1，当 count 超过 k 后 q 开始同步前进。这样 p、q 恒相距 k 个结点；p 到达表尾时，q 恰好停在倒数第 k 个结点上。全程只扫描一遍，也不改动任何指针，满足“不改变链表”。</p><div class='asc'>int Search_K(LinkList list, int k) {<br>  LNode *p = list->link, *q = list->link;<br>  int count = 0;<br>  while (p != NULL) {<br>    if (count &lt; k) count++;          // p先走k步<br>    else q = q->link;                // 之后q同步前进<br>    p = p->link;<br>  }<br>  if (count &lt; k) return 0;          // k大于表长：失败<br>  output(q->data);                  // 成功：输出值<br>  return 1;<br>}</div><p><b>复杂度：</b>时间 O(n)（单趟），空间 O(1)。<b>双法验算：</b>表长 5、k=2：p 前两步只计数，随后 3 步带动 q 走 3 次，q 停在第 4 个结点，恰为倒数第 2；另按“先求表长 n 再走 n-k 步”验证同为第 4 个结点，两种方法一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在双链表的两个结点之间插入一个新结点，需要修改（）个指针域。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>设在前驱结点 p 与后继结点之间插入 q，需要：q->prior 与 q->next（新结点自己的 2 个指针域）、p->next（前驱指向新结点）、原后继结点的 prior（回指新结点），共修改 4 个指针域。对比：单链表插入只改 2 个指针域，双链表多出的 2 个正是“双向”的代价。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在长度为 n 的有序单链表中插入一个新结点，并仍然保持有序的时间复杂度是（）</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(n)</div><div class="opt"><b>C.</b> O(n²)</div><div class="opt"><b>D.</b> O(nlog₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>插入前要先找到插入位置：单链表只能从头结点起顺序比较，最好 1 次、最坏 n 次、平均约 n/2 次，为 O(n)；找到位置后修改两条指针 O(1)。总时间 O(n)。若以为是先“查找 O(log₂n)”就错了——折半查找依赖随机存取，链表做不到。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-19" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第19题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2015 统考真题】用单链表保存 m 个整数，结点的结构为 data、link，且 |data|≤n（n 为正整数）。请设计一个时间复杂度尽可能高效的算法，对于链表中 data 的绝对值相等的结点，仅保留第一次出现的结点而删除其余绝对值相等的结点。例如，若给定的单链表 head 为 21→-15→-15→-7→15，则删除结点后的 head 为 21→-15→-7。要求：(1) 给出算法的基本设计思想。(2) 使用 C 或 C++ 语言，给出单链表结点的数据类型定义。(3) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(4) 说明算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（空间换时间）：</b>因 |data|≤n，可开一个长度 n+1 的标记数组 f（下标 0~n），初值 0，表示对应绝对值尚未出现。扫描链表：某结点 |data| 首次出现（f 为 0）则标记并保留；再次出现（f 为 1）则删除该结点并释放。</p><div class='asc'>typedef struct node {              // (2) 结点类型定义<br>  int data;<br>  struct node *link;<br>} NODE;<br>void Dedup(NODE *head, int n) {<br>  int *f = (int *)malloc(sizeof(int) * (n + 1));<br>  for (int i = 0; i &lt;= n; i++) f[i] = 0;     // 初始化为未出现<br>  NODE *p = head->link, *pre = head, *q;<br>  while (p) {<br>    int m = p->data >= 0 ? p->data : -p->data;  // |data|<br>    if (f[m] == 0) { f[m] = 1; pre = p; p = p->link; }  // 保留<br>    else { q = p; pre->link = p->link; free(q);   // 删除重复<br>           p = pre->link; }<br>  }<br>  free(f);<br>}</div><p><b>复杂度：</b>单趟扫描，时间 O(m)；辅助数组 O(n)。<b>双法验算：</b>head=21→-15→-15→-7→15，n=15：15 第二次出现（|-15| 已标记）被删，15 末结点亦被删，结果 21→-15→-7，与题面一致；若不用标记数组而两两比较，需 O(m²)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>与单链表相比，双链表的优点之一是（）</p><div class="opts"><div class="opt"><b>A.</b> 插入、删除操作更方便</div><div class="opt"><b>B.</b> 可以进行随机访问</div><div class="opt"><b>C.</b> 可以省略表头指针或表尾指针</div><div class="opt"><b>D.</b> 访问前后相邻结点更灵活</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>双链表每个结点兼有前驱、后继指针，从任一结点都可 O(1) 地访问其直接前驱和直接后继，进退自如，这是相对单链表的突出优点。A 不成立：双链表插入、删除要修改的指针反而更多（4 条 vs 2 条），其“方便”仅体现在不必遍历找前驱，本质上仍是 D；B 错：两者都不能随机访问；C 是循环链表讨论的问题。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wz-2-3-20" data-type="综合">
+    <div class="prob-head"><span class="pnum">2.3 · 综合第20题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2019 统考真题】设线性表 L=(a₁,a₂,a₃,…,a_(n-2),a_(n-1),aₙ) 采用带头结点的单链表保存，链表中的结点定义如下：typedef struct node { int data; struct node *next; } NODE;。请设计一个空间复杂度为 O(1) 且时间上尽可能高效的算法，重新排列 L 中的各结点，得到线性表 L'=(a₁,aₙ,a₂,a_(n-1),a₃,a_(n-2),…)。要求：(1) 给出算法的基本设计思想。(2) 根据设计思想，采用 C 或 C++ 语言描述算法，关键之处给出注释。(3) 说明你所设计的算法的时间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设计思想（三步法）：</b>① 快慢指针定位中点并把链表断成前半 A 与后半 B；② 就地逆置后半 B；③ 从 A、B 两链轮流摘一个结点依次链接，即得 a₁,aₙ,a₂,a_(n-1),… 的穿插次序。</p><div class='asc'>void Rearrange(NODE *h) {<br>  NODE *slow = h->next, *fast = h->next;<br>  while (fast->next &amp;&amp; fast->next->next) {   // ① 找中点<br>    slow = slow->next;  fast = fast->next->next;<br>  }<br>  NODE *B = slow->next;  slow->next = NULL;   // 断成A、B两链<br>  NODE *pre = NULL, *cur = B, *nxt;           // ② 逆置B<br>  while (cur) { nxt = cur->next; cur->next = pre;<br>                pre = cur; cur = nxt; }<br>  NODE *pa = h->next, *pb = pre, *r = h;      // ③ 交替链接<br>  h->next = NULL;<br>  while (pa || pb) {<br>    if (pa) { r->next = pa; r = pa; pa = pa->next; }<br>    if (pb) { r->next = pb; r = pb; pb = pb->next; }<br>  }<br>  r->next = NULL;<br>}</div><p><b>复杂度：</b>三步各扫一趟，时间 O(n)、空间 O(1)。<b>双法验算：</b>(a₁,a₂,a₃,a₄)：B=(a₃,a₄) 逆置为 (a₄,a₃)，交替链接得 (a₁,a₄,a₂,a₃)，与 L'=(a₁,a₄,a₂,a₃)（即 a₁,aₙ,a₂,a_(n-1)）一致；n 为奇时 (a₁,…,a₅) 得 (a₁,a₅,a₂,a₄,a₃)，亦正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一个带头结点的循环单链表 L，判断该表为空表的条件是（）</p><div class="opts"><div class="opt"><b>A.</b> 头结点的指针域为空</div><div class="opt"><b>B.</b> L 的值为 NULL</div><div class="opt"><b>C.</b> 头结点的指针域与 L 的值相等</div><div class="opt"><b>D.</b> 头结点的指针域与 L 的地址相等</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>带头结点循环单链表为空时，仅剩头结点，其 next 指回自身，即 L->next == L。头结点的指针域存放的值就是头结点自身的地址，而 L 正是指向头结点的指针，两者相等，故 C 的表述等价于判空条件。A、B 中出现 NULL 违背循环链表“不存在空指针”的特性；D 把“指针域的值”偷换成“头结点地址域”之类的混淆说法。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一个带头结点的循环双链表 L，判断该表为空表的条件是（）</p><div class="opts"><div class="opt"><b>A.</b> L->prior == L 且 L->next == NULL</div><div class="opt"><b>B.</b> L->prior == NULL 且 L->next == NULL</div><div class="opt"><b>C.</b> L->prior == NULL 且 L->next == L</div><div class="opt"><b>D.</b> L->prior == L 且 L->next == L</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>空表时只剩头结点，其 next 与 prior 都指回自身：L->next == L 且 L->prior == L，任取其一即可判空。A、B、C 中出现 NULL 均不正确——循环链表中所有指针都有合法指向，不存在空指针。这是循环双链表判空最常见的考点。</p><p><span style='color:#64748b'>【选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>一个链表最常用的操作是在最后一个结点之后插入一个新结点和删除最后一个结点，且该链表只设头指针，则选用（）最节省时间。</p><div class="opts"><div class="opt"><b>A.</b> 带头结点的循环双链表</div><div class="opt"><b>B.</b> 循环单链表</div><div class="opt"><b>C.</b> 带尾指针的循环单链表</div><div class="opt"><b>D.</b> 单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>只设头指针而要频繁“尾插＋删尾”：带头结点的循环双链表经 h->prior 一步到达尾结点，尾插 O(1)；删尾时尾结点的 prior 直接给出其前驱，仍为 O(1)。B 循环单链表从头找尾 O(n)；C 带尾指针虽尾插 O(1)，但单链表删尾仍要从头找前驱 O(n)；D 单链表两种操作都 O(n)。唯一双 O(1) 的是 A。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设对 n（n&gt;1）个元素的线性表的运算只有 4 种：删除第一个元素；删除最后一个元素；在第一个元素之前插入新元素；在最后一个元素之后插入新元素，则最好使用（）</p><div class="opts"><div class="opt"><b>A.</b> 只有尾结点指针、没有头结点指针的循环单链表</div><div class="opt"><b>B.</b> 只有尾结点指针、没有头结点指针的非循环双链表</div><div class="opt"><b>C.</b> 只有头结点指针、没有尾结点指针的循环双链表</div><div class="opt"><b>D.</b> 既有头结点指针又有尾结点指针的循环单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>4 种运算都集中在表头、表尾，要求两端插删皆 O(1)。只有头结点指针的循环双链表：删首/首前插经 h->next 及其 prior 处理 O(1)；删尾/尾后插经 h->prior（及该尾结点的 prior 找前驱）处理 O(1)。A、D 的单链式结构删尾都需 O(n) 找前驱；B 非循环且无头指针，首部运算受阻。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>将两个循环单链表（头指针分别为 h1 和 h2）链接为一个循环单链表（h2 接在 h1 之后，仍保持循环）。为使链接过程时间尽可能短，应给两个循环单链表各设置一个指针，分别指向（）</p><div class="opts"><div class="opt"><b>A.</b> 各自的头结点</div><div class="opt"><b>B.</b> 各自的尾结点</div><div class="opt"><b>C.</b> 各自的首元结点</div><div class="opt"><b>D.</b> 一个表的头结点，另一个表的尾结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>链接两循环单链表需要动两条“尾指针链”：把 h1 尾结点的 next 指向 h2 的首元、h2 尾结点的 next 指回 h1（的头结点）。若各设<b>尾指针</b> p1、p2，两条链修改都是 O(1)；若只设头指针，必须先各自从头遍历找尾，O(n)+O(m)。故分别指向各自的尾结点最省时。</p><p><span style='color:#64748b'>【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P47</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有一个长度为 n 的循环单链表，若从表中删除首元结点的时间复杂度达到 O(n)，则此时采用的循环单链表的结构可能是（）</p><div class="opts"><div class="opt"><b>A.</b> 只有表头指针，没有头结点</div><div class="opt"><b>B.</b> 只有表尾指针，没有头结点</div><div class="opt"><b>C.</b> 只有表尾指针，带头结点</div><div class="opt"><b>D.</b> 只有表头指针，带头结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>循环单链表中尾结点的 next 指向首元（或头结点），删首元后必须修正尾结点的 next。B：有尾指针 rear 时，rear->next 即首元，三步 O(1)；C：头指针在、尾指针在同理 O(1)（尾 next 指头结点，删 h->next 即可）；D：带头结点且尾 next 指头结点，删首元只改 h->next，O(1)。A：只有表头指针且无头结点，删首元后必须从头遍历找尾结点来修指针，O(n)。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某线性表用带头结点的循环单链表存储，头指针为 head，当 head->next->next == head 成立时，线性表的长度可能是（）</p><div class="opts"><div class="opt"><b>A.</b> 0</div><div class="opt"><b>B.</b> 1</div><div class="opt"><b>C.</b> 2</div><div class="opt"><b>D.</b> 可能为 0 或 1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐长度验证：长度 0（空表）时 head->next == head，于是 head->next->next 即 head->next == head，成立；长度 1 时首元结点同时是尾结点，其 next 指回头结点，head->next->next == head 成立；长度 2 时 head->next->next 是第二个结点，指向第三个结点（即头结点需长度 2 且第二结点为尾——此时 head->next->next->next 才等于 head），不成立。故长度为 0 或 1。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有两个长度都为 n 的双链表，若以 h1 为头指针的双链表是非循环的，以 h2 为头指针的双链表是循环的，则下列叙述中正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 对于双链表 h1，删除首结点的时间复杂度是 O(n)</div><div class="opt"><b>B.</b> 对于双链表 h2，删除首结点的时间复杂度是 O(n)</div><div class="opt"><b>C.</b> 对于双链表 h1，删除尾结点的时间复杂度是 O(1)</div><div class="opt"><b>D.</b> 对于双链表 h2，删除尾结点的时间复杂度是 O(1)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>h2 是循环双链表（设带头结点）：尾结点就是 h2->prior，一步定位；删尾用尾的 prior 找前驱并回接 h2，全程 O(1)，D 对。A 错：h1 删首结点改头指针及其后继的 prior 即可，O(1)；B 错：h2 删首同样 O(1)；C 错：h1 非循环，找尾必须从头遍历 O(n)。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个链表最常用的操作是在最后一个元素后插入一个元素和删除第一个元素，则选用（）最节省时间。</p><div class="opts"><div class="opt"><b>A.</b> 不带头结点的循环单链表</div><div class="opt"><b>B.</b> 双链表</div><div class="opt"><b>C.</b> 单链表</div><div class="opt"><b>D.</b> 不带头结点且有尾指针的循环单链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>“尾插＋删首”两种操作都要 O(1)：设尾指针 rear 的（不带头结点）循环单链表中 rear->next 就是首元结点。尾插：s->next = rear->next; rear->next = s; rear = s；删首：q = rear->next; rear->next = q->next; free(q)，各三条语句。A 只有头指针找尾 O(n)；B、C 找尾同样 O(n)。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>需要分配较大空间，插入和删除不需要移动元素的线性表，其存储结构为（）</p><div class="opts"><div class="opt"><b>A.</b> 单链表</div><div class="opt"><b>B.</b> 静态链表</div><div class="opt"><b>C.</b> 顺序表</div><div class="opt"><b>D.</b> 双链表</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>静态链表用一维数组（需预先分配较大空间）存放结点，每个结点含数据域和游标（下一元素的数组下标），插入、删除只修改游标、不移动元素——兼有顺序存储“预分配大数组”与链式“插删不移动”的特征，正合题意。A、D 的动态链表不需预分配大空间；C 顺序表插删要移动元素。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-31" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第31题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于静态链表的说法中，正确的是（）</p><p>I. 静态链表兼具顺序表和单链表的优点，因此存取表中第 i 个元素的时间与 i 无关<br>II. 静态链表能容纳的最大元素个数在表定义时就确定了，以后不能增加<br>III. 静态链表与动态链表在元素的插入、删除上类似，不需要移动元素<br>IV. 相比动态链表，静态链表可能浪费较多的存储空间</p><div class="opts"><div class="opt"><b>A.</b> I、II、III</div><div class="opt"><b>B.</b> II、III、IV</div><div class="opt"><b>C.</b> I、III、IV</div><div class="opt"><b>D.</b> I、II、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>I 错：静态链表沿游标逐个跳转访问，存取第 i 个元素要跳 i-1 次，时间与 i 有关，并不具备顺序表随机存取的优点；II 对：容量由数组大小定死；III 对：插删只改游标；IV 对：数组预留空间、且静态链表还额外存游标，未用满即浪费。故 II、III、IV 正确。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-32" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第32题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016 统考真题】已知一个带有表头结点的循环双链表 L，结点结构为 data、prev、next，其中 prev 和 next 分别是指向其直接前驱和直接后继结点的指针。现要删除指针 p 所指的结点（非表头结点），正确的语句序列是（）</p><div class="opts"><div class="opt"><b>A.</b> p->next->prev = p->prev->next; p->prev->next = p->next;</div><div class="opt"><b>B.</b> p->prev = p->next->prev; p->next = p->prev->next;</div><div class="opt"><b>C.</b> p->next->prev = p; p->prev->next = p;</div><div class="opt"><b>D.</b> p->prev->next = p->next; p->next->prev = p->prev;</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>删除 p 的正确做法是让 p 的前驱、后继互相跨过 p：p->prev->next = p->next（前驱的 next 越过 p），p->next->prev = p->prev（后继的 prev 越过 p），两条语句使用的都是 p 自身指针域的原值、互不干扰，次序可交换。A 第一句中 p->prev->next 就是 p，等价于把后继的 prev 指回 p，白做；B、C 分别只改了 p 自己的域或把邻居指回 p，p 均未被摘除。</p><p><span style='color:#64748b'>【选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-33" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第33题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016 统考真题】已知表头元素为 c 的单链表在内存中的存储状态如下表所示（地址/链接地址）：1000H→1010H，1004H→100CH，1008H→1000H，100CH→NULL，1010H→1004H，头指针所指的 c 存于 1008H。现将 f 存放于 1014H 处并插入单链表，若 f 在逻辑上位于 a 和 e 之间，则 a、e、f 的“链接地址”依次是（）</p><div class="opts"><div class="opt"><b>A.</b> 1010H，1014H，1004H</div><div class="opt"><b>B.</b> 1010H，1004H，1014H</div><div class="opt"><b>C.</b> 1014H，1010H，1004H</div><div class="opt"><b>D.</b> 1014H，1004H，1010H</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>由链接地址还原链路：c(1008H)→a(1000H)→e(1010H)→(1004H)→(100CH)→NULL。f 要插在 a、e 之间且存放于 1014H：a 的链接地址由 1010H 改为 f 的地址 <b>1014H</b>；f 的链接地址取 a 原来的值，指向 e 所在的 <b>1010H</b>；e 的链接地址保持原值 <b>1004H</b> 不变。按 a、e、f 的顺序依次为 1014H、1004H、1010H。</p><p><span style='color:#64748b'>【题面表格按链接关系复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-34" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第34题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021 统考真题】已知头指针 h 指向一个带头结点的非空循环单链表，结点结构为 data、next，其中 next 是指向直接后继结点的指针，p 是尾指针，q 是临时指针。现要删除该链表的第一个元素，正确的语句序列是（）</p><div class="opts"><div class="opt"><b>A.</b> h->next = h->next->next; q = h->next; free(q);</div><div class="opt"><b>B.</b> q = h->next; p->next = h->next; h->next = q->next; free(q);</div><div class="opt"><b>C.</b> q = h->next; h->next = q->next; free(q);</div><div class="opt"><b>D.</b> q = h->next; h->next = q->next; if (p == q) p = h; free(q);</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>带头结点时首元结点是 h->next，删除步骤：q 记下首元（防断链后失联），h->next = q->next 跨过 q，再 free(q)。由于链表可能只有一个元素，此时首元恰是尾结点（p == q），直接 free 会使尾指针 p 悬空，故需在释放前判断并把 p 收回指向头结点 h——D 三步齐全。A 释放的是删除后的新首元；B 先改 p->next 为待删的 q；C 未处理 p 悬空隐患。</p><p><span style='color:#64748b'>【选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P48</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-35" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第35题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023 统考真题】现有非空双链表 L，其结点结构为 prev、data、next，prev 是指向直接前驱结点的指针，next 是指向直接后继结点的指针。若要在 L 中指针 p 所指向的结点后插入一个新结点 q，已执行语句 q->prev = p; 和 q->next = p->next;，下列语句序列中还需要执行的是（）</p><div class="opts"><div class="opt"><b>A.</b> p->next = q; p->next->prev = q;</div><div class="opt"><b>B.</b> q->prev = p; p->next = q;</div><div class="opt"><b>C.</b> p->next->prev = q; p->next = q;</div><div class="opt"><b>D.</b> p->next->prev = q; q->prev = p;</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>q 自身的两个指针域已就位，剩余工作：让原后继结点的 prev 指向 q（p->next->prev = q），再让 p->next 改指 q。次序必须“先用后改”：第一句里 p->next 仍是原后继，必须赶在 p->next = q 之前执行，C 正是此序。A 先改 p->next = q，第二句变成 q->prev = q，链被写坏；B、D 都是重复设置 q->prev 而漏掉 p->next，p 与 q 未接通。</p><p><span style='color:#64748b'>【题干前提与选项按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P49</p></div></details>
+  </div>
+  <div class="prob" id="wq-2-3-36" data-type="选择">
+    <div class="prob-head"><span class="pnum">2.3 · 第36题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024 统考真题】已知带头结点的非空单链表 L 的头指针为 h，结点结构为 data、next，其中 next 是指向直接后继结点的指针。现有指针 p 和 q，若 p 指向 L 中非首且非尾的任意一个结点，执行语句序列 q = p->next; p->next = q->next; q->next = h->next; h->next = q; 后的结果是（）</p><div class="opts"><div class="opt"><b>A.</b> 在 p 所指结点后插入 q 所指结点</div><div class="opt"><b>B.</b> 在 q 所指结点后插入 p 所指结点</div><div class="opt"><b>C.</b> 将 p 所指结点移至 L 的头结点之后</div><div class="opt"><b>D.</b> 将 q 所指结点移动到 L 的头结点之后</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐步执行：q 记下 p 的后继；p->next = q->next 把 q 从链中摘除（p 直接跨过 q）；q->next = h->next 让 q 接上原来的首元结点；h->next = q 把 q 挂到头结点之后。净效果：p 的原后继结点（q 所指）被移动到头结点之后成为新的首元结点，其余结点相对次序不变，p 未被移动。故 D 正确，A、B 把“移动”误述为“插入”，C 对象搞错。</p><p><span style='color:#64748b'>【题干语句序列按王道原题复原】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P49</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c2", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -67,7 +67,7 @@
         chDiv.className = "nav-ch";
         var head = document.createElement("div");
         head.className = "nav-ch-head";
-        var isOpen = (part.file === PAGE.page);   // 当前模块默认展开
+        var isOpen = (part.file === PAGE.page) || (PAGE.page && PAGE.page.indexOf(part.file + "-c") === 0);   // 当前模块（或多文件子页）默认展开
         if (isOpen) chDiv.classList.add("open");
         head.innerHTML = "<span>" + esc(ch.t) + "</span><span class=\"arrow\">▶</span>";
         var items = document.createElement("div");
@@ -444,13 +444,28 @@
     });
     refreshSideProgress();
   }
+  function partFiles(part) {
+    // 单文件部分直接用 file；多文件部分（王道课后题 wdex → wdex-c1..c8）聚合
+    if (window.MANIFEST.pages[part.file]) return [part.file];
+    return Object.keys(window.MANIFEST.pages).filter(function (k) {
+      return k.indexOf(part.file + "-c") === 0;
+    });
+  }
+  function partProgress(part) {
+    var c = 0, n = 0;
+    partFiles(part).forEach(function (f) {
+      c += Checkin.countRead(f);
+      n += (window.MANIFEST.pages[f] || { ids: [] }).ids.length;
+    });
+    return { c: c, n: n };
+  }
   function refreshSideProgress() {
     if (!window.MANIFEST) return;
     NAV.parts.forEach(function (part) {
-      var meta = window.MANIFEST.pages[part.file];
-      if (!meta) return;
       var el = document.querySelector('[data-sidecnt="' + part.file + '"]');
-      if (el) el.textContent = Checkin.countRead(part.file) + "/" + meta.ids.length;
+      if (!el) return;
+      var p = partProgress(part);
+      el.textContent = p.c + "/" + p.n;
     });
   }
   function injectMarks() {
@@ -526,8 +541,8 @@
       var host = $("#partBars");
       if (!host || !window.MANIFEST) return;
       host.innerHTML = NAV.parts.map(function (part) {
-        var meta = window.MANIFEST.pages[part.file] || { ids: [], title: part.t };
-        var c = Checkin.countRead(part.file), n = meta.ids.length;
+        var pp = partProgress(part);
+        var c = pp.c, n = pp.n;
         var pct = n ? Math.round(c / n * 100) : 0;
         return '<div class="pbar-row"><div class="pbar-t"><a href="' + part.file + '.html">' + esc(part.t) +
           '</a><span>' + c + " / " + n + "（" + pct + "%）</span></div>" +

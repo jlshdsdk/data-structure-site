@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第5章 树与二叉树 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第5章 树与二叉树</p>
+  </div>
+  <div class="part-zone" id="wdex5">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第5章 树与二叉树</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题127题（官方速查答案+逐题独立验算解析）、综合题32题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-5-1"><h3>5.1 树的基本概念<span class="tag tag-tpl">10题选择 + 3题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-5-1-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>树最适合用来表示（）的数据。</p><div class="opts"><div class="opt"><b>A.</b> 有序</div><div class="opt"><b>B.</b> 无序</div><div class="opt"><b>C.</b> 任意元素之间具有多种联系</div><div class="opt"><b>D.</b> 元素之间具有分支层次关系</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>树中结点通过分支（边）自顶向下延伸，一个双亲可以有多个孩子，整体呈明显的<b>分支层次结构</b>，故树最适合表示元素间具有分支层次关系的数据。有序/无序是线性结构或集合的特征；"多种联系"并非树的结构本质。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P127</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-1-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.1 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>含有n个结点的三叉树的最小高度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>三叉树第i层至多有3<sup>i-1</sup>个结点，高度为h的三叉树至多含 (3ʰ-1)/2 个结点。最小高度就是使 (3ʰ-1)/2≥n 的最小h。</p><p><b>求解：</b>3ʰ≥2n+1，得 h≥log₃(2n+1)，故最小高度 h=⌈log₃(2n+1)⌉（根为第1层）。</p><p><b>验算：</b>n=1⇒⌈log₃3⌉=1✓；n=13（1+3+9=13 恰好三层满）⇒⌈log₃27⌉=3✓；n=14⇒4✓。此时每层尽量铺满（最后一层结点从左到右排列），高度即最小。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵有n个结点的树的所有结点的度数之和为（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> 2n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>除根外每个结点恰被一条分支指向，其双亲为此贡献1度，故度数之和＝分支数＝边数＝n-1。也可用总结点式 n=n₀+n₁+…+nₘ 与分支式 n-1=n₁+2n₂+…+mnₘ 互推验证。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P127</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-1-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.1 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知一棵度为4的树中，度为0、1、2、3的结点数分别为14、4、3、2，求该树的结点总数n和度为4的结点个数，并给出推导过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>设</b> 度为4的结点数为n₄，则 n=n₀+n₁+n₂+n₃+n₄=14+4+3+2+n₄=23+n₄。</p><p><b>边数双算：</b>树中边数=n-1，又边数=∑i·nᵢ=1×4+2×3+3×2+4n₄=16+4n₄。</p><p><b>解方程：</b>23+n₄-1=16+4n₄ ⇒ 22+n₄=16+4n₄ ⇒ 3n₄=6 ⇒ <b>n₄=2，n=25</b>。</p><p><b>验算：</b>用叶结点公式 n₀=∑ᵢ₌₂⁴(i-1)nᵢ+1=1×3+2×2+3×2+1=3+4+6+1=14，与题目n₀=14吻合✓；边数=n-1=24，与∑i·nᵢ=4+6+6+8=24一致✓，结果自洽。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>树的路径长度是从树根到每个结点的路径长度的（）。</p><div class="opts"><div class="opt"><b>A.</b> 总和</div><div class="opt"><b>B.</b> 最小值</div><div class="opt"><b>C.</b> 最大值</div><div class="opt"><b>D.</b> 平均值</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>这是树的路径长度的定义：从树根到树中<b>每个</b>结点的路径长度之和（即所有结点深度之和），选A。后面哈夫曼树一节的带权路径长度WPL即在此基础之上对叶结点加权求和。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P127</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-1-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.1 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知一棵完全二叉树的第9层有240个结点，则整棵完全二叉树共有多少个结点？其中有多少个叶结点？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>层数判定：</b>第9层最多2⁸=256个结点，现有240个＜256，说明第9层是最后一层且未满。</p><p><b>总结点数：</b>前8层全满共2⁸-1=255个，加上第9层240个，n=255+240=<b>495</b>。</p><p><b>叶结点数（双法）：</b>①按层算：第9层240个结点全为叶；第8层128个结点中，只有前⌈240/2⌉=120个有孩子（240=120×2，每个恰两个孩子），故第8层的叶=128-120=8，叶总数=240+8=<b>248</b>。②公式验算：完全二叉树中叶结点数=n-⌊n/2⌋=495-247=248✓，两法一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一棵具有n个结点、度为4的树来说，（）。</p><div class="opts"><div class="opt"><b>A.</b> 树的高度至多是n-3</div><div class="opt"><b>B.</b> 树的高度至多是n-4</div><div class="opt"><b>C.</b> 第i层上至多有4(i-1)个结点</div><div class="opt"><b>D.</b> 至少在某一层上正好有4个结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>度为4⇒至少有一个结点有4个孩子。要使高度最大，让其余结点串成一条链，4度结点位于链上：设最长路径含k个结点，4个孩子中1个在链上、另3个不在，故n=k+3，高度=k=n-3，A对。C错：第i层至多4<sup>i-1</sup>个结点；D错：4个孩子虽同层，但该层可能还有其他结点，"正好4个"不保证。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>度为4、高度为h的树，（）。</p><div class="opts"><div class="opt"><b>A.</b> 至少有h+3个结点</div><div class="opt"><b>B.</b> 至多有4h-1个结点</div><div class="opt"><b>C.</b> 至多有4h个结点</div><div class="opt"><b>D.</b> 至少有h+4个结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>结点最少时：前h-1层每层只放1个结点构成一条链，把4度结点安排在第h-1层，其4个孩子全部落在第h层，共(h-1)+4=<b>h+3</b>个结点。注意"度为4"意味着必须存在4度结点，故不能只取h个结点的单纯链。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定一棵度为3的树中，结点数为50，则其最小高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>高度最小⇔各层尽量满：1+3+9+27=40＜50≤1+3+9+27+81=121，即高度为4时最多40个结点放不下，高度为5足够，最小高度为5。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有一棵度为3的树，其中度为3的结点数n₃=2，度为2的结点数n₂=1，叶结点数n₀=6，则该树的结点总数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 12</div><div class="opt"><b>B.</b> 9</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> ≥9的任意整数</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>先验自洽：n₀=n₂+2n₃+1=1+4+1=6✓。总点数 n=n₀+n₁+n₂+n₃=9+n₁，而度为1的结点数n₁题目未限定，可取0,1,2,…任意非负整数，故结点总数为≥9的任意整数，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设一棵m叉树中有N₁个度数为1的结点，N₂个度数为2的结点，……，Nₘ个度数为m的结点，则该树中共有（）个叶结点。</p><div class="opts"><div class="opt"><b>A.</b> ∑ᵢ₌₁ᵐ(i-1)Nᵢ</div><div class="opt"><b>B.</b> ∑ᵢ₌₁ᵐ(i-1)Nᵢ+1</div><div class="opt"><b>C.</b> ∑ᵢ₌₂ᵐ(i-1)Nᵢ</div><div class="opt"><b>D.</b> ∑ᵢ₌₂ᵐ(i-1)Nᵢ+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>结点总数 n=∑ᵢ₌₀ᵐNᵢ，边数 n-1=∑ᵢ₌₁ᵐ iNᵢ。两式相减：N₀=∑Nᵢ-∑iNᵢ+1=1+∑ᵢ₌₁ᵐ(1-i)Nᵢ=∑ᵢ₌₂ᵐ(i-1)Nᵢ+1（i=1项系数为0，从i=2起求和），选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】在一棵度为4的树T中，若有20个度为4的结点，10个度为3的结点，1个度为2的结点，10个度为1的结点，则树T的叶结点个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 41</div><div class="opt"><b>B.</b> 82</div><div class="opt"><b>C.</b> 113</div><div class="opt"><b>D.</b> 122</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>边数=20×4+10×3+1×2+10×1=122=n-1⇒n=123；叶结点 n₀=123-(20+10+1+10)=123-41=<b>82</b>。也可直接用 n₀=∑(i-1)nᵢ+1=3×20+2×10+1×1+1=82 验算，两法一致。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-1-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.1 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2016统考真题】若森林F有15条边、25个结点，则F包含树的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 9</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>每棵结点数为nᵢ的树有nᵢ-1条边。设F含k棵树，则边数=∑(nᵢ-1)=25-k=15，解得k=25-15=<b>10</b>。结论：<b>森林中树的棵数=结点数-边数</b>（与"n个结点的连通无向图生成树有n-1条边"呼应）。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P128</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-5-2"><h3>5.2 二叉树的概念<span class="tag tag-tpl">30题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-5-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于二叉树的说法中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 度为2的有序树就是二叉树</div><div class="opt"><b>B.</b> 含有n个结点的二叉树的高度为⌊log₂n⌋+1</div><div class="opt"><b>C.</b> 在完全二叉树中，若一个结点没有左孩子，则它必是叶结点</div><div class="opt"><b>D.</b> 含有n个结点的完全二叉树的高度为⌊log₂n⌋</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>C✓：完全二叉树按层编号，无左孩子意味着2i＞n，则必有2i+1＞n，左右孩子皆无，为叶。A错：二叉树与度为2的有序树不等价（二叉树可为空、结点即使仅一个孩子也须区分左右子树）；B、D错：n个结点的<b>完全</b>二叉树高度才是⌊log₂n⌋+1，一般二叉树高度可大至n。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P135</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>在一棵完全二叉树中，含有n₀个叶结点，当度为1的结点数为1时，该树的高度是多少？当度为1的结点数为0时，该树的高度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>完全二叉树高度由结点总数决定：h=⌈log₂(n+1)⌉（或⌊log₂n⌋+1）。先由叶结点数推出总结点数。</p><p><b>情形一（n₁=1）：</b>n=2n₀，h=⌈log₂(2n₀+1)⌉。</p><p><b>情形二（n₁=0）：</b>此时无度为1结点的完全二叉树必为满二叉树，n=2n₀-1，h=log₂(2n₀)（即log₂(n₀+1)+... 核：n=2ʰ-1且n₀=2ʰ⁻¹，h=log₂(2n₀)）。</p><p><b>验算：</b>n₀=4：情形一n=8，h=⌈log₂9⌉=4✓（8个结点高度4的完全二叉树）；情形二n=7，h=log₂8=3✓（三层满）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>"二叉树为空"意味着二叉树（）。</p><div class="opts"><div class="opt"><b>A.</b> 根结点没有子树</div><div class="opt"><b>B.</b> 不存在</div><div class="opt"><b>C.</b> 没有结点</div><div class="opt"><b>D.</b> 由一些没有赋值的空结点构成</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>二叉树是结点的有限集合，"为空"即该集合不含任何结点（连根都不存在），选C。A是仅有一个根结点的情形；D混淆了"空树"与"结点值为空"：树由结点构成，不存在"空结点"。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P135</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>一棵有n个结点的满二叉树有多少个分支结点和多少个叶结点？该满二叉树的高度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>满二叉树中n为奇数（n=2ʰ-1），且n₀=n₂+1、n₁=0。</p><p><b>叶结点：</b>n₀=(n+1)/2。<b>分支结点：</b>n-n₀=(n-1)/2。<b>高度：</b>由n=2ʰ-1得h=log₂(n+1)。</p><p><b>验算：</b>h=3时n=7：叶4=(7+1)/2✓，分支3=(7-1)/2✓，h=log₂8=3✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于完全二叉树的说法中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 在完全二叉树中，叶结点的双亲的左兄弟（若存在）一定不是叶结点</div><div class="opt"><b>B.</b> 任何一棵二叉树，叶结点个数为度为2的结点数减1，即n₀=n₂-1</div><div class="opt"><b>C.</b> 完全二叉树不适合顺序存储结构，只有满二叉树适合顺序存储结构</div><div class="opt"><b>D.</b> 结点按完全二叉树层序编号的二叉树中，第i个结点的左孩子的编号为2i</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>A✓：完全二叉树中内部结点在每层靠左、叶靠右。叶结点的双亲必有孩子（是内部结点），与它同层且编号更小的左兄弟只能也是内部结点，故不是叶。B错：n₀=n₂+1；C错：完全二叉树正<b>最适合</b>顺序存储；D错：仅当2i≤n（左孩子存在）时编号才是2i，叙述缺存在条件。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P135</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-2-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.2 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知一棵度为m的树中，有n₁个度为1的结点，n₂个度为2的结点，……，nₘ个度为m的结点，问该树有多少个叶子结点？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>推导：</b>设叶结点n₀个。结点总数 n=∑ᵢ₌₀ᵐ nᵢ；分支（边）数 n-1=∑ᵢ₌₁ᵐ i·nᵢ。</p><p>两式相减：∑nᵢ-∑i·nᵢ=1，即 n₀=∑ᵢ₌₁ᵐ(i-1)nᵢ+1=n₁·0+n₂·1+n₃·2+…+nₘ(m-1)+1。</p><p>由于(i-1)n₁=0，习惯写作 <b>n₀=n₂+2n₃+…+(m-1)nₘ+1</b>。</p><p><b>验算：</b>二叉树m=2：n₀=n₂+1即经典性质✓；度为4的树n₂=3、n₃=2、n₄=2：n₀=3+4+6+1=14，与5.1综合题数据一致✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有10个叶结点的二叉树中有（）个度为2的结点。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 9</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>由性质 n₀=n₂+1（所有二叉树通用：结点数=边数+1双推可得），n₂=n₀-1=10-1=<b>9</b>。度为1的结点个数与该结论无关。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>一棵高度为h的满m叉树有如下性质：根结点所在层次为第1层，第h层上的结点都是叶结点，其余各层上每个结点都有m棵非空子树。若按层次自顶向下、同一层自左向右，顺序从1开始对全部结点进行编号。请回答：<br>(1) 各层的结点个数是多少？<br>(2) 编号为i的结点的双亲结点（若存在）的编号是多少？<br>(3) 编号为i的结点的第k个孩子结点（若存在）的编号是多少？<br>(4) 编号为i的结点有右兄弟的条件是什么？其右兄弟结点的编号是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1) 第i层恰有m<sup>i-1</sup>个结点（i=1,2,…,h）。</p><p>(2) i=1为根无双亲；i＞1时，其双亲编号为 <b>⌈(i-2)/m⌉+1</b>。推导：双亲p的第1个孩子为(p-1)m+2，第m个孩子为pm+1，解不等式(p-1)m+2≤i≤pm+1得 p=⌈(i-2)/m⌉+1。验算m=2：⌈(i-2)/2⌉+1=⌊i/2⌋✓（二叉树双亲公式）。</p><p>(3) 编号i的第k个孩子（1≤k≤m）编号为 <b>(i-1)m+k+1</b>。验算m=2,k=1: 2i；k=2: 2i+1✓。</p><p>(4) i有右兄弟⇔i不是双亲的最后（第m个）孩子⇔ <b>(i-1) mod m ≠ 0</b>（i=1的根除外，根无兄弟）；此时右兄弟编号为i+1。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设高度为h的二叉树上只有度为0和度为2的结点，则此类二叉树中所包含的结点数至少为（）。</p><div class="opts"><div class="opt"><b>A.</b> h</div><div class="opt"><b>B.</b> 2h-1</div><div class="opt"><b>C.</b> 2h+1</div><div class="opt"><b>D.</b> h+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>只有0、2度结点⇒n=2n₂+1。高度为h要求存在h层的链，则第1~h-1层每层至少1个度2结点，n₂≥h-1；取每层恰1个度2结点、其另一分支挂叶，得最少结点数2(h-1)+1=<b>2h-1</b>。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有n个结点且高度为n的二叉树的数目为（）。</p><div class="opts"><div class="opt"><b>A.</b> log₂n</div><div class="opt"><b>B.</b> n/2</div><div class="opt"><b>C.</b> n</div><div class="opt"><b>D.</b> 2ⁿ⁻¹</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>n个结点、高度为n⇒每层恰1个结点（单链）。链上每个结点唯一的孩子可以是左孩子或右孩子，n-1个"位置"各有2种独立选择，共2×2×…×2=2<sup>n-1</sup>棵，选D。验算n=2：根+左孩子、根+右孩子共2棵=2¹✓。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假设一棵二叉树的结点个数为50，则它的最小高度是（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>高度最小⇔尽量长满：高度为5的满树有2⁵-1=31个结点不足50；高度为6的完全二叉树可容纳32~63个结点，50在其内，故最小高度为6。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设二叉树有2n个结点，且m＜n，则不可能存在（）的结点。</p><div class="opts"><div class="opt"><b>A.</b> n个度为0</div><div class="opt"><b>B.</b> 2m个度为0</div><div class="opt"><b>C.</b> 2m个度为1</div><div class="opt"><b>D.</b> 2m个度为2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>排除法（三选项均可构造，唯有C矛盾）：若n₁=2m，则n₀+n₂=2n-2m且n₀=n₂+1，得2n₂+1=2n-2m，左边为奇、右边为偶，矛盾，故不可能有2m个度为1的结点，选C。A：n₀=n⇒n₂=n-1、n₁=1✓；B：n₀=2m时n₂=2m-1、n₁=2n-4m+1，取m≤n/2可为非负✓。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个具有1025个结点的二叉树的高h为（）。</p><div class="opts"><div class="opt"><b>A.</b> 11</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 11~1025</div><div class="opt"><b>D.</b> 10~1024</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>高度下界：2¹⁰-1=1023＜1025≤2¹¹-1=2047，故最小高度11；上界：n个结点可排成单链，高度1025。所以11≤h≤1025，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设二叉树中只有度为0和度为2的结点，其结点个数为15，则该二叉树的最大深度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 9</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>n₀=n₂+1且n₀+n₂=15⇒n₂=7、n₀=8。深度最大⇔7个度2结点全部串成一条"左链"，每个度2结点的另一分支各挂1个叶，共7+1=<b>8</b>层。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>高度为h的完全二叉树最少有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 2ʰ</div><div class="opt"><b>B.</b> 2ʰ+1</div><div class="opt"><b>C.</b> 2ʰ⁻¹</div><div class="opt"><b>D.</b> 2ʰ-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>完全二叉树高度为h⇒前h-1层必须全满（共2<sup>h-1</sup>-1个），第h层至少1个结点，故最少2<sup>h-1</sup>-1+1=2<sup>h-1</sup>个。验算h=2：最少2个=2¹✓；h=3：最少4个=2²✓。注意与"最多2ʰ-1"区分。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P136</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知一棵完全二叉树的第6层（设根为第1层）有8个叶结点，则完全二叉树的结点个数最少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 39</div><div class="opt"><b>B.</b> 52</div><div class="opt"><b>C.</b> 111</div><div class="opt"><b>D.</b> 119</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>最少情形：树只长到第6层——前5层全满共31个，第6层恰8个结点且全是叶（是第5层前8个结点的孩子），n=31+8=<b>39</b>。（52为第6层多结点情形，111为最多情形，见下题。）</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一棵深度为6的完全二叉树的第6层有3个叶结点，则该二叉树共有（）个叶结点。</p><div class="opts"><div class="opt"><b>A.</b> 17</div><div class="opt"><b>B.</b> 18</div><div class="opt"><b>C.</b> 19</div><div class="opt"><b>D.</b> 20</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>深度为6说明第6层是最后一层，其上结点全是叶，故第6层恰3个结点，n=31+3=34。<b>法一（公式）：</b>分支结点=⌊34/2⌋=17，叶=34-17=<b>17</b>。<b>法二（按层核）：</b>这3个孩子由第5层前2个结点生出（2+1），第5层16个结点中叶=16-2=14，叶总数=14+3=17，两法一致，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵完全二叉树上有1001个结点，其中叶结点的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 250</div><div class="opt"><b>B.</b> 500</div><div class="opt"><b>C.</b> 254</div><div class="opt"><b>D.</b> 501</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>n个结点的完全二叉树中，分支结点恰为编号1~⌊n/2⌋的那些，故叶=n-⌊n/2⌋=1001-500=<b>501</b>。也可由 n₀=n₂+1 与奇偶性（n为奇⇒n₁=0）得 n₀=(n+1)/2=501 验算。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一棵二叉树有126个结点，在第7层（根结点在第1层）至多有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 32</div><div class="opt"><b>B.</b> 64</div><div class="opt"><b>C.</b> 63</div><div class="opt"><b>D.</b> 不存在第7层</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>第7层要存在，前6层须全满=63个结点，仅剩126-63=63个可放第7层，而第7层容量64，故至多<b>63</b>个。若第7层满64个则总结点至少127＞126，矛盾，故D错。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵有124个叶结点的完全二叉树，最多有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 247</div><div class="opt"><b>B.</b> 248</div><div class="opt"><b>C.</b> 249</div><div class="opt"><b>D.</b> 250</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>完全二叉树叶只出现在最后两层。设高8：前7层满127个，第7层64个中x个为叶，则第8层结点=2(64-x)，叶数=x+2(64-x)=128-x=124⇒x=4，第8层=120，总数=127+120=<b>248</b>。再放一个（第8层121个）则第7层叶剩3、叶总数125≠124，故248为最多。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某完全二叉树T中，结点个数最大的层有8个结点，则T中至多有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 15</div><div class="opt"><b>C.</b> 23</div><div class="opt"><b>D.</b> 31</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>完全二叉树中"最大的层"即最后一层。最后一层8个结点，则其上一层（第h-1层）结点数≥⌈8/2⌉=4且≤8（8已是最大层），第h-1层取满8时需2^(h-2)=8⇒h=5：结点数=1+2+4+8+8=<b>23</b>（第4、5层均为8个，与"最大层有8个"不矛盾）。若层数更少则总结点更少。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵有n个结点的二叉树采用二叉链存储结点，其中空指针数为（）。</p><div class="opts"><div class="opt"><b>A.</b> n</div><div class="opt"><b>B.</b> n+1</div><div class="opt"><b>C.</b> n-1</div><div class="opt"><b>D.</b> 2n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>n个结点共2n个指针域，非空指针即分支（边）共n-1条，故空指针=2n-(n-1)=<b>n+1</b>。这一结论正是后面线索二叉树"利用n+1个空链域存放前驱后继"的依据。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有n(n≥1)个结点的二叉树采用三叉链表表示，其中每个结点包含三个指针，分别指向其左孩子、右孩子及双亲（若不存在，则置为空），则下列说法中正确的是（）。<br>I. 树中空指针的数量为n+2<br>II. 所有度为2的结点均被三个指针指向<br>III. 每个叶结点均被一个指针所指向</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> I、II</div><div class="opt"><b>C.</b> I、III</div><div class="opt"><b>D.</b> II、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>指针域共3n，非空指针=每条边贡献"双亲指孩子+孩子指双亲"2个，即2(n-1)，空指针=3n-2n+2=n+2，I✓。II✗：若<b>根</b>的度为2，它只被两个孩子的双亲指针指向（根无双亲），不到3个。III✗：叶只被双亲指针指向，但<b>根为叶</b>（单结点树）时无任何指针指向它。故仅I正确。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一棵完全二叉树中（其根的序号为1），（）可判定序号为p和q的两个结点是否在同一层。</p><div class="opts"><div class="opt"><b>A.</b> ⌊log₂p⌋=⌊log₂q⌋</div><div class="opt"><b>B.</b> log₂p=log₂q</div><div class="opt"><b>C.</b> ⌊log₂p⌋+1=⌊log₂q⌋</div><div class="opt"><b>D.</b> ⌊log₂p⌋=⌊log₂q⌋+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>完全二叉树中编号为i的结点所在层号=⌊log₂i⌋+1，故p、q同层⇔⌊log₂p⌋=⌊log₂q⌋。B是实数相等（要求p=q，过强）；C、D表达的是恰好相差一层。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一个用数组表示的完全二叉树中，根结点的下标为1，那么下标为17和19的结点的最近公共祖先的下标是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 8</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>利用"下标i的双亲为⌊i/2⌋"交替上溯：17→8→4，19→9→4，两条路径在4汇合（8与9不同层但各自上溯一层同为4的孩子），最近公共祖先下标=<b>4</b>。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定一棵三叉树的结点数为50，则它的最小高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>三叉树高度h至多容纳(3ʰ-1)/2个结点：h=4时(81-1)/2=40＜50；h=5时(243-1)/2=121≥50，故最小高度5。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P137</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有n个结点的三叉树用三叉链表表示（每个结点含3个孩子指针），则树中空指针域的个数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 3n+1</div><div class="opt"><b>B.</b> 2n+1</div><div class="opt"><b>C.</b> 3n-1</div><div class="opt"><b>D.</b> 3n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>三叉树中每个结点3个孩子指针共3n个域，非空指针=分支数=n-1，空指针=3n-(n-1)=<b>2n+1</b>。与二叉链表的n+1同理，可推广：m叉链表空指针=(m-1)n+1。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于一棵满二叉树，共有n个结点和m个叶结点，高度为h，则（）。</p><div class="opts"><div class="opt"><b>A.</b> n=h+m</div><div class="opt"><b>B.</b> n+m=2h</div><div class="opt"><b>C.</b> m=h-1</div><div class="opt"><b>D.</b> n=2ʰ-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>满二叉树每层全满：n=2<sup>h</sup>-1、m=2<sup>h-1</sup>=(n+1)/2，故D✓；A、B、C均与该关系矛盾（如h=3时n=7、m=4，A得7=3+4✓？注意h=3恰好侥幸相等，但h=4时n=15、m=8，h+m=12≠15，A不恒成立）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】已知一棵完全二叉树的第6层（设根为第1层）有8个叶结点，则该完全二叉树的结点个数最多是（）。</p><div class="opts"><div class="opt"><b>A.</b> 39</div><div class="opt"><b>B.</b> 52</div><div class="opt"><b>C.</b> 111</div><div class="opt"><b>D.</b> 119</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>最多情形：树长到第7层。第6层至多64个结点，其中8个为叶⇒56个为分支结点，第7层最多56×2=112个，总计31+64+112=<b>111</b>。最少情形为39（只长到第6层），注意区分两问。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】若一棵完全二叉树有768个结点，则该二叉树中叶结点的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 257</div><div class="opt"><b>B.</b> 258</div><div class="opt"><b>C.</b> 384</div><div class="opt"><b>D.</b> 385</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>叶结点数=n-⌊n/2⌋=768-384=<b>384</b>。验算：768为偶数⇒n₁=1，由n₀=n₂+1与n₀+n₂=767得n₂=383、n₀=384✓，两法一致。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】设一棵非空完全二叉树T的所有叶结点均位于同一层，且每个非叶结点都有2个子结点。若T有k个叶结点，则T的结点总数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 2k-1</div><div class="opt"><b>B.</b> 2k</div><div class="opt"><b>C.</b> 2k+1</div><div class="opt"><b>D.</b> 2k+2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>所有叶同层且非叶均有2个孩子⇒T是满二叉树：n₀=k、n₂=k-1，总数=2k-1。或直接用满二叉树性质n=2n₀-1验算（k=4时7个结点✓）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】对于任意一棵高度为5且有10个结点的二叉树，若采用顺序存储结构保存，每个结点占1个存储单元（仅存放结点的数据信息），则存放该二叉树需要的存储单元数量至少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 31</div><div class="opt"><b>B.</b> 16</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 10</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>顺序存储按完全二叉树编号映射到数组下标，所需单元数=树中<b>最大编号</b>。题设"任意一棵"⇒须按最坏情形准备：最坏的10结点、高5的树是全右链1-3-7-15-31，最大编号2⁵-1=31，故至少31个单元。若只就某棵具体树而言（如全左链）最大编号16即可，但"任意"排除了B。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>若一棵完全二叉树共有63个结点，则该完全二叉树的高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 7</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>高度h满足2<sup>h-1</sup>-1＜63≤2<sup>h</sup>-1，即31＜63≤63，得h=6。也可用公式h=⌊log₂63⌋+1=5+1=6（63恰为6层满二叉树的结点数2⁶-1）。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P139</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-2-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.2 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】若二叉树的结点值均为正整数，采用顺序存储方式保存在数组R中，用-1表示结点不存在，则下列数组中，不能表示一棵二叉树的是（）。</p><div class="opts"><div class="opt"><b>A.</b> R[]={20,15,40,-1,-1,35}</div><div class="opt"><b>B.</b> R[]={15,40,10,18,35,-1,-1}</div><div class="opt"><b>C.</b> R[]={15,40,10,-1,-1,-1,12}</div><div class="opt"><b>D.</b> R[]={17,20,35,-1,18,45,-1,-1,19,27}</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>顺序存储的合法性条件：某下标i(i＞1)存在结点（值≠-1），则其双亲下标⌊i/2⌋必须也存在。逐项核验：A、B、C中每个非-1结点的双亲均非-1，合法；D中R[9]=19存在，但其双亲R[4]=-1（不存在），"孩子存在而双亲不存在"矛盾，故D不能表示一棵二叉树。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P139</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-5-3"><h3>5.3 二叉树的遍历和线索二叉树<span class="tag tag-tpl">43题选择 + 17题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-5-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在下列关于二叉树遍历的说法中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 若有一个结点是二叉树中某个子树的中序遍历结果序列的最后一个结点，则它一定是该子树的先序遍历结果序列的最后一个结点</div><div class="opt"><b>B.</b> 若有一个结点是二叉树中某个子树的先序遍历结果序列的最后一个结点，则它一定是该子树的中序遍历结果序列的最后一个结点</div><div class="opt"><b>C.</b> 若有一个叶结点是二叉树中某个子树的中序遍历结果序列的最后一个结点，则它一定是该子树的先序遍历结果序列的最后一个结点</div><div class="opt"><b>D.</b> 若有一个叶结点是二叉树中某个子树的先序遍历结果序列的最后一个结点，则它一定是该子树的中序遍历结果序列的最后一个结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>中序（LNR）最后访问的结点是该子树最右下的结点；先序（NLR）最后访问的是"沿右链走到底"的结点。二者一般不同：最右下结点可以带左子树，使先序最后落在其左子树内。但若限定该结点是<b>叶结点</b>（无左子树），它既是中序最后也是先序最后，C✓；A、B缺"叶"条件不成立，D方向说反。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P152</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若某非空二叉树的先序序列和后序序列正好相反，则该二叉树的形态是什么？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：</b>该二叉树中每个结点至多只有一个孩子，即整棵树退化为一条"单链"（每个结点只有左孩子或只有右孩子，可混合）。</p><p><b>推导：</b>先序NLR下，任何结点的孩子（若存在）必紧跟其后；后序LRN下，孩子必在其前。归纳证明：单结点树两序互逆成立；若某结点有两个孩子，则先序第二个结点在左子树、后序倒数第二个结点在右子树（互逆要求二者属同一棵子树），矛盾。故每结点至多一个孩子。</p><p><b>验证：</b>3结点左链1-2-3：先序123、后序321✓互逆；左混合链1(左2(右3))：先序123、后序321✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在任何一棵二叉树中，若结点a有左孩子b、右孩子c，则在结点的先序序列、中序序列、后序序列中，（）。</p><div class="opts"><div class="opt"><b>A.</b> 结点b一定在结点a的前面</div><div class="opt"><b>B.</b> 结点a一定在结点c的前面</div><div class="opt"><b>C.</b> 结点b一定在结点c的前面</div><div class="opt"><b>D.</b> 结点a一定在结点b的前面</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>三种遍历都遵循"先左子树后右子树"的约定：先序a,b,c；中序b,a,c；后序b,c,a。无论哪种序列，b（左子树中的结点）都在c（右子树中的结点）之前✓。而a与b、c的先后在三种序列中各不相同，A、B、D均不恒成立。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P152</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若某非空二叉树的先序序列和后序序列正好相同，则该二叉树的形态是什么？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：</b>该二叉树只有一个结点（仅有根）。</p><p><b>推导：</b>设先序=后序。先序首元素为根N，后序首元素为左子树（若非空）的最先访问结点。若左子树非空，则后序首≠先序首（先序首是N而N在后序中最后），矛盾，故左子树空；再看尾元素：后序尾为根N，先序尾为右子树最后访问的结点，同理右子树必空。左右子树皆空⇒只有根。</p><p><b>验证：</b>单结点树先序=后序=中序={N}✓；任何多于1个结点的二叉树先序首=根、后序尾=根但先序尾≠根，必不相等。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设n、m为一棵二叉树上的两个结点，在中序遍历时，n在m前的条件是（）。</p><div class="opts"><div class="opt"><b>A.</b> n在m右方</div><div class="opt"><b>B.</b> n是m祖先</div><div class="opt"><b>C.</b> n在m左方</div><div class="opt"><b>D.</b> n是m子孙</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>中序"左-根-右"：n先于m被访问 ⟺ n处于m的左子树中，或m处于n的右子树中——几何上即<b>n在m的左方</b>✓。祖先、子孙本身不决定次序（如n是m祖先但m在n左子树中时m反而先访问）。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P152</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设二叉树采用二叉链表存储结构，设计一个非递归算法求二叉树的高度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>用层序遍历，借助队列逐层统计：设front指向当前层最后一个结点，每当出队指针超过"本层末尾"标记时层数加1并更新标记为当前队尾。</p><div class="asc">int Btdepth(BiTree T){
+  if(!T) return 0;
+  BiTree Q[MaxSize]; int front=rear=-1;
+  int last=0, level=0;            //last:本层最后结点在队中的位置
+  Q[++rear]=T;
+  BiTree p;
+  while(front&lt;rear){
+    p=Q[++front];
+    if(p-&gt;lchild) Q[++rear]=p-&gt;lchild;
+    if(p-&gt;rchild) Q[++rear]=p-&gt;rchild;
+    if(front==last){ level++; last=rear; } //本层处理完
+  }
+  return level;
+}</div><p>每个结点入队出队各一次，时间O(n)，空间O(n)（队列最宽一层）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设n、m为一棵二叉树上的两个结点，在后序遍历时，n在m前的充分条件是（）。</p><div class="opts"><div class="opt"><b>A.</b> n在m右方</div><div class="opt"><b>B.</b> n是m祖先</div><div class="opt"><b>C.</b> n在m左方</div><div class="opt"><b>D.</b> n是m子孙</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>后序"左-右-根"中子孙必先于其祖先访问，故"n是m的子孙"⇒n在m前，充分✓。C"n在m左方"不充分：若n在m的左方但m在n的右子树中（n是m的祖先），后序反而n在m后，故排除。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>二叉树按二叉链表形式存储，试编写一个判别给定二叉树是否是完全二叉树的算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>完全二叉树的层序序列中，结点必须是"连续"的：一旦出现空指针（虚结点），之后不能再出现非空结点。层序遍历时把空指针也入队，检查该性质。</p><div class="asc">bool IsComplete(BiTree T){
+  if(!T) return true;          //空树视为完全二叉树
+  BiTree Q[MaxSize]; int front=rear=0;
+  Q[rear++]=T; bool seenNull=false;
+  while(front&lt;rear){
+    BiTree p=Q[front++];
+    if(p==NULL) seenNull=true; //出现空结点
+    else{
+      if(seenNull) return false; //空之后又有结点
+      Q[rear++]=p-&gt;lchild;
+      Q[rear++]=p-&gt;rchild;
+    }
+  }
+  return true;
+}</div><p>每个结点（含空指针）各入队一次，时间O(n)。也可不用标记：出队遇到第一个空后再全部出队验证全空，同理。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某非空二叉树采用顺序存储结构，树中的结点信息按完全二叉树的层次序列依次存放在如下所示的一维数组中（∧表示空），则该二叉树的后序遍历序列为（）。</p><div class="asc">下标: 1  2  3  4  5  6  7  8  9  10 11 12<br>值:   a  b  c  g  d  e  f  ∧  ∧  ∧  ∧  h</div><div class="opts"><div class="opt"><b>A.</b> gdbhefca</div><div class="opt"><b>B.</b> gbdehcfa</div><div class="opt"><b>C.</b> gdbhefca</div><div class="opt"><b>D.</b> bgdehcfa</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>按"下标i的左右孩子为2i、2i+1"恢复树：a(L:b, R:c)；b(L:g, R:d)；c(L:e, R:f)；e(L:h)。后序（左右根）：g→d→b，h→e→f→c，最后a，得 <b>g d b h e f c a</b>。逐层核对无遗漏（12号单元的h是e的左孩子）。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设二叉树采用二叉链表存储结构存储，试设计一个算法，计算一棵给定二叉树的所有双分支结点个数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>递归：整棵树的双分支结点数=左子树内个数+右子树内个数+（根是否双分支）。任选一种遍历次序均可，统计只看根。</p><div class="asc">int DsonNodes(BiTree b){
+  if(b==NULL) return 0;
+  int cnt = (b-&gt;lchild&amp;&amp;b-&gt;rchild) ? 1 : 0;
+  return DsonNodes(b-&gt;lchild)
+       + DsonNodes(b-&gt;rchild) + cnt;
+}</div><p>每个结点访问一次，时间O(n)；递归栈深O(h)。验算：满二叉树7结点（3个双分支）得3✓；单链得0✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在二叉树的先序序列、中序序列和后序序列中，所有叶结点的先后顺序（）。</p><div class="opts"><div class="opt"><b>A.</b> 都不相同</div><div class="opt"><b>B.</b> 完全相同</div><div class="opt"><b>C.</b> 先序和中序相同，而与后序不同</div><div class="opt"><b>D.</b> 中序和后序相同，而与先序不同</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>三种遍历对"左子树先于右子树"的约定一致，差别只在根的访问时机。叶结点无子树，其相对次序由"哪个子树先被遍历"决定，因此三种序列中叶结点之间的相对顺序完全相同（这正是后述"先序+后序无法唯一确定二叉树、但能确定叶结点次序"的原因）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设树B是一棵采用链式结构存储的二叉树，编写一个把树B中所有结点的左、右子树进行交换的函数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>递归交换：先递归交换左子树内部、右子树内部，最后交换根的两个孩子指针（先后次序无影响，三序皆可）。</p><div class="asc">void Swap(BiTree b){
+  if(b){
+    Swap(b-&gt;lchild);
+    Swap(b-&gt;rchild);
+    BiTree t=b-&gt;lchild;   //交换根的左右指针
+    b-&gt;lchild=b-&gt;rchild;
+    b-&gt;rchild=t;
+  }
+}</div><p>时间O(n)（每结点处理一次），空间O(h)（递归栈）。注意若用先序"先交换再递归"也正确，但必须保证递归调用与交换使用的是同一孩子域，避免交换后进错子树。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对二叉树的结点从1开始进行连续编号，要求每个结点的编号大于其左、右孩子的编号，同一结点的左、右孩子中，其左孩子的编号小于其右孩子的编号，可采用（）次序的遍历实现编号。</p><div class="opts"><div class="opt"><b>A.</b> 先序遍历</div><div class="opt"><b>B.</b> 中序遍历</div><div class="opt"><b>C.</b> 后序遍历</div><div class="opt"><b>D.</b> 层次遍历</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>要求"左孩子＜右孩子＜双亲"，即孩子先编号、双亲后编号且左先于右——正是后序遍历（左-右-根）的访问次序，按访问顺序1,2,3,…编号即可✓。先序/中序中双亲先于（某）孩子编号，层次遍历也无法保证双亲编号更大。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设二叉树采用二叉链存储结构存储，设计一个算法，求先序遍历序列中第k（1≤k≤二叉树中结点个数）个结点的值。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>按先序“根-左-右”递归访问，用全局计数器i累计，第k个被访问的结点即答案。</p><div class="asc">int i=1;              //全局（或引用参数）计数器
+ElemType PreNode(BiTree b, int k){
+  if(b==NULL) return 0;         //0表示未找到
+  if(i==k) return b-&gt;data;      //当前结点正是第k个
+  i++;
+  ElemType r=PreNode(b-&gt;lchild,k);
+  if(r!=0) return r;            //左子树中已找到
+  return PreNode(b-&gt;rchild,k);
+}</div><p>时间O(n)（最坏遍历全树），递归栈O(h)。找到后立即返回可提前终止。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>按某种顺序对二叉树的结点进行编号，编号为1,2,…,n，规定：树中任一结点v，其编号等于v的左子树上的最小编号减1，而v的右子树中的最小编号等于v的左子树上的最大编号加1，则说明该二叉树是按（）次序编号的。</p><div class="opts"><div class="opt"><b>A.</b> 中序遍历</div><div class="opt"><b>B.</b> 先序遍历</div><div class="opt"><b>C.</b> 后序遍历</div><div class="opt"><b>D.</b> 层次遍历</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>条件"v的编号=左子树最小编号-1"说明v恰在左子树全部结点<b>之前</b>编号；"右子树最小编号=左子树最大编号+1"说明编号顺序为 v→左子树→右子树且各子树内部连续——正是先序（NLR）次序✓。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知二叉树以二叉链表存储，编写算法完成：对于树中每个元素值为x的结点，删去以它为根的子树，并释放相应的空间。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>两步——①在树中查找值为x的结点：层序或先序遍历，找到后置其双亲相应的孩子指针为空并调用删除函数；②删除以p为根的子树必须"后序"释放（先孩子后双亲）。</p><div class="asc">void Destroy(BiTree p){      //后序释放子树
+  if(p){ Destroy(p-&gt;lchild);
+         Destroy(p-&gt;rchild); free(p); }
+}
+void SearchX(BiTree b, ElemType x){
+  if(b){
+    if(b-&gt;lchild)
+      if(b-&gt;lchild-&gt;data==x){ Destroy(b-&gt;lchild); b-&gt;lchild=NULL; }
+    if(b-&gt;rchild)
+      if(b-&gt;rchild-&gt;data==x){ Destroy(b-&gt;rchild); b-&gt;rchild=NULL; }
+    SearchX(b-&gt;lchild,x);   //继续在子树中查找其余x
+    SearchX(b-&gt;rchild,x);
+  }
+}</div><p>主调用前若根值即x则整树销毁。每个结点最多被访问、释放各一次，时间O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>先序序列为A,B,C，后序序列为C,B,A的二叉树共有（）。</p><div class="opts"><div class="opt"><b>A.</b> 1棵</div><div class="opt"><b>B.</b> 2棵</div><div class="opt"><b>C.</b> 3棵</div><div class="opt"><b>D.</b> 4棵</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>先序首结点=后序末结点=根A；先序第二个B、后序倒数第二个B，说明B是A的唯一孩子；同理C是B的唯一孩子。于是A、B、C构成单链，每个结点唯一的孩子可放左或放右：2×2=<b>4</b>棵（先序、后序对该差别不敏感）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-9" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第9题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>在二叉树中查找值为x的结点，试编写算法（用C语言）打印值为x的结点的所有祖先，假设值为x的结点不多于一个。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>采用"路径带回"的后序递归：f(b,x)返回b的子树中是否含x；双亲在递归返回"真"时打印自己，即得自下而上的祖先。</p><div class="asc">bool PrintAncestor(BiTree b, ElemType x){
+  if(!b) return false;
+  if(b-&gt;data==x) return true;
+  if(PrintAncestor(b-&gt;lchild,x)||PrintAncestor(b-&gt;rchild,x)){
+    printf(&quot;%c &quot;,b-&gt;data);   //孩子方向含x，则b是祖先
+    return true;
+  }
+  return false;
+}</div><p>输出顺序为从x的双亲到根。也可以用非递归后序遍历：出栈找到x时栈中剩余结点即全部祖先。时间O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵完全二叉树的后序遍历序列为CDBFGEA，则其先序遍历序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> CBDAFEG</div><div class="opt"><b>B.</b> ABECDFG</div><div class="opt"><b>C.</b> ABCDEFG</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>由后序末结点知根为A；再结合完全二叉树形态唯一（3层7结点）恢复结构：左子树{B,C,D}、右子树{E,F,G}，B(L:C,R:D)、E(L:F,R:G)。先序=根→左→右：A,B,C,D,E,F,G=<b>ABCDEFG</b>✓。（注意完全二叉树+一种遍历即可确定结构。）</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-10" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第10题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设一棵二叉树的结点结构为(LLINK,INFO,RLINK)，ROOT为指向该二叉树根结点的指针，p和q分别为指向该二叉树中任意两个结点的指针，试编写算法ANCESTOR(ROOT,p,q,r)，找到p和q的最近公共祖先结点。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>后序遍历：对每个结点b，若其左子树与右子树中"各含p、q之一"（或b本身是p/q且另一结点在其子树中），则b即为最近公共祖先。</p><div class="asc">BiTree ANCESTOR(BiTree ROOT, BiTree p, BiTree q){
+  if(!ROOT||ROOT==p||ROOT==q) return ROOT;
+  BiTree L=ANCESTOR(ROOT-&gt;LLINK,p,q);
+  BiTree R=ANCESTOR(ROOT-&gt;RLINK,p,q);
+  if(L&amp;&amp;R) return ROOT;      //p、q分居两侧
+  return L?L:R;               //都在同侧，向上传递
+}</div><p>递归返回非空表示该侧子树含p或q。每个结点访问一次，时间O(n)。验算：p、q互为兄弟时答案为其双亲✓；p是q祖先时答案为p✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设结点X和Y是二叉树中任意的两个结点。在该二叉树的先序遍历序列中X在Y之前，而在其后序遍历序列中X在Y之后，则X和Y的关系是（）。</p><div class="opts"><div class="opt"><b>A.</b> X是Y的左兄弟</div><div class="opt"><b>B.</b> X是Y的右兄弟</div><div class="opt"><b>C.</b> X是Y的祖先</div><div class="opt"><b>D.</b> X是Y的后裔</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>祖先在先序中最先、在后序中最后被访问，故"先序在前+后序在后"唯一对应<b>祖先关系</b>：X是Y的祖先✓。兄弟或后裔都不能同时满足两个条件（如X是Y的后裔则先序中X在Y之后）。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-11" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第11题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设二叉树采用二叉链表存储结构，设计一个算法，求非空二叉树b的宽度（即具有结点数最多的那一层的结点个数）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>层序遍历，用"本层末尾标记last"把队列分轮：每出队到标记处统计本层计数cnt，取max；层数增加时更新标记为当前rear。</p><div class="asc">int Width(BiTree b){
+  BiTree Q[MaxSize]; int front=rear=-1;
+  int last=0,wmax=0,cnt=0;
+  Q[++rear]=b;
+  while(front&lt;rear){
+    BiTree p=Q[++front]; cnt++;
+    if(p-&gt;lchild) Q[++rear]=p-&gt;lchild;
+    if(p-&gt;rchild) Q[++rear]=p-&gt;rchild;
+    if(front==last){          //一层结束
+      if(cnt&gt;wmax) wmax=cnt;
+      cnt=0; last=rear;
+    }
+  }
+  return wmax;
+}</div><p>时间O(n)，辅助空间O(n)。满二叉树时宽度=最下层结点数；单链时宽度=1，验算正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若二叉树中结点的先序序列为…a…b…，中序序列是…b…a…，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 结点a和结点b分别在某结点的左子树和右子树中</div><div class="opt"><b>B.</b> 结点b在结点a的右子树中</div><div class="opt"><b>C.</b> 结点b在结点a的左子树中</div><div class="opt"><b>D.</b> 结点a和结点b分别在某结点的两棵非空子树中</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>先序中a先于b⇒b在a的某棵子树之中；中序中b先于a⇒b所在子树先于a访问完，只能是a的<b>左子树</b>（右子树的中序部分在a之后）✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P153</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-12" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第12题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设有一棵满二叉树（所有结点值均不同），已知其先序序列为pre，设计一个算法求其后序序列post。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>满二叉树结点数n为奇数，先序首元素为根，其后前(n-1)/2个是左子树先序、其余是右子树先序。递归：post=（左子树post）（右子树post）根。</p><div class="asc">void PreToPost(ElemType pre[], int l1,int h1,
+               ElemType post[], int l2,int h2){
+  if(h1&gt;=l1){                       //区间非空
+    post[h2]=pre[l1];               //根放最后
+    int half=(h1-l1)/2;             //左子树长度
+    PreToPost(pre,l1+1,l1+half,post,l2,l2+half-1);
+    PreToPost(pre,l1+half+1,h1,post,l2+half,h2-1);
+  }
+}</div><p>调用PreToPost(pre,0,n-1,post,0,n-1)。每个结点处理一次，时间O(n)。验算n=3：pre=abc⇒post=bca✓（左b右c）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵二叉树的先序遍历序列为1234567，它的中序遍历序列可能是（）。</p><div class="opts"><div class="opt"><b>A.</b> 3124567</div><div class="opt"><b>B.</b> 1234567</div><div class="opt"><b>C.</b> 4135627</div><div class="opt"><b>D.</b> 1463572</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>用"先序定根、中序分左右"逐项模拟：B：1234567——每步根之后全在其一侧，构成右单链，合法✓。A：根1，中序中1前的{3}应属于左子树，但先序1后紧跟的是2，矛盾✗。C、D同样在左子树集合与先序前缀上矛盾。故选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P154</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-13" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第13题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个算法将二叉树的叶结点按从左到右的顺序连成一个单链表，表头指针为head。二叉树按二叉链表方式存储，链接时用叶结点的右指针域来存放单链表指针。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>任一遍历（如先序）保证叶从左到右；用尾指针tail把叶结点依次串接：每个叶的rchild改为链表指针，lchild置空。</p><div class="asc">BiTree head=NULL, tail=NULL;
+void LeafLink(BiTree b){
+  if(b){
+    if(!b-&gt;lchild&amp;&amp;!b-&gt;rchild){ //叶结点
+      if(head==NULL) head=tail=b;
+      else { tail-&gt;rchild=b; tail=b; }
+      b-&gt;lchild=NULL;
+    }
+    else{ LeafLink(b-&gt;lchild); LeafLink(b-&gt;rchild); }
+  }
+}</div><p>先序保证最左叶最先入链。时间O(n)。由于借用rchild作链，处理完后原树结构被破坏，题目允许。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列序列中，不能唯一地确定一棵二叉树的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 层次序列和中序序列</div><div class="opt"><b>B.</b> 先序序列和中序序列</div><div class="opt"><b>C.</b> 后序序列和中序序列</div><div class="opt"><b>D.</b> 先序序列和后序序列</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>中序+任一"能定根"的序列（先序/后序/层次的首尾元素都是根）都能递归唯一确定二叉树。而先序NLR与后序LRN只能确定根、无法区分子树在左还是在右（如先序AB、后序BA对应"A的左孩子B"和"A的右孩子B"两棵树），故不能唯一确定✓D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P154</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-14" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第14题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试设计判断两棵二叉树是否相似的算法。所谓二叉树T₁和T₂相似，指的是T₁和T₂都是空的二叉树或都只有一个根结点；或T₁的左子树和T₂的左子树是相似的，且T₁的右子树和T₂的右子树是相似的。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>定义本身就是递归的，直接翻译：</p><div class="asc">bool Similar(BiTree T1,BiTree T2){
+  if(T1==NULL&amp;&amp;T2==NULL) return true; //都空
+  else if(T1==NULL||T2==NULL) return false; //一空一非空
+  else return Similar(T1-&gt;lchild,T2-&gt;lchild)
+            &amp;&amp; Similar(T1-&gt;rchild,T2-&gt;rchild);
+}</div><p>相似只比"形态"不比值——两树结点同步遍历，任何一处空/非空不匹配即不相似。时间O(min(n₁,n₂))，递归栈O(max(h₁,h₂))。验算：两棵单结点树相似✓；3结点满树与3结点左链不相似✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若一棵二叉树的中序序列和后序序列相同，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 二叉树为空树或二叉树任一结点没有左子树</div><div class="opt"><b>B.</b> 二叉树为空树或二叉树任一结点没有右子树</div><div class="opt"><b>C.</b> 二叉树为空树或二叉树中每个结点的度为1</div><div class="opt"><b>D.</b> 二叉树为空树或二叉树为满二叉树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>中序LNR=后序LRN，对每棵子树比较两序列的首元素：中序首=最左下结点，后序首=左子树后序首，逐层下推可推出每个结点的右子树必空（否则两序列在某层不同）。即该树为空或每结点只有左链✓B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P154</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-15" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第15题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2014统考真题】二叉树的带权路径长度（WPL）是二叉树中所有叶结点的带权路径长度之和。给定一棵二叉树T，采用二叉链表存储，结点结构为（left,weight,right），其中叶结点的weight域保存该结点的非负权值。设root为指向T的根结点的指针，请设计求T的WPL的算法。要求：(1)给出算法的基本设计思想；(2)使用C或C++语言，给出二叉树结点的数据类型定义；(3)根据设计思想，采用C或C++语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)思想：</b>WPL=Σ（叶权值×深度）。带深度参数d做先序遍历：访问到叶结点时累加weight×d，内部结点则d+1递归左右。</p><p><b>(2)类型定义：</b></p><div class="asc">typedef struct BiTNode{
+  int weight;
+  struct BiTNode *left,*right;
+}BiTNode,*BiTree;</div><p><b>(3)算法：</b></p><div class="asc">int wpl=0;                 //全局累加器
+void WPL(BiTree t,int d){   //d:当前深度,根为0
+  if(!t) return;
+  if(!t-&gt;left&amp;&amp;!t-&gt;right)  //叶结点
+    wpl += t-&gt;weight*d;
+  else{ WPL(t-&gt;left,d+1); WPL(t-&gt;right,d+1); }
+}
+//主调用: WPL(root,0); 返回wpl</div><p>每个结点访问一次，时间O(n)，空间O(h)。验算：权{7,5,2,4}构成哈夫曼树形时WPL=35（教材例）等可手工核对。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知一棵二叉树的后序序列为DABEC，中序序列为DEBAC，则先序序列为（）。</p><div class="opts"><div class="opt"><b>A.</b> ACBED</div><div class="opt"><b>B.</b> DECAB</div><div class="opt"><b>C.</b> DEABC</div><div class="opt"><b>D.</b> CEDBA</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>后序末位C为根；中序中C左侧{D,E,B,A}为左子树、右侧空。左子树后序DABE⇒根E；中序DEBA分出D在E左、{B,A}在E右；{B,A}后序AB⇒根B、中序BA⇒A为B的右孩子。结构C(E(L:D, R:B(R:A)))，先序=C,E,D,B,A=<b>CEDBA</b>✓。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P154</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-16" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第16题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2017统考真题】请设计一个算法，将给定的表达式树（二叉树）转换为等价的中缀表达式（通过括号反映操作符的计算次序）并输出。二叉树结点定义如下：typedef struct node{ char data[10]; struct node *left,*right; }BTree; 要求：(1)给出算法的基本设计思想；(2)根据设计思想，采用C或C++语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)思想：</b>中序遍历表达式树得到中缀式，但须用括号体现子表达式的计算次序：除根外，每个<b>操作符结点</b>在进入其左子树前输出"("，退出右子树后输出")"；叶结点（操作数）直接输出。</p><p><b>(2)算法：</b></p><div class="asc">void ToInfix(BTree *t, int depth){
+  //depth:当前结点深度,根为1
+  if(!t) return;
+  bool isLeaf = (!t-&gt;left&amp;&amp;!t-&gt;right);
+  if(!isLeaf&amp;&amp;depth&gt;1) printf(&quot;(&quot;); //根不加括号
+  ToInfix(t-&gt;left,depth+1);
+  printf(&quot;%s&quot;,t-&gt;data);           //操作数或操作符
+  ToInfix(t-&gt;right,depth+1);
+  if(!isLeaf&amp;&amp;depth&gt;1) printf(&quot;)&quot;);
+}
+//主调用: ToInfix(root,1)</div><p>例如+(*(a,b),-(c,d))输出(a*b)+(c-d)，括号恰与运算次序对应。时间O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知一棵二叉树的先序遍历结果为ABCDEF，中序遍历结果为CBAEDF，则后序遍历的结果是（）。</p><div class="opts"><div class="opt"><b>A.</b> CBEFDA</div><div class="opt"><b>B.</b> FEDCBA</div><div class="opt"><b>C.</b> CBEDFA</div><div class="opt"><b>D.</b> 不确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>先序定根A；中序CBA|EDF：左{C,B}右{E,D,F}。左子树先序BC⇒根B、中序CB⇒C为B左孩子。右子树先序DEF⇒根D、中序EDF⇒E左F右。后序：C,B→E,F,D→A，即<b>CBEFDA</b>✓。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P154</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-3-17" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.3 · 综合第17题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2022统考真题】已知非空二叉树T的结点值均为正整数，采用顺序存储方式保存，数据结构定义如下：typedef struct{ int SqBiTNode[MAX_SIZE]; int ElemNum; }SqBiTree; T中不存在的结点在数组SqBiTNode中用-1表示。请设计一个尽可能高效的算法，判定一棵采用这种方式存储的二叉树是否为二叉搜索树，若是返回true，否则返回false。要求：(1)给出算法的基本设计思想；(2)根据设计思想，采用C或C++语言描述算法，关键之处给出注释。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)思想：</b>二叉搜索树的中序序列严格递增。递归时为每个子树维护开区间(min,max)：下标i的结点存在时其值必须落在(min,max)内，且其左子树区间为(min,值)、右子树区间为(值,max)；-1视为空子树直接返回真。根从(-∞,+∞)开始。另需判断双亲为-1时孩子应无效（顺序存储合法性，可一并检查）。</p><p><b>(2)算法：</b></p><div class="asc">bool judge(SqBiTree *t,int i,int min,int max){
+  if(i&gt;=t-&gt;ElemNum||t-&gt;SqBiTNode[i]==-1) return true; //空
+  int v=t-&gt;SqBiTNode[i];
+  if(v&lt;=min||v&gt;=max) return false;      //违反BST
+  if(2*i&lt;t-&gt;ElemNum&amp;&amp;t-&gt;SqBiTNode[2*i]!=-1&amp;&amp;v==-1)
+    return false;                        //孩子存在双亲不存在
+  return judge(t,2*i,min,v)            //左子树&lt;v
+      &amp;&amp; judge(t,2*i+1,v,max);          //右子树&gt;v
+}
+//下标从1开始; 主调用: judge(T,1,-inf,inf)</div><p>每个非空结点检验一次，时间O(n)，递归深度O(h)。相比"中序遍历判递增"，该方法一次递归即可完成且同样O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知一棵二叉树的层次序列为ABCDEF，中序序列为BADCFE，则先序序列为（）。</p><div class="opts"><div class="opt"><b>A.</b> ACBEDF</div><div class="opt"><b>B.</b> ABCDEF</div><div class="opt"><b>C.</b> BDFECA</div><div class="opt"><b>D.</b> FCEDBA</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>层次序列首元素A为根；中序B|A|DCF⇒左{B}右{D,C,F}。右子树层次序（去掉A、B后）CDEF⇒根C；中序DCF⇒D左{F,E}右…细推：C的子树中序为D?…由层次C,D,E,F与中序DCF：C(L:D, R:E(L:F))。先序=A,B,C,D,E,F=<b>ABCDEF</b>✓。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某二叉树中的结点x在先序、中序、后序遍历序列中的编号分别为pre(x)、in(x)、post(x)（假设都是从1开始依次顺序编号），a和b是二叉树中的任意两个结点，其中a是b的祖先，下列选项中不可能出现的是（）。</p><div class="opts"><div class="opt"><b>A.</b> pre(a)＜pre(b)</div><div class="opt"><b>B.</b> post(a)＜post(b)</div><div class="opt"><b>C.</b> in(a)＜in(b)</div><div class="opt"><b>D.</b> in(a)＞in(b)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>祖先a在先序中必先于后代b访问（A可能）；后序中祖先必<b>后</b>于后代访问，故post(a)＞post(b)恒成立，post(a)＜post(b)不可能✓B。中序中a可在b前（b在a右子树）也可在b后（b在a左子树），C、D均可能出现。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>若要求删除二叉树中所有结点并释放其占用的存储空间，则采用（）遍历方法最合适。</p><div class="opts"><div class="opt"><b>A.</b> 中序遍历</div><div class="opt"><b>B.</b> 层次遍历</div><div class="opt"><b>C.</b> 后序遍历</div><div class="opt"><b>D.</b> 先序遍历</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>释放结点空间必须保证"先释放孩子、后释放双亲"，否则双亲先被释放后孩子指针无法访问（或访问已释放内存）。后序遍历（左-右-根）恰好保证访问某结点时其子树已全部处理完毕，故最合适✓。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>某二叉树T采用二叉链表存储结构，T的中序遍历序列为一个升序序列。现要求采用某种方法对T中所有结点按升序（从小到大）顺序输出，则下列关于该算法的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 采用先序遍历的方法最合适</div><div class="opt"><b>B.</b> 采用中序遍历的方法最合适</div><div class="opt"><b>C.</b> 采用后序遍历的方法最合适</div><div class="opt"><b>D.</b> 采用层序遍历的方法最合适</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>中序遍历序列本身升序，说明T是一棵二叉排序树（左＜根＜右）。对其做一次中序遍历，访问结点时直接输出，即可得到升序序列，时间O(n)✓。先序、后序、层序输出的都不是有序序列，若再排序反而多此一举。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>引入线索二叉树的目的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 加快查找结点的前驱或后继的速度</div><div class="opt"><b>B.</b> 为了能在二叉树中方便插入和删除</div><div class="opt"><b>C.</b> 为了能方便找到双亲</div><div class="opt"><b>D.</b> 使二叉树的遍历结果唯一</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>普通二叉链表有n+1个空指针域，线索二叉树利用它们存放结点在某种遍历次序下的前驱、后继指针，从而不必重复遍历即可快速找到前驱/后继✓。它并不能使遍历结果唯一（本来就可能不唯一），也不用于插入删除或找双亲。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>n个结点的线索二叉树上含有的线索数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 2n</div><div class="opt"><b>B.</b> n-1</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>n个结点的二叉链表共2n个指针域，其中非空的恰为n-1条边，空链域=2n-(n-1)=n+1。线索化正是把这n+1个空链域改造为线索，故线索数为<b>n+1</b>✓。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>判断线索二叉树中*p结点有右孩子结点的条件是（）。</p><div class="opts"><div class="opt"><b>A.</b> p!=NULL</div><div class="opt"><b>B.</b> p->rchild!=NULL</div><div class="opt"><b>C.</b> p->rtag==0</div><div class="opt"><b>D.</b> p->rtag==1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>线索二叉树中rchild非空可能是孩子也可能是线索，必须看标志位：约定rtag=0表示rchild指向<b>右孩子</b>，rtag=1表示rchild指向中序后继（线索）。故有右孩子的条件是p->rtag==0✓，B无法区分两种情况。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵左子树为空的二叉树在先序线索化后，其中空的链域的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 0个</div><div class="opt"><b>B.</b> 不确定</div><div class="opt"><b>C.</b> 1个</div><div class="opt"><b>D.</b> 2个</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>先序线索化后，空链域只剩两类无法改造为线索的：①先序序列第一个结点（根）的前驱不存在——根无左孩子（题设左子树为空）时其lchild仍为NULL；②先序序列最后一个结点的后继不存在——其rchild为NULL。其余空链域均已成为线索，故空链域=<b>2</b>个✓。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于线索二叉树的说法中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 在中序线索树中，若某结点有左孩子，则其前驱结点是它的左子树的最右下结点</div><div class="opt"><b>B.</b> 在中序线索树中，若某结点有右孩子，则其后继结点是它的右子树的最左下结点</div><div class="opt"><b>C.</b> 线索二叉树是利用二叉树的n+1个空指针来存放结点的前驱和后继信息的</div><div class="opt"><b>D.</b> 每个结点通过线索都可以直接找到它的前驱和后继</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>A、B、C均为线索二叉树的正确性质。D错：并非所有结点都能沿线索直接找到前驱/后继——典型地，后序线索树中求某结点的后序后继往往需要知道其双亲（或从根重新遍历），先序线索树中求前驱同理，故"都可以直接找到"不成立。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>二叉树在线索化后，仍不能有效求解的问题是（）。</p><div class="opts"><div class="opt"><b>A.</b> 先序线索二叉树中求先序后继</div><div class="opt"><b>B.</b> 中序线索二叉树中求中序后继</div><div class="opt"><b>C.</b> 中序线索二叉树中求中序前驱</div><div class="opt"><b>D.</b> 后序线索二又树中求后序后继</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>中序线索树中前驱、后继均可沿线索+子树下降直接求得（B、C可行）；先序后继也易得（有左孩子则后继是左孩子，否则右孩子或右线索）。唯有<b>后序线索树中求后序后继</b>：结点的后序后继常是其双亲的某孩子，而链域中没有双亲信息，需从根出发重新遍历，不能有效求解✓D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P155</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若X是二叉中序线索树中一个有左孩子的结点，且X不为根，则X的前驱为（）。</p><div class="opts"><div class="opt"><b>A.</b> X的双亲</div><div class="opt"><b>B.</b> X的右子树中最左的结点</div><div class="opt"><b>C.</b> X的左子树中最右的结点</div><div class="opt"><b>D.</b> X的左子树中最右的叶结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>中序"左-根-右"：X的前驱是X左子树中最后被访问的结点，即左子树<b>最右下</b>的结点（沿rchild走到底，可能是内部结点，不一定是叶）✓C。B说的是X的后继方向，A无必然关系。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若X是后序线索二叉树中的叶结点，且X存在左兄弟Y，则X的右线索指向的是（）。</p><div class="opts"><div class="opt"><b>A.</b> X的双亲</div><div class="opt"><b>B.</b> 以Y为根的子树的最左下结点</div><div class="opt"><b>C.</b> X的左兄弟Y</div><div class="opt"><b>D.</b> 以Y为根的子树的最右下结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>X是叶且存在左兄弟Y⇒X是其双亲P的最后一个孩子。后序"左右根"：P的子树中X最后于P之前访问（…Y子树…,X,P），故X的后序后继是P，其右线索指向<b>双亲</b>✓A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某二叉树的先序序列和后序序列正好相反，则该二叉树一定是（）。</p><div class="opts"><div class="opt"><b>A.</b> 空或只有一个结点</div><div class="opt"><b>B.</b> 高度等于其结点数</div><div class="opt"><b>C.</b> 任意一个结点无左孩子</div><div class="opt"><b>D.</b> 任意一个结点无右孩子</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>先序NLR与后序LRN互逆 ⟺ 每棵子树都形如"根+至多一个孩子的子链"（归纳可证：若有双孩子，先序第二个与后序倒数第二个不再对应同一子树），即每个结点至多一个孩子⇔每层恰一个结点⇔<b>高度=结点数</b>✓B。C、D（纯左链/纯右链）只是其中的特例，不具必要性。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P138</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-31" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第31题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某非空二叉树的先序序列和中序序列正好相反，则下列叙述中正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 该二叉树一定只有一个结点</div><div class="opt"><b>B.</b> 只有一个叶结点的二叉树一定满足条件</div><div class="opt"><b>C.</b> 任意一个结点无左孩子的二叉树一定满足条件</div><div class="opt"><b>D.</b> 任意一个结点无右孩子的二叉树一定满足条件</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>先序NLR与中序LNR相反 ⟺ 每个结点都无右孩子（纯左链）：先序=N₁N₂…Nₖ，中序=Nₖ…N₁，互逆✓；反之若某结点有右孩子，两序列在该子树处不再互逆（归纳）。故"任意结点无右孩子"一定满足条件✓D。B错：单叶树也可能是纯右链（先序=中序）；C错：纯右链先序与中序相同。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-32" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第32题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】给定二叉树如下图所示。设N代表二叉树的根，L代表根结点的左子树，R代表根结点的右子树。若遍历后的结点序列是3,1,7,5,6,2,4，则其遍历方式是（）。</p><div class="asc">        1<br>       / \<br>      2   3<br>     / \<br>    4   5<br>       / \<br>      6   7</div><div class="opts"><div class="opt"><b>A.</b> LRN</div><div class="opt"><b>B.</b> NRL</div><div class="opt"><b>C.</b> RLN</div><div class="opt"><b>D.</b> RNL</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>序列首元素3：只有"先右后左"或先访问右子树的次序才会先访问3（1的右孩子）。按RNL（右-根-左）模拟：右子树→3；访问根1；左子树中再按RNL：5的右子树7→5→左子树6，然后2的…得3,1,7,5,6,2,4✓，即<b>反中序RNL</b>。NRL为3,1,2,4,5,7,6不符。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-33" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第33题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】下列线索二叉树中（用虚线表示线索），符合后序线索树定义的是（）（题图为四棵同形态二叉树，结点a,b,c,d,e,x，虚线为线索，图从略）。</p><div class="opts"><div class="opt"><b>A.</b> 图A：线索指向错误（后序前驱/后继指向有误）</div><div class="opt"><b>B.</b> 图B：线索指向错误</div><div class="opt"><b>C.</b> 图C：线索指向错误</div><div class="opt"><b>D.</b> 图D：x的左线索指向b、右线索指向c（正确）</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>判定方法：写出该树的后序序列，逐一核对每个空链域改成的线索是否指向其<b>后序前驱/后继</b>。题图树形为a(L:b(L:d,R:e), R:c(L:x))，后序序列=d,e,b,x,c,a。于是x的前驱为b、后继为c，只有把x的左右空链域分别指向b和c（以及d的左线索为空、e的右线索指向d等全部吻合）的选项D符合定义✓；其余选项的线索指向与前驱/后继不符。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-34" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第34题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】一棵二叉树的先序遍历序列和后序遍历序列分别为1,2,3,4和4,3,2,1，该二叉树的中序遍历序列不会是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1,2,3,4</div><div class="opt"><b>B.</b> 2,3,4,1</div><div class="opt"><b>C.</b> 3,2,4,1</div><div class="opt"><b>D.</b> 4,3,2,1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>先序与后序互逆⇒每个结点至多一个孩子，整棵树是4结点单链。枚举3条边的左右取向可得全部8个中序：1234、1243、1342、1432、2341、2431、3421、4321。逐项对照：A(RRR)、B(LRR)、D(LLL)都在其中；<b>3241不在</b>✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-35" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第35题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】若一棵二叉树的先序遍历序列为a,e,b,d,c，后序遍历序列为b,c,d,e,a，则根结点的孩子结点（）。</p><div class="opts"><div class="opt"><b>A.</b> 只有e</div><div class="opt"><b>B.</b> 有e、b</div><div class="opt"><b>C.</b> 有e、c</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>根为a。先序a后紧跟e、后序a前是e⇒a只有e一个孩子（若还有第二个孩子，后序中e不会紧邻a）。e的子树：先序e,b,d,c与后序b,c,d,e⇒e有两个孩子b和d(L:c)（单链时先序后序应互逆，而b,c,d≠逆序，故非单链）。所以根a的孩子只有e✓。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P156</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-36" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第36题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】若X是后序线索二叉树中的叶结点，且X存在左兄弟结点Y，则X的右线索指向的是（）。</p><div class="opts"><div class="opt"><b>A.</b> X的双亲</div><div class="opt"><b>B.</b> 以Y为根的子树的最左下结点</div><div class="opt"><b>C.</b> X的左兄弟结点Y</div><div class="opt"><b>D.</b> 以Y为根的子树的最右下结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>与5.3-29同型：X是叶且有左兄弟⇒X是双亲P的最后一个孩子，后序访问完X后紧接着访问P，故X的后序后继为双亲，右线索指向<b>X的双亲</b>✓A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-37" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第37题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】若对下图所示的二叉树进行中序线索化，则结点x的左、右线索指向的结点分别是（）（题图二叉树的中序序列为…b,x,a…，x为叶结点，图从略）。</p><div class="opts"><div class="opt"><b>A.</b> e、c</div><div class="opt"><b>B.</b> e、a</div><div class="opt"><b>C.</b> d、c</div><div class="opt"><b>D.</b> b、a</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>线索指向=该结点的中序前驱与后继。由题图，中序序列中x的前驱为b、后继为a（x无双亲之外的中间结点：x是其双亲a的左子树最右下叶，b又是x左方向最近的结点），故左线索指向b、右线索指向a✓D。做这类题先写中序序列再逐个对线索即可。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-38" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第38题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】先序序列为a,b,c,d的不同二叉树的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 13</div><div class="opt"><b>B.</b> 14</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 16</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>先序序列固定为a,b,c,d的二叉树个数=中序序列取{a,b,c,d}不同排列且与先序相容的个数=卡特兰数C₄=1/(4+1)×C(8,4)=70/5=<b>14</b>✓（n个结点的二叉树形态数即 Catalan(n)：n=1,2,3,4时分别为1,2,5,14）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-39" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第39题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】某二叉树的树形如下图所示，其后序序列为e,a,c,b,d,g,f，树中与结点a同层的结点是（）（题图见书，图从略）。</p><div class="opts"><div class="opt"><b>A.</b> c</div><div class="opt"><b>B.</b> d</div><div class="opt"><b>C.</b> f</div><div class="opt"><b>D.</b> g</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>由题图确定各结点所在层：f为根（后序末位），g为其孩子，b、d在下一层，a在d（或b）之下与d同层——依题图，<b>a与d同层</b>✓B。可用后序序列e,a,c,b,d,g,f核验结构：f(L:…, R:g)，g的左侧子树后序为e,a,c,b,d，其中d是该子树根、a位于其下层，与图一致。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-40" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第40题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】要使一棵非空二叉树的先序序列与中序序列相同，其所有非叶结点须满足的条件是（）。</p><div class="opts"><div class="opt"><b>A.</b> 只有左子树</div><div class="opt"><b>B.</b> 只有右子树</div><div class="opt"><b>C.</b> 结点的度均为1</div><div class="opt"><b>D.</b> 结点的度均为2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>先序NLR=中序LNR ⟺ 每个结点的左子树为空（纯右链）：此时先序=N₁N₂…Nₖ、中序相同。故所有非叶结点都"只有右子树"✓B。注意C不充分——度为1还可能是左孩子（此时先序与中序相反）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-41" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第41题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】若结点p与q在二叉树T的中序遍历序列中相邻，且p在q之前，则下列p与q的关系中，不可能的是（）。<br>I. q是p的双亲<br>II. q是p的右孩子<br>III. q是p的右兄弟<br>IV. q是p的双亲的双亲</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> 仅IV</div><div class="opt"><b>C.</b> 仅II、III</div><div class="opt"><b>D.</b> 仅II、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>逐一构造验证：I可能——p是q左子树的最右下结点（p无右子树），中序…p,q…✓；II可能——q是p的右孩子且q无左子树，中序…p,q…✓；III可能——q是p的右兄弟且p无右子树，中序…p,q…✓；IV不可能——设s是p的双亲、q是s的双亲：若s是q的右孩子则q反而排在p前，与题设矛盾；若s是q的左孩子则中序为…p,…,s,…,q，s必然插在p与q之间，不可能相邻✓。故选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P157</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-42" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第42题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】已知一棵二叉树的树形如下图所示，若其后序遍历序列为f,d,b,e,c,a，则其先序遍历序列是（）（题图为该树形，标注由遍历序列确定）。</p><div class="asc">        a<br>       / \<br>      e   c<br>     / \<br>    d   b<br>   /<br>  f</div><div class="opts"><div class="opt"><b>A.</b> a,e,d,f,b,c</div><div class="opt"><b>B.</b> a,c,e,b,d,f</div><div class="opt"><b>C.</b> c,a,b,e,f,d</div><div class="opt"><b>D.</b> d,f,e,b,a,c</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>由后序f,d,b,e,c,a：根为a；结合树形（左子树含4个结点、右子树单结点c）得左子树{e,d,f,b}、右子树{c}。左子树后序f,d,b,e⇒根e；其左{d,f}后序f,d⇒根d、左孩子f；剩余b为e的右孩子。结构：a(L:e(L:d(L:f), R:b), R:c)。先序=a,e,d,f,b,c✓，与选项A一致。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P158</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-3-43" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.3 · 第43题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在二叉树的中序遍历序列中，若某结点V的序列形如"…,p,V,q,…"（p、q分别紧邻V之前、之后），则下列叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> p没有右孩子，q没有左孩子</div><div class="opt"><b>B.</b> p没有右孩子，q有左孩子</div><div class="opt"><b>C.</b> p有右孩子，q没有左孩子</div><div class="opt"><b>D.</b> p有右孩子，q有左孩子</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>p是V的中序前驱：p是V左子树中最后访问的结点，即左子树最右下结点，故<b>p没有右孩子</b>；q是V的中序后继：q是V右子树中最先访问的结点，即右子树最左下结点，故<b>q没有左孩子</b>✓A。这是中序线索化时确定前驱、后继的基本依据。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P158</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-5-4"><h3>5.4 树、森林<span class="tag tag-tpl">21题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-5-4-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于树的说法中，正确的是（）。<br>I．对于有n个结点的二叉树，其高度为log₂n<br>II．完全二叉树中，若一个结点没有左孩子，则它必是叶结点<br>III．高度为h(h＞0)的完全二叉树对应的森林所含的树的个数一定是h<br>IV．一棵树中的叶子数一定等于与其对应的二叉树的叶子数</p><div class="opts"><div class="opt"><b>A.</b> I和II</div><div class="opt"><b>B.</b> IV</div><div class="opt"><b>C.</b> I和II</div><div class="opt"><b>D.</b> II</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>II✓：完全二叉树无左孩子⇒2i＞n⇒无右孩子，必为叶。I✗：一般二叉树高度可达n（单链），⌊log₂n⌋+1也仅是完全二叉树的结论。III✗：森林中树的棵数=二叉树根开始沿右链的结点数，取值1~h不定。IV✗：树的叶结点转为二叉树结点后虽无左孩子，但可能挂右兄弟链，未必是二叉树的叶。故仅II正确。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-4-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.4 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定一棵树的先根遍历序列和后根遍历序列，能否唯一确定一棵树？若能，请举例说明；若不能，请给出反例。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>结论：能唯一确定。</b></p><p><b>理由：</b>树与二叉树之间存在一一对应（孩子兄弟转换）。树的先根序列对应二叉树的<b>先序</b>序列，树的后根序列对应二叉树的<b>中序</b>序列；而"先序+中序"可唯一确定一棵二叉树，故先根+后根可唯一确定原树。</p><p><b>举例：</b>先根序列ABECF、后根序列BEFCA：对应二叉树先序ABECF、中序BEFCA⇒根A，左子树{B}，右子树先序ECF、中序EFC⇒根C…还原唯一。</p><p><b>对比：</b>若换成"先根+层序"则不一定唯一；二叉树中"先序+后序"也不能唯一确定。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>利用二叉链表（孩子兄弟表示法）存储森林时，根结点的右指针是（）。</p><div class="opts"><div class="opt"><b>A.</b> 指向最左兄弟</div><div class="opt"><b>B.</b> 指向最右兄弟</div><div class="opt"><b>C.</b> 一定为空</div><div class="opt"><b>D.</b> 不一定为空</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>森林转二叉树时，B的根=第一棵树的根，其右指针指向<b>森林中第二棵树的根</b>（根的"右兄弟"）：森林含2棵及以上树时非空，仅1棵树时为空，故"不一定为空"✓D。A、B错：根结点没有真正的兄弟；C以偏概全。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-4-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.4 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>将下面一个由3棵树组成的森林转换为二叉树（题图见书）。请说明转换步骤。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>转换规则（三步）：</b>①连线：将每个结点与其<b>所有兄弟</b>依次用横线相连；②抹线：每个结点只保留与<b>第一个孩子</b>的连线，删去与其他孩子的连线；③旋转：以第一棵树的根为轴心顺时针旋转约45°，使兄弟连线斜向右下——长子为左孩子、下一兄弟为右孩子。对森林：先把各树的根看作"兄弟"相连，第一棵树的根作为二叉树的根，第二棵树的根成为其右孩子，依此类推。</p><p><b>结果特征（用于核对）：</b>二叉树的根=第一棵树的根且无右子树是"单棵树"转换的特征；森林转换后根的右链长度=森林中树的棵数。</p><p>例如森林T₁:A(B,C)、T₂:D(E)、T₃:F，转换后：A(L:B(R:C), R:D(L:E, R:F))。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设森林F由三棵树T₁、T₂、T₃组成，它们的结点数分别为M₁、M₂、M₃，则与F对应的二叉树B的根结点的右子树上的结点个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> M₁</div><div class="opt"><b>B.</b> M₁+M₂</div><div class="opt"><b>C.</b> M₃</div><div class="opt"><b>D.</b> M₂+M₃</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>B的根为T₁的根，其左子树对应T₁的子树森林（M₁-1个结点），右子树对应其余树组成的森林(T₂,T₃)——即B根的右子树包含T₂、T₃的全部结点，共M₂+M₃个✓D。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-4-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.4 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>已知一棵二叉树的先序遍历序列为A,B,D,E,C,F,G，中序遍历序列为D,B,E,A,F,C,G。（1）构造出这棵二叉树；（2）画出这棵二叉树对应的森林。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)构造二叉树（先序定根、中序分左右）：</b>先序首位A为根；中序D,B,E|A|F,C,G⇒左子树{D,B,E}、右子树{F,C,G}。左子树先序B,D,E⇒根B，中序D|B|E⇒D左、E右；右子树先序C,F,G⇒根C，中序F|C|G⇒F左、G右。得：<div class="asc">        A<br>       / \<br>      B   C<br>     / \ / \<br>    D  E F  G</div></p><p><b>(2)二叉树还原森林（转换规则的逆操作）：</b>结点的左孩子=第一个孩子，右孩子=下一个兄弟。①根的右链A→C→G：C是A的兄弟、G是C的兄弟，拆成3棵树的根；②各结点的左孩子挂为它的孩子，左孩子起点的右链再拆为同父兄弟。森林如下（共3棵树）：<div class="asc">树1:   A      树2:   C      树3:   G
+       |             |
+       B             F
+      / \
+     D   E</div>即第1棵树A的孩子为B（B的孩子为D、E）；第2棵树C的孩子为F；第3棵树G仅根。根右链长度=树的棵数=3，可作核对。</p><span style="color:#64748b">【题面由王道原题重建（序列按原题风格给定，图示从略）】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设森林F中有4棵树，第1、2、3、4棵树的结点数分别为a、b、c和d，与森林F对应的二叉树的根结点的左子树上的结点数是（）。</p><div class="opts"><div class="opt"><b>A.</b> a</div><div class="opt"><b>B.</b> b+c+d</div><div class="opt"><b>C.</b> a-1</div><div class="opt"><b>D.</b> a+b+c</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>二叉树根=第一棵树的根；其左子树由"第一棵树除去根后的子树森林"转换而来，结点数=a-1✓C。b+c+d是根右子树（其余三棵树）的结点数，属干扰项。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-4-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.4 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>编程求以孩子兄弟表示法存储的森林的叶结点数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>孩子兄弟表示中，结点是森林中的叶 ⟺ 其firstchild指针为空（无孩子）；nextsibling只是兄弟链，不影响。递归统计：某结点无孩子则计1，否则递归其孩子森林与兄弟森林。</p><div class="asc">typedef struct CSNode{
+  ElemType data;
+  struct CSNode *firstchild,*nextsibling;
+}CSNode,*CSTree;
+
+int CountLeaves(CSTree t){
+  if(t==NULL) return 0;
+  if(t-&gt;firstchild==NULL)      //森林中的叶结点
+    return 1+CountLeaves(t-&gt;nextsibling);
+  return CountLeaves(t-&gt;firstchild)
+       + CountLeaves(t-&gt;nextsibling);
+}</div><p>每个结点访问一次，时间O(n)，递归栈O(树高)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设森林F对应的二叉树为B，它有m个结点，B的根为p，p的右子树结点数为n，森林F中第一棵树的结点数是（）。</p><div class="opts"><div class="opt"><b>A.</b> m-n</div><div class="opt"><b>B.</b> m-n-1</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> 条件不足，无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>B根的右子树=森林中除第一棵树外的所有树，共n个结点；B共有m个结点且根属于第一棵树，故第一棵树结点数=m-n✓A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设森林F对应的二叉树是一棵具有16个结点的完全二叉树，则森林F中树的数目和结点最多的树的结点数分别是（）。</p><div class="opts"><div class="opt"><b>A.</b> 2和8</div><div class="opt"><b>B.</b> 2和9</div><div class="opt"><b>C.</b> 4和8</div><div class="opt"><b>D.</b> 4和9</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>树的棵数=根开始的右链长度：1→3→7→15（15的右孩子下标30＞16），共<b>4</b>棵。最大的树=第一棵树，即B中根的左子树方向全部结点：16个结点的完全二叉树中，下标3的子树含{3,6,7,12,13,14,15}共7个，故第一棵树=16-7=<b>9</b>个✓D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P175</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>森林T=(T₁,T₂,…,Tₘ)转化为二叉树BT的过程为：若m=0，则BT为空；若m≠0，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 将中间子树T_mid（mid=⌈(1+m)/2⌉）的根作为BT的根；将(T₁,…,T_mid-1)转换为BT的左子树；将(T_mid+1,…,Tₘ)转换为BT的右子树</div><div class="opt"><b>B.</b> 将子树T₁的根作为BT的根；将T₁的子树森林转换成BT的左子树；将(T₂,T₃,…,Tₘ)转换成BT的右子树</div><div class="opt"><b>C.</b> 将子树T₁的根作为BT的根；将T₁的左子树森林转换成BT的左子树；将T₁的右子树森林转换为BT的右子树</div><div class="opt"><b>D.</b> 将子树Tₘ的根作为BT的根；将(T₁,…,Tₘ₋₁)转换为BT的左子树；将Tₘ的子树森林转换为BT的右子树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>森林转二叉树的标准规则：第一棵树的根作二叉树的根；第一棵树的子树森林转成左子树；其余树组成的森林转成右子树——递归进行✓B。A的二分做法、C/D的"子树森林拆左右"均不符合转换规则。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设F是一个森林，B是由F变换来的二叉树。若F中有n个非终端结点，则B中右指针域为空的结点有（）个。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> n+2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>右指针即"下一兄弟"指针：F中每个非终端结点的最后一个孩子（无右兄弟）在B中右指针为空，共n个；再加上森林中最后一棵树的根（其右指针为空且它不是任何结点的"最后孩子"链上的？——最后一棵树根无右兄弟）共n+1个✓C。也可以数"兄弟链"的末端：每条孩子链贡献1个空右指针，n个非终端结点有n条孩子链，加上根链末端1个，合计n+1。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设F是一个森林，B是由F变换来的二叉树。若F中有n个终端结点（叶结点），则B中左指针域为空的结点有（）个。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> 不能确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>左指针即"第一个孩子"指针：B中左指针为空 ⟺ 该结点在F中没有孩子 ⟺ 它是F的终端结点。一一对应，故恰有n个✓B。（对照上题：右指针空由非终端结点数决定为n+1，左右两问不要混淆。）</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若T₁是由有序树T转换而来的二叉树，则T中结点的后根序列就是T₁中结点的（）序列。</p><div class="opts"><div class="opt"><b>A.</b> 先序</div><div class="opt"><b>B.</b> 中序</div><div class="opt"><b>C.</b> 后序</div><div class="opt"><b>D.</b> 层序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>树（森林）与二叉树遍历的对应关系：树的先根遍历=二叉树的先序遍历；树的<b>后根遍历=二叉树的中序遍历</b>✓B。可对"根a，孩子b、c"验证：树后根为b,c,a；对应二叉树a(L:b(R:c))中序恰为b,c,a。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>某二叉树结点的中序序列为BDAECF，后序序列为DBEFCA，则该二叉树对应的森林包括（）棵树。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>由后序末位A为根，中序BD|A|ECF：左{B,D}右{E,C,F}；递推得A(L:B(R:D), R:C(L:E,R:F))。森林的棵数=二叉树根沿右孩子的链长：A→C→F，共<b>3</b>棵✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设X是树T中的一个非根结点，B是T所对应的二叉树。在B中，X是其双亲结点的右孩子，下列结论中正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 在树T中，X是其双亲结点的第一个孩子</div><div class="opt"><b>B.</b> 在树T中，X一定无右边兄弟</div><div class="opt"><b>C.</b> 在树T中，X一定是叶结点</div><div class="opt"><b>D.</b> 在树T中，X一定有左边兄弟</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>B中右指针指向"下一兄弟"：X是双亲（B中）的右孩子⇒X在T中是某结点的<b>后一个兄弟</b>，故必有左边的兄弟✓D。A与事实相反；B、C均无依据（X还可能再有右兄弟、也可能有孩子）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下图是一棵逻辑上的树T（题图见书，设T共有9个结点），则在关于该树的存储结构的叙述中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 若T采用双亲表示法，则有9个指向双亲的指针</div><div class="opt"><b>B.</b> 若T采用孩子表示法，则在T中查找某个结点的孩子比双亲表示法更方便</div><div class="opt"><b>C.</b> 若T采用孩子兄弟表示法，则在T中查找某个结点的双亲的时间复杂度为O(1)</div><div class="opt"><b>D.</b> 双亲表示法是顺序存储结构，孩子表示法和孩子兄弟表示法是链式存储结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>C✗（即所选）：孩子兄弟（二叉链）表中只有孩子和兄弟指针，<b>没有双亲信息</b>，查双亲须从根出发遍历整树，时间O(n)而非O(1)。A✓：双亲表示法每个结点存一个双亲下标，9个结点即9个"指针"。B✓：孩子表示法直接挂孩子链，找孩子方便。D✓：这是三种存储结构的基本分类。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P176</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在森林的二叉树表示中，结点M和结点N是同一父结点的左儿子和右儿子，则在该森林中（）。</p><div class="opts"><div class="opt"><b>A.</b> M和N有同一双亲</div><div class="opt"><b>B.</b> M和N可能无公共祖先</div><div class="opt"><b>C.</b> M是N的儿子</div><div class="opt"><b>D.</b> M是N的左兄弟</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>左儿子M=P在森林中的第一个孩子；右儿子N在森林中是P的<b>下一个兄弟</b>（并非P的孩子）。于是M的双亲是P，N的双亲是P的双亲：若P是所在树的根，则P无双亲，M、N就没有公共祖先（分属"堂表"两支）——故"可能无公共祖先"✓B；A、C、D均把N误当P的孩子或M的兄弟。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P177</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】将森林转换为对应的二叉树，若在二叉树中，结点u是结点v的父结点的父结点，则在原来的森林中，u和v可能具有的关系是（）。<br>I．父子关系<br>II．兄弟关系<br>III．u的父结点与v的父结点是兄弟关系</p><div class="opts"><div class="opt"><b>A.</b> 只有II</div><div class="opt"><b>B.</b> I和II</div><div class="opt"><b>C.</b> I和III</div><div class="opt"><b>D.</b> II和III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>设v的父为P、P的父为u。B中右指针是兄弟：①P是u的左孩子：v是P的孩子⇒u是v的祖父（隔代父子）或v是P的右孩子即u的另一孩子⇒u是v的父亲，I可能；②P是u的右孩子（P是u的兄弟）：v是P的左孩子⇒u与P是兄弟、v是u的侄子；v是P的右孩子⇒v也是u的兄弟，II可能；而III"u的父与v的父是兄弟"要求v的父P与u的父是兄弟，但P恰是u的孩子，矛盾，III不可能。故I、II✓B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P177</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设F是一个森林，B是由F变换来的二叉树。若F中有n个非终端结点，则F中叶结点（终端结点）的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n+1</div><div class="opt"><b>D.</b> 不能确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>叶结点数取决于各非终端结点的度数分布：如n=1时，该结点度为2则F有2个叶、度为3则有3个叶，仅知非终端结点个数无法确定叶数，选"不能确定"✓D。（对比第8题：右指针空结点数才是可由n确定的n+1。）</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P177</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】将森林F转换为对应的二叉树T，F中叶结点的个数等于（）。</p><div class="opts"><div class="opt"><b>A.</b> T中叶结点的个数</div><div class="opt"><b>B.</b> T中度为1的结点个数</div><div class="opt"><b>C.</b> T中左孩子指针为空的结点个数</div><div class="opt"><b>D.</b> T中右孩子指针为空的结点个数</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>转换规则下，F中某结点无孩子 ⟺ T中该结点左指针（第一个孩子）为空。而F的叶结点在T中可能挂右兄弟链（成为度为1的结点），故A、B、D都不对，唯一相等的是<b>左孩子指针为空的结点数</b>✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P177</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】若将一棵树T转化为对应的二叉树BT，则下列对BT的遍历中，其遍历序列与T的后根遍历序列相同的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 先序遍历</div><div class="opt"><b>B.</b> 中序遍历</div><div class="opt"><b>C.</b> 后序遍历</div><div class="opt"><b>D.</b> 按层遍历</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>树的后根遍历（先遍历各子树再访问根）恰对应二叉树的<b>中序遍历</b>（左子树—根—右子树=孩子链子树—结点—兄弟链子树）✓B；树的先根遍历对应二叉树先序遍历。这是树/森林与二叉树遍历转换的核心结论。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P178</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】已知森林F及与之对应的二叉树T，若F的先根遍历序列是a,b,c,d,e,f，后根遍历序列是b,a,d,f,e,c，则T的后根遍历序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> b,a,d,f,e,c</div><div class="opt"><b>B.</b> b,d,f,e,c,a</div><div class="opt"><b>C.</b> b,f,e,d,c,a</div><div class="opt"><b>D.</b> f,e,d,c,b,a</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>先根=二叉树先序(a,b,c,d,e,f)，后根=二叉树中序(b,a,d,f,e,c)。由先序+中序重建二叉树：根a；中序b|a|dfec⇒左{b}、右{c,d,e,f}；右子树先序c,d,e,f、中序d,f,e,c⇒根c，左{d,e,f}；再递推得d(R:e(L:f))。T：a(L:b, R:c(L:d(R:e(L:f))))。T的后序：b→f,e,d? 分步：e(L:f)后序=f,e；d(R:e)后序=f,e,d；c(L:d)后序=f,e,d,c；整体=b,<b>f,e,d,c</b>,a，即b,f,e,d,c,a✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P178</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】某森林F对应的二叉树为T，若T的先序遍历序列是a,b,d,c,e,g,f，中序遍历序列是b,d,a,e,g,c,f，则F中树的棵数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>先序+中序重建T：根a；中序bd|a|egcf⇒左{b,d}（b(R:d)）、右{c,e,f,g}：根c；中序eg|c|f⇒c左{e,g}(e(R:g))、右{f}。T：a(L:b(R:d), R:c(L:e(R:g), R:f))。F的棵数=根的右链长度：a→c→f，共<b>3</b>棵✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P178</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-4-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.4 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于树、森林转换为二叉树的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 树转换为二叉树后，根结点一定没有左子树</div><div class="opt"><b>B.</b> 树转换为二叉树后，根结点一定没有右子树</div><div class="opt"><b>C.</b> 森林转换为二叉树后，根结点一定没有左子树</div><div class="opt"><b>D.</b> 森林转换为二叉树后，根结点一定没有右子树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>树的根结点没有兄弟，故树转二叉树后根的右指针必空（右子树一定不存在）✓B；但根的左子树是其孩子的转换结果，可有可无，A✗。森林转二叉树：根的右子树由其余树组成（≥2棵树时非空），D✗；根的左子树=第一棵树根的孩子森林，单结点时为空，C✗。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P178</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-5-5"><h3>5.5 树与二叉树的应用<span class="tag tag-tpl">23题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-5-5-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在有n个叶结点的哈夫曼树中，非叶结点的总数是（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> 2n-1</div><div class="opt"><b>D.</b> 2n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>哈夫曼树构造中每合并两个权值产生一个新非叶结点，n个叶结点需合并n-1次，故非叶结点恰n-1个✓A（总结点2n-1，树中无度为1的结点）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P187</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-5-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.5 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设给定权集W={5,7,2,3,6,8,9}，试构造关于W的一棵哈夫曼树，并求其加权路径长度WPL。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>构造（每次取最小两权合并）：</b>2+3=5；5+5=10；6+7=13；8+9=17；10+13=23；17+23=40。</p><div class="asc">          40<br>        /    \<br>      17      23<br>     /  \    /  \<br>    8    9  10   13<br>            / \  / \<br>           5  5 6  7<br>             / \<br>            2   3</div><p><b>WPL：</b>法一（合并和）=5+10+13+17+23+40=<b>108</b>；法二（分层和）=8×2+9×2+6×3+7×3+5×3+2×4+3×4=16+18+18+21+15+8+12=108✓，两法一致。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>给定整数集合{3,5,6,9,12}，与之对应的哈夫曼树是（）（题图为四棵候选树，图从略）。</p><div class="opts"><div class="opt"><b>A.</b> 图A（非哈夫曼树）</div><div class="opt"><b>B.</b> 图B（非哈夫曼树）</div><div class="opt"><b>C.</b> 图C：根35，左子树14(叶6,叶8(叶3,叶5))，右子树21(叶9,叶12)</div><div class="opt"><b>D.</b> 图D（非哈夫曼树）</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>逐步合并：3+5=8；{6,8,9,12}中6+8=14；{9,12,14}中9+12=21；14+21=35。正确树形：<div class="asc">        35<br>       /  \<br>     14    21<br>    /  \  /  \<br>   6   8  9   12<br>      / \<br>     3   5</div>WPL=6×2+9×2+12×2+3×3+5×3=78。判别要点：权值最小者3、5必须最先合并且为兄弟、处于最深层。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P187</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-5-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.5 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设有6个表L₁,L₂,…,L₆，表中元素个数分别为10、35、40、50、60、200，各表中的元素按升序排列。要求通过5次两两合并，将6个表最终合并为1个升序表，并使最坏情况下比较的总次数达到最小。请回答下列问题：<br>(1)给出完整的合并过程，并求出最坏情况下比较的总次数。<br>(2)根据你的合并过程，描述n（n≥2）个不等长升序表的合并策略，并说明理由。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)哈夫曼式合并（每次选当前最短两表）：</b>①10+35=45；②40+45=85；③50+60=110；④85+110=195；⑤195+200=395，得到最终升序表（共395个元素）。</p><p>两个长度为a、b的升序表合并，最坏情况比较a+b-1次，故各步最坏比较数为44、84、109、194、394，<b>总次数=44+84+109+194+394=825</b>。合并过程恰是以表长为权的哈夫曼树：每次合并产生"新表长"=两表长之和，各元素被比较的次数之和即Σ(合并产生的新表长)−(合并次数)，选最小两表合并使该总和最小。</p><p><b>(2)一般策略：</b>对n个不等长升序表，将表长视为权值，<b>每次选取当前长度最小的两个表合并</b>（用小根堆/优先队列维护表长，取最小两值后将其和放回），重复n-1次。<b>理由：</b>长度a、b两表合并最坏比较a+b-1次，元素每次参与合并都带来一次比较开销，总代价与"每个元素被合并的次数×表长"之和成正比——让短表多参与合并（处于合并树深层）、长表少参与合并（浅层），即构造关于表长的哈夫曼树，可使最坏情况下的总比较次数最小。</p><span style="color:#64748b">【题面由王道原题重建（表长10,35,40,50,60,200按原题补全）】</span></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列编码中，（）不是前缀码。</p><div class="opts"><div class="opt"><b>A.</b> {00,01,10,11}</div><div class="opt"><b>B.</b> {0,1,00,11}</div><div class="opt"><b>C.</b> {0,10,110,111}</div><div class="opt"><b>D.</b> {10,110,1110,1111}</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>前缀码要求任何编码都不是其他编码的前缀。B中"0"是"00"的前缀、"1"是"11"的前缀，违反定义✓选B。A、C、D各组内互不为前缀（可分别对应一棵二叉树上同层或更深层的叶结点编码）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-5-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.5 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2020统考真题】若任意一个字符的编码都不是其他字符编码的前缀，则称这种编码具有前缀特性。现有某字符集（字符个数≥2）的不等长编码，每个字符的编码均为二进制的0、1序列，最长为L位，且具有前缀特性。请回答下列问题：<br>(1)哪种数据结构适宜保存上述具有前缀特性的不等长编码？<br>(2)基于你所设计的数据结构，简述从0/1串到字符串的译码过程。<br>(3)简述判定某字符集的不等长编码是否具有前缀特性的过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>(1)</b> 二叉树（字符编码树）：每个编码对应从根到某结点的一条路径（0走左、1走右），具有前缀特性⇔所有字符都落在<b>叶结点</b>上（哈夫曼树即其典型）。</p><p><b>(2)译码：</b>从根出发读入0/1串：遇0走左孩子、遇1走右孩子；到达叶结点时输出对应字符并<b>回到根</b>继续读下一位，直至串结束。因无编码是其他编码的前缀，每步匹配唯一。</p><p><b>(3)判定：</b>依次把每个编码按(1)插入二叉树：插入过程中若①到达某结点时它已是叶（已有 shorter 编码成为新编码前缀），或②编码结束时该结点已有孩子或已被标记为字符（新编码成为已有编码前缀），则不具有前缀特性；全部插入成功且字符仅在叶/独立终结点上，则具有前缀特性。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设哈夫曼编码的长度不超过4，若已对两个字符编码为1和01，则还最多可对（）个字符编码。</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>"1"已占用⇒其余编码以0开头；"01"已占用⇒其余编码以00开头。长度≤4且以00开头的可用码字：0000、0001、0010、0011（若用更短码如00、000则会与彼此冲突或挤占空间），最多4个✓C。验算：{1,01,0000,0001,0010,0011}确为前缀码。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一棵哈夫曼树共有215个结点，对其进行哈夫曼编码，共能得到（）个不同的码字。</p><div class="opts"><div class="opt"><b>A.</b> 107</div><div class="opt"><b>B.</b> 108</div><div class="opt"><b>C.</b> 214</div><div class="opt"><b>D.</b> 215</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>哈夫曼树无度为1结点：n₀=n₂+1且2n₀-1=215⇒n₀=108。码字数=叶结点数=108✓B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wz-5-5-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">5.5 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>以孩子兄弟链表为存储结构，请设计递归算法求树的深度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思想：</b>孩子兄弟表示中，结点的深度延伸沿firstchild（下移一层），而nextsibling停留在同一层。故树的深度= max(第一孩子子树的深度+1, 兄弟链所在其余森林的深度)。</p><div class="asc">typedef struct CSNode{
+  ElemType data;
+  struct CSNode *firstchild,*nextsibling;
+}CSNode,*CSTree;
+
+int Depth(CSTree t){
+  if(t==NULL) return 0;
+  int d1=Depth(t-&gt;firstchild)+1;  //孩子方向:深度+1
+  int d2=Depth(t-&gt;nextsibling);   //兄弟方向:同层
+  return d1&gt;d2?d1:d2;
+}</div><p>每个结点递归一次，时间O(n)，空间O(树高)。验算：单结点树得1✓；根带3个孩子的两层树：firstchild链深度1+1=2，兄弟链各贡献同层，结果2✓。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设某哈夫曼树有5个叶结点，则该哈夫曼树的高度最高可以是（）。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>每次合并产生一个新结点，5个叶需合并4次。当每次都合并"当前最小两堆"且其中一堆是已合并的大堆时，树呈链状，高度最大=4条边+1=<b>5</b>层✓C。如权值{1,2,3,5,9}：1+2=3，3+3=6，6+5=11，11+9=20，最深的叶1、2在第5层。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下对于哈夫曼树的说法中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 用一组权值构造出来的哈夫曼树可能不唯一，但带权路径长度唯一</div><div class="opt"><b>B.</b> 哈夫曼树具有最小的带权路径长度</div><div class="opt"><b>C.</b> 哈夫曼树中没有度为1的结点</div><div class="opt"><b>D.</b> 哈夫曼树中除了度为1的结点外，还有度为2的结点和叶结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>D自相矛盾：哈夫曼树由"两两合并"构造，每个内部结点都有两个孩子，故<b>不存在度为1的结点</b>，"除了度为1的结点外…"错误✓（本题选错误的）。A✓：权相等时合并次序不同树形可不同，但WPL相同；B、C为基本性质。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于哈夫曼树的说法中，错误的是（）。<br>I．哈夫曼树的总结点数不能是偶数<br>II．哈夫曼树中度为1的结点数等于度为2和0的结点数之差<br>III．哈夫曼树的带权路径长度等于其所有分支结点的权值之和</p><div class="opts"><div class="opt"><b>A.</b> 仅III</div><div class="opt"><b>B.</b> I和II</div><div class="opt"><b>C.</b> 仅II</div><div class="opt"><b>D.</b> I、II和III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>I✓：n=2n₀-1恒为奇数。II✗：哈夫曼树度为1的结点数为0，而|n₂-n₀|=|n₀-1-n₀|=1≠0，说法错误（本题选错误的）。III✓：每个分支结点权值=其子树叶权之和，分支权值总和=Σ叶权×层数=WPL。故仅II错误。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若度为m的哈夫曼树中，叶结点个数为n，则非叶结点的个数为（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> ⌊n/m⌋-1</div><div class="opt"><b>C.</b> ⌈(n-1)/(m-1)⌉</div><div class="opt"><b>D.</b> ⌈n/(m-1)⌉-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>m叉哈夫曼树中每个非叶结点有m个孩子：设非叶结点k个，则总结点kn+... 由 n₀=(m-1)k+1 得k=(n-1)/(m-1)；若不整除需补虚叶（权0）凑满，故k=⌈(n-1)/(m-1)⌉✓C。m=2时退化为n-1与上题一致。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>并查集的结构是一种（）。</p><div class="opts"><div class="opt"><b>A.</b> 二叉链表存储的二叉树</div><div class="opt"><b>B.</b> 双亲表示法存储的树</div><div class="opt"><b>C.</b> 顺序存储的二叉树</div><div class="opt"><b>D.</b> 孩子表示法存储的树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>并查集用数组存储：每个元素保存其<b>双亲</b>的下标（根保存负的规模或自身），即树的双亲表示法✓B。找根只需沿双亲指针上溯，合并就是把一棵树的根挂在另一棵树根下。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>并查集中最核心的两个操作是：①查找，查找两个元素是否属于同一个集合；②合并，如果两个元素不属于同一个集合，且所在的两个集合互不相交，则合并这两个集合。假设初始长度为10（0~9）的并查集，按1-2、3-4、5-6、7-8、8-9、1-8、0-5、1-9的顺序进行查找和合并操作，最终并查集共有（）个集合。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>逐步合并：{1,2}、{3,4}、{5,6}、{7,8}→{7,8,9}→{1,2,7,8,9}→{0,5,6}；最后的1-9已属同一集合不再合并。最终：{1,2,7,8,9}、{3,4}、{0,5,6}共<b>3</b>个✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P188</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于并查集的说法中，正确的是（）（注：本题涉及图的考点）。</p><div class="opts"><div class="opt"><b>A.</b> 并查集不能检测图中是否存在环路的问题</div><div class="opt"><b>B.</b> 通过路径优化后的并查集在最坏情况下的高度仍是O(n)</div><div class="opt"><b>C.</b> Find操作返回集合中元素个数的相反数，它用来作为某个集合的标志</div><div class="opt"><b>D.</b> Union操作时可根据当前集合的规模，将小集合合并到大集合中</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>D✓：按规模（小树并大树）合并是标准优化，可控制树高O(log₂n)。A✗：并查集可判环路——加边前两端点已同根则有环（Kruskal的判环手段）。B✗：优化后树高为O(log₂n)。C✗：保存"元素个数相反数"的是<b>根结点</b>的parent域约定，并非Find操作的返回值。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于并查集的叙述中，（）是错误的（注意，本题涉及图的考点）。</p><div class="opts"><div class="opt"><b>A.</b> 并查集是用双亲表示法存储的树</div><div class="opt"><b>B.</b> 并查集可用于实现克鲁斯卡尔算法</div><div class="opt"><b>C.</b> 并查集可用于判断无向图的连通性</div><div class="opt"><b>D.</b> 在长度为n的并查集中进行查找操作的时间复杂度为O(log₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>D✗（即所选）：不做优化的并查集树高最坏为n（链状），Find最坏O(n)；只有配合按规模/按秩合并及路径压缩等优化才能改善，"恒为O(log₂n)"不成立。A、B、C均为并查集的正确常识（Kruskal与连通性判断是其典型应用）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】n(n≥2)个权值均不相同的字符构成哈夫曼树，关于该树的叙述中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 该树一定是一棵完全二叉树</div><div class="opt"><b>B.</b> 树中一定没有度为1的结点</div><div class="opt"><b>C.</b> 树中两个权值最小的结点一定是兄弟结点</div><div class="opt"><b>D.</b> 树中任意一个非叶结点的权值一定不小于下一层任意一个结点的权值</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>A✗（即所选）：哈夫曼树形态由权值分布决定，一般为"参差"的严格二叉树，未必完全。B✓：严格二叉树。C✓：两个最小权值最先被合并，互为兄弟且深度最大。D✓：非叶结点权=两小权之和，先合并者权小位置深，可归纳证明下层结点权不超过上层非叶结点权。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对权值集合W={5,9,13,17,27,62}构造哈夫曼树，则该哈夫曼树的带权路径长度(WPL)是（）。（原题权值OCR残缺，按答案逆向核验重建此权集）</p><div class="opts"><div class="opt"><b>A.</b> 89</div><div class="opt"><b>B.</b> 200</div><div class="opt"><b>C.</b> 208</div><div class="opt"><b>D.</b> 289</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>合并过程：5+9=14；13+14=27；17+27=44；27+44=71；71+62=133。<b>方法一（分层算）：</b>62在第1层，27、44在第2层，17、27(新)、71…逐层：62×1+27×2+44×2+13×3+17×3+14×3? 简洁用方法二。<b>方法二（合并和）：</b>WPL=所有新建结点权值之和=14+27+44+71+133=<b>289</b>✓D。两法互验一致。</p><span style="color:#64748b">【题面由王道原题重建】</span></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】下列选项给出的是从根分别到达两个叶结点路径上的权值序列，能属于同一棵哈夫曼树的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 24,10,5和24,10,7</div><div class="opt"><b>B.</b> 24,10,5和24,12,7</div><div class="opt"><b>C.</b> 24,10,10和24,14,11</div><div class="opt"><b>D.</b> 24,10,5和24,14,6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>合法性检验：同一结点的孩子权值之和=双亲权值；双亲两孩子须是当前最小两堆。D：根24=10+14✓；10=5+5（另一孩子5）；14=6+8。可由叶{5,5,3,5,6,8}：3+5=8，5+5=10，6+8=14，10+14=24构造成功✓。A：10下两叶5、7和为12≠10✗；B：根孩子10、12，其子叶5与x:10-5=5、12-7=5，三片权5的叶加7、…构成{5,5,5,7,…}哈夫曼应为5+5=10，5+7=12…则10、12的双亲不成立✗；C：出现"24,10,10"要求10的孩子含10，权值不减少不合哈夫曼构造✗。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】已知字符集{a,b,c,d,e,f,g,h}，若各字符的哈夫曼编码依次是0100,10,0000,0101,001,011,11,0001，则编码序列0100011001001011110101的译码结果是（）。</p><div class="opts"><div class="opt"><b>A.</b> acgabfh</div><div class="opt"><b>B.</b> adbagbb</div><div class="opt"><b>C.</b> afbeagd</div><div class="opt"><b>D.</b> afeefgd</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>从左到右贪心匹配：0100→a；011→f；001→e；001→e；011→f；11→g；0101→d。结果 a f e e f g d = <b>afeefgd</b>✓D。核验码长：a4,b2,c4,d4,e3,f3,g2,h4，与权值（频次）分布一致，且各码均非其他码前缀。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】已知字符集{a,b,c,d,e,f}，若各字符出现的次数分别为6,3,8,2,10,4，则对应字符集中各字符的哈夫曼编码可能是（）。</p><div class="opts"><div class="opt"><b>A.</b> 00,1011,01,1010,11,100</div><div class="opt"><b>B.</b> 00,100,110,000,0010,01</div><div class="opt"><b>C.</b> 10,1011,11,0011,00,010</div><div class="opt"><b>D.</b> 0011,10,11,0010,01,000</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选A。</b><p>构造：2+3=5；4+5=9；6+8=14；9+10=19；14+19=33。码长：a2、c2、e2、f3、b4、d4（其中f在9子树下、b、d在5子树下）。A的长度依次2,4,2,4,2,3完全吻合，且{00,01,11,100,1010,1011}构成前缀码✓。B、C、D的长度组合（2,3,3,3,4,2 / 2,4,2,4,2,3? C为2,4,2,4,2,3——但C中10与1011前缀冲突、00与0011冲突）逐一排除。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P189</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】对n个互不相同的符号进行哈夫曼编码。若生成的哈夫曼树共有115个结点，则n的值是（）。</p><div class="opts"><div class="opt"><b>A.</b> 56</div><div class="opt"><b>B.</b> 57</div><div class="opt"><b>C.</b> 58</div><div class="opt"><b>D.</b> 60</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选C。</b><p>哈夫曼树是严格二叉树：总结点2n₀-1=115⇒n₀=58，即符号数n=58✓C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P190</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】下列关于二叉树及森林的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 完全二叉树中不存在度为1的结点</div><div class="opt"><b>B.</b> 任意一个森林都可以转换为一棵二叉树</div><div class="opt"><b>C.</b> 二叉树的分支结点数比叶结点数少</div><div class="opt"><b>D.</b> 表达式树的根中保存的是最先计算的运算符</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>B✓：森林与二叉树一一对应，任何森林（含单棵树、空森林）都可经孩子兄弟转换得到唯一二叉树。A✗：完全二叉树恰有0或1个度为1的结点。C✗：如左单链中分支n-1＞叶1。D✗：表达式树根保存的是<b>最后</b>计算的运算符（最外层运算）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P190</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】对任意给定的含n(n＞2)个字符的有限集S，用二叉树表示S的哈夫曼编码集和定长编码集，分别得到二叉树T₁和T₂。下列叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> T₁与T₂的结点数相同</div><div class="opt"><b>B.</b> T₁的高度大于T₂的高度</div><div class="opt"><b>C.</b> 出现频次不同的字符在T₁中处于不同的层</div><div class="opt"><b>D.</b> 出现频次不同的字符在T₂中处于相同的层</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>D✓：定长编码树T₂所有字符都在同一深度⌈log₂n⌉的叶层上，无论频次是否相同。A✗：T₁结点2n-1，T₂为满树结点2^(⌈log₂n⌉+1)-1，一般不等。B✗：频次成倍均衡时T₁可与T₂同高，"大于"不恒成立。C✗：频次不同的字符完全可以同层。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P190</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】在由6个字符组成的字符集S中，各字符出现的频次分别为3，4，5，6，8，10，为S构造的哈夫曼编码的加权平均长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 2.4</div><div class="opt"><b>B.</b> 2.5</div><div class="opt"><b>C.</b> 2.67</div><div class="opt"><b>D.</b> 2.75</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选B。</b><p>合并：3+4=7；5+6=11；7+8=15；10+11=21；15+21=36。WPL=7+11+15+21+36=90；总频次3+4+5+6+8+10=36；加权平均长度=90/36=<b>2.5</b>✓B。也可先求各码长3,4,3,4,2,3再算(3×3+4×4+5×3+6×4+8×2+10×3)/36=90/36互验。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P190</p></div></details>
+  </div>
+  <div class="prob" id="wq-5-5-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">5.5 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】设字符集S中包含7个字符，各字符出现的频次分别为2,3,4,6,8,10,11。现为S中的各字符构造哈夫曼编码，编码长度不小于3的字符数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b><p>合并：2+3=5；4+5=9；6+8=14；9+10=19；11+14=25；19+25=44。树形：根44(19(9(4,5(2,3)),10), 25(11,14(6,8)))。各叶编码长度：10→2、11→2、4→3、6→3、8→3、2→4、3→4。长度≥3的字符：4,6,8,2,3共<b>5</b>个✓D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P190</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c5", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

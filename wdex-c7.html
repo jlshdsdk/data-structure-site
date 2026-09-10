@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第7章 查找 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第7章 查找</p>
+  </div>
+  <div class="part-zone" id="wdex7">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第7章 查找</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题109题（官方速查答案+逐题独立验算解析）、综合题25题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-7-2"><h3>7.2 顺序查找和折半查找<span class="tag tag-tpl">26题选择 + 7题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-7-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>顺序查找适合于存储结构为（）的线性表。</p><div class="opts"><div class="opt"><b>A.</b> 顺序存储结构或链式存储结构</div><div class="opt"><b>B.</b> 散列存储结构</div><div class="opt"><b>C.</b> 索引存储结构</div><div class="opt"><b>D.</b> 压缩存储结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>顺序查找从表头到表尾逐个比较关键字，只要求能依次访问每个元素，顺序表和单链表都能做到，故A对。散列存储（B）、索引存储（C）对应的是散列查找、索引查找，不是顺序查找的载体；压缩存储（D）不是线性表的常规存储方式。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P272</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若对有n个元素的有序顺序表和无序顺序表进行顺序查找，试就下列三种情况分别讨论两者在相等查找概率时的平均查找长度是否相同。<br>(1) 查找失败。<br>(2) 查找成功，且表中只有一个关键字等于给定值k的元素。<br>(3) 查找成功，且表中有若干关键字等于给定值k的元素，要求一次查找能找出所有元素。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 不相同。无序表必须从头扫到尾才能断定失败，需比较n+1次（含越界判断）；有序表一旦当前元素≥k即可提前终止，失败位置等概率落在n+1个间隙，各需比较1,2,…,n+1次，平均(n+2)/2次，故有序表更优。</p><p>(2) 相同。两种表查找成功且元素唯一时，都须从头逐个比较到该元素为止，平均比较次数均为(1+2+…+n)/n=(n+1)/2。</p><p>(3) 不相同。有序表中相等元素连续存放，从头找到第一个等于k的元素后继续向后扫描直到大于k即得全部结果，比较次数=定位首元素的比较次数+同值元素个数，平均约为(n+1)/2+m（m为等值元素个数期望）；无序表中相等元素分散，必须扫描全部n个元素才能找齐。故有序表平均比较次数更少，两者不相同。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>由n个数据元素组成的两个表：一个递增有序，一个无序。采用顺序查找算法，对有序表从头开始查找，发现当前元素已不小于待查元素时，停止查找，确定查找不成功。已知查找任一元素的概率相同，则在两种表中成功查找（）。</p><div class="opts"><div class="opt"><b>A.</b> 平均时间后者小</div><div class="opt"><b>B.</b> 平均时间两者相同</div><div class="opt"><b>C.</b> 平均时间前者小</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>查找成功时，被查元素落在各位置的概率相等，两种表都需从头逐个比较到该元素所在位置为止，平均比较次数都是(1+2+…+n)/n=(n+1)/2，与表是否有序无关。有序表"提前终止"的机制只在查找失败时减少比较次数，对成功查找无效，故C、A错。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>有序顺序表中的元素依次为017,094,154,170,275,503,509,512,553,612,677,765,897,908。<br>(1) 试画出对其进行折半查找的判定树。<br>(2) 若查找275或684的元素，将依次与表中的哪些元素比较？<br>(3) 计算查找成功的平均查找长度和查找不成功的平均查找长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 取mid=⌊(low+high)/2⌋，判定树（各层结点数1、2、4、7）：</p><div class="asc">            509<br>         /      \<br>      154        677<br>     /   \      /   \<br>   017   275   553    897<br>     \   / \   / \    / \<br>    094 170 503 512 612 765 908</div><p>(2) 查275：509→154→275，比较3次成功。查684：509→677→897→765，684&lt;765落入765的左失败结点，比较4次失败。</p><p>(3) 成功：ASL=(1×1+2×2+3×4+4×7)/14=(1+4+12+28)/14=45/14。失败：外部结点15个，其中1个与内部结点同处比较路径3次（挂017左侧），14个比较4次（挂第4层结点之下），ASL=(1×3+14×4)/15=59/15。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对长度为n的有序单链表，若查找每个元素的概率相等，则顺序查找表中任意一个元素的查找成功的平均查找长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> n/2</div><div class="opt"><b>B.</b> (n+1)/2</div><div class="opt"><b>C.</b> (n-1)/2</div><div class="opt"><b>D.</b> n/4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>等概率下第i个元素需要比较i次，ASL=(1+2+…+n)/n=n(n+1)/(2n)=(n+1)/2，选B。注意单链表只能顺序查找，且有序与否不影响成功查找的平均长度，A、C是常见的取整错误。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知一个有序顺序表A[0…8n-1]的表长为8n，并且表中没有关键字相同的数据元素。假设按下述方法查找一个关键字值等于给定值X的数据元素：首先在A[7]，A[15]，A[23]，…，A[8k-1]，…，A[8n-1]中进行顺序查找，若查找成功，则算法报告成功位置并返回；若不成功，当A[8k-1]&lt;X&lt;A[8×(k+1)-1]时，可确定一个缩小的查找范围A[8k]～A[8×(k+1)-2]，然后可在这个范围内执行折半查找。特殊情况：若X&gt;A[8n-1]的关键字，则查找失败。<br>(1) 画出描述上述查找过程的判定树。<br>(2) 计算相等查找概率下查找成功的平均查找长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 判定树的结构：最左是一条"脊柱"链，结点依次为A[7]，A[15]，…，A[8n-1]（每个结点的右孩子是链上的下一个结点）；每个结点A[8k-1]的左子树是块内7个元素A[8k-8]～A[8k-2]的折半判定树，是一棵3层满二叉树：根为第4个元素A[8k-5]，第二层为A[8k-7]、A[8k-3]，叶层为A[8k-8]、A[8k-6]、A[8k-4]、A[8k-2]：</p><div class="asc">A[7] --- A[15] --- A[23] --- ... --- A[8n-1]   (脊柱：右孩子为链上下一结点)<br>  |         |         |                 |<br> 7元满树   7元满树   7元满树   ...     7元满树   (每棵左子树高3)</div><p>(2) 块尾元素A[8k-1]查到需k次比较；块内7个元素各需k次（定块）+块内折半平均3次。故ASL=[Σ(k) + Σ7(k+3)]/(8n)=[Σ8k+21n]/(8n)=[8·n(n+1)/2+21n]/(8n)=(4n+25)/8。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对长度为3的顺序表进行查找，若查找第一个元素的概率为1/2，查找第二个元素的概率为1/3，查找第三个元素的概率为1/6，则查找任一元素的平均查找长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 5/3</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 7/3</div><div class="opt"><b>D.</b> 4/3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>加权平均：ASL=1×(1/2)+2×(1/3)+3×(1/6)=1/2+2/3+1/2=5/3。概率之和为1，各位置比较次数为1、2、3，直接加权即可，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>写出折半查找的递归算法。初始调用时，low为1，high为ST.length。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：在[low,high]内取mid=⌊(low+high)/2⌋，与key比较；相等返回；key更小则递归左半区间，更大则递归右半区间；low&gt;high时失败。代码：</p><div class="asc">int BinSearch(SSTable ST, int low, int high, KeyType key){<br>    if (low &gt; high) return 0;            // 查找失败<br>    int mid = low + (high - low) / 2;    // 防溢出写法<br>    if (key == ST.elem[mid].key) return mid;<br>    else if (key &lt; ST.elem[mid].key)<br>        return BinSearch(ST, low, mid-1, key);<br>    else<br>        return BinSearch(ST, mid+1, high, key);<br>}</div><p>每次递归区间减半，时间复杂度O(log₂n)，递归深度即判定树高度。也可改为尾递归消除的循环版，避免递归栈开销。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于二分查找的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 表必须有序，表可以顺序方式存储，也可以链表方式存储</div><div class="opt"><b>B.</b> 表必须有序且表中数据必须是整型、实型或字符型</div><div class="opt"><b>C.</b> 表必须有序，而且只能从小到大排列</div><div class="opt"><b>D.</b> 表必须有序，且表只能以顺序方式存储</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>折半查找要求①关键字有序（增序或减序都可以，只是比较方向相反），②能O(1)定位中点，即随机存取结构——只能是顺序存储，故D对、A错。B错：关键字只需可比较，不限类型；C错：递减有序同样可折半。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>线性表中各结点的检索概率不等时，可用如下策略提高顺序检索的效率：若找到指定的结点，则将该结点和其前驱结点（若存在）交换，使得经常被检索的结点尽量位于表的前端。试设计在顺序结构和链式结构的线性表上实现上述策略的顺序检索算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：顺序检索到目标后，若它不是首元素，则与其直接前驱交换位置；高频结点会逐渐"冒泡"到表前端。</p><p>顺序表版：</p><div class="asc">int SeqSearch(ElemType a[], int n, KeyType key){<br>    for (int i = 0; i &lt; n; i++)<br>        if (a[i].key == key){<br>            if (i &gt; 0) { ElemType t=a[i]; a[i]=a[i-1]; a[i-1]=t; }<br>            return i-1;   // 交换后新位置<br>        }<br>    return -1;<br>}</div><p>链表版：查找时带一个前驱指针pre，命中后把结点从链中摘下，插到其前驱之前（首元结点位置）。两种结构单次查找均为O(n)，但期望比较次数随访问频度前移而下降；链表版还可设置头结点统一处理首结点交换。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一个顺序存储的有序线性表上查找一个数据时，既可以采用折半查找，也可以采用顺序查找，但前者比后者的查找速度（）。</p><div class="opts"><div class="opt"><b>A.</b> 必然快</div><div class="opt"><b>B.</b> 取决于表是递增还是递减</div><div class="opt"><b>C.</b> 在大部分情况下要快</div><div class="opt"><b>D.</b> 必然不快</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>折半平均O(log₂n)，顺序平均(n+1)/2，绝大多数情况折半快；但查找恰好是第一个元素时两者都只比较1次，n很小时差别也不明显，故不能说"必然快"，A、B、D皆绝对化错误，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知一个n阶矩阵A和一个目标值k。该矩阵无重复元素，每行从左到右升序排列，每列从上到下升序排列。请设计一个在时间上尽可能高效的算法，判断矩阵中是否存在目标值k（例如矩阵[[1,4,7],[2,5,8],[3,6,9]]，目标值为8，判断存在）。要求：<br>(1) 给出算法的基本设计思想。<br>(2) 根据设计思想，采用C或C++语言描述算法，关键之处给出注释。<br>(3) 说明你的算法的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 从矩阵右上角出发比较：当前元素大于k则本列其余元素都更大，删去该列（左移）；当前元素小于k则本行其余元素都更小，删去该行（下移）；等于则找到。每步排除一行或一列，最多n+n=2n步。</p><p>(2) 代码：</p><div class="asc">bool searchMatrix(int A[][N], int n, int k){<br>    int i = 0, j = n - 1;              // 从右上角出发<br>    while (i &lt; n &amp;&amp; j &gt;= 0) {<br>        if (A[i][j] == k) return true;<br>        else if (A[i][j] &gt; k) j--;    // 排除当前列<br>        else i++;                      // 排除当前行<br>    }<br>    return false;<br>}</div><p>(3) 时间复杂度O(n)（每轮行列指标各最多移动n次），空间复杂度O(1)。也可从左下角出发，同理。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>折半查找过程所对应的判定树是一棵（）。</p><div class="opts"><div class="opt"><b>A.</b> 最小生成树</div><div class="opt"><b>B.</b> 平衡二叉树</div><div class="opt"><b>C.</b> 完全二叉树</div><div class="opt"><b>D.</b> 满二叉树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>折半查找每次取中点，判定树中任一结点的左右子树高度差不超过1，满足平衡二叉树定义，选B。它不一定是完全二叉树：如n=4时判定树为2(1,3(-,4))，3号结点只有右孩子，不是完全二叉树，更不一定是满二叉树，C、D错。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-2-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.2 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设顺序表S中有4个元素，它们的查找概率依次为P1=0.35，P2=0.15，P3=0.15，P4=0.35。将S保存在一个长度为4的顺序表中，采用折半查找法，查找成功时的平均查找长度为2.2。<br>(1) 若采用顺序存储结构保存S，且要求平均查找长度更短，则元素应如何排列？应使用何种查找方法？查找成功时的平均查找长度是多少？<br>(2) 若采用链式存储结构保存S，且要求平均查找长度更短，则元素应如何排列？应使用何种查找方法？查找成功时的平均查找长度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>先验证折半：按P1、P2、P3、P4的顺序存放时，判定树第2个元素在1层、第1、3个在2层、第4个在3层，ASL=0.15×1+(0.35+0.15)×2+0.35×3=2.2，与题设一致。</p><p>(1) 顺序存储：按查找概率从大到小排列（P1、P4、P2、P3对应元素），改用<b>顺序查找</b>：ASL=0.35×1+0.35×2+0.15×3+0.15×4=0.35+0.7+0.45+0.6=2.1&lt;2.2。</p><p>(2) 链式存储：链表无法随机访问，不能折半，只能顺序查找，因此同样按概率降序排列，用顺序查找，ASL也为2.1。概率不等时"概率大的放前端+顺序查找"是通用优化策略。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>折半查找和二叉排序树的时间性能（）。</p><div class="opts"><div class="opt"><b>A.</b> 相同</div><div class="opt"><b>B.</b> 有时不相同</div><div class="opt"><b>C.</b> 完全不同</div><div class="opt"><b>D.</b> 无法比较</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>折半查找的判定树唯一且平衡，查找长度总为O(log₂n)；二叉排序树的形态取决于插入序列，平衡时与折半相当，但按有序序列插入会退化成单链，查找退化为O(n)。故二者有时相同（树平衡时）、有时不同，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在有11个元素的有序表A[1…11]中进行折半查找（mid=⌊(low+high)/2⌋），查找元素A[11]时，被比较的元素下标依次是（）。</p><div class="opts"><div class="opt"><b>A.</b> 6, 8, 10, 11</div><div class="opt"><b>B.</b> 6, 9, 10, 11</div><div class="opt"><b>C.</b> 6, 7, 9, 11</div><div class="opt"><b>D.</b> 6, 8, 9, 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>模拟：low=1,high=11，mid=⌊12/2⌋=6；11&gt;6，low=7，mid=⌊18/2⌋=9；11&gt;9，low=10，mid=⌊21/2⌋=10；11&gt;10，low=11，mid=11命中。比较序列为6,9,10,11，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知有序表（13,18,24,35,47,50,62,83,90,115,134），当二分查找值为90的元素时，查找成功的比较次数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>共11个元素，mid=⌊(1+11)/2⌋=6，第6个元素50&lt;90，low=7，mid=⌊(7+11)/2⌋=9，第9个元素恰为90，命中。共比较2次，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若有序表的关键字序列为{b,c,d,e,f,g,q,r,s,t}，则在二分查找关键字b的过程中，进行比较的关键字依次为（）。</p><div class="opts"><div class="opt"><b>A.</b> f, c, b</div><div class="opt"><b>B.</b> f, d, b</div><div class="opt"><b>C.</b> g, c, b</div><div class="opt"><b>D.</b> g, d, b</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>共10个元素，mid=⌊11/2⌋=5即f；b&lt;f，high=4，mid=⌊5/2⌋=2即c；b&lt;c，high=1，mid=1即b命中。序列为f,c,b，选A。注意mid取⌊(low+high)/2⌋，第5个和第2个元素分别是f和c。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P273</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对表长为n的有序表进行折半查找，其判定树的高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> ⌈log₂(n+1)⌉</div><div class="opt"><b>B.</b> ⌈log₂(n+1)⌉-1</div><div class="opt"><b>C.</b> ⌈log₂n⌉</div><div class="opt"><b>D.</b> ⌈log₂n⌉-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>n个内部结点的判定树是平衡的，第i层最多2^(i-1)个结点，高度h满足2^(h-1)-1&lt;n≤2^h-1，即h=⌈log₂(n+1)⌉，选A。可代入n=1、n=7验证：高度分别为1、3，只有A符合。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>已知一个长度为16的顺序表，其元素按关键字有序排列，若采用折半查找算法查找一个不存在的元素，则比较的次数至少是（），至多是（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AB（至少4次，至多5次）。</b>n=16的判定树前4层基本放满：mid=⌊(low+high)/2⌋时，1~15号结点分布在第1~4层，仅第16号元素落在第5层。失败结点（外部结点）绝大多数挂在中序的第1~4层空位上，比较4次即可判失败；只有挂在第16号结点下的两个失败结点需要5次。故至少4、至多5，逐项判断：A对、B对、C/D错。</p></p><p class="final-ans">✅ 答案：<b>AB</b>（多选）　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>具有12个关键字的有序表中，对每个关键字的查找概率相同，折半查找算法查找成功的平均查找长度为（），折半查找查找失败的平均查找长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 37/12</div><div class="opt"><b>B.</b> 35/12</div><div class="opt"><b>C.</b> 39/13</div><div class="opt"><b>D.</b> 49/13</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AD。</b>画12个结点的判定树：各层结点数为1、2、4、5。成功ASL=(1×1+2×2+3×4+4×5)/12=37/12，A对B错。失败结点13个：3个挂第4层内部结点旁（比3次）、10个挂第4层之下（比4次），失败ASL=(3×3+10×4)/13=49/13，D对C错。</p></p><p class="final-ans">✅ 答案：<b>AD</b>（多选）　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于查找的说法中，正确的是（）（注：本题涉及下节内容）。</p><div class="opts"><div class="opt"><b>A.</b> 若数据元素保持有序，则查找时就可以采用折半查找法</div><div class="opt"><b>B.</b> 折半查找与二叉查找树的时间性能在最坏情况下是相同的</div><div class="opt"><b>C.</b> 折半查找法的平均查找长度一定小于顺序查找法</div><div class="opt"><b>D.</b> 折半查找法查找一个元素大约需要O(log₂n)次关键字比较</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>折半每比较一次区间减半，比较次数约为⌈log₂(n+1)⌉，D对。A错：有序但链式存储无法定位中点，不能折半；B错：二叉查找树最坏退化为链，性能O(n)与折半不同；C错：n=1或查找首元素时两者相同，"一定小于"过于绝对。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>采用分块查找时，数据的组织方式为（）。</p><div class="opts"><div class="opt"><b>A.</b> 数据分成若干块，每块内数据有序</div><div class="opt"><b>B.</b> 数据分成若干块，每块内数据不必有序，但块间必须有序，每块内最大（或最小）的数据组成索引块</div><div class="opt"><b>C.</b> 数据分成若干块，每块内数据有序，每块内最大（或最小）的数据组成索引块</div><div class="opt"><b>D.</b> 数据分成若干块，每块（除最后一块外）中数据个数需相同</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>分块（索引顺序）查找只要求"块间有序、块内无序"，抽取各块最大（最小）关键字及起始地址构成索引表，B正确且完整。块内有序（A、C）并非必要条件；各块元素个数不必相同（D），仅均匀分块时效率最优。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对有2500个记录的索引顺序表（分块表）进行查找，最理想的块长为（）。</p><div class="opts"><div class="opt"><b>A.</b> 50</div><div class="opt"><b>B.</b> 125</div><div class="opt"><b>C.</b> 500</div><div class="opt"><b>D.</b> ⌈log₂2500⌉</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>顺序查找索引表和顺序查找块内时，ASL=(b+1)/2+(s+1)/2，其中b×s=n。由均值不等式，b=s=√n时最小。√2500=50，即分成50块、每块50个记录，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设顺序存储的某线性表共有123个元素，按分块查找的要求等分为3块。若对索引表采用顺序查找法来确定子块，且在确定的子块中也采用顺序查找法，则在等概率情况下，分块查找成功的平均查找长度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 21</div><div class="opt"><b>B.</b> 23</div><div class="opt"><b>C.</b> 41</div><div class="opt"><b>D.</b> 62</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>123个元素等分为3块，每块s=41个，索引表长度b=3。ASL=(b+1)/2+(s+1)/2=(3+1)/2+(41+1)/2=2+21=23，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P274</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>为提高查找效率，对有65025个元素的有序顺序表建立索引顺序结构，在最好情况下查找到表中已有元素最多需要执行（）次关键字比较。</p><div class="opts"><div class="opt"><b>A.</b> 10</div><div class="opt"><b>B.</b> 14</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 21</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>65025=255²。最好情况是均匀分成255块、每块255个元素，且索引表和块内（都有序）均可用折半查找：折半查索引表最多⌈log₂256⌉=8次，再折半查块内最多8次，合计16次，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】已知一个长度为16的顺序表L，其元素按关键字有序排列，若采用折半查找法查找一个L中不存在的元素，则关键字的比较次数最多是（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>n=16时判定树高度⌈log₂17⌉=5：内部结点位于第1~4层（个别到第5层），查找失败最多比较到第5层，即最多5次，选B。可与第13题对照：失败比较次数最少4次、最多5次，本题问"最多"。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】下列选项中，不能构成折半查找中关键字比较序列的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 500, 200, 450, 180</div><div class="opt"><b>B.</b> 500, 450, 200, 180</div><div class="opt"><b>C.</b> 180, 500, 200, 450</div><div class="opt"><b>D.</b> 180, 200, 500, 450</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>合法序列须满足：每次比较后区间按大小关系收缩。A中查180：180&lt;500转向左子树（区间(-,500)），200在此区间合法；180&lt;200再转左（区间(-,200)），但下一个450&gt;200，已落在收缩后的区间之外，矛盾，A不合法。B、C、D逐项代入检验均满足区间收缩规则。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】在有n（n&gt;1000）个元素的升序数组A中查找关键字x。查找算法的伪代码如下所示。</p><div class="asc">k=0;<br>while(k&lt;n 且 A[k]&lt;x) k=k+3;<br>if(k&lt;n 且 A[k]==x) 查找成功;<br>else if(k-1&lt;n 且 A[k-1]==x) 查找成功;<br>else if(k-2&lt;n 且 A[k-2]==x) 查找成功;<br>else 查找失败;</div><p>本算法与折半查找算法相比，有可能具有更少比较次数的情形是（）。</p><div class="opts"><div class="opt"><b>A.</b> 当x不在数组中</div><div class="opt"><b>B.</b> 当x接近数组开头处</div><div class="opt"><b>C.</b> 当x接近数组结尾处</div><div class="opt"><b>D.</b> 当x位于数组中间位置</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>该算法按步长3跳跃，若x位于下标k=0,3,6,…附近，只需k/3+O(1)次比较；当x接近数组开头时仅需极少次比较，可能远小于折半的log₂n次，选B。x接近结尾或居中时跳跃次数约n/3，远劣于折半；x不在数组中时两者都需走完全程，且该算法更慢。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】下列二叉树中，可能成为折半查找判定树（不含外部结点）的是（）（选项为四棵二叉树，按原题考点重绘如下）。</p><div class="asc">A(√):        3            B(×):      4<br>             / \                     / \<br>            1    5                  2     6<br>             \   / \                / \      \<br>              2 4    6             1   3     7<br>                                      |<br>                                  左子树高3、右子树高1，不平衡<br>C(×): 2                       D(×):       5<br>        \                                 / \<br>         5                              3     7<br>        / \                            / \      \<br>       4    6                         2   4      9<br>  根的左子树为空而右子树高2                          8 /<br>  左右高度差超过1                     右侧路径连续偏斜，高度差超过1</div><div class="opts"><div class="opt"><b>A.</b> 树A：任一结点的左右子树高度差不超过1，且结点为对应区间中点</div><div class="opt"><b>B.</b> 树B：存在左右子树高度差为2的结点</div><div class="opt"><b>C.</b> 树C：根结点只有右子树且右子树高度为2</div><div class="opt"><b>D.</b> 树D：存在左右子树高度差为2的结点</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>折半查找判定树的核心性质：任一结点的左右子树的高度差至多为1（每次对半分），且结点关键字是当前区间的中点。A中每个结点都满足该性质（如n=6的判定树3(1(-,2),5(4,6))）；B、C、D均存在高度差超过1的结点，折半查找不可能产生，故只能选A。<span style="color:#64748b">【选项图形按原题考点重绘】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】对含600个元素的有序顺序表进行折半查找，关键字间的比较次数最多是（）。</p><div class="opts"><div class="opt"><b>A.</b> 9</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 30</div><div class="opt"><b>D.</b> 300</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>比较次数最多为判定树高度⌈log₂(n+1)⌉=⌈log₂601⌉。2⁹=512&lt;601≤1024=2¹⁰，故高度为10，最多比较10次，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】下列数据结构中，不适合直接使用折半查找的是（）。<br>Ⅰ．有序链表<br>Ⅱ．无序数组<br>Ⅲ．有序静态链表<br>Ⅳ．无序静态链表</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>B.</b> 仅Ⅱ、Ⅳ</div><div class="opt"><b>C.</b> 仅Ⅱ、Ⅲ、Ⅳ</div><div class="opt"><b>D.</b> Ⅰ、Ⅱ、Ⅲ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>折半查找需要两个条件：①关键字有序，②支持随机访问（能O(1)取中点）。Ⅰ、Ⅲ虽有序，但链表（含静态链表）只能顺序访问，无法O(1)定位中点；Ⅱ、Ⅳ无序，不满足有序前提。四个都不适合，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P275</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-2-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.2 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】已知查找表中有400个元素，查找每个元素的概率相同。采用分块查找法进行查找，且均匀分块。若采用顺序查找法确定元素所在的块，且块内也采用顺序查找法，为使查找效率最高，则每块包含的元素个数应为（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 20</div><div class="opt"><b>D.</b> 25</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>设每块s个元素、共400/s块，ASL=(400/s+1)/2+(s+1)/2=(400/s+s)/2+1。由均值不等式，s=√400=20时ASL取最小值(20+20)/2+1=21。故每块20个元素，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P276</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-7-3"><h3>7.3 树型查找<span class="tag tag-tpl">34题选择 + 8题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-7-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于二叉排序树，下面的说法中，（）是正确的。</p><div class="opts"><div class="opt"><b>A.</b> 二叉排序树是动态树表，查找失败时插入新结点，会引起树的重新分裂和组合</div><div class="opt"><b>B.</b> 对二叉排序树进行层序遍历可得到有序序列</div><div class="opt"><b>C.</b> 用逐点插入法构造二叉排序树，若先后插入的关键字有序，二叉排序树的深度最大</div><div class="opt"><b>D.</b> 在二叉排序树中进行查找，关键字的比较次数不超过结点数的1/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>插入关键字有序（递增或递减）时，每个新结点都挂在上一个结点的同一侧，形成单链，深度达到n，故C对。A错：BST插入只挂叶子，不分裂重组；B错：中序遍历才有有序序列；D错：单链形态下查找最末结点需比较n次。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>按（）遍历二叉排序树得到的序列是一个有序序列。</p><div class="opts"><div class="opt"><b>A.</b> 先序</div><div class="opt"><b>B.</b> 中序</div><div class="opt"><b>C.</b> 后序</div><div class="opt"><b>D.</b> 层次</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>二叉排序树定义为左子树&lt;根&lt;右子树，中序遍历按"左—根—右"访问，恰好输出递增序列，选B。先序、后序、层序都不保证有序。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>按照序列（40,72,38,35,67,51,90,8,55,21）建立一棵二叉排序树，画出该树，并求出在等概率的情况下，查找成功的平均查找长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>依次插入（小于走左、大于走右）得：</p><div class="asc">            40<br>          /    \<br>        38      72<br>       /       /  \<br>     35      67    90<br>    /       /<br>   8       51<br>    \       \<br>    21      55</div><p>各结点层次：40在第1层，38、72第2层，35、67、90第3层，8、51第4层，21、55第5层。等概率下ASL=(1×1+2×2+3×3+4×2+5×2)/10=(1+4+9+8+10)/10=32/10=3.2。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在二叉排序树中进行查找的效率与（）有关。</p><div class="opts"><div class="opt"><b>A.</b> 二叉排序树的深度</div><div class="opt"><b>B.</b> 二叉排序树的结点的个数</div><div class="opt"><b>C.</b> 被查找结点的度</div><div class="opt"><b>D.</b> 二叉排序树的存储结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>查找沿根到目标结点的一条路径进行，比较次数等于该结点的层次，其上界为树的深度：树越平衡（深度越接近log₂n）效率越高，退化成单链（深度n）时最差，故与深度直接相关，选A。结点个数相同的树可深可浅，B不准确。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>依次把结点(34,23,15,98,115,28,107)插入初始状态为空的平衡二叉排序树，使得在每次插入后保持该树仍然是平衡二叉树。请依次画出每次插入后所形成的平衡二叉排序树。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>逐步插入并调整：</p><p>①插34：34为根。</p><p>②插23：23为34的左孩子，平衡。</p><p>③插15：15在34左子树的左侧，34平衡因子=2，LL型<b>右旋</b>：23为根，孩子15、34。</p><div class="asc">   23<br>  /  \<br>15    34</div><p>④插98：98为34的右孩子，平衡。</p><p>⑤插115：115为98的右孩子，各结点平衡因子未超界，平衡。</p><p>⑥插28：路径23→34→28（34的左孩子），23平衡因子=-2、34的右子树较高且98右重，RR型<b>左旋</b>：34为根，左23(15,28)、右98(-,115)。</p><div class="asc">      34<br>    /    \<br>  23      98<br> /  \      \<br>15  28    115</div><p>⑦插107：路径34→98→115→107&lt;115成为115的左孩子。此时98的平衡因子=0-2=-2失衡，其右孩子115左重，属RL型：先对115右旋（107上移），再对98左旋，得到34(23(15,28),107(98,115))，全树平衡。最终形态：</p><div class="asc">      34<br>    /    \<br>  23      107<br> /  \    /  \<br>15  28  98  115</div></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在常用的描述二叉排序树的存储结构中，关键字值最大的结点（）。</p><div class="opts"><div class="opt"><b>A.</b> 左指针一定为空</div><div class="opt"><b>B.</b> 右指针一定为空</div><div class="opt"><b>C.</b> 左右指针均为空</div><div class="opt"><b>D.</b> 左右指针均不为空</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>关键字最大的结点位于"一路向右"的尽头，不可能再有右子树（右子树关键字必须更大），故右指针一定为空；但它可以有左子树，如依次插入20,30,40,35后，最大结点40带左孩子35，因此"左右均空"（C）不成立，只有B必然成立。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定一个关键字集合{25,18,34,9,14,27,42,51,38}，假定查找各关键字的概率相同，请画出其最佳二叉排序树。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>等概率时最佳（最优）二叉排序树即总查找长度最小的树：每次取排序后区间的中点作根（类似折半查找判定树）。排序：9,14,18,25,27,34,38,42,51（9个，取第5个25为根）：左区[9,14,18]取14，右区[27,34,38,42,51]取34；34的右区[38,42,51]取42：</p><div class="asc">          25<br>        /    \<br>      14      34<br>     / \     /  \<br>    9  18  27   42<br>               /  \<br>             38    51</div><p>成功ASL=(1×1+2×2+3×4+4×2)/9=(1+4+12+8)/9=25/9≈2.78。失败结点10个：挂在第3层结点（9,18,27）下的6个各比较3次，挂在第4层结点（38,51）下的4个各比较4次，失败ASL=(6×3+4×4)/10=34/10=3.4。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设二叉排序树中关键字由1到1000的整数构成，现要查找关键字为363的结点，下述关键字序列中，不可能是在二叉排序树上查找的序列是（）。</p><div class="opts"><div class="opt"><b>A.</b> 2, 252, 401, 398, 330, 344, 397, 363</div><div class="opt"><b>B.</b> 924, 220, 911, 244, 898, 258, 362, 363</div><div class="opt"><b>C.</b> 925, 202, 911, 240, 912, 245, 363</div><div class="opt"><b>D.</b> 2, 399, 387, 219, 266, 382, 381, 278, 363</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>查找序列必须满足：比较后根据大小进入相应子树，之后所有比较值都落在收缩后的区间内。C中240&lt;911进入左子树后区间为(202,911)，下一个912&gt;911超出区间，矛盾，不可能。A、B、D逐项代入检验，区间收缩均成立（如B中898∈(244,911)、362∈(258,898)等）。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试编写一个算法，判断给定的二叉树是否是二叉排序树。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：二叉排序树的中序序列严格递增。中序遍历中保存前驱结点指针，若当前结点关键字不大于前驱则不是BST。另需注意：仅判断"每个结点大于左孩子、小于右孩子"是不够的（局部满足不代表整体有序）。</p><div class="asc">BiTNode *prev = NULL;<br>bool isBST(BiTNode *p){          // 中序递归<br>    if (p == NULL) return true;<br>    if (!isBST(p-&gt;lchild)) return false;<br>    if (prev &amp;&amp; p-&gt;data.key &lt;= prev-&gt;data.key) return false;<br>    prev = p;                     // 更新前驱<br>    return isBST(p-&gt;rchild);<br>}</div><p>时间复杂度O(n)，空间O(h)。初始调用isBST(root)，prev置空。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>分别以下列序列构造二叉排序树，与用其他3个序列所构造的结果不同的是（）。</p><div class="opts"><div class="opt"><b>A.</b> (100, 80, 90, 60, 120, 110, 130)</div><div class="opt"><b>B.</b> (100, 120, 110, 130, 80, 60, 90)</div><div class="opt"><b>C.</b> (100, 60, 80, 90, 120, 110, 130)</div><div class="opt"><b>D.</b> (100, 80, 60, 90, 120, 130, 110)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>A、B、D插入结果同为：100为根，左子树80(60,90)，右子树120(110,130)。C中80作为100的左孩子后，60又作为80的左孩子、90成为80的右孩子……最终100的左子树为60(-,80(-,90))，形态与其他三个不同，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个算法，求出指定结点在给定二叉排序树中的层次。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：利用BST有序性从根向下搜索，每下一层层次加1，找到即返回；走到底未找到返回0（不存在）。</p><div class="asc">int Level(BSTNode *t, KeyType k){<br>    if (t == NULL) return 0;          // 不存在<br>    int level = 1;                    // 根为第1层<br>    BSTNode *p = t;<br>    while (p &amp;&amp; p-&gt;key != k){<br>        if (k &lt; p-&gt;key) p = p-&gt;lchild;<br>        else            p = p-&gt;rchild;<br>        level++;<br>    }<br>    return p ? level : 0;<br>}</div><p>循环次数不超过树高，时间复杂度O(h)，平衡时O(log₂n)，空间O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>从空树开始，依次插入元素52,26,14,32,71,60,93,58,24和41后构成了一棵二叉排序树。在该树查找60要进行比较的次数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>插入后60的路径：52→71→60（60小于52的右孩子71，转左遇到60），比较3次，选A。树的形态：52(26(14(24,-),32(41,-)),71(60(58,-),93))。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P295</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>利用二叉树遍历的思想编写一个判断二叉树是否是平衡二叉树的算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：后序遍历自底向上返回子树高度；任一结点左右子树高度差超过1则全局不平衡。用-1表示"子树已失衡"短路返回。</p><div class="asc">int postHeight(BiTNode *p){<br>    if (p == NULL) return 0;<br>    int lh = postHeight(p-&gt;lchild);<br>    if (lh == -1) return -1;<br>    int rh = postHeight(p-&gt;rchild);<br>    if (rh == -1) return -1;<br>    if (lh - rh &gt; 1 || rh - lh &gt; 1) return -1;  // 失衡<br>    return (lh &gt; rh ? lh : rh) + 1;             // 子树高度<br>}<br>bool isBalanced(BiTNode *t){ return postHeight(t) != -1; }</div><p>每个结点只访问一次，时间O(n)，空间O(h)。若题目只要求"每个结点左右子树高度差≤1"而不要求BST有序性，该算法即为判断平衡二叉树的标准解。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在含有n个结点的二叉排序树中查找某个关键字的结点时，最多进行（）次比较。</p><div class="opts"><div class="opt"><b>A.</b> n/2</div><div class="opt"><b>B.</b> log₂n</div><div class="opt"><b>C.</b> log₂n+1</div><div class="opt"><b>D.</b> n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>树退化成单链（依次插入有序序列）时深度为n，查找最深处的结点需比较n次，这是最坏情况，选D。log₂n只是平衡形态下的量级，不是上界。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个算法，求出给定二叉排序树中最小和最大的关键字。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：最小关键字是一路向左的尽头，最大关键字是一路向右的尽头。</p><div class="asc">KeyType minKey(BSTNode *t){<br>    while (t-&gt;lchild) t = t-&gt;lchild;   // 最左下<br>    return t-&gt;key;<br>}<br>KeyType maxKey(BSTNode *t){<br>    while (t-&gt;rchild) t = t-&gt;rchild;   // 最右下<br>    return t-&gt;key;<br>}</div><p>两算法都只走一条路径，时间复杂度O(h)（h为树高，平衡时O(log₂n)），空间O(1)。若用中序遍历取第一个/最后一个访问值也可，但代价是O(n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>五个不同结点构造的二叉查找树的形态共有（）种。</p><div class="opts"><div class="opt"><b>A.</b> 20</div><div class="opt"><b>B.</b> 30</div><div class="opt"><b>C.</b> 32</div><div class="opt"><b>D.</b> 42</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>n个互不相同结点可构成的BST形态数为卡特兰数C(2n,n)/(n+1)。n=5时C(10,5)/6=252/6=42，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-3-9" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.3 · 综合第9题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设计一个算法，从大到小输出二叉排序树中所有值不小于k的关键字。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：从大到小输出即"逆中序"（右—根—左）遍历。在访问右子树之后、遍历左子树之前判断当前结点：若关键字≥k则输出；一旦当前结点关键字&lt;k，由于其左子树更小，可整棵剪枝返回。</p><div class="asc">void PrintGE(BSTNode *p, KeyType k){<br>    if (p == NULL) return;<br>    PrintGE(p-&gt;rchild, k);        // 先右：更大者先输出<br>    if (p-&gt;key &gt;= k) {<br>        printf("%d ", p-&gt;key);<br>        PrintGE(p-&gt;lchild, k);   // 左子树中仍可能≥k<br>    }                            // else: p-&gt;key&lt;k，左子树全&lt;k，剪枝<br>}</div><p>逆中序保证输出序列从大到小有序；剪枝使时间复杂度为O(log₂n+m)（m为输出个数），空间O(h)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于二叉排序树的说法中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 中序遍历二叉排序树可以得到一个递减的有序序列</div><div class="opt"><b>B.</b> 二叉排序树中，关键字值最小的结点一定没有右子树</div><div class="opt"><b>C.</b> 在二叉排序树中插入新结点时，新结点总是作为根结点插入</div><div class="opt"><b>D.</b> 二叉排序树中任一结点的关键字大于其左子树中所有结点的关键字，且小于其右子树中所有结点的关键字</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>这是二叉排序树的定义性质（对子树中"所有"结点成立，而非仅直接孩子），D正确。A错：中序得到递增序列；B错：最小关键字结点是没有<b>左</b>子树，右子树可有可无；C错：插入总是把新结点作为叶结点挂上，不改变已有结构。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>含有20个结点的平衡二叉树的最大深度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>深度为h的平衡二叉树最少结点数N(h)=N(h-1)+N(h-2)+1，N(1)=1，N(2)=2，得N(3)=4，N(4)=7，N(5)=12，N(6)=20。20个结点恰好能构成深度6的最瘦平衡树，故最大深度为6，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有5层结点的平衡二叉树至少有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 10</div><div class="opt"><b>B.</b> 12</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 17</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>同上递推：N(5)=N(4)+N(3)+1=7+4+1=12，即5层平衡树最少12个结点，选B。此时形态是每个失衡临界结点都是"左满右瘦"（或镜像）的斐波那契树。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>高度为3的平衡二叉排序树的形态共有（）种。</p><div class="opts"><div class="opt"><b>A.</b> 13</div><div class="opt"><b>B.</b> 14</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 15</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>设f(h)为高度为h的平衡BST形态数：f(1)=1，f(2)=3（根带左孩子、带右孩子、带两个孩子）。高度为3：根的左右子树高度组合为(2,1)、(1,2)、(2,2)，f(3)=f(2)×f(1)+f(1)×f(2)+f(2)×f(2)=3+3+9=15，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在平衡二叉树的基本操作中，可能发生两次旋转的操作是（）。</p><div class="opts"><div class="opt"><b>A.</b> 添加、删除结点</div><div class="opt"><b>B.</b> 仅删除结点</div><div class="opt"><b>C.</b> 仅添加结点</div><div class="opt"><b>D.</b> 都不会</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>插入时若出现LR、RL型失衡需要双旋转（两次）；删除时同样可能出现LR/RL型失衡，且调整可能向上传播，也会发生两次旋转。故添加和删除都可能两次旋转，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将关键字1,2,3,…,1024依次插入到初始为空的平衡二叉树中，假设只有一个根结点的二叉树的高度为0，则插入结束后的平衡二叉树的高度是（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 9</div><div class="opt"><b>C.</b> 10</div><div class="opt"><b>D.</b> 11</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>依次插入递增序列，AVL始终调整为完全（最佳）形态：插入1~n得到的是完全二叉树。1023=2¹⁰-1个结点恰好填满高度9的满树；第1024个结点落在第10层，故高度为10，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于红黑树和AVL树的说法中，不正确的是（）<br>Ⅰ．一棵含有n个结点的红黑树的高度至多为2log₂(n+1)<br>Ⅱ．如果一个结点是红色的，则它的父结点和孩子结点都是黑色的<br>Ⅲ．红黑树的查询效率一般要优于含有相同结点数的AVL树<br>Ⅳ．若AVL树的某结点的左右孩子的平衡因子都是零，则该结点的平衡因子也是零</p><div class="opts"><div class="opt"><b>A.</b> Ⅰ、Ⅲ</div><div class="opt"><b>B.</b> Ⅲ</div><div class="opt"><b>C.</b> Ⅱ、Ⅳ</div><div class="opt"><b>D.</b> Ⅲ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>Ⅰ对：红黑树性质保证最长路径≤2倍最短路径，高度≤2log₂(n+1)；Ⅱ对：不存在相邻红结点。Ⅲ错：AVL严格平衡，查询效率一般优于红黑树。Ⅳ错：左右孩子平衡因子为0只说明各自子树内部平衡，两棵子树高度仍可能不同（如左子树1层、右子树2层），该结点平衡因子可以为-1。故不正确的是Ⅲ、Ⅳ，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于红黑树和AVL树的描述中，不正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 两者都属于自平衡的二叉树；红黑树的红结点的数目最多和黑结点的数目相同</div><div class="opt"><b>B.</b> 两者查找、插入、删除的时间复杂度都相同；若红黑树的所有结点都是黑色的，那么它一定是一棵满二叉树</div><div class="opt"><b>C.</b> 红黑树插入和删除过程至多有2次旋转操作；红黑树的任何一个分支结点都有两个非空孩子结点</div><div class="opt"><b>D.</b> 红黑树的任意一个结点的左右子树高度（含叶结点）之比不超过2；红黑树的子树也一定是红黑树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>C前半句错误：插入至多2次旋转，但删除调整至多需3次旋转，"插入和删除至多2次"不成立。A、B、D逐项验证：红结点在任一路径上不超过黑结点数，总数上红≤黑，A对；两者操作均为O(log₂n)，全黑红黑树各路径黑高相同故必为满二叉树，B对；最长路径（红黑相间）至多为最短路径（全黑）的2倍，红黑树的子树仍满足五条性质，D对。故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P296</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于红黑树的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 从根结点到任一叶结点的路径上，黑结点的个数可以不同</div><div class="opt"><b>B.</b> 从任一结点出发到其所有后代叶结点的路径上，含有的黑结点个数相同</div><div class="opt"><b>C.</b> 含有n个结点的红黑树的高度一定不大于同样含有n个结点的AVL树的高度</div><div class="opt"><b>D.</b> 红黑树的删除调整过程中至多需要2次旋转</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>"任一结点到其所有后代叶结点的路径含相同数目黑结点"正是红黑树的黑高性质，B对。A与该性质矛盾；C错：红黑树比AVL松弛，同结点数的红黑树高度可以更大；D错：删除调整至多3次旋转。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列四个选项中，满足红黑树定义的是（）（选项为四棵二叉树，结点标注R红/B黑，按原题考点重绘）。</p><div class="asc">A:        13B              B:        13B           C:        13B           D:        13R<br>         /    \                     /    \                  /    \                  /    \<br>       8R      17R             8R      17B            8B      17B             8B      17B<br>      /  \    /   \           /  \    /   \          /  \    /   \           /  \    /   \<br>    1B  11B 15B  25B        1R  11B 15B 25B        1R 11R  15B 25B         1B  11B 15B  25B</div><div class="opts"><div class="opt"><b>A.</b> 根为黑，无相邻红结点，各路径黑结点数均为2</div><div class="opt"><b>B.</b> 红结点8的孩子1为红，出现相邻红结点</div><div class="opt"><b>C.</b> 左路黑高2、右路黑高3，黑高不一致</div><div class="opt"><b>D.</b> 根结点为红色</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>红黑树五条性质：根黑、红结点不相邻、任一结点到叶的各路径黑结点数相同（黑高一致）等。A满足全部性质（每条根到叶路径均为2个黑结点）；B违反"红结点相邻"；C左子树路径黑高与右子树不相等；D违反"根必黑"。故选A。<span style="color:#64748b">【选项图形按原题考点重绘】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将关键字1,2,3,4,5,6,7依次插入初始为空的红黑树T，则T中红结点的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>逐步插入：插1为黑根；插2红；插3引发左旋，2为黑根、1和3红；插4变色后2黑(1黑,3黑)；插5后左旋得4黑(3红,5红)挂2下；插6时叔结点3红，变色后4变红；插7时左旋6上，得最终形态2B(1B,4R(3B,6B(5R,7R)))。红结点为4、5、7，共3个，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将关键字5,4,3,2,1依次插入初始为空的红黑树T，则T的最终形态是（）（选项为四棵二叉树，按原题考点重绘）。</p><div class="asc">正确形态：        4B<br>                /    \<br>              2B      5B<br>             /  \<br>           1R    3R</div><div class="opts"><div class="opt"><b>A.</b> 以3为根、4和5在其右链上的形态</div><div class="opt"><b>B.</b> 根为4，左子树2(1,3)全为黑结点，右子树5为红结点</div><div class="opt"><b>C.</b> 根为4，左子树2的孩子1、3均为黑色，右子树5为黑色但黑高不一致</div><div class="opt"><b>D.</b> 根4黑、左孩子2黑（孩子1、3为红）、右孩子5黑，各路径黑高一致</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>插入过程：5黑根；插4红；插3时4红带红孩，叔为黑，右旋后4黑(3红,5红)；插2后变色得4黑(3黑(2红,-),5黑)；插1时2红叔5红、变色上递归到根，最终4B(2B(1R,3R),5B)：各路径黑结点数均为2、无相邻红，合法，即D描述的形态。A层次结构错误；B、C违反黑高一致或颜色性质。<span style="color:#64748b">【选项图形按原题考点重绘】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在下图所示的红黑树中插入结点2且染成红色后，则下一步应进行的操作是（）（图中B表示黑色结点，R表示红色结点）。</p><div class="asc">        8B<br>       /  \<br>     4B    10B<br>    /<br>  3R</div><div class="opts"><div class="opt"><b>A.</b> 左旋</div><div class="opt"><b>B.</b> 右旋</div><div class="opt"><b>C.</b> 变色</div><div class="opt"><b>D.</b> 无须调整</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>插入2：2&lt;8→4→2&lt;4→与4的左孩子3比较，2&lt;3成为3R的左孩子。此时3红且带红孩2，违反"无相邻红"性质；2的叔结点（3的兄弟，即4的右孩子）为空，视为黑色，不能仅靠变色解决。3是4的左孩子、2是3的左孩子，属LL型，应对4做<b>右旋</b>（3上移，4下沉并交换颜色），故下一步操作是右旋，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在红黑树中插入一个新结点后，下列叙述中正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 新结点总是被染成黑色</div><div class="opt"><b>B.</b> 若新结点的叔结点为红色，则通过变色即可解决当前冲突，且调整可能向上传递</div><div class="opt"><b>C.</b> 插入调整过程中至多需要3次旋转</div><div class="opt"><b>D.</b> 插入调整过程中只会发生变色，不会发生旋转</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>插入修复规则：新结点先染红（A错）；若父结点和叔结点均为红，将二者变黑、祖父变红，冲突上移到祖父，可能继续向上调整，B对；叔结点为黑时需旋转（D错），且单次插入至多2次旋转（C错）。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P297</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】在下图所示的平衡二叉树中插入关键字48后得到一棵新平衡二叉树，在新平衡二叉树中，关键字37所在结点的左、右子结点中保存的关键字分别是（）。</p><div class="asc">          37<br>        /    \<br>      24      53<br>     /  \    /  \<br>   13   30  47   90</div><div class="opts"><div class="opt"><b>A.</b> 13, 48</div><div class="opt"><b>B.</b> 24, 48</div><div class="opt"><b>C.</b> 24, 53</div><div class="opt"><b>D.</b> 24, 90</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>插入48：48&gt;37转右到53，48&lt;53转左到47，48&gt;47成为47的右孩子。检查平衡：47的子树高2、90高1，53的平衡因子=1；37左子树（24,13,30）高2、右子树（53,47,48,90）高3，平衡因子=-1，未超界，<b>无需旋转</b>。故37的左右孩子仍是24和53，选C。本题陷阱在于让考生误以为必须旋转而选B。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】对下列关键字序列，不可能构成某二叉排序树中一条查找路径的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 95, 22, 91, 24, 94, 71</div><div class="opt"><b>B.</b> 92, 20, 91, 34, 88, 35</div><div class="opt"><b>C.</b> 21, 89, 77, 29, 36, 38</div><div class="opt"><b>D.</b> 12, 25, 71, 68, 33, 34</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>查找71时：71&lt;95→22；71&gt;22→91；71&lt;91→24；71&gt;24→94，但94已超出收缩后的区间(24,91)，矛盾，A不可能。B验证：92→20∈(-,92)，91∈(20,92)，34∈(20,91)，88∈(34,91)，35∈(34,88)，合法；C、D同理代入均满足区间收缩，可能。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-26" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第26题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】若平衡二叉树的高度为6，且所有非叶结点的平衡因子均为1，则该平衡二叉树的结点总数为（）。</p><div class="opts"><div class="opt"><b>A.</b> 12</div><div class="opt"><b>B.</b> 20</div><div class="opt"><b>C.</b> 32</div><div class="opt"><b>D.</b> 33</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>所有非叶结点平衡因子为1意味着每个结点左子树比右子树高1（"最瘦"平衡树），结点总数最少：N(h)=N(h-1)+N(h-2)+1，N(1)=1，N(2)=2，N(3)=4，N(4)=7，N(5)=12，N(6)=20，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-27" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第27题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】在任意一棵非空二叉排序树T1中，删除某结点V之后形成二叉排序树T2，再将V插入T2形成二叉排序树T3。下列关于T1与T3的叙述中，正确的是（）<br>Ⅰ．若V是T1的叶结点，则T1与T3不同<br>Ⅱ．若V是T1的叶结点，则T1与T3相同<br>Ⅲ．若V不是T1的叶结点，则T1与T3不同<br>Ⅳ．若V不是T1的叶结点，则T1与T3相同</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>B.</b> 仅Ⅰ、Ⅳ</div><div class="opt"><b>C.</b> 仅Ⅱ、Ⅲ</div><div class="opt"><b>D.</b> 仅Ⅱ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>V为叶结点：删除后再插回原处，T3与T1相同，Ⅱ对Ⅰ错。V非叶结点：删除时用其中序前驱（或后继）顶替，V再插入时只能作为叶结点挂到别处，原前驱已上移，T3与T1必然不同，Ⅲ对Ⅳ错。故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-28" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第28题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】若将关键字1,2,3,4,5,6,7依次插入初始为空的平衡二叉树T中，则T中平衡因子为0的分支结点的个数是（）。</p><div class="opts"><div class="opt"><b>A.</b> 0</div><div class="opt"><b>B.</b> 1</div><div class="opt"><b>C.</b> 2</div><div class="opt"><b>D.</b> 3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>依次插入后AVL恰为满二叉树4(2(1,3),6(5,7))。分支结点4、2、6的左右子树高度都相等，平衡因子均为0，共3个，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-29" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第29题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】现有一棵无重复关键字的平衡二叉树（AVL），对其进行中序遍历可得到一个降序序列。下列关于该平衡二叉树的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 根结点的度一定为2</div><div class="opt"><b>B.</b> 树中最小元素一定是叶结点</div><div class="opt"><b>C.</b> 最后插入的元素一定是叶结点</div><div class="opt"><b>D.</b> 树中最大元素一定是无左子树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>中序（右—根—左）降序说明"左大右小"是镜像BST：最大元素沿左下行到底，是最左下结点，不可能有左子树，D对。A错：单结点树根度为0；B错：最小元素是最右下结点，无右子树但可以有左子树，不一定是叶；C错：插入可能触发旋转，最后插入的元素可能成为分支结点。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-30" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第30题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】已知二叉排序树如下图所示，元素之间应满足的大小关系是（）。</p><div class="asc">        X1<br>       /<br>     X2<br>    /  \<br>  X3    X4<br>   \<br>   X5</div><div class="opts"><div class="opt"><b>A.</b> X1&lt;X2&lt;X5</div><div class="opt"><b>B.</b> X1&lt;X4&lt;X5</div><div class="opt"><b>C.</b> X3&lt;X5&lt;X4</div><div class="opt"><b>D.</b> X4&lt;X3&lt;X5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>由BST性质：X2&lt;X1；X3&lt;X2、X4&gt;X2（X4在X2右子树且仍小于X1）；X5是X3的右孩子，X3&lt;X5&lt;X2。于是X3&lt;X5&lt;X2&lt;X4，C正确。A、B中"X1最小"与X2&lt;X1矛盾；D中X4&lt;X3与X3&lt;X2&lt;X4矛盾。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-31" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第31题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】在任意一棵非空平衡二叉树（AVL树）T1中，删除某结点V之后形成平衡二叉树T2，再将V插入T2形成平衡二叉树T3。下列关于T1与T3的叙述中，正确的是（）<br>Ⅰ．若V是T1的叶结点，则T1与T3可能不相同<br>Ⅱ．若V不是T1的叶结点，则T1与T3一定不相同<br>Ⅲ．若V不是T1的叶结点，则T1与T3一定相同</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ</div><div class="opt"><b>B.</b> 仅Ⅱ</div><div class="opt"><b>C.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>D.</b> 仅Ⅱ、Ⅲ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>与2013年BST题不同，AVL删除叶结点后可能触发旋转，T2与T1形态不同，再把V插回得到的T3就可能与T1不相同，Ⅰ正确。V非叶结点时，T3与T1可能相同也可能不同（不存在"一定"），Ⅱ、Ⅲ都错。故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P299</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-32" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第32题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>在含有n个结点的平衡二叉树中查找一个关键字，其时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(log₂n)</div><div class="opt"><b>C.</b> O(n)</div><div class="opt"><b>D.</b> O(n·log₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>平衡二叉树高度h满足N(h)最少结点数指数增长，h=O(log₂n)，查找沿一条根到结点的路径比较，时间O(log₂n)，选B。平衡性排除了退化成O(n)单链的可能。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P300</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-33" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第33题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】给定平衡二叉树如下图所示，插入关键字23后，根中的关键字是（）。</p><div class="asc">          30<br>        /    \<br>      20      40<br>     /  \<br>   16   25</div><div class="opts"><div class="opt"><b>A.</b> 16</div><div class="opt"><b>B.</b> 20</div><div class="opt"><b>C.</b> 23</div><div class="opt"><b>D.</b> 25</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>插入23：23&lt;30→20；23&gt;20→25；23&lt;25成为25的左孩子。此时30的左子树高3、右子树高1，平衡因子=2失衡，且20的右子树（25,23）高于左子树（16），属LR型：先对20左旋（25上移），再对30右旋，25成为新根：25(20(16,23),30(-,40))。根的关键字为25，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P300</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-3-34" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.3 · 第34题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】一棵二叉搜索树如下图所示，k1、k2、k3分别是对应结点中保存的关键字。子树T的任意一个结点中保存的关键字x满足的是（）。</p><div class="asc">      k1<br>        \<br>         k2<br>        /<br>      k3<br>        \<br>        T</div><div class="opts"><div class="opt"><b>A.</b> x&lt;k1</div><div class="opt"><b>B.</b> x&gt;k2</div><div class="opt"><b>C.</b> k1&lt;x&lt;k3</div><div class="opt"><b>D.</b> k3&lt;x&lt;k2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>T是k3的右子树，故T中所有x&gt;k3；T又在k2的左子树中，故所有x&lt;k2；同时T在k1的右子树中，x&gt;k1。综合得k3&lt;x&lt;k2（且x&gt;k1），选D。A、B、C均与上述约束矛盾。（本题OCR误编于7.4之下，实为7.3之题，已并入。）</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P301</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-7-4"><h3>7.4 B树与B+树<span class="tag tag-tpl">25题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-7-4-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下图所示是一棵（）。（图中结点内为关键字）</p><div class="asc">        [12 | 25]<br>       /      |      \<br>  [05|10] [15|19|22] [26|28]</div><div class="opts"><div class="opt"><b>A.</b> 4阶B树</div><div class="opt"><b>B.</b> 3阶B树</div><div class="opt"><b>C.</b> 4阶B+树</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>图中结点最多有3个关键字，非根结点至少有2个关键字。若按B树解释：每个结点关键字数不超过m-1且（除根外）不少于⌈m/2⌉-1，则m=4、5、6都满足——阶数只是"允许的上限"，同一棵图可以是4阶、5阶或6阶B树，无法唯一确定；若按B+树解释，n个关键字应对应n棵子树，根2个关键字却画有3棵子树，又不符合。故只能选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P311</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-4-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.4 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给定一组关键字{20,30,50,52,60,68,70}，给出创建一棵3阶B树的过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>3阶B树每个结点至多2个关键字、至多3棵子树。<br>①插20：根[20]；②插30：根[20|30]；③插50：[20|30|50]超上限，取第2个关键字30上浮分裂：根[30]，孩子[20]、[50]。<br>④插52：进入[50]得[50|52]；⑤插60：[50|52|60]分裂，52上浮：根[30|52]，孩子[20]、[50]、[60]。<br>⑥插68：[60|68]；⑦插70：[60|68|70]分裂，68上浮：根[30|52|68]，孩子[20]、[50]、[60]、[70]。最终：</p><div class="asc">        [30 | 52 | 68]<br>       /      |      |     \<br>    [20]   [50]   [60]  [70]</div></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于m阶B树的说法中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 根结点至多有m棵子树</div><div class="opt"><b>B.</b> 所有叶结点都在同一层次上</div><div class="opt"><b>C.</b> 非叶结点至少有m/2（m为偶数）或(m+1)/2（m为奇数）棵子树</div><div class="opt"><b>D.</b> 根结点中的数据是有序的</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>"除根结点外的所有非叶结点"至少⌈m/2⌉棵子树，而根结点（也是非叶结点）只需至少2棵子树即可，C漏掉"除根以外"的限制条件，错误。A、B、D均为m阶B树的基本性质。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-4-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.4 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>对如下图所示的3阶B树，依次执行下列操作，画出各步操作的结果。①插入90；②插入25；③插入45；④删除60；⑤删除80。</p><div class="asc">          [50 | 60]<br>         /    |    \<br>    [20|30] [40] [80|100]</div></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>初始树：根[50|60]，孩子[20|30]、[40]、[80|100]。<br>①插90：进入[80|100]得[80|90|100]分裂，90上浮：根[50|60|90]，孩子[20|30]、[40]、[80]、[100]。<br>②插25：[20|25|30]分裂，25上浮使根变[25|50|60]超上限，再分裂：取中间关键字50为新根，孩子[25]（下挂[20]、[30]）和[60|90]（下挂[40]、[80]、[100]），树高增1：<div class="asc">            [50]<br>          /     \<br>       [25]    [60|90]<br>      /   \    /   |   \<br>   [20] [30] [40] [80] [100]</div>③插45：45∈(25,50)进入[30]得[30|45]。<br>④删60：60在[60|90]中，用前驱（(50,60)区间叶结点[40]的最大关键字）40替换，得[40|90]，[40]变空且兄弟[80]只有1个关键字不能借，合并：空结点+分隔关键字40+[80]→[40|80]，于是该结点变[90]，下挂[40|80]、[100]：<div class="asc">            [50]<br>          /     \<br>       [25]      [90]<br>      /   \     /   \<br>   [20] [30|45] [40|80] [100]</div>⑤删80：[40|80]→[40]，仍满足下限，无需调整。最终：根[50]；第2层[25]、[90]；第3层[20]、[30|45]、[40]、[100]。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下关于高度为3的3阶B树的说法中，正确的是（）<br>Ⅰ．每个内部结点至少有两棵非空子树<br>Ⅱ．树中每个结点至多有2个关键字<br>Ⅲ．树中最多能存储26个关键字<br>Ⅳ．插入一个元素引起B树结点分裂后，树的高度变为4</p><div class="opts"><div class="opt"><b>A.</b> Ⅰ、Ⅱ</div><div class="opt"><b>B.</b> Ⅰ、Ⅱ、Ⅲ</div><div class="opt"><b>C.</b> Ⅲ、Ⅳ</div><div class="opt"><b>D.</b> Ⅰ、Ⅱ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>Ⅰ对：3阶B树非根结点至少⌈3/2⌉=2棵子树，根至少2棵；Ⅱ对：m阶结点至多m-1=2个关键字；Ⅲ对：3层（根为第1层）各自最多2、6、18个关键字，合计2+6+18=26；Ⅳ错：分裂发生在非根结点时高度不变，只有根结点分裂才增高。故Ⅰ、Ⅱ、Ⅲ正确，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-4-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.4 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>利用B树做文件索引时，若假设磁盘页块的大小是4000B（实际应是2的次幂，此处是为了计算方便），指示磁盘地址的指针需要5B。现有20000000个记录构成的文件，每个记录为200B，其中包括关键字5B。试问在这个采用B树作索引的文件中，B树的阶数应为多少？假定文件数据部分未按关键字有序排列，则索引部分需要占用多少磁盘页块？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>（1）求阶数：一个结点占一个页块。设结点含n个关键字，则有n+1个指针，占用5n+5(n+1)≤4000，解得n≤399.5，取n=399。每个结点至多399个关键字、400棵子树，故B树的阶m=400（取最大阶可降低树高、减少I/O）。<br>（2）求页块数：索引需为20000000个记录各存一个关键字。结点尽量装满时每个叶层结点存399个关键字，至少需⌈20000000/399⌉=50126个结点（页块）；这些结点的父结点至少需⌈50126/400⌉=126个，再加根1个，索引部分至少约50126+126+1=50253个页块。（若按结点尽量少装的最坏情况估算则更多。）</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一棵m阶B树中做插入操作前，若一个结点中的关键字个数等于（），则插入操作后必须分裂成两个结点；在一棵m阶的B树中做删除操作前，若一个结点中的关键字个数等于（），则删除操作后可能需要同它的左兄弟或右兄弟结点合并成一个结点。</p><div class="opts"><div class="opt"><b>A.</b> m；⌈m/2⌉-2</div><div class="opt"><b>B.</b> m-1；⌈m/2⌉-1</div><div class="opt"><b>C.</b> m+1；⌈m/2⌉</div><div class="opt"><b>D.</b> m/2；⌈m/2⌉+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>m阶B树结点最多m-1个关键字：插入前已有m-1个（已满），插入后达m个必须分裂；删除前关键字数恰为下限⌈m/2⌉-1个，删除后低于下限，需向兄弟借或与兄弟合并。两个空分别为m-1和⌈m/2⌉-1，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>具有n个关键字的m阶B树，应有（）个叶结点。</p><div class="opts"><div class="opt"><b>A.</b> n+1</div><div class="opt"><b>B.</b> n-1</div><div class="opt"><b>C.</b> n</div><div class="opt"><b>D.</b> nm/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>n个关键字把整个关键字空间分成n+1个区间（小于第1个、两两之间、大于第n个），每个区间对应一个失败（叶/外部）结点，故叶结点（失败结点）共n+1个，与树的阶无关，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>高度为5的3阶B树至少有（）个结点，至多有（）个结点。</p><div class="opts"><div class="opt"><b>A.</b> 32</div><div class="opt"><b>B.</b> 31</div><div class="opt"><b>C.</b> 120</div><div class="opt"><b>D.</b> 121</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选BD（至少31，至多121）。</b>结点最少：每个内部结点子树数取下限（根2棵、其余2棵），各层结点数1,2,4,8,16，合计31，B对。结点最多：子树数取上限3，各层1,3,9,27,81，合计121，D对。逐项判断：A、C错误。</p></p><p class="final-ans">✅ 答案：<b>BD</b>（多选）　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>含有n个非叶结点的m阶B树中至少包含（）个关键字。</p><div class="opts"><div class="opt"><b>A.</b> n(m+1)</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> n(⌈m/2⌉-1)</div><div class="opt"><b>D.</b> (n-1)(⌈m/2⌉-1)+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>根结点至少1个关键字，其余n-1个非叶结点至少⌈m/2⌉-1个关键字，故关键字总数至少1+(n-1)(⌈m/2⌉-1)，即(n-1)(⌈m/2⌉-1)+1，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>已知一棵5阶B树中共有53个关键字，则树的最大高度为（），最小高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选BC（最大高度4，最小高度3）。</b>求最大高度：让关键字最少——根1个关键字，其余结点最少⌈5/2⌉-1=2个关键字：高度h的最少关键字为1、1+6、1+6+18、1+6+18+54，即1,7,25,79……高度3时最多容纳25&lt;53，高度4可容纳79≥53，故最大高度4，C对。求最小高度：结点装满——每结点4个关键字，高度2容纳4+20=24&lt;53，高度3容纳4+20+100=124≥53，最小高度3，B对。</p></p><p class="final-ans">✅ 答案：<b>BC</b>（多选）　📖 王道书解析 P312</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>已知一棵3阶B树中有2047个关键字，则树的最大高度为（），最小高度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 11</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AD（最大高度11，最小高度7）。</b>3阶B树每个非根结点至少1个关键字、2棵子树：高度h最少关键字数为1+2+4+…+2^(h-1)=2^h-1。2^11-1=2047≤2047&lt;2^12-1，最大高度11，A对。结点装满时每结点2个关键字、3棵子树，高度h最多3^h-1个关键字：3^6-1=728&lt;2047≤3^7-1=2186，最小高度7，D对。</p></p><p class="final-ans">✅ 答案：<b>AD</b>（多选）　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在7阶B树中，按从上往下、从左往右的顺序搜索第2016个关键字，若根结点已读入内存，则最多需启动（）次I/O。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>最坏情况是树尽量高、目标关键字处于最深（第6层）的最右叶结点。7阶B树根最少1个关键字（2棵子树），其余结点最少⌈7/2⌉-1=3个关键字（4棵子树），高度h的最少关键字数：h=5时为1+2×3×(1+4+16)≈1021个，h=6时约4093个。含2016个关键字可使树高达6层，从根下探到第6层需读入5个结点（根已在内存），即最多5次I/O，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-4-10" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.4 · 综合第10题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>编写一个递归算法，在一棵有n个结点的、随机建立起来的二叉排序树上查找第k（1≤k≤n）小的元素，并返回指向该结点的指针。要求算法的平均时间复杂度为O(log₂n)。二叉排序树的每个结点中除data、lchild、rchild等数据成员外，增加一个count成员，保存以该结点为根的子树上的结点个数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>思路：中序序列中，若结点t的左子树有L个结点，则t是第L+1小。比较k与L+1决定向左、命中或向右（向右时k减去L+1）。每个结点存count=子树结点数，则L=lchild?lchild-&gt;count:0。</p><div class="asc">BSTNode *kth(BSTNode *t, int k){<br>    if (t == NULL || k &lt; 1 || k &gt; t-&gt;count) return NULL;<br>    int L = (t-&gt;lchild) ? t-&gt;lchild-&gt;count : 0;  // 左子树结点数<br>    if (k == L + 1)  return t;                    // t即第k小<br>    else if (k &lt;= L)  return kth(t-&gt;lchild, k);   // 在左子树中找第k小<br>    else             return kth(t-&gt;rchild, k-L-1); // 右子树中找第k-L-1小<br>}</div><p>每次递归下降一层，随机建立的BST平均高度O(log₂n)，故平均时间复杂度O(log₂n)，空间为递归栈O(log₂n)。注意插入/删除时须同步维护count。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在一棵高度为h的B树中插入一个新关键字，假设在插入过程中读入的结点一直在内存中，根结点的高度为1，且初始时未读入内存，则下列叙述中错误的是（）（注意，本题中的新结点是指新产生的结点，如一次分裂才产生一个新结点）。</p><div class="opts"><div class="opt"><b>A.</b> 若插入操作导致树的高度变为h+1，则本次插入一定导致了根结点的分裂</div><div class="opt"><b>B.</b> 若插入操作导致旧结点的分裂，则树的高度一定会变为h+1</div><div class="opt"><b>C.</b> 由于本次插入操作而产生的新结点的个数最多为h+1</div><div class="opt"><b>D.</b> 由于本次插入操作而产生的读/写磁盘的次数最多为3h+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B（B是错误叙述）。</b>只有根结点分裂才会使高度增加，A正确；非根结点分裂只是本层一分为二并向父结点传递，高度不变，B错误。最坏时分裂自叶层一路传到根：产生h-1个分裂新结点，根分裂再产生1个新兄弟和1个新根，共h+1个，C正确。读盘：自根到叶共h次；写盘：每个非根分裂写2个结点共2(h-1)次，根分裂写3个结点，共2h+1次；合计3h+1，D正确。故选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于B树和B+树的叙述中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> B树和B+树都能有效地支持顺序查找</div><div class="opt"><b>B.</b> B树和B+树都能有效地支持随机查找</div><div class="opt"><b>C.</b> B树和B+树都是平衡的多路查找树</div><div class="opt"><b>D.</b> B树和B+树都可以用于文件索引结构</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A（A是错误叙述）。</b>B+树的全部叶结点构成有序链表，可沿链高效顺序扫描；B树的关键字分散在各层，中序遍历需回溯访问多个结点，不能"有效"支持顺序查找，A错误。B、C、D均为两者共性，正确。故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于B树和B+树的查找操作的叙述中，错误的是（）。</p><div class="opts"><div class="opt"><b>A.</b> B树查找成功时，不一定需要查找到最后一层的内部结点</div><div class="opt"><b>B.</b> B树查找失败时，一定需要查找到叶结点</div><div class="opt"><b>C.</b> B+树查找成功时，不一定需要查找到叶结点</div><div class="opt"><b>D.</b> B+树查找成功时，每次查找的长度都相等</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C（C是错误叙述）。</b>B树中关键字可能出现在任一层，中途命中即停止，A正确；失败必然走到叶（失败）结点层，B正确。B+树的数据全在叶结点，无论成功与否都必须走到叶结点，"不一定到叶"的C错误；也因此每次查找长度都等于树高，D正确。故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】下列叙述中，不符合m阶B树定义要求的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 根结点至多有m棵子树</div><div class="opt"><b>B.</b> 所有叶结点都在同一层上</div><div class="opt"><b>C.</b> 各结点内关键字均升序或降序排列</div><div class="opt"><b>D.</b> 叶结点之间通过指针链接</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>"叶结点（失败结点）之间用指针链接"是B+树的特征——B+树叶结点构成有序链表以支持顺序查找；m阶B树的定义不含此项，D不符合。A、B、C均为B树定义要求。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】已知一棵3阶B树，如下图所示。删除关键字78得到一棵新B树，其最右叶结点中的关键字是（）。</p><div class="asc">                [45]<br>             /        \<br>        [17|35]      [55|62]<br>       /   |   \      /   |   \<br>   [10] [21] [37] [47] [60] [65|78]</div><div class="opts"><div class="opt"><b>A.</b> 60</div><div class="opt"><b>B.</b> 60, 62</div><div class="opt"><b>C.</b> 62, 65</div><div class="opt"><b>D.</b> 65</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>78在最右叶结点[65,78]中且不是该结点唯一关键字：删除后结点为[65]，仍满足3阶B树非根结点至少1个关键字的要求，不发生借还或合并，新B树最右叶结点关键字就是65，选D。若误以为删除会触发向左兄弟[60]借关键字（借后得[62,65]）或与兄弟合并（得[60,62,65]）就会错选B、C。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P313</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】在一棵高度为2的5阶B树中，所含关键字的个数至少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 7</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 14</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>高度2（根+一层内部结点）：根结点最少1个关键字、2棵子树；每个非根结点最少⌈5/2⌉-1=2个关键字，2棵子树共4个关键字。合计至少1+4=5个，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于B+树的叙述中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> B+树中，具有n个关键字的结点含有n+1棵子树</div><div class="opt"><b>B.</b> B+树中，叶结点和非叶结点都存储记录的完整信息</div><div class="opt"><b>C.</b> B+树中，查找任何关键字都必须从根结点开始</div><div class="opt"><b>D.</b> B+树中，所有叶结点包含全部关键字及指向相应记录的指针，并按关键字大小顺序链接</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>D是B+树的定义性质：叶结点含全部关键字及记录指针，彼此链接以支持顺序查找。A错：n个关键字对应n棵子树是B+树（B树才是n+1）；B错：非叶结点只起索引作用，不含完整记录信息；C错：顺序查找可从叶结点链表开始，无须从根出发。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】B+树不同于B树的特点之一是（）。</p><div class="opts"><div class="opt"><b>A.</b> 能支持顺序查找</div><div class="opt"><b>B.</b> 结点中含有关键字</div><div class="opt"><b>C.</b> 根结点至少有两个分支</div><div class="opt"><b>D.</b> 所有叶结点都在同一层上</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>B+树叶结点间用指针链接成有序链表，能沿链表高效进行顺序查找，这是B树不具备的。B、C、D三项（结点含关键字、根至少两分支、叶结点同层）是B树与B+树共有的性质，不构成"不同"。故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列应用中，最适合采用B+树的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 编译器中的词法分析</div><div class="opt"><b>B.</b> 关系数据库系统中的索引</div><div class="opt"><b>C.</b> 网络中的路由表快速查找</div><div class="opt"><b>D.</b> 操作系统的磁盘空闲块管理</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>B+树非叶结点仅作索引、叶结点链表支持范围顺序扫描，且树高低扇出大、磁盘I/O少，正是数据库索引（如MySQL的InnoDB）的标准结构，B对。词法分析用有限自动机/哈希表，路由表多用 trie/哈希，磁盘空闲块管理多用位图或空闲链表。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】高度为5的3阶B树含有的关键字个数至少是（）。</p><div class="opts"><div class="opt"><b>A.</b> 15</div><div class="opt"><b>B.</b> 31</div><div class="opt"><b>C.</b> 62</div><div class="opt"><b>D.</b> 242</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>关键字最少时每个结点最"瘦"：根1个关键字，其余结点各1个关键字（⌈3/2⌉-1=1）、2棵子树，各层结点数1,2,4,8,16，关键字总数1+2+4+8+16=31，选B（即2⁵-1）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】依次将关键字5,6,9,13,8,2,12,15插入初始为空的4阶B树后，根结点中包含的关键字是（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 6, 9</div><div class="opt"><b>C.</b> 8, 13</div><div class="opt"><b>D.</b> 9, 12</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>插入5,6,9后根为[5,6,9]，插13时超上限（4阶至多3个）分裂：6上浮为新根，孩子[5]和[9,13]；插8进入[9,13]得[8,9,13]；插2得[2,5]；插12使[8,9,12,13]分裂，9上浮，根变[6,9]，孩子[2,5]、[8]、[12,13]；插15得[12,13,15]不再分裂。根结点关键字为6,9，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P314</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】在一棵高度为3的3阶B树中，根为第1层，若第2层中有4个关键字，则该树的结点数最多是（）。</p><div class="opts"><div class="opt"><b>A.</b> 11</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 9</div><div class="opt"><b>D.</b> 8</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>3阶B树根至多3棵子树，故第2层至多3个结点；4个关键字分布在第2层，最多分成3个结点（关键字数2+1+1），此时结点数最多。第2层3个结点的子树总数=关键字数+结点数=4+3=7，即第3层最多7个结点。总结点数=1+3+7=11，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】在下图所示的5阶B树T中，删除关键字260之后需要进行必要的调整，得到新的B树T′，下列选项中，不可能是T′根结点中关键字序列的是（）。</p><div class="asc">        [60 | 90 | 260 | 350]<br>       /       |       |       |       \<br>  [30|50] [70|80|85] [100|110] [280|300] [400|500]</div><div class="opts"><div class="opt"><b>A.</b> 60, 90, 280</div><div class="opt"><b>B.</b> 60, 90, 350</div><div class="opt"><b>C.</b> 60, 85, 110, 350</div><div class="opt"><b>D.</b> 60, 90, 110, 350</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>260在根结点中，有两种替换策略。<b>前驱替换</b>：用110替换，根变[60,90,110,350]，[100|110]只剩[100]低于下限2，须调整：向左兄弟[70|80|85]借85（85上浮、90下沉）得根[60,85,110,350]（C可能）；或与右兄弟合并[100]+110+[280|300]，根失去110得[60,90,350]（B可能）。<b>后继替换</b>：用280替换，[280|300]只剩[300]，其右兄弟[400|500]只有2个关键字不能借出，合并[300]+350+[400|500]，根失去350得[60,90,280]（A可能）。而D的[60,90,110,350]对应"前驱替换后不作任何调整"，[100]低于下限违反5阶B树定义，不可能，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】下列关于非空B树的叙述中，正确的是（）<br>Ⅰ．插入操作可能增加树的高度<br>Ⅱ．删除操作一定会导致叶结点的变化<br>Ⅲ．查找某关键字总是要查找到叶结点<br>Ⅳ．插入的新关键字最终位于叶结点中</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ、Ⅱ、Ⅲ</div><div class="opt"><b>B.</b> 仅Ⅰ、Ⅱ、Ⅳ</div><div class="opt"><b>C.</b> 仅Ⅱ、Ⅲ、Ⅳ</div><div class="opt"><b>D.</b> 仅Ⅰ、Ⅲ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>Ⅰ对：根结点分裂使高度加1；Ⅱ对：删除最终表现为从某个叶结点移出关键字（若删的是内部结点关键字，先与叶层的前驱/后继交换），叶结点必有变化；Ⅲ错：B树查找在内部结点命中即停止，不必到叶；Ⅳ对：新关键字总是先插入叶结点，分裂上移的仍是它所在路径上的叶层元素。故Ⅰ、Ⅱ、Ⅳ正确。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-4-25" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.4 · 第25题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于B树和B+树的比较中，正确的是（）。</p><div class="opts"><div class="opt"><b>A.</b> B树和B+树中，具有n个关键字的结点都含有n+1棵子树</div><div class="opt"><b>B.</b> B树和B+树的查找都从根结点开始，且查找成功时一定访问到叶结点</div><div class="opt"><b>C.</b> B+树中无论查找成功与否，都要查到叶结点层</div><div class="opt"><b>D.</b> B+树中，非叶结点中出现的关键字不会出现在叶结点中</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>B+树所有关键字（记录指针）都在叶结点，查找无论成败都要走到叶结点层，C对。A错：B树中n个关键字对应n+1棵子树，B+树对应n棵；B错：B树查找可在中间结点命中；D错：B+树叶结点包含全部关键字，非叶结点关键字会在叶中重复出现。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-7-5"><h3>7.5 散列表<span class="tag tag-tpl">24题选择 + 6题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-7-5-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>只能在顺序存储结构上进行的查找方法是（）。</p><div class="opts"><div class="opt"><b>A.</b> 顺序查找法</div><div class="opt"><b>B.</b> 折半查找法</div><div class="opt"><b>C.</b> 树型查找法</div><div class="opt"><b>D.</b> 散列查找法</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>折半查找需要随机访问（O(1)定位中点），只有顺序存储支持，链式存储定位中点需O(n)。顺序查找在链表上同样可行（A错）；树型查找基于链式结点；散列查找在散列表（顺序存储的数组+链表等）上进行，不限定于此。故选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若要在散列表中删除一个记录，应如何操作？为什么？按照处理冲突的方法为开放地址法和拉链法分别说明。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>（1）开放定址法：不能简单地把被删记录所在单元置空。因为同义词的探测序列可能经过该单元，置空会让后续查找在此提前误判"失败"。正确做法是给该单元加删除标记（墓碑）：查找时视其为"占用但已删"继续向后探测，插入时视其为可重用的空位；缺点是垃圾累积，可定期重构散列表消除墓碑。（2）拉链法：直接把该关键字的结点从对应链表中摘除并释放即可，因为各链表相互独立，删除不影响其他关键字的探测/查找路径。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>散列查找一般适用于（）的情况下的查找。</p><div class="opts"><div class="opt"><b>A.</b> 查找表为链表</div><div class="opt"><b>B.</b> 查找表为有序表</div><div class="opt"><b>C.</b> 关键字集合比地址集合大得多</div><div class="opt"><b>D.</b> 关键字集合与地址集合之间存在对应关系</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>散列查找的前提是通过散列函数在关键字与存储地址之间建立对应映射，使查找可以按关键字直接定位，O(1)级别，D正确。散列表是否链表（拉链法只是冲突处理方式）、是否有序都与散列无关；而C（关键字多于地址）恰是冲突的来源而非适用条件。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假定把关键字key散列到有n个表项（从0到n-1编址）的散列表中。对于下面的每个函数H(key)（key为整数），这些函数能够当作散列函数吗？若能，它是一个好的散列函数吗？说明理由。设函数random(n)返回一个0到n-1之间的随机整数（包括0与n-1在内）。<br>(1) H(key)=key/n<br>(2) H(key)=1<br>(3) H(key)=(key+random(n))%n<br>(4) H(key)=key%p(n)，其中p(n)是不大于n的最大素数</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>（1）H(key)=key/n：形式上确定，但地址范围不受控（关键字稍大时地址便超出0~n-1），若关键字普遍小于n则全部挤到地址0附近，产生大量冲突——一般不能当作合适的散列函数，更不是好的散列函数。（2）H(key)=1：能当作散列函数（确定、值域合法），但所有关键字都映射到同一地址1，冲突最大化，是最坏的散列函数。（3）H(key)=(key+random(n))%n：不能当作散列函数——同一关键字两次计算可能得到不同地址，插入与查找位置无法一致，违反散列函数的确定性。（4）H(key)=key%p(n)：既是合法又是好的散列函数——除留余数法，模数取不大于表长的最大素数可使地址分布均匀、冲突少。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于散列表的说法中，正确的是（）<br>Ⅰ．若散列表的装填因子α&lt;1，则可避免碰撞的产生<br>Ⅱ．散列查找中不需要任何关键字的比较<br>Ⅲ．散列表在查找成功时平均查找长度仅与表长有关<br>Ⅳ．若在散表中删除一个元素，不能简单地将该元素删除</p><div class="opts"><div class="opt"><b>A.</b> Ⅰ和Ⅳ</div><div class="opt"><b>B.</b> Ⅱ和Ⅲ</div><div class="opt"><b>C.</b> Ⅲ</div><div class="opt"><b>D.</b> Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>Ⅰ错：α&lt;1只说明有空位，散列函数把不同关键字映射到同一地址时照样冲突；Ⅱ错：与存储关键字比较确认命中、以及开放定址下的探测都要比较关键字；Ⅲ错：平均查找长度主要取决于装填因子α（及冲突处理方法），不是表长本身；Ⅳ对：开放定址法下直接置空会截断后续同义词的探测链，须做删除标记。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>使用散列函数H(key)=key%11，把一个整数值转换成散列表下标，散列表的长度为11，现在要把数据{1,13,12,34,38,33,27,22}依次插入散列表。<br>(1) 使用线性探测法来构造散列表。<br>(2) 使用链地址法构造散列表。<br>试针对这两种情况，分别确定查找成功所需的平均查找长度，及查找不成功所需的平均查找长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>各关键字散列地址：1→1，13→2，12→1，34→1，38→5，33→0，27→5，22→0。<br>(1) 线性探测：33→0；1→1；13→2；12：1冲突→3；34：1冲突→4；38→5；27：5冲突→6；22：0,1,2,3,4,5,6均冲突→7。散列表：0:33，1:1，2:13，3:12，4:34，5:38，6:27，7:22。成功ASL=(1+1+1+3+4+1+2+8)/8=21/8；失败ASL：初始地址0~10探到空位8止，次数9,8,7,6,5,4,3,2,1,1,1，ASL=47/11。<br>(2) 链地址：链0:33→22；链1:1→12→34；链2:13；链5:38→27。成功ASL=(2+3+1+2)/…逐链计算：(33:1+22:2)+(1:1+12:2+34:3)+(13:1)+(38:1+27:2)=(3+6+1+3)/8=13/8；失败ASL：初始地址0~10对应的比较次数2,3,1,0,0,2,0,0,0,0,0，ASL=8/11。<br>（附注：本题OCR原文末尾混入残句"α=0.73，散列函数的形式为H(key)=key%P，P为不大于表长的最大素数…"，属下一小题：8个关键字装入长度11的表，α=8/11≈0.73，取P=11，即H(key)=key%11，其成功/失败ASL即上面(1)的结果21/8与47/11。）</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在开放定址法中散列到同一个地址而引起的"堆积"问题是由于（）引起的。</p><div class="opts"><div class="opt"><b>A.</b> 同义词之间发生冲突</div><div class="opt"><b>B.</b> 非同义词之间发生冲突</div><div class="opt"><b>C.</b> 同义词之间或非同义词之间发生冲突</div><div class="opt"><b>D.</b> 散列表"溢出"</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>堆积（聚集）指非同义词争夺同一后续空位的现象：其来源既有最初的同义词冲突（同义词占用探测序列上的位置），又因此引来非同义词之间的冲突（本应落到这些位置的其他关键字被迫后移）。两种冲突共同作用形成堆积，故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于散列冲突处理方法的说法中，正确的有（）<br>Ⅰ．采用平方探测法处理冲突时不易产生聚集<br>Ⅱ．采用线性探测法处理冲突时，所有同义词在散列表中一定相邻<br>Ⅲ．采用链地址法处理冲突时，若限定在链首插入，则插入任意一个元素的时间是相同的<br>Ⅳ．采用链地址法处理冲突易引起聚集现象</p><div class="opts"><div class="opt"><b>A.</b> Ⅰ和Ⅲ</div><div class="opt"><b>B.</b> Ⅰ、Ⅱ和Ⅲ</div><div class="opt"><b>C.</b> Ⅲ和Ⅳ</div><div class="opt"><b>D.</b> Ⅰ和Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>Ⅰ对：平方探测跳跃式前进，非同义词不易连成一片；Ⅱ错：线性探测的同义词会被先期堆积挤得分散，不一定相邻；Ⅲ对：链首插入只改动头指针，与链长无关；Ⅳ错：链地址法各链独立，不产生堆积。故Ⅰ、Ⅲ正确，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设散列表为HT[0…12]，即表的大小为m=13，现采用双散列法解决冲突，散列函数和再散列函数分别为：<br>H<sub>0</sub>(key)=key%13（注：%是取模运算，即mod）<br>H<sub>i</sub>=(H<sub>i-1</sub>+REV(key+1)%11+1)%13；i=1,2,3,…,m-1<br>其中，函数REV(x)表示颠倒十进制数x的各位，如REV(37)=73，REV(7)=7等。若插入的关键码序列为(2,8,31,20,19,18,53,27)，请回答：<br>(1) 画出插入这8个关键码后的散列表。<br>(2) 计算查找成功的平均查找长度ASL。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 逐个插入：2→2；8→8；31%13=5；20%13=7；19%13=6；18%13=5冲突，H₁=(5+REV(19)%11+1)%13=(5+91%11+1)%13=(5+3+1)%13=9；53%13=1；27%13=1冲突，H₁=(1+REV(28)%11+1)%13=(1+82%11+1)%13=(1+5+1)%13=7冲突，H₂=(7+5+1)%13=0。散列表：0:27，1:53，2:2，5:31，6:19，7:20，8:8，9:18（3、4、10~12空）。<br>(2) 各关键码探测次数：2,8,31,20,19,53各1次，18为2次，27为3次，ASL=(1×6+2+3)/8=11/8=1.375。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有一个含有200个元素的散列表，用线性探测法解决冲突，按关键字查询时找到一个表项的平均探测次数不超过1.5，则散列表项应能够容纳（）个元素（设查找成功的平均查找长度为ASL=[1+1/(1-α)]/2，其中α为装填因子）。</p><div class="opts"><div class="opt"><b>A.</b> 400</div><div class="opt"><b>B.</b> 526</div><div class="opt"><b>C.</b> 624</div><div class="opt"><b>D.</b> 676</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>由[1+1/(1-α)]/2≤1.5得1/(1-α)≤2，即α≤0.5。装填α=200/m≤0.5得m≥400，取最小容量400，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P324</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2010统考真题】将关键字序列(7,8,30,11,18,9,14)散列存储到散列表中。散列表的存储空间是一个下标从0开始的一维数组，散列函数为H(key)=(key×3)mod 7，处理冲突采用线性探测再散列法，要求装填（载）因子为0.7。<br>(1) 请画出所构造的散列表。<br>(2) 分别计算等概率情况下，查找成功和查找不成功的平均查找长度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>7个关键字、α=0.7，表长m=7/0.7=10。<br>(1) 散列地址：7→21%7=0，8→24%7=3，30→90%7=6，11→33%7=5，18→54%7=5冲突→6冲突→7，9→27%7=6冲突→7冲突→8，14→42%7=0冲突→1。散列表：0:7，1:14，3:8，5:11，6:30，7:18，8:9（2、4、9空）。<br>(2) 成功ASL=(1+2+1+1+3+3+1)/7=12/7（7为1次、14为2次、8为1次、11为1次、30为1次、18为3次、9为3次…合计=(1+2+1+1+1+3+3)/7=12/7）。失败ASL：只对初始地址0~6统计，从该地址起探到空位为止：0→3次(0,1,2空…实际探0,1,2：2号空为3次)，1→2次，2→1次，3→2次(3,4空)，4→1次，5→5次(5~9)，6→4次(6,7,8,9)，ASL=(3+2+1+2+1+5+4)/7=18/7。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>假定有K个关键字互为同义词，若用线性探测法把这K个关键字填入散列表，至少要进行（）次探测。</p><div class="opts"><div class="opt"><b>A.</b> K-1</div><div class="opt"><b>B.</b> K</div><div class="opt"><b>C.</b> K+1</div><div class="opt"><b>D.</b> K(K+1)/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>第1个关键字探测1次；第2个与其冲突再探1次共2次；……第K个需探测K次。总探测次数=1+2+…+K=K(K+1)/2，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wz-7-5-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">7.5 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2024统考真题】将关键字序列20,3,11,18,9,14,7依次存储到初始为空、长度为11的散列表HT中，散列函数H(key)=(key×3)%11。H(key)计算出的初始散列地址为H<sub>0</sub>，发生冲突时探查地址序列是H₁,H₂,H₃,…，其中，H<sub>k</sub>=(H₀+k²)%11，k=1,2,3,⋯。请回答下列问题：<br>(1) 画出所构造的HT，并计算HT的装填因子。<br>(2) 给出在HT中查找关键字14的关键字比较序列。<br>(3) 在HT中查找关键字8，确认查找失败时的散列地址是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>解答：</b>(1) 初始地址：20→60%11=5，3→9，11→33%11=0，18→54%11=10，9→27%11=5，14→42%11=9，7→21%11=10。插入：20→5；3→9；11→0；18→10；9：5冲突，(5+1)%11=6→6；14：9冲突，(9+1)%11=10冲突，(9+4)%11=2→2；7：10冲突，(10+1)%11=0冲突，(10+4)%11=3→3。HT：0:11，2:14，3:7，5:20，6:9，9:3，10:18。装填因子α=7/11。<br>(2) 查找14：H₀=9，依次比较9号单元的关键字3、(9+1)%11=10号的关键字18、(9+4)%11=2号的关键字14命中。比较序列为：3,18,14。<br>(3) 查找8：H₀=24%11=2：2号(14≠8)、H₁=3号(7≠8)、H₂=(2+4)%11=6号(9≠8)、H₃=(2+9)%11=0号(11≠8)、H₄=(2+16)%11=7号空闲，确认失败，此时散列地址为7。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对包含n个元素的散列表进行查找，平均查找长度（）。</p><div class="opts"><div class="opt"><b>A.</b> 为O(log₂n)</div><div class="opt"><b>B.</b> 为O(1)</div><div class="opt"><b>C.</b> 不直接依赖于n</div><div class="opt"><b>D.</b> 直接依赖于表长m</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>散列表的平均查找长度是装填因子α=n/m的函数，α一定时即使n增大（m同比例增大）ASL不变，故ASL不直接依赖于n，选C。说"O(1)"（B）忽略冲突：α→1时ASL急剧增大。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>采用开放定址法解决冲突的散列查找中，发生聚集的原因主要是（）。</p><div class="opts"><div class="opt"><b>A.</b> 数据元素过多</div><div class="opt"><b>B.</b> 负载因子过大</div><div class="opt"><b>C.</b> 散列函数选择不当</div><div class="opt"><b>D.</b> 解决冲突的方法选择不当</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>聚集（堆积）的根源在于冲突处理策略：线性探测法逐单元顺延，使同义词和非同义词连成一片；换用平方探测或链地址法就不易聚集。元素多少、装填因子大小（A、B）只影响冲突的频度，散列函数（C）影响初始地址分布，均非聚集的"主要"成因，故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>当用线性探测再散列法解决冲突时，计算出的一系列"下一个空位"的要求是（）。</p><div class="opts"><div class="opt"><b>A.</b> 必须大于或等于原散列地址</div><div class="opt"><b>B.</b> 必须小于或等于原散列地址</div><div class="opt"><b>C.</b> 可以大于或小于但不等于原散列地址</div><div class="opt"><b>D.</b> 对地址在何处没有限制</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>线性探测按H(key)+1, H(key)+2, …（对表长取模）推进，探测到表尾会回绕到表头，因此"下一空位"可能大于也可能小于原地址；但必然不同于已探测过的位置（等于原地址意味着绕表一周、查找失败），故选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一组记录的关键字为{19,14,23,1,68,20,84,27,55,11,10,79}，用链地址法构造散列表，散列函数为H(key)=key mod 13，散列地址为1的链中有（）个记录。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>逐个对13取模：14%13=1，1%13=1，27%13=1，79%13=1，共4个关键字落入地址1的链；其余如19→6、23→10、68→3、20→7、84→6、55→3、11→11、10→10。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>在采用链地址法处理冲突所构成的散列表上查找某一关键字，则在查找成功的情况下，所探测的这些位置上的关键字值（）；若采用线性探测法，则（）。</p><div class="opts"><div class="opt"><b>A.</b> 一定都是同义词</div><div class="opt"><b>B.</b> 不一定都是同义词</div><div class="opt"><b>C.</b> 都相同</div><div class="opt"><b>D.</b> 一定都不是同义词</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AB（链地址法一定都是同义词；线性探测法不一定都是同义词）。</b>链地址法的同一条链上挂的正是散列到同一初始地址的同义词，探测过的关键字必为同义词，前空选A。线性探测法因堆积现象，探测途中会遇到占用空位的非同义词，后空选B。逐项判断：A对、B对。</p></p><p class="final-ans">✅ 答案：<b>AB</b>（多选）　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>若采用链地址法构造散列表，散列函数为H(key)=key mod 17，则需（①）个链表。这些链的链首指针构成一个指针数组，数组的下标范围为（②）。</p><div class="opts"><div class="opt"><b>A.</b> ①17；②0~17</div><div class="opt"><b>B.</b> ①13；②1~17</div><div class="opt"><b>C.</b> ①16；②0~16</div><div class="opt"><b>D.</b> ①任意；②1~16</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选AC（①选17，②选0~16）。</b>key mod 17的取值为0~16共17个不同地址，需要17条链，①选A；指针数组下标与散列地址一一对应，为0~16，②选C。逐项判断：A对、B错、C对、D错。</p></p><p class="final-ans">✅ 答案：<b>AC</b>（多选）　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设散列函数为H(key)=key mod 11，散列表长为11，用线性探测法处理冲突，已依次插入关键字16、61、84（H(61)=6，H(84)=7）。现再插入关键字49，则关键字49的结点地址是（）。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 13</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 任意</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>H(49)=49 mod 11=5，地址5已被16占用；线性探测依次检查6（61）、7（84），均占用，直到地址8空闲，故49存入地址8，选A。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>现有长度为17、初始为空的散列表HT，散列函数H(key)=key%17，用线性探查法解决冲突。将关键字序列26,25,72,38,8,18,59依次插入HT后，则查找59需探查（）次。</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>依次插入：26→9，25→8，72→4，38→4冲突→5，8→8冲突→9冲突→10，18→1，59→8冲突→9冲突→10冲突→11。查找59：从H(59)=8开始探查8,9,10,11共4次，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>现有长度为17、初始为空的散列表HT，散列函数H(key)=key%17，用平方探测法解决冲突：H<sub>i</sub>(key)=(H(key)±i²)%17。将关键字序列6,22,7,26,9,23依次插入HT后，则关键字23存放在散列表中的位置是（）。</p><div class="opts"><div class="opt"><b>A.</b> 0</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 15</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>插入：6→6，22→5，7→7，26→9，9→9冲突：+1²=10空闲→10；23：H=6占用，(6+1)%17=7占用，(6-1)%17=5占用，(6+4)%17=10占用，(6-4)%17=2空闲，故23存于位置2，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>将10个元素散列到100000个单元的散列表中，则（）产生冲突。</p><div class="opts"><div class="opt"><b>A.</b> 一定会</div><div class="opt"><b>B.</b> 一定不会</div><div class="opt"><b>C.</b> 仍可能会</div><div class="opt"><b>D.</b> 不确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>装填因子虽小（α=0.0001），但只要散列函数把两个不同关键字映射到同一地址，冲突就会发生——空间大只能降低冲突概率，不能杜绝，故"仍可能会"，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】为提高散列表的查找效率，可以采取的正确措施是（）<br>Ⅰ．增大装填（载）因子<br>Ⅱ．设计冲突（碰撞）少的散列函数<br>Ⅲ．处理冲突（碰撞）时避免产生聚集（堆积）现象</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ</div><div class="opt"><b>B.</b> 仅Ⅱ</div><div class="opt"><b>C.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>D.</b> 仅Ⅱ、Ⅲ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>Ⅰ错：装填因子增大会加剧冲突、增大ASL；Ⅱ对：散列函数越均匀，初始冲突越少；Ⅲ对：处理冲突的方法（如平方探测、链地址法）能避免堆积，缩短探测长度。故Ⅱ、Ⅲ正确，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P325</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】用哈希（散列）方法处理冲突（碰撞）时可能出现堆积（聚集）现象，下列选项中，会受堆积现象直接影响的是（）。</p><div class="opts"><div class="opt"><b>A.</b> 存储效率</div><div class="opt"><b>B.</b> 散列函数</div><div class="opt"><b>C.</b> 装填（装载）因子</div><div class="opt"><b>D.</b> 平均查找长度</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>堆积使非同义词连成一片，冲突关键字的探测序列变长，直接推高查找成功与失败的平均查找长度。存储效率由装填因子决定、散列函数本身不变、装填因子是堆积的诱因而非被影响者，均不受堆积"直接影响"。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P326</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】现有长度为7、初始为空的散列表HT，散列函数H(k)=k%7，用线性探测再散列法解决冲突。将关键字22,43,15依次插入HT后，查找成功的平均查找长度是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1.5</div><div class="opt"><b>B.</b> 1.6</div><div class="opt"><b>C.</b> 2</div><div class="opt"><b>D.</b> 3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>H(22)=1→存1；H(43)=1冲突→2；H(15)=1冲突→2冲突→3。查找成功的探测次数分别为1、2、3，ASL=(1+2+3)/3=2，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P326</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】现有长度为11且初始为空的散列表HT，散列函数是H(key)=key%7，采用线性探查（线性探测再散列）法解决冲突。将关键字序列87,40,30,6,11,22,98,20依次插入HT后，HT查找失败的平均查找长度是（）。</p><div class="opts"><div class="opt"><b>A.</b> 4</div><div class="opt"><b>B.</b> 5.25</div><div class="opt"><b>C.</b> 6</div><div class="opt"><b>D.</b> 6.29</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>散列地址依次为3,5,2,6,4,1,0,6：87→3，40→5，30→2，6→6，11→4，22→1，98→0，20：6冲突→7。表0~7被占，8~10空。失败只对初始地址0~6统计：从各地址探到第一个空位8为止，次数为9,8,7,6,5,4,3，ASL=(9+8+7+6+5+4+3)/7=42/7=6，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P326</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】下列因素中，影响散列（哈希）方法平均查找长度的是（）<br>Ⅰ．装填因子<br>Ⅱ．散列函数<br>Ⅲ．冲突解决策略</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>B.</b> 仅Ⅰ、Ⅲ</div><div class="opt"><b>C.</b> 仅Ⅱ、Ⅲ</div><div class="opt"><b>D.</b> Ⅰ、Ⅱ、Ⅲ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>装填因子α决定冲突频度；散列函数决定初始地址分布是否均匀；冲突解决策略（线性探测、平方探测、链地址等）决定冲突后的探测长度。三者都影响ASL，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P326</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】现有长度为5、初始为空的散列表HT，散列函数H(k)=(k+4)%5，用线性探测再散列法解决冲突。将关键字序列1,2,4依次插入HT后，HT查找失败的平均查找长度是（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 1.6</div><div class="opt"><b>C.</b> 1.8</div><div class="opt"><b>D.</b> 2.2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>H(1)=(1+4)%5=0，H(2)=6%5=1，H(4)=8%5=3，无冲突：表[0]=1、[1]=2、[3]=4，空位为2、4。失败需对初始地址0~4各探查到第一个空位：地址0→探0,1,2停（3次）；1→1,2（2次）；2→2（1次）；3→3,4（2次）；4→4（1次）。ASL=(3+2+1+2+1)/5=9/5=1.8，选C。<span style="color:#64748b">【原题插入序列OCR缺失，按考点补全】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+  <div class="prob" id="wq-7-5-24" data-type="选择">
+    <div class="prob-head"><span class="pnum">7.5 · 第24题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】下列关于散列方法处理冲突的叙述中，正确的是（）<br>Ⅰ．只要散列表不满，线性探查再散列一定能找到一个空闲位置<br>Ⅱ．只要散列表不满，二次探查再散列一定能找到一个空闲位置<br>Ⅲ．线性探查再散列处理的冲突，一定是发生在同义词之间的冲突<br>Ⅳ．二次探查再散列处理的冲突，一定是发生在非同义词之间的冲突</p><div class="opts"><div class="opt"><b>A.</b> 仅Ⅰ</div><div class="opt"><b>B.</b> 仅Ⅰ、Ⅱ</div><div class="opt"><b>C.</b> 仅Ⅱ、Ⅳ</div><div class="opt"><b>D.</b> 仅Ⅰ、Ⅱ、Ⅳ</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>Ⅰ对：线性探测逐单元前进并取模回绕，只要有一个空位，至多探m次必能找到；Ⅱ错：二次探测的探测序列可能不覆盖全部单元，表不满也可能找不到空位；Ⅲ错：堆积使线性探测处理的是非同义词间的冲突；Ⅳ错：二次探测首先处理的恰是同义词的初始冲突。故仅Ⅰ正确，选A。<span style="color:#64748b">【选项按原题考点重排】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P315</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c7", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

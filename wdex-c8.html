@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第8章 排序 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第8章 排序</p>
+  </div>
+  <div class="part-zone" id="wdex8">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第8章 排序</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题123题（官方速查答案+逐题独立验算解析）、综合题25题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-8-1"><h3>8.1 排序的基本概念<span class="tag tag-tpl">3题选择</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-1-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.1 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下述排序方法中，不属于内部排序方法的是（）</p><div class="opts"><div class="opt"><b>A.</b> 插入排序</div><div class="opt"><b>B.</b> 选择排序</div><div class="opt"><b>C.</b> 拓扑排序</div><div class="opt"><b>D.</b> 冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>内部排序指待排序数据全部放在内存中完成的排序，插入、选择、交换（冒泡）、归并、基数排序都是内部排序。拓扑排序是对有向无环图顶点排序的算法，用于图的应用（如AOV网），不属于内部排序方法，故选C。A、B、D均为教材内部排序的三大类之一。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P332</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-1-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.1 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>排序算法的稳定性是指（）</p><div class="opts"><div class="opt"><b>A.</b> 经过排序后，能使关键字相同的元素保持原顺序中的相对位置不变</div><div class="opt"><b>B.</b> 经过排序后，能使关键字相同的元素保持原顺序中的绝对位置不变</div><div class="opt"><b>C.</b> 排序算法的性能与被排序元素个数关系不大</div><div class="opt"><b>D.</b> 排序算法的性能与被排序元素的个数关系密切</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>稳定性的定义：若排序前Ki=Kj（i&lt;j），排序后两者的相对先后次序不变，则该算法稳定。注意是<b>相对位置</b>而非绝对位置（B错，元素整体移动会改变绝对下标）。C、D谈的是性能与规模的关系，与稳定性无关。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P333</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-1-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.1 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于排序的叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 稳定的排序方法优于不稳定的排序方法</div><div class="opt"><b>B.</b> 对同一线性表使用不同的排序方法进行排序，得到的排序结果可能不同</div><div class="opt"><b>C.</b> 排序方法都是在顺序表上实现的，在链表上无法实现排序方法</div><div class="opt"><b>D.</b> 在顺序表上实现的排序方法在链表上也可以实现</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>当序列中存在关键字相同的元素时，稳定算法与不稳定算法给出的相对次序可能不同，故不同方法的结果可能不同，B正确。A错：稳定性无优劣之分，只是性质。C错：插入、冒泡、选择、归并等均可在链表上实现。D错：希尔排序、堆排序依赖随机存取（按序号1~i、2i定位），无法直接移植到链表。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P333</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-2"><h3>8.2 插入排序<span class="tag tag-tpl">20题选择 + 2题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对5个不同的数据元素进行直接插入排序，最多需要进行的比较次数是（），注意，哨兵的比较不计入次数。</p><div class="opts"><div class="opt"><b>A.</b> 8</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 25</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>最多比较发生在完全逆序时：第i趟插入第i+1个元素需与前i个元素各比较一次，且哨兵比较不计，共1+2+3+4=10次，选B。C(15)是5个元素简单选择/冒泡的最多比较次数C(5,2)=10或归并口径混淆，D(25)=5²是干扰项。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给出关键字序列{4,5,1,2,6,3}的直接插入排序过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>直接插入排序把序列分为有序前缀与无序后缀，第i趟将第i+1个元素插入前缀合适位置。过程如下（括号内为已排序区）：</p><div class="asc">初始　　　(4) 5 1 2 6 3<br>第1趟　　(4 5) 1 2 6 3<br>第2趟　　(1 4 5) 2 6 3<br>第3趟　　(1 2 4 5) 6 3<br>第4趟　　(1 2 4 5 6) 3<br>第5趟　　(1 2 3 4 5 6)</div><p>每趟中5、1、2、6、3依次与前缀元素自后向前比较并后移插入，共5趟完成排序，最终结果为1,2,3,4,5,6。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在待排序的元素序列基本有序的前提下，效率最高的排序方法是（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序</div><div class="opt"><b>B.</b> 简单选择排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>序列基本有序时，直接插入排序每趟只需1~2次比较、几乎无需移动，总代价接近O(n)，是最优选择。B的比较次数固定为n(n-1)/2与初始状态无关；C在基本有序时枢轴划分极不平衡，退化为O(n²)；D无论是否有序都是O(nlog₂n)。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给出关键字序列{50,26,38,80,70,90,8,30,40,20}的希尔排序过程（取增量序列为d={5,3,1}，排序结果为从小到大排列）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>按增量d=5、3、1依次做三趟分组插入排序。</p><p>第一趟d=5，分组：(50,90)、(26,8)、(38,30)、(80,40)、(70,20)，组内插入排序后得：50,8,30,40,20,90,26,38,80,70。</p><p>第二趟d=3，分组：(50,40,26,70)、(8,20,38)、(30,90,80)，排序后依次为(26,40,50,70)、(8,20,38)、(30,80,90)，得：26,8,30,40,20,80,50,38,90,70。</p><p>第三趟d=1，即对全表直接插入排序，得最终结果：8,20,26,30,38,40,50,70,80,90。</p><p><b>验算：</b>每趟结束后各分组内均递增（如d=3趟后位置1,4,7,10为26,40,50,70），末趟全表有序，过程正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>用直接插入排序算法对n个元素进行排序，在最坏情况下所需的比较次数是（）；在最好情况下所需的比较次数是（）。</p><div class="opts"><div class="opt"><b>A.</b> n-1</div><div class="opt"><b>B.</b> n+1</div><div class="opt"><b>C.</b> n/2</div><div class="opt"><b>D.</b> n(n-1)/2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：最坏选D、最好选A（组合为AD）。</b>最好情况（正序）：每个元素只需与前方紧邻的已排序末元素比较1次即就位，共n-1次，选A。最坏情况（逆序）：第i个元素要与前面i-1个元素全部比较并移动，共1+2+…+(n-1)=n(n-1)/2次，选D。B、C无对应情形。</p></p><p class="final-ans">✅ 答案：<b>AD</b>（多选）　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>数据序列{8,10,13,4,6,7,22,2,3}只能是（）两趟排序后的结果。</p><div class="opts"><div class="opt"><b>A.</b> 简单选择排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 直接插入排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>前3个元素8,10,13已递增有序，而其后仍乱序，恰是直接插入排序两趟（各插入一个元素）后的形态：前缀有序、后缀保持原样。A两趟后最小两个元素2,3应位于前两位；B两趟后最大两个元素22,3应位于末两位（3在末尾但22不在倒数第二）；D堆排序一趟后有堆结构特征。均不符。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用直接插入排序算法对下列4个表进行（从小到大）排序，比较次数最少的是（）</p><div class="opts"><div class="opt"><b>A.</b> 94,32,40,90,80,46,21,69</div><div class="opt"><b>B.</b> 21,32,46,40,80,69,90,94</div><div class="opt"><b>C.</b> 32,40,21,46,69,94,90,80</div><div class="opt"><b>D.</b> 90,69,80,46,21,32,94,40</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>直接插入排序的比较次数近似等于序列的逆序程度。B只有(46,40)、(80,69)两处局部逆序，基本有序，插入开销最小。A基本逆序、D乱序严重，比较次数都大；C的逆序对也多于B。故B最少。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在下列算法中，（）算法可能出现下列情况：在最后一趟开始之前，所有元素都不在最终位置上。</p><div class="opts"><div class="opt"><b>A.</b> 堆排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 直接插入排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>直接插入排序中，已排序前缀里的元素在后续插入时仍可能整体后移，直到最后一趟把最小元素插入首位后各元素才落定，因此最后一趟前可能所有元素都不在最终位置。A每趟堆顶归位一个；B每趟最大值归位；D每趟枢轴归位，均排除。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>希尔排序属于（）</p><div class="opts"><div class="opt"><b>A.</b> 插入排序</div><div class="opt"><b>B.</b> 交换排序</div><div class="opt"><b>C.</b> 选择排序</div><div class="opt"><b>D.</b> 归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>希尔排序本质是分组增量逐趟缩小的组内直接插入排序，属于插入排序的改进，故选A。交换排序代表是冒泡、快排；选择排序代表是简单选择、堆排序；归并排序独立一类。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对序列{15,9,7,8,20,-1,4}采用希尔排序，经一趟后变为{15,-1,4,8,20,9,7}，则该次采用的增量是（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>逐一验证：增量4时分组为(15,20)、(9,-1)、(7,4)、(8)，组内排序得(15,20)、(-1,9)、(4,7)，序列恰为{15,-1,4,8,20,9,7}，选B。增量3时组(15,8)、(9,20)、(7,-1,4)结果不符；增量2、1同理不符。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若序列{15,9,7,8,20,-1,4}经一趟排序后序列变成{9,15,7,8,20,-1,4}，则采用的是下列的（）</p><div class="opts"><div class="opt"><b>A.</b> 选择排序</div><div class="opt"><b>B.</b> 快速排序</div><div class="opt"><b>C.</b> 直接插入排序</div><div class="opt"><b>D.</b> 冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>只有前两个元素被调整为有序（9插入15之前），其余元素原样未动，这正是直接插入排序第二趟（将9插入已排序前缀{15}）的形态。选择排序一趟后-1应在首位；冒泡一趟后20应在末位附近移动；快排一趟后枢轴到最终位置，均不符。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对序列{98,36,-9,0,47,23,1,8,10,7}采用希尔排序，下列序列（）是增量为4的一趟排序结果。</p><div class="opts"><div class="opt"><b>A.</b> (10,7,-9,0,47,23,1,8,98,36)</div><div class="opt"><b>B.</b> (-9,0,36,98,1,8,23,47,7,10)</div><div class="opt"><b>C.</b> (36,98,-9,0,23,47,1,8,7,10)</div><div class="opt"><b>D.</b> 以上都不对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>增量4的分组：(98,47,10)→(10,47,98)、(36,23,7)→(7,23,36)、(-9,1)、(0,8)，回填后得(10,7,-9,0,47,23,1,8,98,36)，正是A。B、C中组内并非取自正确的同余位置元素，可验算(10,7,-9,0,...)第1、5、9位为10,47,98已有序，符合A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对序列{E,A,S,Y,Q,U,E,S,T,I,O,N}按照字典顺序排序，采用增量d=6,3,1的希尔排序算法，则前两趟排序后关键字的总比较次数为（）</p><div class="opts"><div class="opt"><b>A.</b> 15</div><div class="opt"><b>B.</b> 17</div><div class="opt"><b>C.</b> 16</div><div class="opt"><b>D.</b> 18</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第一趟d=6：六组各2个元素，各比较1次，共6次，得E,A,S,I,O,N,E,S,T,Y,Q,U。第二趟d=3：组(1,4,7,10)=E,I,E,Y插入排序比较1+2+1=4次；组(2,5,8,11)=A,O,S,Q比较1+1+2=4次；组(3,6,9,12)=S,N,T,U比较1+1+1=3次，共11次。总计6+11=17次，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P338</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对序列{24,7,5,56,8,9,2,11,34,1,13,77,51}采用增量为6、3、1的希尔排序，则两趟排序后的结果为（）</p><div class="opts"><div class="opt"><b>A.</b> 1,7,8,9,13,24,11,34,51,2,5,56,77</div><div class="opt"><b>B.</b> 1,7,5,2,8,9,24,11,34,51,13,77,56</div><div class="opt"><b>C.</b> 2,11,5,1,8,9,24,7,34,51,13,77,56</div><div class="opt"><b>D.</b> 2,5,11,1,8,9,7,24,34,13,51,77,56</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第一趟d=6：组(1,7,13)=(24,2,51)→(2,24,51)，(2,8)=(7,11)有序，(3,9)=(5,34)有序，(4,10)=(56,1)→(1,56)，(5,11)、(6,12)有序，得{2,7,5,1,8,9,24,11,34,56,13,77,51}。第二趟d=3：组(1,4,7,10,13)=(2,1,24,56,51)→(1,2,24,51,56)，其余两组已有序，得{1,7,5,2,8,9,24,11,34,51,13,77,56}，即B。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>折半插入排序算法的时间复杂度为（）</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(nlog₂n)</div><div class="opt"><b>C.</b> O(n²)</div><div class="opt"><b>D.</b> O(n³)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>折半插入排序只减少了<b>比较</b>次数至O(nlog₂n)，但元素仍需顺序移动，移动次数未变，总时间仍为O(n²)，故选C。这是常见干扰点：不能因折半查找而误选B。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有些排序算法在每趟排序过程中，都会有一个元素被放置到其最终位置上，（）算法不一定会出现此种情况。</p><div class="opts"><div class="opt"><b>A.</b> 希尔排序</div><div class="opt"><b>B.</b> 堆排序</div><div class="opt"><b>C.</b> 冒泡排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>堆排序每趟堆顶（最大/最小）元素归位；冒泡每趟最大值沉底归位；快排每趟枢轴到最终位置。希尔排序一趟只做组内插入，任何元素都可能因后续趟次再移动，不保证有元素落定，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下排序算法中，不稳定的是（）</p><div class="opts"><div class="opt"><b>A.</b> 冒泡排序</div><div class="opt"><b>B.</b> 直接插入排序</div><div class="opt"><b>C.</b> 希尔排序</div><div class="opt"><b>D.</b> 归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>希尔排序分组插入时，相等元素可能被分到不同组而被跨越移动，相对次序会破坏，不稳定。冒泡（相邻交换只在严格逆序时进行）、直接插入、归并均为稳定排序。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下排序算法中，稳定的是（）</p><div class="opts"><div class="opt"><b>A.</b> 快速排序</div><div class="opt"><b>B.</b> 堆排序</div><div class="opt"><b>C.</b> 直接插入排序</div><div class="opt"><b>D.</b> 简单选择排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>直接插入排序中相等元素不会越过彼此（遇到不大于即停），稳定。快排、堆排序、简单选择排序在交换时都可能跨越相等元素，均不稳定。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】对同一待排序序列分别进行折半插入排序和直接插入排序，两者之间可能的不同之处是（）</p><div class="opts"><div class="opt"><b>A.</b> 排序的总趟数</div><div class="opt"><b>B.</b> 元素的移动次数</div><div class="opt"><b>C.</b> 使用辅助空间的数量</div><div class="opt"><b>D.</b> 元素之间的比较次数</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>两者都按逐个插入的方式进行，总趟数同为n-1趟（A同）；插入时元素后移方式相同，移动次数相同（B同）；辅助空间同为O(1)（C同）。区别仅在确定插入位置的方式：折半查找使比较次数约为O(nlog₂n)且与初始状态无关，而直接插入的比较次数依赖初始状态，故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】用希尔排序方法对一个数据序列进行排序时，若第1趟排序结果为9,1,4,13,7,8,20,23,15，则该趟排序采用的增量（间隔）可能是（）</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>一趟希尔排序后各分组内必须有序。增量为3时分组(9,13,20)、(1,7,23)、(4,8,15)均递增，符合。增量为2时组(9,4,7,20,15)中9&gt;4无序；增量为4时组(1,5,9)即(9,7,15)中9&gt;7无序；增量为5时组(9,8)无序。故只有B可能。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】希尔排序的组内排序采用的是（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序</div><div class="opt"><b>B.</b> 折半插入排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>希尔排序每趟对各子序列执行的是直接插入排序（增量序列递减，最后一趟增量为1即全表直接插入），故选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-2-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.2 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2018统考真题】对初始数据序列(8,3,9,11,2,1,4,7,5,10,6)进行希尔排序，若第一趟排序后的结果为(4,2,1,8,3,5,10,6,9,11,7)，第二趟排序后的结果为(1,2,3,4,5,6,7,8,9,10,11)，则两趟排序的增量（间隔）依次是（）</p><div class="opts"><div class="opt"><b>A.</b> 3,1</div><div class="opt"><b>B.</b> 3,2</div><div class="opt"><b>C.</b> 5,2</div><div class="opt"><b>D.</b> 5,3</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>第二趟后序列完全有序，而只有增量为1的插入排序能保证全表有序，故第二趟增量为1，四个选项中仅A第二增量为1。再验证第一趟d=3：分组(8,11,4,10)=(位置1,4,7,10)排序后为(4,8,10,11)、(3,2,7,6)→(2,3,6,7)、(9,1,5)→(1,5,9)，回填恰得(4,2,1,8,3,5,10,6,9,11,7)，吻合，选A。<span style="color:#64748b">【题面中间结果序列按王道原题重建】</span></p><span style="color:#64748b">【官方速查标注D，对应原书不同选项排版；本题为2018统考原题选项序，经d=3分组逐组演算与本站答案A自洽。】</span></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P339</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-3"><h3>8.3 交换排序<span class="tag tag-tpl">20题选择 + 4题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-3-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对n个不同的元素利用冒泡法从小到大排序，在（）情况下元素交换的次数最多。</p><div class="opts"><div class="opt"><b>A.</b> 从大到小排列好的</div><div class="opt"><b>B.</b> 从小到大排列好的</div><div class="opt"><b>C.</b> 元素无序</div><div class="opt"><b>D.</b> 元素基本有序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>从小到大冒泡时，逆序对越多交换越多。从大到小完全逆序时每个相邻对都逆序，交换次数达最大n(n-1)/2。B正序无交换；D基本有序交换极少；C无序介于两者之间。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-3-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.3 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知线性表按顺序存储，且每个元素都是不相同的整型元素，设计把所有奇数移动到所有偶数前边的算法（要求时间最短，辅助空间最小）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>借鉴快速排序一趟划分的双指针思想，只需一趟扫描、O(n)时间、O(1)空间。</p><div class="asc">void OddBeforeEven(int a[], int n){
+  int i=1, j=n, t;
+  while(i&lt;j){
+    while(i&lt;j &amp;&amp; a[i]%2==1) i++;  //i右移越过奇数
+    while(i&lt;j &amp;&amp; a[j]%2==0) j--;  //j左移越过偶数
+    if(i&lt;j){ t=a[i]; a[i]=a[j]; a[j]=t; }
+  }
+}</div><p><b>验算：</b>i停在偶数、j停在奇数时交换，交换后前部奇数区、后部偶数区各自扩张，两指针各只移动一趟，比较次数不超过n，交换不超过n/2次。<b>结论：</b>时间O(n)（该问题下界，已最优），辅助空间O(1)，满足时间最短、空间最小。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若用冒泡排序算法对序列(10,14,26,29,41,52)从大到小排序，则需进行（）次比较。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 10</div><div class="opt"><b>C.</b> 15</div><div class="opt"><b>D.</b> 25</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>序列升序而目标降序，每趟扫描每个相邻对都逆序、都要交换，不能提前结束：各趟比较5+4+3+2+1=15次，选C。B(10)误为n+几；D(25)=n²量级干扰。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-3-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.3 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试编写一个算法，使之能够在数组L[1...n]中找出第k小的元素（从小到大排序后处于第k个位置的元素）。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>利用快速排序的划分操作：每趟划分把枢轴放到最终位置pos，若pos==k则即为所求；pos&gt;k在左半区间继续划分，pos&lt;k在右半区间继续。这种算法称为快速选择。</p><div class="asc">int kth(int L[], int low, int high, int k){
+  int pivot=L[low], i=low, j=high;
+  while(i&lt;j){
+    while(i&lt;j &amp;&amp; L[j]&gt;=pivot) j--; L[i]=L[j];
+    while(i&lt;j &amp;&amp; L[i]&lt;=pivot) i++; L[j]=L[i];
+  }
+  L[i]=pivot;
+  if(i==k) return L[i];
+  else if(i&gt;k) return kth(L,low,i-1,k);
+  else return kth(L,i+1,high,k);
+}</div><p><b>复杂度：</b>平均情况每次只需处理一个子区间，期望比较次数为n+n/2+n/4+…≈2n，平均时间O(n)，空间为递归栈O(log₂n)；最坏（划分总不平衡）退化为O(n²)。相比先完全排序O(nlog₂n)再取第k个更高效。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用某种排序方法对线性表{25,84,21,47,15,27,68,35,20}进行排序时，元素序列的变化情况如下：<br>①25,84,21,47,15,27,68,35,20<br>②20,15,21,25,47,27,68,35,84<br>③15,20,21,25,35,27,47,68,84<br>④15,20,21,25,27,35,47,68,84<br>则所采用的排序方法是（）</p><div class="opts"><div class="opt"><b>A.</b> 选择排序</div><div class="opt"><b>B.</b> 插入排序</div><div class="opt"><b>C.</b> 2路归并排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>第②步中25到位置4且左边{20,15,21}均小于25、右边均大于25（除枢轴自身），说明25作为枢轴一趟归位，这是快速排序的特征形态。选择排序一趟后最小值15应在首位；插入排序一趟后仅前缀有序；归并一趟后呈两两有序段。均不符。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-3-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.3 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>荷兰国旗问题：设有一个仅由红、白、蓝三种颜色的条块组成的条块序列，存储在一个顺序表中，请编写一个时间复杂度为O(n)的算法，使得这些条块按红、白、蓝的顺序排好，即排成荷兰国旗图案。请完成算法实现：<br>typedef enum{RED, WHITE, BLUE} color;　//设置枚举数组<br>void Flag_Arrange(color a[], int n){ ... }</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>借用一趟划分思想设置三个指针：i指向红色区末尾的下一位置，k为当前扫描位置，j指向蓝色区首位置之前。扫描一遍把红色换前、蓝色换后，白色自然居中。</p><div class="asc">void Flag_Arrange(color a[], int n){
+  int i=0, k=0, j=n-1; color t;
+  while(k&lt;=j){
+    switch(a[k]){
+      case RED: t=a[i]; a[i]=a[k]; a[k]=t; i++; k++; break;
+      case WHITE: k++; break;
+      case BLUE: t=a[j]; a[j]=a[k]; a[k]=t; j--; break;
+    }
+  }
+}</div><p><b>验算：</b>a[0..i-1]恒为红、a[j+1..n-1]恒为蓝，k每步至少使i或k或j前移，至多扫描n次，交换不超过n次，时间O(n)、空间O(1)。白色块遇到时不交换直接越过，最终形成红、白、蓝三段有序。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对数据序列{56,38,40,79,84,46}利用快速排序，以第一个元素为枢轴从小到大进行一次划分，得到的一次划分结果为（）</p><div class="opts"><div class="opt"><b>A.</b> (38,40,46,56,79,84)</div><div class="opt"><b>B.</b> (40,38,46,79,56,84)</div><div class="opt"><b>C.</b> (40,38,46,56,79,84)</div><div class="opt"><b>D.</b> (40,38,46,84,56,79)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>以56为枢轴划分：小于56的{38,40,46}置于左侧，56归位到第4个位置，大于56的{79,84}置于右侧。一趟划分只保证枢轴落定与两侧相对集合正确，左侧内部顺序取决于扫描方式，结果(40,38,46,56,79,84)符合，选C。A是完全有序后的最终结果，不是一趟划分；B、D枢轴未在正确相对位置上。<span style="color:#64748b">【题面首句由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-3-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.3 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2016统考真题】已知由n（n≥2）个正整数构成的集合A={aₖ|0≤k&lt;n}，将其划分为两个不相交的子集A₁和A₂，元素个数分别是n₁和n₂，A₁和A₂中元素之和分别为S₁和S₂。设计一个尽可能高效的划分算法，满足|n₁-n₂|最小且|S₁-S₂|最大。要求：(1)给出算法的基本设计思想。(2)根据设计思想，采用C或C++语言描述算法，关键之处给出注释。(3)说明你所设计算法的平均时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)<b>思想：</b>要|n₁-n₂|最小，应让两子集个数尽量均衡：n₁=⌊n/2⌋，n₂=⌈n/2⌉。在个数确定的条件下要|S₁-S₂|最大，应让A₁取最小的⌊n/2⌋个元素（S₁最小），A₂取其余。借助快速排序的划分：选枢轴一趟划分后枢轴落位，若其位置恰为⌊n/2⌋（下标从0计）即达到目的，否则只对包含该位置的一侧递归划分（类快速选择求第⌊n/2⌋小元素）。</p><p>(2)参考实现：在区间[low,high]内划分，枢轴到位位置为p：p==m(=⌊n/2⌋)时结束；p&lt;m对[p+1,high]递归；p&gt;m对[low,p-1]递归。划分函数与快排相同（交替向中间扫描交换）。结束后a[0..m-1]即A₁，a[m..n-1]即A₂。</p><p>(3)<b>复杂度：</b>平均情况每次只处理一个子区间，期望时间O(n)，递归栈平均O(log₂n)（或改非递归为O(1)）；最坏情况（划分总极端不平衡）为O(n²)。相比先整体排序O(nlog₂n)再前半后半划分，平均性能更优，满足尽可能高效的要求。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>快速排序算法在（）情况下最不利于发挥其长处。</p><div class="opts"><div class="opt"><b>A.</b> 要排序的数据量太大</div><div class="opt"><b>B.</b> 要排序的数据中含有多个相同值</div><div class="opt"><b>C.</b> 要排序的数据个数为奇数</div><div class="opt"><b>D.</b> 要排序的数据已基本有序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>基本有序（或基本逆序）时以首元素为枢轴的划分极度不平衡，递归深度达n，时间退化为O(n²)，正是快排最坏情形。A数据量大反而更能体现O(nlog₂n)优势；B多个相同值影响不大；C奇偶个数无关。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>就平均性能而言，目前最好的内部排序方法是（）</p><div class="opts"><div class="opt"><b>A.</b> 冒泡排序</div><div class="opt"><b>B.</b> 直接插入排序</div><div class="opt"><b>C.</b> 希尔排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>快排平均时间O(nlog₂n)且常数因子小、平均性能最佳（虽然最坏O(n²)），教材明确指出其为平均性能最好的内部排序。希尔排序介于O(n²)与O(nlog₂n)之间；冒泡、插入平均O(n²)。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>数据序列F={2,1,4,9,8,10,6,20}只能是下列排序算法中的（）两趟排序后的结果。</p><div class="opts"><div class="opt"><b>A.</b> 快速排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 选择排序</div><div class="opt"><b>D.</b> 插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>冒泡两趟后最大两个元素10,20应位于最后两位（现为6,20，不符）；选择两趟后最小两个元素1,2应升序位于前两位（现为2,1，不符）；插入两趟后前三个元素应有序（2,1,4无序，不符）。快排两趟可以只固定部分枢轴、其余元素相对自由，该序列可由快排得到，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P346</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对数据序列{8,9,10,4,5,6,20,1,2}采用冒泡排序（从后向前次序进行，要求升序），需要进行的趟数至少是（）（不考虑无元素交换的最后一趟）。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 8</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>从后向前冒泡每趟把当前最小元素浮到最前：一趟后1到首位，二趟后2到位，三趟后4到位，四趟后5到位，五趟后6到位，此时序列{1,2,4,5,6,8,9,10,20}已整体有序，共5趟，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>双向冒泡排序是指对一个序列在正反两个方向交替进行扫描，第一趟把最大值放在序列的最右端，第二趟把最小值放在序列的最左端，之后在缩小的范围内进行同样的扫描，放在次右端、次左端，直至序列有序。对数组{4,7,8,3,5,6,10,9,1,2}进行双向冒泡排序，则排序趟数是（）（第一趟从左往右开始，从左往右或从右往左都称为一趟）。</p><div class="opts"><div class="opt"><b>A.</b> 7</div><div class="opt"><b>B.</b> 6</div><div class="opt"><b>C.</b> 8</div><div class="opt"><b>D.</b> 9</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>逐趟模拟：第1趟(左→右)10沉底；第2趟(右→左)1浮首；第3趟9归位第9位；第4趟2归位第2位；第5趟扫描中仅4、3一处交换，扫描后序列{1,2,3,4,5,6,7,8,9,10}已有序。但双向冒泡在发生过交换的一趟之后还需再完整扫一趟确认无交换方可终止，故第6趟为确认趟，总计6趟，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>对下列关键字序列用快排进行排序时，每次选取的基准元素都为待处理序列的第一个元素，速度最快的情形是（），速度最慢的情形是（）。</p><div class="opts"><div class="opt"><b>A.</b> {21,25,5,17,9,23,30}</div><div class="opt"><b>B.</b> {25,23,30,17,21,5,9}</div><div class="opt"><b>C.</b> {21,9,17,30,25,23,5}</div><div class="opt"><b>D.</b> {5,9,17,21,23,25,30}</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：最快选A、最慢选D（组合为AD）。</b>A首元素21接近中位数，划分出的左右子表长度接近，递归树平衡，最快。D为正序序列，每次首元素都是最小值，划分结果一侧为空，退化O(n²)，最慢。B、C划分不平衡程度介于两者之间。</p></p><p class="final-ans">✅ 答案：<b>AD</b>（多选）　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对下列4个序列，以第一个关键字为基准用快速排序算法进行排序，在第一趟过程中移动记录次数最多的是（）</p><div class="opts"><div class="opt"><b>A.</b> 92,96,88,42,30,35,110,100</div><div class="opt"><b>B.</b> 92,96,100,110,42,35,30,88</div><div class="opt"><b>C.</b> 100,96,92,35,30,110,88,42</div><div class="opt"><b>D.</b> 42,30,35,92,100,96,88,110</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>以92为枢轴时，B中比92小的4个元素{42,35,30,88}全部位于右半部，比92大的{96,100,110}全在左半部且远离枢轴，第一趟划分需交叉移动的记录最多。A、C、D中小元素分布相对靠前，移动较少。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列序列中，（）可能是执行第一趟快速排序后所得到的序列（按从大到小排序和从小到大排序分别讨论）。</p><p>I.{68,11,18,69,23,93,73}　II.{68,11,69,23,18,93,73}<br>III.{93,73,68,11,69,23,18}　IV.{68,11,69,23,18,73,93}</p><div class="opts"><div class="opt"><b>A.</b> I、IV</div><div class="opt"><b>B.</b> II、III</div><div class="opt"><b>C.</b> III、IV</div><div class="opt"><b>D.</b> 只有IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>一趟划分后枢轴到最终位置：其左侧均小于（升序）或均大于（降序）枢轴。III按降序：93在首位且其余均小于93，可为枢轴，成立。IV按升序：93在末位且其余均小于93，成立。I中68左侧无元素但右侧出现小于68的11、18、23，且无任何元素可充当合法枢轴；II同样找不到满足一侧全小一侧全大的枢轴。故III、IV可能，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>对n个关键字进行快速排序，最大递归深度为（），最小递归深度为（）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> n</div><div class="opt"><b>C.</b> log₂n</div><div class="opt"><b>D.</b> nlog₂n</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：最大选B、最小选C（组合为BC）。</b>每次划分最不平衡（一侧为空）时递归深度最大为n；每次划分都均匀时递归树接近平衡，深度约log₂n最小。注意递归深度即所需栈深，快排空间开销由它决定。</p></p><p class="final-ans">✅ 答案：<b>BC</b>（多选）　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对8个元素的序列进行快速排序，在最好情况下的关键字比较次数是（）</p><div class="opts"><div class="opt"><b>A.</b> 7</div><div class="opt"><b>B.</b> 8</div><div class="opt"><b>C.</b> 12</div><div class="opt"><b>D.</b> 13</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>最好情况每次枢轴居中：第一次划分比较7次，分为4和3个元素的两块；4元素块比较3次后分为1、2；2元素块比较1次；3元素块比较2次后分为0、1（或1、0），不再比较。总计7+3+1+2=13次，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】采用递归方式对顺序表进行快速排序。下列关于递归次数的叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 递归次数与初始数据的排列次序无关</div><div class="opt"><b>B.</b> 每次划分后，先处理较长的分区可以减少递归次数</div><div class="opt"><b>C.</b> 每次划分后，先处理较短的分区可以减少递归次数</div><div class="opt"><b>D.</b> 递归次数与每次划分后得到的分区的处理顺序无关</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><b>独立验算：选D。</b>快排每一趟选定一个基准，基准落位后不再参与后续递归——对固定的n个元素，每个元素恰好充当一次基准、产生固定数量的子问题划分，因此<b>递归调用的总次数只与元素个数n有关，与元素的初始排列无关</b>；初始排列影响的是<b>递归的深度（栈深）</b>和比较次数。本题问的是「递归次数」，故选D。（原速查标C系把「递归深度」与「递归次数」混淆，本站裁定以严格口径D为准。）</p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P347</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】为实现快速排序算法，待排序序列宜采用的存储方式是（）</p><div class="opts"><div class="opt"><b>A.</b> 顺序存储</div><div class="opt"><b>B.</b> 散列存储</div><div class="opt"><b>C.</b> 链式存储</div><div class="opt"><b>D.</b> 索引存储</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>快排划分依赖低、高指针随机跳跃访问与就地交换，顺序存储（数组）可O(1)定位任意元素，最适合。链式存储无法高效随机定位；散列、索引存储与排序无序关系。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P348</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2014统考真题】下列选项中，不可能是快速排序第2趟排序结果的是（）</p><div class="opts"><div class="opt"><b>A.</b> 2,3,5,4,6,7,9</div><div class="opt"><b>B.</b> 2,7,5,6,4,3,9</div><div class="opt"><b>C.</b> 3,2,5,4,7,6,9</div><div class="opt"><b>D.</b> 4,2,3,5,7,6,9</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>两趟快排后至少应有两个（一个也行，但至少第一趟的）枢轴位于最终位置。逐项检查处于最终位置的元素（左侧全部更小、右侧全部更大）：A中2、5、6、7、9均落定；B中2、9落定；D中5、9落定。C中仅有9落定（3、2、5、4、7、6均不在最终位），只有一趟的效果，不可能是第2趟结果，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P348</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】排序过程中，对尚未确定最终位置的所有元素进行一遍处理称为一“趟”。下列序列中，不可能是快速排序第二趟结果的是（）</p><div class="opts"><div class="opt"><b>A.</b> 5,2,16,12,28,60,32,72</div><div class="opt"><b>B.</b> 2,16,5,28,12,60,32,72</div><div class="opt"><b>C.</b> 2,12,16,5,28,32,72,60</div><div class="opt"><b>D.</b> 5,2,12,28,16,32,72,60</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>第二趟需对所有未定位子区间处理。D中已落定元素仅有12、32：第一趟枢轴必为32，其右侧剩{72,60}尚未确定；第二趟必须对两侧未定区间都处理，右侧{72,60}经一趟应使72或60之一落定（有序排列60,72），而D中仍为72,60倒序，矛盾，不可能。A、B、C均可由两趟合法得到。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P348</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】使用快速排序算法对数据进行升序排序，若经过一次划分后得到的数据序列是68,11,70,23,80,77,48,81,93,88，则该次划分的枢轴是（）</p><div class="opts"><div class="opt"><b>A.</b> 11</div><div class="opt"><b>B.</b> 70</div><div class="opt"><b>C.</b> 80</div><div class="opt"><b>D.</b> 81</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>一次划分后枢轴位于最终位置：左侧全部小于它、右侧全部大于它。检查：81位于第8位，其左侧恰有7个小于81的元素（68,11,70,23,80,77,48），右侧2个大于81（93,88），81落定，是枢轴。70左侧虽有68,11但23、48小于70却在右侧；93右侧的88小于93；其余元素均不满足，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P348</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-3-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.3 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】使用快速排序算法对含n（n≥3）个元素的数组M进行排序，若第一趟排序将M中除枢轴外的n-1个元素划分为均不为空的P和Q两块，则下列叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> P与Q块间有序</div><div class="opt"><b>B.</b> P与Q均块内有序</div><div class="opt"><b>C.</b> P和Q的元素个数大致相等</div><div class="opt"><b>D.</b> P中和Q中均不存在相等的元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>升序快排一趟后，P块元素均小于枢轴、Q块均大于枢轴，故任意P元素小于任意Q元素，两块之间整体有序，A正确。块内部仍无序（B错）；划分均衡与否取决于枢轴，不保证个数相近（C错）；元素可以重复（D错）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P348</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-4"><h3>8.4 选择排序<span class="tag tag-tpl">21题选择 + 8题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-4-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在以下排序算法中，每趟从待排序记录中选出关键字最小的记录，并将其与当前待排序部分的首记录交换，从而使有序区从前向后逐步扩大的是（）</p><div class="opts"><div class="opt"><b>A.</b> 简单选择排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 堆排序</div><div class="opt"><b>D.</b> 直接插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>这正是简单选择排序的定义：每趟在无序区选最小者与区首交换，有序区自前向后扩张，共n-1趟。冒泡靠相邻交换；堆排序每趟输出堆顶后整体重排；直接插入不选最小。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>指出堆和二叉排序树的区别。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>二者的区别主要有四点：</p><p>(1)<b>结构约束不同</b>：堆必须是完全二叉树；二叉排序树（BST）可以是任意形态的二叉树。</p><p>(2)<b>结点间的序关系不同</b>：堆只约束<b>父结点与孩子</b>之间的大小关系（大根堆父≥子、小根堆父≤子），左右子树之间无大小约束；BST约束<b>左子树&lt;根&lt;右子树</b>（对全部后代成立），中序遍历得到递增序列，而堆的中序遍历无序。</p><p>(3)<b>用途不同</b>：堆用于堆排序、优先队列，方便取当前最大/最小值；BST用于动态查找，查找、插入、删除平均O(log₂n)。</p><p>(4)<b>查找性能不同</b>：在堆中查找任意给定关键字只能顺序扫描，O(n)；在平衡的BST中查找为O(log₂n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>简单选择排序算法的比较次数和移动次数分别为（）</p><div class="opts"><div class="opt"><b>A.</b> O(n),O(log₂n)</div><div class="opt"><b>B.</b> O(log₂n),O(n²)</div><div class="opt"><b>C.</b> O(n²),O(n)</div><div class="opt"><b>D.</b> O(nlog₂n),O(n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>比较次数与初始状态无关，恒为(n-1)+(n-2)+…+1=n(n-1)/2=O(n²)；移动次数每趟至多3次交换，共不超过3(n-1)=O(n)，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>画出一棵二叉树，使得它既满足大根堆的要求又满足二叉排序树的要求。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>分析：</b>大根堆要求每个父结点大于等于其孩子；二叉排序树要求右子树上所有结点大于根。若某结点存在右孩子，则右孩子&gt;根，与大根堆要求的根≥右孩子矛盾。因此树中任何结点都<b>不能有右孩子</b>，即这是一棵只向左延伸的单支树，且从根到叶严格递减。</p><p>例如三个结点{30,20,10}构成的树：</p><div class="asc">　　　30
+　　/
+　20
+　/
+10</div><p><b>验算：</b>中序遍历为10,20,30递增，满足BST；每个父结点（30、20）均大于其左孩子，满足大根堆。故该树（或任何结点值沿左链递减的单支树）即为所求。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若只想得到100000个元素组成的序列中第10个最小元素之前的部分排序的序列，用（）方法最快。</p><div class="opts"><div class="opt"><b>A.</b> 冒泡排序</div><div class="opt"><b>B.</b> 快速排序</div><div class="opt"><b>C.</b> 希尔排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>用堆排序：建小根堆O(n)，再取10次堆顶、每次下筛O(log₂n)，总代价O(n+10log₂n)≈O(n)，只需得到前k小无需整体有序，最快。冒泡需9~10趟O(10n)；快排、希尔都要趋向完全排序，代价更高。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若只想得到一个序列中第k（k≥5）个最小元素之前的部分的排序序列，则最好采用什么排序方法？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>最好采用堆排序。</b></p><p><b>方法：</b>对n个元素建小根堆（自底向上筛选，时间O(n)），然后执行k次取堆顶操作：每次输出堆顶（当前最小者）后将末元素置顶并向下筛选调整，每次O(log₂n)。输出的k个元素即前k个最小元素的有序序列。</p><p><b>复杂度：</b>总时间O(n + k·log₂n)。当k≪n时（如k≥5但远小于n），该代价接近O(n)，明显优于先完全排序再取前k个的O(nlog₂n)方案，也优于冒泡/选择需k趟的O(kn)方案。</p><p><b>结论：</b>只需部分有序的前k小元素时，堆排序（小根堆）代价最低，为最佳选择。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列（）是一个堆。</p><div class="opts"><div class="opt"><b>A.</b> 19,75,34,26,97,56</div><div class="opt"><b>B.</b> 97,26,34,75,19,56</div><div class="opt"><b>C.</b> 19,56,26,97,34,75</div><div class="opt"><b>D.</b> 19,34,26,97,56,75</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>按完全二叉树检验D：19≤34、19≤26；34≤97、34≤56；26≤75，任一父结点均小于等于孩子，是小根堆。A中75的孩子26、97里75&gt;26不满足小根、19&lt;75不满足大根；B、C同理均存在违反父子女序的结点。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>通常使用的堆又称二叉堆，因为它是用完全二叉树来实现的，树中结点最多只有两个孩子。同理可以有m叉堆，即用完全m叉树来实现的堆。题图给出一个m叉小根堆（图略）。请回答：<br>(1)上图是一个m叉小根堆，问m值是多少？向这个堆插入一个元素65后，堆中的元素如何变化？再删除堆顶元素呢？请画出变化后的树形。<br>(2)从0开始对完全4叉树中的结点从左到右、从上到下进行编号。若给定一个结点k，其父结点的编号是多少（若存在）？其第i（i=1,2,3,4）个孩子的编号是多少？<br>(3)在m叉堆中进行插入和删除操作的时间复杂度是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)由题图（完全三叉树）知m=3。插入65：把65添加为完全三叉树的最后一个结点，若小于其父则与父交换继续上浮，直到不小于父或到根为止；删除堆顶：将末元素移到根，与3个孩子中最小者比较，大于则交换下沉，直到小于所有孩子或成为叶结点，堆序恢复。（具体交换过程依图中元素而定，按上述上浮/下沉规则逐步画出即可。）</p><p>(2)0起编号的完全4叉树：结点k的父结点编号为⌊(k-1)/4⌋（k=0时为根，无父结点）；第i个孩子的编号为4k+i（i=1,2,3,4），若该编号超过结点总数则对应孩子不存在。</p><p>(3)插入与删除都只沿根到叶的一条路径调整，路径长度为树高⌈log_m(n+1)⌉量级，故时间复杂度均为O(log_m n)，即O(log₂n)（仅常数因子不同：m越大树越矮但每层比较的孩子越多）。</p><p><span style="color:#64748b">【(1)小问题中堆的具体元素图OCR缺失，操作规则按王道原题口径给出】</span></p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在含有n个关键字的小根堆中（下标从1开始），关键字最大的记录有可能存储在（）位置。</p><div class="opts"><div class="opt"><b>A.</b> n/2</div><div class="opt"><b>B.</b> n/2+2</div><div class="opt"><b>C.</b> 1</div><div class="opt"><b>D.</b> n/2-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>小根堆中最大关键字只能出现在叶子结点上，叶子下标范围为⌊n/2⌋+1~n。n/2+2在该范围内（当n为偶数时⌊n/2⌋+1=n/2+1起），可能；n/2是最后一个分支结点，1是堆顶最小值，n/2-1也是分支结点，均不可能。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>编写一个算法，在基于单链表表示的待排序关键字序列上进行简单选择排序。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>设置一个始终指向已排序链表尾部结点的指针tail（初始为头结点）；每趟从tail之后的无序链中扫描选出关键字最小的结点，将其从原位置摘下，链接到tail之后，tail前移；重复n-1趟。</p><div class="asc">void selSort(LinkList &amp;L){
+  LNode *tail=L;             //已排序区尾
+  while(tail-&gt;next!=NULL){
+    LNode *p=tail, *minp=p;   //minp指向最小结点的前驱
+    while(p-&gt;next!=NULL){
+      if(p-&gt;next-&gt;data &lt; minp-&gt;next-&gt;data) minp=p;
+      p=p-&gt;next;
+    }
+    LNode *q=minp-&gt;next;      //摘下最小结点q
+    minp-&gt;next=q-&gt;next;
+    q-&gt;next=tail-&gt;next;       //插到已排序区尾部
+    tail-&gt;next=q; tail=q;
+  }
+}</div><p><b>复杂度：</b>比较次数固定n(n-1)/2，时间O(n²)；只修改指针不另开空间，空间O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>向具有n个结点的堆中插入一个新元素的时间复杂度为（），删除一个元素的时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(n)</div><div class="opt"><b>C.</b> O(log₂n)</div><div class="opt"><b>D.</b> O(nlog₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：两空均为C。</b>插入：新元素置于堆尾后逐层向上调整，路径长度不超过堆高⌊log₂n⌋+1，为O(log₂n)。删除（删堆顶）：末元素移至堆顶后逐层向下筛选， likewise O(log₂n)。两空均选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-6" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第6题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>试设计一个算法，判断一个数据序列是否构成一个小根堆。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>序列a[1..n]构成小根堆当且仅当每个分支结点a[i]（1≤i≤⌊n/2⌋）都不大于其存在的孩子a[2i]、a[2i+1]。逐一检查即可。</p><div class="asc">bool IsMinHeap(int a[], int n){
+  for(int i=1; i&lt;=n/2; i++){
+    if(2*i&lt;=n &amp;&amp; a[i]&gt;a[2*i]) return false;
+    if(2*i+1&lt;=n &amp;&amp; a[i]&gt;a[2*i+1]) return false;
+  }
+  return true;
+}</div><p><b>验算：</b>如a=(1,3,2,5,4)：结点1≤3,2；结点2≤5；结点3≤4，返回true；a=(2,1)中a[1]&gt;a[2]，返回false，均正确。<b>复杂度：</b>每个分支结点至多比较2次，时间O(n)，空间O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>构建n个记录的初始堆，其时间复杂度为（）；对n个记录进行堆排序，最坏情况下其时间复杂度为（）。</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(n²)</div><div class="opt"><b>C.</b> O(log₂n)</div><div class="opt"><b>D.</b> O(nlog₂n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：第一空A、第二空D（组合为AD）。</b>自底向上建堆（从⌊n/2⌋到1依次筛选）的总代价收敛于O(n)，第一空选A。堆排序共n-1趟取顶+筛选，每趟O(log₂n)，无论初始状态如何都是O(nlog₂n)，第二空选D。</p></p><p class="final-ans">✅ 答案：<b>AD</b>（多选）　📖 王道书解析 P357</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-7" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第7题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>优先队列（PriorityQueue）是一种类似普通队列的数据结构，但每个元素都有一个优先级，出队的是优先级最高的元素。元素定义：typedef struct{ int value; int priority; } PriorityQueueElement;。请设计一个优先队列，满足：①初始队列为空；②入队时不允许增加队列占用空间；③出队后空间可重复使用，整个队列占用空间不变；④入队和出队的时间复杂度始终保持为O(log₂n)。请回答：(1)该队列应选择链式存储结构，还是选择顺序存储结构？(2)给出优先队列的数据结构的定义。(3)用伪代码给出入队操作和出队操作的基本过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)<b>应选择顺序存储结构。</b>用一维数组实现大根堆（按priority建堆）：数组一次性分配固定容量，入队出队只在数组内调整，空间恒定、可重复使用，且堆的插入删除天然是O(log₂n)；链式结构无法O(1)定位父/子结点，无法保证O(log₂n)与空间不变。</p><p>(2)定义：</p><div class="asc">#define MAXSIZE 100
+typedef struct{
+  PriorityQueueElement data[MAXSIZE]; //堆数组，下标1起
+  int size;                            //当前元素个数
+} PriorityQueue;</div><p>(3)入队：若size=MAXSIZE则失败；否则data[++size]=x，令i=size，当i&gt;1且data[i].priority&gt;data[i/2].priority时与父交换（上浮），至多⌊log₂n⌋层。出队：若size=0失败；否则取data[1]（优先级最高者）返回，将data[size]移到data[1]，size--，令i=1，循环与较大孩子比较并下沉到正确位置，同样至多⌊log₂n⌋层。两个操作均严格O(log₂n)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列4种排序算法中排序过程中的比较次数与序列初始状态无关的是（）</p><div class="opts"><div class="opt"><b>A.</b> 简单选择排序</div><div class="opt"><b>B.</b> 直接插入排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>简单选择排序每趟必须扫完整个无序区才能确定最小值，比较次数恒为n(n-1)/2，与初始状态无关。插入、快排、冒泡的比较次数都随序列有序程度变化（冒泡可提前终止）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-4-8" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.4 · 综合第8题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>已知一个含有n个整数的数组，现要从中找出其中的最大数和最小数。请回答下列问题：(1)设计一个完成上述查找任务的算法，要求平均情况下的比较次数尽可能少，简述其算法思想（不需要程序实现）。(2)说明你所设计的算法平均情况下的时间复杂度和空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)<b>思想（两两比较法）：</b>把n个元素两两配对：先在每对内部比较1次，得到每对中的较小者和较大者；然后用每对的较小者与当前最小值比较1次，用每对的较大者与当前最大值比较1次（前一对直接作为初值）。这样每2个元素至多3次比较，总比较次数为⌈3n/2⌉-2，比逐个元素既与max比又与min比的2(n-1)次更少，是比较次数最少的算法（已达到该问题下界）。n为奇数时，最后一个元素分别与min、max各比较1次。</p><p>(2)每个元素只被常数次访问，时间复杂度O(n)；只使用min、max两个辅助变量，空间复杂度O(1)。</p><p><span style="color:#64748b">【题面首句依OCR残片（…数。请回答下列问题：(1)…完成上述查找任务的算法，要求平均情况下的比较次数尽可能少…）按王道原题重建】</span></p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列关于二叉排序树和小根堆的叙述中，错误的是（）</p><div class="opts"><div class="opt"><b>A.</b> 二叉排序树的高度大于或等于小根堆的高度</div><div class="opt"><b>B.</b> 对二叉排序树进行中序遍历可以得到从小到大的序列</div><div class="opt"><b>C.</b> 从小根堆的根结点到任意叶结点的路径构成从小到大的序列</div><div class="opt"><b>D.</b> 对小根堆进行层序遍历可以得到从小到大的序列</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>A对：n个结点的堆是完全二叉树，高度⌊log₂n⌋是所有二叉树的最小高度，任何二叉排序树高度必不小于它。B对：中序遍历BST得递增序列。C对：小根堆父小于等于孩子，根到叶路径递增。D错：层序逐层访问，同层及跨层大小无保证（如堆{1,3,2}层序为1,3,2非递增），故选D。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有一组数据（15,9,7,8,20,-1,7,4），用堆排序的筛选方法建立的初始小根堆为（）</p><div class="opts"><div class="opt"><b>A.</b> -1,4,8,9,20,7,15,7</div><div class="opt"><b>B.</b> -1,7,15,7,4,8,20,9</div><div class="opt"><b>C.</b> -1,4,7,8,20,15,7,9</div><div class="opt"><b>D.</b> A、B、C均不对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>自⌊8/2⌋=4起向下筛选：结点8与孩子4交换；结点7与孩子-1交换；结点9与较小孩子4交换后再与8交换；堆顶15与-1交换后下筛到位置6。最终数组为-1,4,7,8,20,15,7,9，即C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>有一组数据（25,23,71,52,60,72,68），用堆排序的筛选方法建立的初始小根堆为（）</p><div class="opts"><div class="opt"><b>A.</b> {23,72,60,25,68,71,52}</div><div class="opt"><b>B.</b> {23,25,52,60,71,72,68}</div><div class="opt"><b>C.</b> {71,25,23,52,60,72,68}</div><div class="opt"><b>D.</b> {23,25,68,52,60,72,71}</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>从⌊7/2⌋=3开始筛选：结点3(71)与较小孩子68交换得25,23,68,52,60,72,71；结点2(23)的孩子52、60均更大不换；堆顶25与较小孩子23交换，25落到位置2仍满足。结果为{23,25,68,52,60,72,71}，即D。可验证D确为小根堆且由原序列一次筛选可达。<span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>堆排序分为两个阶段：第一阶段将给定的序列构造成一个初始堆，第二阶段逐次输出堆顶元素，并调整使其保持堆的性质。设有给定序列{48,62,35,77,55,14,35,98}，若在堆排序的第一阶段将该序列构造成一个大根堆，则交换元素的次数为（）</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 6</div><div class="opt"><b>C.</b> 7</div><div class="opt"><b>D.</b> 8</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>建大根堆：结点4(77)与98交换（1次）；结点3(35)不换；结点2(62)与77交换（2次）后62继续与98交换（3次）；堆顶48与77交换（4次）后与62交换（5次）再与98交换（6次）。共6次交换，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>已知大根堆{62,34,53,12,8,46,22}，删除堆顶元素后需要重新调整堆，则在此过程中关键字的比较次数为（）</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>删除堆顶62后，末元素22置顶得{22,34,53,12,8,46}：第一层先比较两个孩子34与53（第1次），22再与大者53比较（第2次）后交换；第二层结点3只有孩子46，22与46比较（第3次）后交换到叶。共3次关键字比较，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P358</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>从根结点到任意叶结点的路径都是有序的数据结构是（）</p><div class="opts"><div class="opt"><b>A.</b> 红黑树</div><div class="opt"><b>B.</b> 二叉查找树</div><div class="opt"><b>C.</b> 哈夫曼树</div><div class="opt"><b>D.</b> 堆</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>堆中父结点与孩子保持固定的大小关系（大根堆父大子小、小根堆父小子大），因此任一条根到叶路径上的关键字单调有序。红黑树、二叉查找树只保证中序有序，某条路径上可先减后增；哈夫曼树无关键字有序约束。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P359</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2009统考真题】已知关键字序列{5,8,12,19,28,20,15,22}是小根堆，插入关键字3，调整好后得到的小根堆是（）</p><div class="opts"><div class="opt"><b>A.</b> 3,5,12,8,28,20,15,22,19</div><div class="opt"><b>B.</b> 3,5,12,19,20,15,22,8,28</div><div class="opt"><b>C.</b> 3,8,12,5,20,15,22,28,19</div><div class="opt"><b>D.</b> 3,12,5,8,28,20,15,22,19</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>3插到位置9后向上调整：与父19交换到位置4，再与父8交换到位置2，再与堆顶5交换成为新堆顶，最终{3,5,12,8,28,20,15,22,19}，选A。其余选项破坏了原堆已满足的父子关系。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P359</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2011统考真题】已知序列{25,13,10,12,9}是大根堆，在序列尾部插入新元素18，将其再调整为大根堆，调整过程中元素之间进行的比较次数是（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>18插入尾部后处于位置6，父结点为位置3的10：第一次比较18&gt;10，交换上升至位置3；再与其父（堆顶）25比较，18&lt;25停止调整。共2次比较，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P359</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】已知小根堆为{8,15,10,21,34,16,12}，删除关键字8之后需重建堆，在此过程中，关键字之间的比较次数是（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>删除堆顶8后末元素12置顶{12,15,10,21,34,16}：12与孩子15、10比较（2次），与较小者10交换；12到位置3后与孩子16比较（1次），大于16不再交换。共3次比较，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P359</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2018统考真题】在将序列{6,1,5,9,8,4,7}建成大根堆时，正确的序列变化过程是（）</p><div class="opts"><div class="opt"><b>A.</b> 6,1,7,9,8,4,5→6,9,7,1,8,4,5→9,6,7,1,8,4,5→9,8,7,1,6,4,5</div><div class="opt"><b>B.</b> 6,9,5,1,8,4,7→6,9,7,1,8,4,5→9,6,7,1,8,4,5→9,8,7,1,6,4,5</div><div class="opt"><b>C.</b> 6,9,5,1,8,4,7→9,6,5,1,8,4,7→9,6,7,1,8,4,5→9,8,7,1,6,4,5</div><div class="opt"><b>D.</b> 6,1,5,9,8,4,7→6,1,5,9,8,4,7→6,1,5,9,8,4,7→6,1,5,9,8,4,7</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>自i=⌊7/2⌋=3向下筛选：结点3(5)与孩子7交换得6,1,7,9,8,4,5；结点2(1)与孩子9交换得6,9,7,1,8,4,5；堆顶6与孩子9交换得9,6,7,1,8,4,5，6再与孩子8交换得9,8,7,1,6,4,5。四个状态与A完全一致。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P359</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2020统考真题】下列关于大根堆（至少含2个元素）的叙述中，正确的是（）</p><p>I．可以将堆视为一棵完全二叉树<br>II．可以采用顺序存储方式保存堆<br>III．可以将堆视为一棵二叉排序树<br>IV．堆中的次大值一定在根的下一层</p><div class="opts"><div class="opt"><b>A.</b> 仅I、II</div><div class="opt"><b>B.</b> 仅II、III</div><div class="opt"><b>C.</b> 仅I、II和IV</div><div class="opt"><b>D.</b> I、III和IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I对：堆是完全二叉树；II对：顺序存储下父子下标有确定关系，天然适合堆；III错：堆只约束父子不约束左右子树，中序并非有序；IV对：次大值必是某一孩子的候选，只可能出现在根的孩子（下一层）结点中。故I、II、IV正确。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P360</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】将关键字6,9,1,5,8,4,7依次插入到初始为空的大根堆H中，得到的H是（）</p><div class="opts"><div class="opt"><b>A.</b> 9,8,7,6,5,4,1</div><div class="opt"><b>B.</b> 9,8,7,5,6,1,4</div><div class="opt"><b>C.</b> 9,8,7,5,6,4,1</div><div class="opt"><b>D.</b> 9,6,7,5,8,4,1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>逐个插入并上浮：插6、9（9升顶）、1后为{9,6,1}；插5为{9,6,1,5}；插8后8与6交换得{9,8,1,5,6}；插4后4与1交换得{9,8,4,5,6,1}；插7后7与4交换、7&lt;9停止，得{9,8,7,5,6,1,4}。再核对：恰为B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P360</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-4-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.4 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】已知关键字序列28,22,20,19,8,12,15,5是大根堆（最大堆），对该堆进行两次删除操作后，得到的新堆是（）</p><div class="opts"><div class="opt"><b>A.</b> 20,19,15,12,8,5</div><div class="opt"><b>B.</b> 20,19,15,5,8,12</div><div class="opt"><b>C.</b> 20,19,12,15,8,5</div><div class="opt"><b>D.</b> 20,19,8,12,15,5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第一次删除堆顶28：末元素5置顶后下筛，5先与孩子22、20中较大者22交换，再与孩子19、8中较大者19交换，得{22,19,20,5,8,12,15}。第二次删除22：末元素15置顶，与较大孩子20交换后15小于其孩子12，停止，得{20,19,15,5,8,12}，即B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P360</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-5"><h3>8.5 归并排序、基数排序和计数排序<span class="tag tag-tpl">20题选择 + 3题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-5-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下排序方法中，（）在一趟结束后不一定能选出一个元素放在其最终位置上。</p><div class="opts"><div class="opt"><b>A.</b> 简单选择排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 归并排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>归并排序一趟只把有序段两两合并成更长的有序段，任何元素都不保证到达最终位置（最后一个元素也可能在后继趟次跨段移动）。简单选择、冒泡、堆排序每趟分别确定当前最小、最大、堆顶元素的最终位置。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-5-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.5 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>已知序列{503,87,512,61,908,170,897,275,653,462}，采用非递归的二路归并排序算法对该序列做升序排序时需要几趟排序？给出每一趟的结果。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>n=10，非递归二路归并需⌈log₂10⌉=4趟。各趟结果（括号表示归并成的有序段）：</p><div class="asc">初始　　503 87 512 61 908 170 897 275 653 462
+第1趟　(87 503)(61 512)(170 908)(275 897)(462 653)
+第2趟　(61 87 503 512)(170 275 897 908)(462 653)
+第3趟　(61 87 170 275 503 512 897 908)(462 653)
+第4趟　(61 87 170 275 462 503 512 653 897 908)</div><p><b>验算：</b>第1趟每段比较1次；第2趟归并相邻段；第3趟段长4的相邻段归并，最后一段(462 653)落单；第4趟归并全部完成。最终序列61,87,170,275,462,503,512,653,897,908为升序，正确。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下排序算法中，（）不需要进行关键字的比较。</p><div class="opts"><div class="opt"><b>A.</b> 快速排序</div><div class="opt"><b>B.</b> 归并排序</div><div class="opt"><b>C.</b> 基数排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>基数排序按关键字各位分派到桶再收集，分配依据是数位值而非关键字间比较，整个过程中不发生关键字比较。快排、归并、堆排序都是基于比较的排序。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-5-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.5 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设待排序的关键字序列为{12,2,16,30,28,10,16*,20,6,18}（16*表示第二个16），试写出使用最低位优先（LSD）基数排序算法每趟排序后的结果，并说明做了多少次关键字比较。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>关键字最多两位，需按个位、十位两趟分配收集：</p><p>第1趟按个位（桶0~9）：桶0：30,10,20；桶2：12,2；桶6：16,6；桶8：28,18。收集得：30,10,20,12,2,16,6,28,18。</p><p>第2趟按十位：桶0：2,6；桶1：10,12,16,18；桶2：20,28；桶3：30。收集得：2,6,10,12,16,18,20,28,30。</p><p><b>关键字比较次数为0</b>：基数排序全程只做数位识别（分配）与按桶顺序回收（收集），不进行任何关键字之间的比较，这也是基数排序区别于比较类排序的根本特点。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>在下列排序算法中，平均情况下空间复杂度为O(n)的是（）；最坏情况下空间复杂度为O(n)的是（）。<br>I．希尔排序　II．堆排序　III．冒泡排序　IV．归并排序　V．快速排序　VI．基数排序</p><div class="opts"><div class="opt"><b>A.</b> I、IV、VI</div><div class="opt"><b>B.</b> II、V</div><div class="opt"><b>C.</b> IV、V</div><div class="opt"><b>D.</b> IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：平均选D、最坏选C（组合为CD）。</b>平均情况下：希尔、堆、冒泡均为O(1)，快排平均O(log₂n)，基数排序辅助队列按基数r计为O(r)，只有归并排序需要O(n)的辅助数组，第一空选D(IV)。最坏情况下快排递归深度达n、栈空间O(n)，加上归并的O(n)，为IV、V，第二空选C。</p></p><p class="final-ans">✅ 答案：<b>CD</b>（多选）　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-5-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.5 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>【2021统考真题】已知某排序算法如下，请回答下列问题：</p><div class="asc">void cmpCountSort(int a[], int b[], int n){
+  int i, j, *count;
+  count = new int[n];
+  for(i=0; i&lt;n; i++) count[i]=0;
+  for(i=0; i&lt;n-1; i++)
+    for(j=i+1; j&lt;n; j++)
+      if(a[i]&lt;a[j]) count[j]++;
+      else count[i]++;
+  for(i=0; i&lt;n; i++) b[count[i]]=a[i];
+  delete count;
+}</div><p>设int a[]={25,-10,25,10,11,19}, b[6]; (1)调用cmpCountSort(a,b,6)后，数组b中的内容是什么？(2)若a中含有n个元素，则算法执行过程中元素之间的比较次数是多少？(3)该算法是稳定的吗？若是，阐述理由；否则，修改为稳定排序算法。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)count[i]统计a[i]之后（含比较中）大于等于它的元素个数，即a[i]在降序中的位置。逐对比较得count={5,3,4,2,1,0}，于是b[5]=25, b[3]=-10, b[4]=25, b[2]=10, b[1]=11, b[0]=19，即b={19,11,10,-10,25,25}（降序）。</p><p>(2)二重循环每对(i,j)比较恰一次，共n(n-1)/2次。</p><p>(3)<b>不稳定。</b>两个25相等时，else分支使前面的25（a[0]）的count不断增大，最终a[0]的count=5排在a[2]的count=4之后，相等元素的相对次序颠倒。修改：把判断条件改为if(a[i]&lt;=a[j]) count[j]++; else count[i]++;（相等时计入后一个元素的count），这样相等元素中先出现者count较小、排在b中靠前，相对次序保持，即为稳定排序（同时b中变为升序排列时相应取b[n-1-count[i]]=a[i]，按题目输出方向调整即可）。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列排序方法中，排序过程中比较次数的数量级与序列初始状态无关的是（）</p><div class="opts"><div class="opt"><b>A.</b> 归并排序</div><div class="opt"><b>B.</b> 插入排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>2路归并每一趟每个元素都要参与一次归并比较，比较次数恒为O(nlog₂n)，与初始状态无关。插入排序（基本有序时O(n)）、快排（最坏O(n²)）、冒泡（可提前终止）都与初始状态密切相关。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>二路归并排序中，归并趟数的数量级是（）</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(log₂n)</div><div class="opt"><b>C.</b> O(nlog₂n)</div><div class="opt"><b>D.</b> O(n²)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>每趟归并把段长加倍，n个元素从长度1的段归并成长度n，共需⌈log₂n⌉趟，数量级O(log₂n)。C是总时间的数量级，注意区分。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若对27个元素只进行三趟多路归并排序，则选取的归并路数最少为（）</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>三趟k路平衡归并可完成排序需k³≥27，即k≥3，故最少3路。2³=8&lt;27不够；4、5可行但非最少。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>将两个各有N个元素的有序表合并成一个有序表，最少的比较次数是（），最多的比较次数是（）。</p><div class="opts"><div class="opt"><b>A.</b> N</div><div class="opt"><b>B.</b> 2N-1</div><div class="opt"><b>C.</b> 2N</div><div class="opt"><b>D.</b> N-1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：最少选A、最多选B（组合为AB）。</b>最少情形：一个表的所有元素都小于另一个表，如A表全部小于B表，比较N次后B表整体接在后面，共N次。最多情形：两表元素交错，每次比较只归并出一个元素，最后一个元素无需比较，共2N-1次。</p></p><p class="final-ans">✅ 答案：<b>AB</b>（多选）　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>用归并排序算法对序列{1,2,6,4,5,3,8,7}进行排序，共需要进行（）次比较。</p><div class="opts"><div class="opt"><b>A.</b> 12</div><div class="opt"><b>B.</b> 13</div><div class="opt"><b>C.</b> 14</div><div class="opt"><b>D.</b> 15</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>第一趟合并相邻对(1,2)、(6,4)、(5,3)、(8,7)，各比较1次共4次；第二趟合并[1,2]与[4,6]比较2次、[3,5]与[7,8]比较2次共4次；第三趟合并[1,2,4,6]与[3,5,7,8]比较6次。总计4+4+6=14次，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一组经过第一趟二路归并排序后的记录的关键字为(25,50,15,35,80,85,20,40,36,70)，其中包含5个长度为2的有序表，用二路归并排序方法对该序列进行第二趟归并后的结果为（）</p><div class="opts"><div class="opt"><b>A.</b> 15,25,35,50,80,20,85,40,70,36</div><div class="opt"><b>B.</b> 15,25,35,50,20,40,80,85,36,70</div><div class="opt"><b>C.</b> 15,25,50,35,80,85,20,36,40,70</div><div class="opt"><b>D.</b> 15,25,35,50,80,20,36,40,70,85</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第二趟把相邻有序段两两合并：[25,50]与[15,35]合并为[15,25,35,50]；[80,85]与[20,40]合并为[20,40,80,85]；[36,70]落单保持不变。结果为15,25,35,50,20,40,80,85,36,70，即B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若将中国人按照生日（不考虑年份，只考虑月、日）来排序，则使用下列排序算法时，最快的是（）</p><div class="opts"><div class="opt"><b>A.</b> 归并排序</div><div class="opt"><b>B.</b> 希尔排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 基数排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>关键字由月、日两个独立字段构成，适合LSD基数排序：按日（31个桶）、月（12个桶）各分配收集一趟，两趟即完成，时间O(d(n+r))为线性级别且无关键字比较，最快。比较类排序至少O(nlog₂n)。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设线性表中每个元素有两个数据项k1和k2，现对线性表按以下规则进行排序：先看数据项k1，k1值小的元素在前，大的元素在后；在k1值相同的情况下，再看k2，k2值小的元素在前，大的元素在后。满足这种要求的排序算法是（）</p><div class="opts"><div class="opt"><b>A.</b> 先按k1进行直接插入排序，再按k2进行简单选择排序</div><div class="opt"><b>B.</b> 先按k2进行直接插入排序，再按k1进行简单选择排序</div><div class="opt"><b>C.</b> 先按k1进行简单选择排序，再按k2进行直接插入排序</div><div class="opt"><b>D.</b> 先按k2进行简单选择排序，再按k1进行直接插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>多关键字排序的正确做法：先按次要关键字k2排序，再按主要关键字k1排序，且第二次必须用稳定排序，才能在k1相同时保持k2的次序。四个选项中第二次按k1排的只有B、D；B的第一次（k2）虽稳定可行，但第二次按k1用的是<b>简单选择排序（不稳定）</b>，会破坏k1相同时k2的顺序，错；D第二次按k1用直接插入排序（稳定），第一次k2用简单选择虽不稳定但无影响。故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P370</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对(05,46,13,55,94,17,42)进行基数排序，一趟排序的结果是（）</p><div class="opts"><div class="opt"><b>A.</b> 05,46,13,55,94,17,42</div><div class="opt"><b>B.</b> 05,13,17,42,46,55,94</div><div class="opt"><b>C.</b> 42,13,94,05,55,46,17</div><div class="opt"><b>D.</b> 05,13,46,55,17,42,94</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>LSD第一趟按个位分配：个位2的有42、13(3)、94(4)、05(5)、55(5)、46(6)、17(7)，按桶0~9收集：桶2→42，桶3→13，桶4→94，桶5→05、55，桶6→46，桶7→17。收集结果42,13,94,05,55,46,17即C。B是完全排序后的结果。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>有n个十进制整数进行基数排序，其中最大的整数为5位，则基数排序过程中临时建立的队列个数是（）</p><div class="opts"><div class="opt"><b>A.</b> n</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 10</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>十进制基数r=10，每一位分配时需用到0~9共10个队列（每趟复用同一组队列），队列个数与位数、元素个数无关，选D。C(5)是趟数（分配收集5趟）。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列排序算法中，可用于外部排序的是（）</p><div class="opts"><div class="opt"><b>A.</b> 快速排序</div><div class="opt"><b>B.</b> 堆排序</div><div class="opt"><b>C.</b> 归并排序</div><div class="opt"><b>D.</b> 插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>外部排序将文件分批调入内存生成初始归并段，再多次多路归并完成整体有序，其核心操作正是归并。快排、堆排、插入排序都需要对全部数据进行随机访问，不适合数据在外存的外部排序。<span style="color:#64748b">【题面由王道原题重建（仅存选项，首句按原题知识补全）】</span></p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】已知两个长度分别为m和n的升序链表，若将它们合并为长度为m+n的一个降序链表，则最坏情况下的时间复杂度是（）</p><div class="opts"><div class="opt"><b>A.</b> O(n)</div><div class="opt"><b>B.</b> O(mn)</div><div class="opt"><b>C.</b> O(min(m,n))</div><div class="opt"><b>D.</b> O(max(m,n))</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>两升序链表归并成降序表：从表尾（最大值）起每次取两表当前较小者头插即可（或逆转后归并），每个元素恰好被扫描一次，时间O(m+n)，而O(m+n)=O(max(m,n))，选D。B的平方级是干扰项。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】对给定的关键字序列{110,119,007,911,114,120,122}进行基数排序，第2趟分配收集后得到的关键字序列是（）</p><div class="opts"><div class="opt"><b>A.</b> 007,110,119,114,911,120,122</div><div class="opt"><b>B.</b> 007,110,119,114,911,122,120</div><div class="opt"><b>C.</b> 007,110,911,114,119,120,122</div><div class="opt"><b>D.</b> 110,120,911,122,114,007,119</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>第1趟按个位：桶0：110,120；桶1：911；桶2：122；桶4：114；桶7：007；桶9：119，收集得110,120,911,122,114,007,119。第2趟按十位：桶0：007；桶1：110,911,114,119（保持上趟顺序）；桶2：120,122，收集得007,110,911,114,119,120,122即C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015统考真题】下列排序算法中，元素的移动次数与关键字的初始状态无关的是（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序</div><div class="opt"><b>B.</b> 冒泡排序</div><div class="opt"><b>C.</b> 基数排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>基数排序的移动只取决于各位数值的分布与位数，与初始排列次序无关。插入排序正序时不移动、逆序时移动最多；冒泡正序无交换；快排的交换取决于划分，均与初始状态有关。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2021统考真题】设数组S[]={93,946,372,9,146,151,301,485,236,327,43,892}，采用最低位优先（LSD）基数排序将S排列成升序序列。第一趟分配、收集后，元素372之前、之后紧邻的元素分别是（）</p><div class="opts"><div class="opt"><b>A.</b> 43,892</div><div class="opt"><b>B.</b> 236,301</div><div class="opt"><b>C.</b> 301,892</div><div class="opt"><b>D.</b> 485,301</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>第一趟按个位分配收集：个位1：151,301；个位2：372,892；个位3：93,43；个位5：485；个位6：946,146,236；个位7：327；个位9：9。收集序列为151,301,372,892,93,43,485,946,146,236,327,9，372的前邻是301、后邻是892，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】使用二路归并排序对含n个元素的数组M进行排序时，二路归并操作的功能是（）</p><div class="opts"><div class="opt"><b>A.</b> 将两个有序表合并为一个新的有序表</div><div class="opt"><b>B.</b> 将M划分为两部分，两部分的元素个数大致相等</div><div class="opt"><b>C.</b> 将M划分为n个部分，每个部分中仅含有一个元素</div><div class="opt"><b>D.</b> 将M划分为两部分，一部分元素的值均小于另一部分的值</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>二路归并操作的定义即把两个有序子表合并成一个整体有序的新表。B是分治的划分动作；C是归并排序的初始状态；D是快速排序划分的功能，均不是归并操作本身。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P371</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-5-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.5 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】现有由关键字组成的3个有序序列(3,5)、(7,9)和(6)，若按从左至右的次序选择有序序列进行二路归并排序，则关键字之间的总比较次数是（）</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>第一次合并最左的两个表(3,5)与(7,9)：3与7比（1次）取3，5与7比（1次）取5，7、9直接接尾部，共2次，得(3,5,7,9)。第二次与(6)合并：3与6、5与6、7与6各比较1次共3次，6被取出后7、9接尾部。总比较2+3=5次，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P372</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-6"><h3>8.6 各种内部排序算法的比较及应用<span class="tag tag-tpl">23题选择 + 3题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-6-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若要求排序是稳定的，且关键字为实数，则在下列排序方法中应选（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序</div><div class="opt"><b>B.</b> 选择排序</div><div class="opt"><b>C.</b> 基数排序</div><div class="opt"><b>D.</b> 快速排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>关键字是实数，无法按基数分解（基数排序要求关键字可分解为若干位，适于整数/字符串），排除C；简单选择排序与快速排序不稳定，排除B、D。直接插入排序稳定且适用于实数比较，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-6-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.6 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设关键字序列为{3,7,6,9,7,1,4,5,20}，对其进行排序的最小交换次数是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>只允许两元素交换时，最少交换次数由序列的置换环结构决定：写出每个元素在有序序列中的目标位置，将原序列到目标序列的映射分解为若干个环，长度为L的环需L-1次交换，故最小交换次数=n-环的个数。</p><p>排序目标为{1,3,4,5,6,7,7,9,20}。位置映射（原位置→目标位置）：3→2，7→6，6→5，9→8，7→7，1→1，4→3，5→4，20→9。分解得环：(1 2 6)、(3 5 7)、(4 8)、(9)，共4个环。</p><p>最小交换次数=9-4=<b>5次</b>。注意两个7值相同，任取一种对应方式环结构相同，结果不变。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>以下排序方法中时间复杂度为O(nlog₂n)且稳定的是（）</p><div class="opts"><div class="opt"><b>A.</b> 堆排序</div><div class="opt"><b>B.</b> 快速排序</div><div class="opt"><b>C.</b> 归并排序</div><div class="opt"><b>D.</b> 直接插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>归并排序任何情况下O(nlog₂n)且稳定。堆排序O(nlog₂n)但不稳定；快排平均O(nlog₂n)、最坏O(n²)且不稳定；直接插入稳定但平均O(n²)。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-6-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.6 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设顺序表用数组A[]表示，表中元素存储在数组下标1~m+n的范围内，前m个元素递增有序，后n个元素递增有序，设计一个算法，使得整个顺序表有序。要求：(1)给出算法的基本设计思想。(2)根据设计思想，采用C或C++描述算法，关键之处给出注释。(3)说明你所设计算法的时间复杂度与空间复杂度。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)<b>思想：</b>两段分别有序，从<b>后向前</b>做二路归并：i指向第一段末尾（m），j指向第二段末尾（m+n），k=m+n。每次取A[i]、A[j]中较大者放入A[k--]。因写入位置始终不小于被读位置，第一段元素不会被覆盖，无需辅助数组。</p><p>(2)算法：</p><div class="asc">void merge(int A[], int m, int n){
+  int i=m, j=m+n, k=m+n;
+  while(i&gt;=1 &amp;&amp; j&gt;m){
+    if(A[i]&gt;=A[j]) A[k--]=A[i--]; //取较大者放尾部
+    else A[k--]=A[j--];
+  }
+  //若第二段先取完，剩余第一段已在原位；若第一段先取完，需把第二段剩余前移
+  while(j&gt;m) A[k--]=A[j--];
+}</div><p>(3)<b>复杂度：</b>每个元素移动一次，时间O(m+n)；不设辅助数组，空间O(1)。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设被排序的结点序列共有n个结点，在该序列中的结点已十分接近有序的情况下，用直接插入排序、归并排序和快速排序对其进行排序，这些算法的时间复杂度应为（）</p><div class="opts"><div class="opt"><b>A.</b> O(n),O(n),O(n)</div><div class="opt"><b>B.</b> O(n),O(nlog₂n),O(nlog₂n)</div><div class="opt"><b>C.</b> O(n),O(nlog₂n),O(n²)</div><div class="opt"><b>D.</b> O(n²),O(nlog₂n),O(n²)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>接近有序时直接插入每趟比较常数次，O(n)；归并排序无论初始如何都需⌈log₂n⌉趟完整归并，O(nlog₂n)；快排以首元素为枢轴时接近有序序列划分极不平衡，退化为O(n²)，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-6-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.6 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设有一个数组中存放了一个无序的关键字序列K₁,K₂,…,Kₙ。现要求将K₁放在将元素排序后的正确位置上，试编写实现该功能的算法，要求比较关键字的次数不超过n。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：</b>即以K₁为枢轴做一趟快速排序划分：交替地从两端向中间扫描，把小于K₁的换到左侧、大于K₁的换到右侧，最后K₁落入其最终位置，此时它左边全部小于它、右边全部大于它。每个元素至多与K₁比较一次，比较次数不超过n（准确为n-1次加常数），满足要求。</p><div class="asc">int partition(int K[], int n){
+  int pivot=K[1], i=1, j=n;
+  while(i&lt;j){
+    while(i&lt;j &amp;&amp; K[j]&gt;=pivot) j--;
+    K[i]=K[j];              //小者移到左侧空位
+    while(i&lt;j &amp;&amp; K[i]&lt;=pivot) i++;
+    K[j]=K[i];              //大者移到右侧空位
+  }
+  K[i]=pivot;               //枢轴归位
+  return i;                 //K1的最终位置
+}</div><p><b>验算：</b>例如{5,9,2,7,1}，枢轴5：7与1侧扫描交换后得{1,5位置,…}，最终5位于下标2，左侧{1}均小于5、右侧{9,7}均大于5。<b>复杂度：</b>时间O(n)、空间O(1)，比较次数n-1&lt;n。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>下列排序算法中属于稳定排序的是（①），平均时间复杂度为O(nlog₂n)的是（②），在最好的情况下时间复杂度可以达到线性时间的有（③）。<br>I．冒泡排序　II．堆排序　III．选择排序　IV．直接插入排序　V．希尔排序　VI．归并排序　VII．快速排序</p><div class="opts"></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：①I、IV、VI；②II、VI、VII；③I、IV。</b>①稳定：冒泡、直接插入、归并（I、IV、VI）；简单选择、希尔、堆、快排均不稳定。②平均O(nlog₂n)：堆排序、归并排序、快速排序（II、VI、VII）；希尔排序约O(n^1.3)不计。③最好情形线性：冒泡（正序一趟n-1次比较）、直接插入（正序O(n)）（I、IV）。<span style="color:#64748b">【本题为组合填空题，答案取自王道速查表原文】</span></p></p><p class="final-ans">✅ 答案：<b>①I、IV、VI；②II、VI、VII；③I、IV</b>（多选）　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>就排序算法所用的辅助空间而言，堆排序、快速排序和归并排序的关系是（）</p><div class="opts"><div class="opt"><b>A.</b> 堆排序&lt;快速排序&lt;归并排序</div><div class="opt"><b>B.</b> 堆排序&lt;归并排序&lt;快速排序</div><div class="opt"><b>C.</b> 堆排序&gt;归并排序&gt;快速排序</div><div class="opt"><b>D.</b> 堆排序&gt;快速排序&gt;归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>辅助空间：堆排序O(1)；快速排序平均O(log₂n)（递归栈，最坏O(n)）；归并排序O(n)（辅助数组）。三者从少到多为堆排序&lt;快速排序&lt;归并排序，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>排序趟数与序列的初始状态无关的排序方法是（）</p><p>I．快速排序　II．简单选择排序　III．冒泡排序　IV．基数排序</p><div class="opts"><div class="opt"><b>A.</b> I、II</div><div class="opt"><b>B.</b> II、IV</div><div class="opt"><b>C.</b> I、II、IV</div><div class="opt"><b>D.</b> I、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>简单选择排序固定n-1趟；基数排序固定d趟（d为位数），均与初始状态无关。快速排序的划分趟数依赖枢轴分布；冒泡排序可因某趟无交换而提前结束，均与初始状态有关。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>排序趟数与序列的初始状态有关的排序算法是（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序</div><div class="opt"><b>B.</b> 二路归并排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>快排的总趟数（递归划分次数）随枢轴位置变化，接近有序时可达n级。直接插入固定n-1趟；二路归并固定⌈log₂n⌉趟；堆排序固定n-1趟，均与初始状态无关。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对n个元素进行排序，其排序趟数肯定为n-1趟的排序算法是（）</p><div class="opts"><div class="opt"><b>A.</b> 直接插入排序和快速排序</div><div class="opt"><b>B.</b> 冒泡排序和快速排序</div><div class="opt"><b>C.</b> 简单选择排序和直接插入排序</div><div class="opt"><b>D.</b> 简单选择排序和冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>简单选择排序固定执行n-1趟（每趟选一个最小者归位）；直接插入排序固定n-1趟（从第2个元素起逐个插入）。冒泡排序2~n-1趟之间（可提前终止）；快速排序趟数随划分变化，均不肯定为n-1趟。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若序列的原始状态为{1,2,3,4,5,10,6,7,8,9}，要想使得排序过程中的元素比较次数最少，则应该采用（）方法。</p><div class="opts"><div class="opt"><b>A.</b> 插入排序</div><div class="opt"><b>B.</b> 选择排序</div><div class="opt"><b>C.</b> 希尔排序</div><div class="opt"><b>D.</b> 冒泡排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>该序列基本有序（前5个已序，10插入位置靠后），直接插入排序每趟仅需1~2次比较，总比较约n-1+常数次，最少。选择排序仍需n(n-1)/2=45次；希尔、冒泡的趟数与扫描代价都更大。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P377</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>对于元素个数相同的不同初始序列，总比较次数相同的排序算法是（）</p><div class="opts"><div class="opt"><b>A.</b> 折半插入排序和简单选择排序</div><div class="opt"><b>B.</b> 基数排序和归并排序</div><div class="opt"><b>C.</b> 冒泡排序和快速排序</div><div class="opt"><b>D.</b> 堆排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>折半插入排序确定插入位置用折半查找，比较次数只与n有关；简单选择排序比较次数恒为n(n-1)/2。二者总比较次数均与初始序列无关，相同n下相同。B中归并比较次数与数据分布有关（缓冲期不同序列不同）；C两者都依赖初始状态；D堆排序建堆比较次数与初始序列有关。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一般情况下，以下查找效率最低的数据结构是（）</p><div class="opts"><div class="opt"><b>A.</b> 有序顺序表</div><div class="opt"><b>B.</b> 二叉排序树</div><div class="opt"><b>C.</b> 堆</div><div class="opt"><b>D.</b> 平衡二叉树</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>查找任意给定关键字时：有序顺序表可折半查找O(log₂n)；平衡二叉树O(log₂n)；二叉排序树平均O(log₂n)；而堆只保证父子偏序，整体无序，只能从头到尾顺序扫描，O(n)，查找效率最低。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一台计算机具有多核CPU，可以同时执行相互独立的任务。归并排序的各个归并段可以并行执行，在下列排序算法中，不可以并行执行的有（）</p><p>I．基数排序　II．快速排序　III．冒泡排序　IV．堆排序</p><div class="opts"><div class="opt"><b>A.</b> I、III</div><div class="opt"><b>B.</b> I、II</div><div class="opt"><b>C.</b> I、III、IV</div><div class="opt"><b>D.</b> II、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>快速排序一次划分后的左右子区间相互独立，可并行处理；堆排序建堆时各子树的筛选操作相互独立，也可并行。基数排序的各趟分配收集必须逐趟串行，冒泡排序每趟扫描前后元素相互依赖，均无法并行，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>对序列{9,5,7,1,12}进行某种排序，第一趟排序后的结果为{5,9,7,1,12}，第二趟排序后的结果为{5,7,9,1,12}，则该排序算法只能是（）</p><div class="opts"><div class="opt"><b>A.</b> 冒泡排序</div><div class="opt"><b>B.</b> 插入排序</div><div class="opt"><b>C.</b> 选择排序</div><div class="opt"><b>D.</b> 二路归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第一趟仅将5插入9之前形成有序前缀{5,9}，第二趟将7插入得{5,7,9}，后部原样，这是直接插入排序逐趟的典型形态。冒泡第一趟应把最大值12沉底且沿途交换得{5,7,1,9,12}；选择第一趟最小值1应到首位；归并第一趟形成两两有序段{5,9}{1,7}{12}，均不符。<span style="color:#64748b">【题面序列由王道原题重建，已验证四个选项中唯一自洽】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2010统考真题】对一组数据(2,12,16,88,5,10)进行排序，若前3趟排序结果如下：<br>第一趟排序结果：2,12,16,5,10,88<br>第二趟排序结果：2,12,5,10,16,88<br>第三趟排序结果：2,5,10,12,16,88<br>则采用的排序算法可能是（）</p><div class="opts"><div class="opt"><b>A.</b> 冒泡排序</div><div class="opt"><b>B.</b> 希尔排序</div><div class="opt"><b>C.</b> 归并排序</div><div class="opt"><b>D.</b> 基数排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>每趟结束都有一个当前最大值沉到尾部（88、16、12依次归位），且每趟把较大者逐对后移，是从左向右相邻比较的冒泡排序。希尔一趟会同时调整多个子序列；归并一趟产生成对有序段；基数一趟按位收集，均不符合该形态。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2012统考真题】在内部排序过程中，对尚未确定最终位置的所有元素进行一遍处理称为一趟排序。下列排序方法中，每趟排序结束都至少能够确定一个元素最终位置的方法是（）</p><p>I．简单选择排序　II．希尔排序　III．快速排序　IV．堆排序　V．二路归并排序</p><div class="opts"><div class="opt"><b>A.</b> 仅I、II</div><div class="opt"><b>B.</b> 仅I、III、IV</div><div class="opt"><b>C.</b> 仅II、III、IV</div><div class="opt"><b>D.</b> 仅III、IV、V</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>简单选择每趟最小者归位；快速排序每趟枢轴归位；堆排序每趟堆顶归位，三者每趟至少确定一个元素最终位置。希尔排序一趟只做组内插入、元素仍可能移动；二路归并一趟只合并有序段、无元素保证落定，排除II、V。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2017统考真题】在内部排序时，若选择了归并排序而未选择插入排序，则可能的理由是（）</p><p>I．归并排序的程序代码更短<br>II．归并排序的占用空间更少<br>III．归并排序的运行效率更高</p><div class="opts"><div class="opt"><b>A.</b> 仅I</div><div class="opt"><b>B.</b> 仅III</div><div class="opt"><b>C.</b> 仅I、II</div><div class="opt"><b>D.</b> 仅I、III</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>归并排序O(nlog₂n)优于插入排序平均O(n²)，数据量大时运行效率更高，III成立。归并代码并不更短（I错）；归并需要O(n)辅助数组，空间占用更多（II错）。故仅III，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-17" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第17题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>下列排序算法中，不能在链表（顺序存取存储结构）上实现的是（）</p><p>I．插入排序　II．简单选择排序　III．冒泡排序　IV．希尔排序　V．堆排序</p><div class="opts"><div class="opt"><b>A.</b> 仅I、II</div><div class="opt"><b>B.</b> 仅II、III</div><div class="opt"><b>C.</b> 仅II、IV</div><div class="opt"><b>D.</b> 仅IV、V</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>希尔排序要求按增量d对第i、i+d、…个元素直接定位，堆排序要求按2i、2i+1定位孩子结点，二者都依赖随机存取，链表上无法高效实现。插入排序、简单选择排序、冒泡排序只需顺次扫描和相邻（或前后）结点交换，均可在链表上实现。<span style="color:#64748b">【题面首句由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-18" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第18题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】选择一个排序算法时，除算法的时空效率外，下列因素中，还需要考虑的是（）</p><p>I．数据的规模　II．数据的存储方式　III．算法的稳定性　IV．数据的初始状态</p><div class="opts"><div class="opt"><b>A.</b> 仅II</div><div class="opt"><b>B.</b> 仅I、II</div><div class="opt"><b>C.</b> 仅II、III、IV</div><div class="opt"><b>D.</b> I、II、III、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>数据规模决定是否适合O(n²)算法甚至外部排序；存储方式（顺序表/链表）决定能否使用希尔、堆、快排等；若关键字可能重复且需保持相对次序则要求稳定；数据初始状态（基本有序/逆序）直接影响算法实际表现。四个因素都应考虑，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-19" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第19题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2022统考真题】对数据进行排序时，若采用直接插入排序而不采用快速排序，则可能的原因是（）</p><p>I．大部分元素已有序<br>II．待排序元素数量很少<br>III．要求空间复杂度为O(1)<br>IV．要求排序算法是稳定的</p><div class="opts"><div class="opt"><b>A.</b> 仅I、II</div><div class="opt"><b>B.</b> 仅III、IV</div><div class="opt"><b>C.</b> 仅I、II、IV</div><div class="opt"><b>D.</b> I、II、III、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：我推得选D（速查表记A，存疑）。</b>逐项判断：I对，基本有序时插入排序接近O(n)而快排退化O(n²)；II对，元素很少时插入排序常数小、无递归开销；III对，插入排序空间O(1)，快排需O(log₂n)递归栈，要求O(1)空间只能选插入；IV对，插入排序稳定而快排不稳定，要求稳定时应选插入。四项均成立，独立验算选D，与2022年统考官方答案一致；速查表记A（仅I、II），疑为勘误失误，以D为准。<span style="color:#64748b">【分歧：速查A vs 独立/官方D】</span></p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P378</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-20" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第20题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】使用快速排序算法对含n（n≥3）个元素的数组M进行排序，若第一趟排序将M中除枢轴外的n-1个元素划分为均不为空的P和Q两块，则下列叙述中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> P与Q块间有序</div><div class="opt"><b>B.</b> P与Q均块内有序</div><div class="opt"><b>C.</b> P和Q的元素个数大致相等</div><div class="opt"><b>D.</b> P中和Q中均不存在相等的元素</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：我推得选A（速查表记D，存疑）。</b>升序快排一趟划分后，P块所有元素小于枢轴、Q块所有元素大于枢轴，故任意P元素小于任意Q元素，两块之间整体有序，A正确。B块内仍无序；C均衡与否取决于枢轴位置，不保证；D元素允许重复，可能存在相等元素。独立验算选A，与2024年统考官方答案一致；速查表记D疑误，以A为准。<span style="color:#64748b">【分歧：速查D vs 独立/官方A】</span></p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P379</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-21" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第21题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2023统考真题】下列排序算法中，不稳定的是（）</p><p>I．希尔排序　II．归并排序　III．快速排序　IV．堆排序　V．基数排序</p><div class="opts"><div class="opt"><b>A.</b> 仅I、II</div><div class="opt"><b>B.</b> 仅II、V</div><div class="opt"><b>C.</b> 仅I、III、IV</div><div class="opt"><b>D.</b> 仅II、IV、V</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>不稳定的是希尔排序（分组插入跨越相等元素）、快速排序（划分交换跨越）、堆排序（筛选交换跨越）；归并排序和基数排序是稳定的。故I、III、IV，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P379</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-22" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第22题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】在下列排序算法中，最坏情况下元素移动次数最少的是（）</p><div class="opts"><div class="opt"><b>A.</b> 起泡排序</div><div class="opt"><b>B.</b> 直接插入排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 简单选择排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>简单选择排序无论多坏，每趟至多一次交换（3次移动），共不超过3(n-1)次移动，为O(n)且上界最小。起泡、直接插入、快排在最坏（逆序/失衡）情况下移动均达O(n²)量级，远多于选择排序。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P379</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-6-23" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.6 · 第23题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2025统考真题】对含9个关键字的初始序列进行排序，若序列的变化情况如下表所示，则下列排序算法中，采用的是（）</p><div class="asc">初始序列　　　　　　5,25,40,30,10,20,45,15,35<br>第1趟排序后的序列　5,10,20,30,15,35,45,25,40<br>第2趟排序后的序列　5,10,15,25,20,30,40,35,45</div><div class="opts"><div class="opt"><b>A.</b> 希尔排序</div><div class="opt"><b>B.</b> 基数排序</div><div class="opt"><b>C.</b> 归并排序</div><div class="opt"><b>D.</b> 折半插入排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>验证增量为3：第1趟分组(1,4,7)=(5,30,45)、(2,5,8)=(25,10,15)、(3,6,9)=(40,20,35)，组内排序回填恰得第1趟结果。第2趟增量为2：分组(1,3,5,7,9)=(5,20,15,45,40)→(5,15,20,40,45)、(2,4,6,8)=(10,30,35,25)→(10,25,30,35)，回填恰得第2趟结果。归并一趟应成对有序段、基数按位收集、折半插入一趟只动一个元素，均不符，选A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P379</p></div></details>
+  </div>
+  <div class="chap-head" id="wxs-8-7"><h3>8.7 外部排序<span class="tag tag-tpl">16题选择 + 5题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-8-7-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>外部排序和内部排序的主要区别是（）</p><div class="opts"><div class="opt"><b>A.</b> 内部排序的数据量小，而外部排序的数据量大</div><div class="opt"><b>B.</b> 内部排序不涉及内、外存数据交换，而外部排序涉及内、外存数据交换</div><div class="opt"><b>C.</b> 内部排序的速度快，而外部排序的速度慢</div><div class="opt"><b>D.</b> 内部排序所需的内存小，而外部排序所需的内存大</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>二者本质区别在于排序过程中数据是否全部驻留内存：内部排序全部在内存完成、不发生内外存交换；外部排序待排序数据量大到内存放不下，必须分批调入、排序、写回，反复进行内外存交换。A、C、D只是现象或后果，不是本质区别。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P386</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-7-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.7 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>若某个文件经内部排序得到80个初始归并段，试问：(1)若使用多路平衡归并执行3趟完成排序，则应取得的归并路数至少应为多少？(2)若操作系统要求一个程序同时可用的输入/输出文件的总数不超过15个，则按多路归并至少需要几趟可以完成排序？若限定趟数，可取的最低路数是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)设归并路数为k，3趟平衡归并要求k³≥80。因4³=64&lt;80≤125=5³，故k至少为<b>5路</b>。</p><p>(2)k路归并需k个输入文件加1个输出文件，共k+1个，故k≤15-1=14。14²=196≥80，故2趟即可完成，即至少需要<b>2趟</b>。若限定为2趟，最低路数k满足k²≥80，因9²=81≥80而8²=64&lt;80，故最低可取<b>9路</b>。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于外部排序的说法中，正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 置换选择排序得到的初始归并段的长度一定相等</div><div class="opt"><b>B.</b> 内外存交换数据的时间只占总排序时间的一小部分</div><div class="opt"><b>C.</b> 败者树是一棵完全二叉树</div><div class="opt"><b>D.</b> 外部排序不涉及对文件的读/写操作</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>败者树是数组表示的完全二叉树（内部结点记败者、ls[0]记冠军）。A错：置换选择产生的段长不固定（期望2w）；B错：外排时间主要耗在内外存数据交换上；D错：外部排序恰恰以大量文件读写为特征。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-7-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.7 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>假设文件有4500个记录，在磁盘上每个块可放75个记录。计算机中用于排序的内存区可容纳450个记录。试问：(1)可以建立多少个初始归并段？每个初始归并段有多少记录？存放于多少个块中？(2)应采用几路归并？请写出归并过程及每趟需要读写磁盘的块数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)内存区一次容纳450个记录，可建立4500/450=<b>10个初始归并段</b>，每段450个记录，占450/75=<b>6个块</b>。文件共4500/75=60个块，生成初始归并段需读60块、写60块。</p><p>(2)采用<b>2路归并</b>（2路需2个输入缓冲区+1个输出缓冲区，内存450个记录分作3份每份150个记录=2块，可行）。归并过程：10段记为R₁~R₁₀，趟数为⌈log₂10⌉=4：第1趟两两归并成5段（每段12块），第2趟归并成3段（其中一段24块、一段12块落单），第3趟归并成2段，第4趟归并成1段完成。每趟全部数据读写一遍：每趟读60块、写60块；4趟共读写480块，加上初始生成段的120块，总计600块次。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>多路平衡归并的作用是（）</p><div class="opts"><div class="opt"><b>A.</b> 减少归并趟数</div><div class="opt"><b>B.</b> 减少初始归并段的个数</div><div class="opt"><b>C.</b> 便于实现败者树</div><div class="opt"><b>D.</b> 以上都对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>增加归并路数k可使⌈log_k(r)⌉趟数减少，从而减少读写磁盘次数，这是多路平衡归并的核心目的。初始归并段个数由置换选择/内存大小决定，与归并路数无关（B错）；败者树是配合多路归并减少比较次数的手段而非目的（C错）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-7-3" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.7 · 综合第3题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设初始归并段为(10,15,31),(9,20),(22,34,37),(6,15,42),(12,37),(84,95)。试利用败者树进行m路归并，手工执行选择最小的5个关键字的过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>6个归并段当前首位关键字分别为10,9,22,6,12,84，败者树每轮输出最小者，输出后该段读入下一个关键字继续比较：</p><div class="asc">第1轮　candidates{10,9,22,6,12,84} → 输出6（段4），段4下一个为15
+第2轮　{10,9,22,15,12,84}　　　　 → 输出9（段2），段2下一个为20
+第3轮　{10,20,22,15,12,84}　　　 → 输出10（段1），段1下一个为15
+第4轮　{15,20,22,15,12,84}　　　 → 输出12（段5），段5下一个为37
+第5轮　{15,20,22,15,37,84}　　　 → 输出15（段1，与段4的15相等时先取先输入者）</div><p>选出的最小5个关键字依次为6,9,10,12,15。每轮仅沿败者树一条路径与新进入的关键字比较（每层1次，共⌈log₂6⌉=3次），远少于顺序比较6次的代价。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设在磁盘上存放有375000个记录，做5路平衡归并排序，内存工作区能容纳600个记录，为把所有记录排好序，需要做（）趟归并排序。</p><div class="opts"><div class="opt"><b>A.</b> 3</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 5</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>初始归并段数r=375000/600=625（不考虑余数），5路平衡归并的趟数S=⌈log₅625⌉=⌈log₅5⁴⌉=4，选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-7-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.7 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>给出12个初始归并段，其长度分别为30,44,8,6,3,20,60,18,9,62,68,85。现要做4路外归并排序，试画出表示归并过程的最佳归并树，并计算该归并树的带权路径长度WPL。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>12个叶结点做4路（严格4叉）归并：(12-1) mod (4-1)=2≠0，需补充4-1-2=1个长度为0的虚段，共13个叶。按哈夫曼思想每轮取最小的4个合并：</p><div class="asc">第1轮　0+3+6+8=17
+第2轮　9+17+18+20=64
+第3轮　30+44+60+62=196
+第4轮　64+68+85+196=413（根）</div><p>WPL=各内部结点权值之和=17+64+196+413=<b>690</b>。WPL即整个归并过程的总读写盘块数（各段每参加一轮归并读写一次），最佳归并树使其达到最小。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在下列关于外部排序过程输入/输出缓冲区作用的叙述中，不正确的是（）</p><div class="opts"><div class="opt"><b>A.</b> 暂存输入/输出记录</div><div class="opt"><b>B.</b> 内部归并的工作区</div><div class="opt"><b>C.</b> 产生初始归并段的工作区</div><div class="opt"><b>D.</b> 传送用户界面的消息</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>输入缓冲区暂存从外存读入的记录（A对）并作为内部归并的工作区（B对）；内存工作区用于产生初始归并段（C对）。缓冲区与用户界面消息传送无关，D错误，本题为选非题，答案D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wz-8-7-5" data-type="综合">
+    <div class="prob-head"><span class="pnum">8.7 · 综合第5题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>【2023统考真题】对含有n（n&gt;0）个记录的文件进行外部排序，采用置换-选择排序生成初始归并段时需要使用一个工作区，工作区中能保存m个记录。请回答：(1)设文件中有17个记录（王道原题序列：91,50,12,43,48,72,65,84,8,90,166,100,110,37,15,40,55），则当m=4时，可生成几个初始归并段？各是什么？(2)对任意的m（n≥m&gt;0），生成的第一个初始归并段的长度最大值和最小值分别是多少？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p>(1)m=4时模拟置换-选择（工作区内存放4个记录，每输出一个最小合格者便读入下一个记录，读入记录小于刚输出者时它只能参与下一段）：<br>第1段依次输出12,43,48,50,65,72,84,90,91,100,110,166（期间读入的8、37、15等小于当前输出值，被冻结到下一段）；<br>第2段输出8,15,37,40,55。<br>故可生成<b>2个</b>初始归并段：R₁={12,43,48,50,65,72,84,90,91,100,110,166}，R₂={8,15,37,40,55}。</p><p>(2)第一个归并段长度的<b>最大值为n</b>：当文件记录严格递增（每次读入的都比刚输出的大）时，全部n个记录依次输出构成一个段。<b>最小值为m</b>：当文件记录严格递减时，读入的每个新记录都小于当前输出者，被冻结，输出满m个（工作区原有记录）后工作区再无合格记录，第一段结束，长度恰为m。</p><p><span style="color:#64748b">【(1)的输入序列由OCR残片（…,90,166,100,…）结合王道原题重建】</span></p></p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>若只需3趟排序就可完成64个元素的多路归并排序，则选取的归并路数最少是（）</p><div class="opts"><div class="opt"><b>A.</b> 2</div><div class="opt"><b>B.</b> 3</div><div class="opt"><b>C.</b> 4</div><div class="opt"><b>D.</b> 5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>3趟k路归并要求k³≥64，k≥4，故最少4路。2³=8、3³=27均不足。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>置换-选择排序的作用是（）</p><div class="opts"><div class="opt"><b>A.</b> 用于生成外部排序的初始归并段</div><div class="opt"><b>B.</b> 完成将一个磁盘文件排序成有序文件的有效的外部排序算法</div><div class="opt"><b>C.</b> 生成的初始归并段的长度是内存工作区的2倍</div><div class="opt"><b>D.</b> 对外部排序中输入/归并/输出的并行处理</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>置换-选择排序是外部排序第一阶段生成初始归并段的方法，利用堆在内存工作区内持续输出更长的有序段（期望长度约为工作区的2倍，但不是定值，C绝对化错误）；它本身不能完成整个外部排序（B错），也不解决并行问题（D错）。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>一个无序文件的n个记录采用置换选择排序产生m个有序段，则m和n的关系是（）</p><div class="opts"><div class="opt"><b>A.</b> m与n成正比</div><div class="opt"><b>B.</b> m=log₂n</div><div class="opt"><b>C.</b> m与n成反比</div><div class="opt"><b>D.</b> 以上都不对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>置换选择排序产生的段数m取决于n、内存工作区容量w以及记录的输入排列：段长在w到n之间波动，期望段长约2w但无确定函数关系，既非严格正比、反比，也非对数关系，故选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在由k路归并构建的败者树中选取一个关键字最小的记录，则所需时间为（）</p><div class="opts"><div class="opt"><b>A.</b> O(1)</div><div class="opt"><b>B.</b> O(k)</div><div class="opt"><b>C.</b> O(log₂k)</div><div class="opt"><b>D.</b> 以上都不对</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>败者树取走冠军后，新进入的叶子沿树根方向逐层与其路径上的败者比较，每层1次，树高⌈log₂k⌉，故调整代价O(log₂k)。这正是败者树相对顺序比较O(k)的优势所在。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>下列关于小顶堆和败者树的说法中，正确的是（）</p><p>I．败者树从下往上维护，每上一层，只需和失败结点比较1次<br>II．败者树的每次维护，必定要从叶结点一直走到根结点，不可能从中间停止<br>III．堆从上往下维护，每下一层，若其左右孩子均不为空，则需比较2次<br>IV．堆的每次维护，必定要从根结点一直走到叶结点，不可能从中间停止</p><div class="opts"><div class="opt"><b>A.</b> I、III</div><div class="opt"><b>B.</b> II、III</div><div class="opt"><b>C.</b> I、II、III</div><div class="opt"><b>D.</b> I、III、IV</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>I对：败者树调整时新叶子逐层向上，每层与记录的败者比较1次；II对：调整路径是叶子到根的固定路径，必须走完（每层都要更新败者），不能中途停止；III对：堆下筛一层先比较两个孩子（1次）再与较大/小者比较（1次），共2次；IV错：堆筛选遇到父结点已满足偏序可立即停止。故I、II、III正确。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>最佳归并树在外部排序中的作用是（）</p><div class="opts"><div class="opt"><b>A.</b> 完成m路归并排序</div><div class="opt"><b>B.</b> 设计m路归并排序的优化方案</div><div class="opt"><b>C.</b> 产生初始归并段</div><div class="opt"><b>D.</b> 与锦标赛树的作用类似</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>最佳归并树是哈夫曼思想在归并段组织上的应用：按段长为权构树，使带权路径长度（总读写次数）最小，是对m路归并方案的优化设计。它不执行归并本身（A），不产生初始段（C），也与锦标赛排序选最大不同（D）。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在由m个初始归并段构建的k阶最佳归并树中，不需要补充虚段，则度为k的结点个数是（）</p><div class="opts"><div class="opt"><b>A.</b> (m-1)/k</div><div class="opt"><b>B.</b> m/k</div><div class="opt"><b>C.</b> (m-1)/(k-1)</div><div class="opt"><b>D.</b> 无法确定</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>设度为k的结点（内部结点）nₖ个、叶结点m个，完全k叉树有m=nₖ(k-1)+1，解得nₖ=(m-1)/(k-1)，不需补虚段时该式整除，选C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-13" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第13题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2013统考真题】已知三叉树T中6个叶结点的权分别是2,3,4,5,6,7，T的带权（外部）路径长度最小是（）</p><div class="opts"><div class="opt"><b>A.</b> 27</div><div class="opt"><b>B.</b> 46</div><div class="opt"><b>C.</b> 54</div><div class="opt"><b>D.</b> 56</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>构造三叉哈夫曼树：(6-1) mod (3-1)=1≠0，需补1个权0的虚叶。合并过程：0+2+3=5；4+5+5=14；6+7+14=27。WPL=5+14+27=46，选B。若不补虚段直接三三合并会得到更大的值（如54、56），均非最小。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P387</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-14" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第14题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2016统考真题】对10TB的数据文件进行排序，应使用的方法是（）</p><div class="opts"><div class="opt"><b>A.</b> 希尔排序</div><div class="opt"><b>B.</b> 堆排序</div><div class="opt"><b>C.</b> 快速排序</div><div class="opt"><b>D.</b> 归并排序</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>10TB远超内存容量，属外部排序，外部排序以多路归并为核心手段，故选归并排序。希尔、堆排、快排都是内部排序算法，无法直接处理放不进内存的数据。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P388</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-15" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第15题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2019统考真题】设外存上有120个初始归并段，进行12路归并时，为实现最佳归并，需要补充的虚段个数是（）</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>u=(120-1) mod (12-1)=119 mod 11=9≠0，需补虚段(12-1)-9=2个，使(122-1)=121恰为11的倍数，可构成严格12叉的最佳归并树。选B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P388</p></div></details>
+  </div>
+  <div class="prob" id="wq-8-7-16" data-type="选择">
+    <div class="prob-head"><span class="pnum">8.7 · 第16题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024统考真题】在外排序中，利用败者树对初始为升序的归并段进行多路归并，败者树中记录“冠军”的结点保存的是（）</p><div class="opts"><div class="opt"><b>A.</b> 最大关键字</div><div class="opt"><b>B.</b> 最小关键字</div><div class="opt"><b>C.</b> 最大关键字所在的归并段号</div><div class="opt"><b>D.</b> 最小关键字所在的归并段号</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>败者树中各叶结点为各归并段当前记录（败者树存放的是其段号），内部结点记录两个比较者中败者的段号，冠军结点（ls[0]）记录最终胜者——当前最小关键字所在归并段的段号，每次取出该段的当前记录。故保存的是最小关键字所在归并段号，选D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P388</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c8", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>

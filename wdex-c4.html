@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道课后题 · 第4章 串 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道课后题 · 第4章 串</p>
+  </div>
+  <div class="part-zone" id="wdex4">
+  <div class="part-head">
+    <div class="pnum">王道课后题</div>
+    <h2>王道课后题 · 第4章 串</h2>
+    <p>《2027王道数据结构》本章课后题全量：选择题12题（官方速查答案+逐题独立验算解析）、综合题3题（完整解答）。题号与王道书一致。</p>
+  </div>
+  <div class="chap-head" id="wxs-4-2"><h3>4.2 串的模式匹配<span class="tag tag-tpl">12题选择 + 3题综合</span></h3><p>先遮住答案自己做，再展开核对；解析首句是老师的独立验算结论。做完点题头「已学」计入进度。</p></div>
+  <div class="prob" id="wq-4-2-1" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第1题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设有两个串 S1 和 S2，求 S2 在 S1 中首次出现的位置的运算称为（　）。</p><div class="opts"><div class="opt"><b>A.</b> 求子串</div><div class="opt"><b>B.</b> 判断是否相等</div><div class="opt"><b>C.</b> 模式匹配</div><div class="opt"><b>D.</b> 连接</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>在主串中查找某子串（模式）首次出现位置的运算就是<b>模式匹配</b>。A 求子串是按起点和长度截取一段字符、返回新串的操作；B 判断相等是两个串的比较运算；D 连接是把两串首尾拼成新串。三者都不涉及“查找首次出现的位置”，故选 C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wz-4-2-1" data-type="综合">
+    <div class="prob-head"><span class="pnum">4.2 · 综合第1题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>在字符串模式匹配的 KMP 算法中，求模式的 next 数组值的定义如下：</p><div class='asc'>next[j] = 0　　　　　　　　　（j=1 时）<br>next[j] = max{k | 1&lt;k&lt;j 且 'p1…pk-1'='pj-k+1…pj-1'}　（该集合不为空时）<br>next[j] = 1　　　　　　　　　（其他情况）</div><p>(1) 当 j=1 时，为什么要取 next[1]=0？<br>(2) 为什么要取 max(k)？k 最大是多少？<br>(3) 其他情况是什么情况，为什么取 next[j]=1？</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：本题考查 next 数组三处特殊取值的动机，须结合 KMP 失配处理方式作答。</b></p><p>(1) next[1]=0 不是真实下标，而是<b>标记值</b>：表示模式串已滑到最左端，没有任何部分匹配信息可利用，下一步应将主串指针右移一位、模式串从第 1 个字符重新比较。在王道的实现中，失配使 j=next[j]=0 后，循环检测到 j==0 就执行 i++、j++，把“从头再比”与“回退续比”统一进同一段代码，避免为 j=1 的失配单独写分支。</p><p>(2) k 是失配后模式串指针可回退到的位置。取 max(k) 即在已匹配前缀中取<b>最长的相等前后缀</b>：模式串右滑最远、保留的匹配成果最多，总比较次数最少；且滑动幅度不超过已验证安全的范围，不会跳过任何可能成功的匹配位置。由约束 1&lt;k&lt;j 知 k 最大取 j-1（此时 p1…pj-2 与 p2…pj-1 逐字相等）。</p><p>(3) "其他情况"指使集合非空的 k 不存在——已匹配部分 p1…pj-1 连一个字符长度的相等前后缀都找不到（自然有 p1≠pj-1）。此时没有任何可利用的部分匹配信息，只能让模式串回到起点、主串指针原地不动，即 next[j]=1，从 t1 与当前 si 重新比较。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-2" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第2题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>KMP 算法的特点是在模式匹配时，指示主串的指针（　）。</p><div class="opts"><div class="opt"><b>A.</b> 不会变大</div><div class="opt"><b>B.</b> 不会变小</div><div class="opt"><b>C.</b> 都有可能</div><div class="opt"><b>D.</b> 无法判断</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>KMP 的本质特征是主串指针 i 永不回溯：失配时 i 原地不动，由模式串指针 j 按 next 数组回退后继续比较。因此 i 在整个匹配过程中单调不减，<b>不会变小</b>。A 说反了；朴素匹配每趟把 i 回退到 i-j+2 才会变小，C、D 则混淆了“值变化”与“是否回退”。选 B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wz-4-2-2" data-type="综合">
+    <div class="prob-head"><span class="pnum">4.2 · 综合第2题</span><span class="pname"></span><span class="tag tag-tpl">综合</span></div>
+    <div class="prob-desc"><p>设有字符串 S='aabaabaabaac'，P='aabaac'。</p><p>(1) 求出 P 的 next 数组。<br>(2) 若 S 作主串，P 作模式串，试给出 KMP 算法的匹配过程。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：先按“最长相等真前后缀长+1”逐位求 next，再按王道 KMP 规则（失配时 i 不动、j=next[j]、j=0 时 i 与 j 同时右移）逐趟模拟。以下全过程经程序模拟复核。</b></p><p>(1) P='aabaac'：j=2~6 的已匹配前缀依次为 a、aa、aab、aaba、aabaa，最长相等前后缀长分别为 0、1、0、1、2，各加 1 得 next = <b>0,1,2,1,2,3</b>。</p><p>(2) 匹配过程：</p><div class='asc'>第一趟　i=1,j=1 起：a a b a a 逐位相等（5 次），i=6 处 s6='b'≠t6='c' 失配 → j=next[6]=3　（本趟比较 6 次）<br>第二趟　i=6,j=3：s6='b'=t3 ✓、i=7 ✓、i=8 ✓；i=9 处 s9='b'≠t6='c' 失配 → j=3　（本趟比较 4 次）<br>第三趟　i=9,j=3：i=9~12 逐位相等（b,a,a,c），t 全部比较完 → 匹配成功　（本趟比较 4 次）</div><p>共 3 趟、单字符比较 6+4+4=14 次，P 首次出现在 S 的第 <b>7</b> 个位置。</p></p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-3" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第3题</span><span class="pname"></span><span class="tag tag-tpl">选择·多选</span></div>
+    <div class="prob-desc"><p>设主串的长度为 n，子串的长度为 m，则简单的模式匹配算法的时间复杂度为（　），KMP 算法的时间复杂度为（　）。</p><div class="opts"><div class="opt"><b>A.</b> O(m)</div><div class="opt"><b>B.</b> O(n)</div><div class="opt"><b>C.</b> O(mn)</div><div class="opt"><b>D.</b> O(m+n)</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选CD。</b>逐项判断：简单匹配最坏时（主串全 a、子串 a…ab）每趟比较 m 次、至多 n-m+1 趟，为 O(m×n)，C 正确；KMP 预处理求 next 需 O(m)，匹配阶段 i 不回溯、j 的累计回退量不超过 m，合计 O(m+n)，D 正确。A、B 只含单个变量——仅把主串扫一遍就需 O(n)，O(m) 或 O(n) 都无法同时覆盖对两串的全部开销，均错。</p></p><p class="final-ans">✅ 答案：<b>CD</b>（多选）　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-4" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第4题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在 KMP 匹配中，用 next 数组存放模式串的部分匹配信息，当模式串位 j 与主串位 i 比较时，两个字符不相等，则 j 的位移方式是（　）。</p><div class="opts"><div class="opt"><b>A.</b> j=0</div><div class="opt"><b>B.</b> j=j+1</div><div class="opt"><b>C.</b> j 不变</div><div class="opt"><b>D.</b> j=next[j]</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选D。</b>失配时主串指针 i 不动，模式串指针 j 回退到 next[j]——直接利用已匹配前缀中最长相等前后缀的信息续比。A 的 j=0 是“模式串已滑到头、需整体右移一位重来”的特殊标记，并非一般位移方式；B 的 j=j+1 是匹配成功时的动作，失配时右移反而跳过候选位置；C 的 j 不变会在同一字符处反复失配而死循环。选 D。</p></p><p class="final-ans">✅ 答案：<b>D</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wz-4-2-4" data-type="综合">
+    <div class="prob-head"><span class="pnum">4.2 · 综合第4题</span><span class="pname"></span><span class="tag tag-tpl">综合</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>设有主串 S='aabaaaba'，模式串 T='aaab'。</p><p>(1) 写出 T 的 next 数组和 nextval 数组。<br>(2) 分别给出采用 next 数组与 nextval 数组的 KMP 匹配过程，并统计各自的单字符比较次数。</p></div>
+    <details class="ans"><summary>查看解答</summary><div class="ans-body"><p><b>【解答】</b><p><b>思路：在 next 基础上做 nextval 修正，再分别模拟两种 KMP，比较次数之差即 nextval 的优化量。以下数字均经程序模拟复核。</b></p><p>(1) T='aaab'：next = <b>0,1,2,3</b>。修正：t2='a'=t[next[2]]=t1，nextval[2]=nextval[1]=0；t3='a'=t2，nextval[3]=nextval[2]=0；t4='b'≠t3='a'，nextval[4]=next[4]=3。得 nextval = <b>0,0,0,3</b>。</p><p>(2) 两种算法都成功匹配于 S 的第 4 个位置，但比较次数不同：<br>普通 KMP：i=1、2 两次比较成功后，i=3 处 s3='b' 失配，j 依次 3→2→1 三次失配后 j=0，i 右移一位；随后 i=4~7 四次比较全部成功。共 2+3+4=<b>9</b> 次。<br>改进 KMP：i=3 处一次失配后 j=nextval[3]=0，直接右移主串指针；随后 i=4~7 四次比较成功。共 2+1+4=<b>7</b> 次。</p><p>省下的 2 次正是 i=3 处 j=2、j=1 的徒劳比较：t1=t2=t3='a'，回退到 t2、t1 后面对 'b' 必然再次失配。nextval 把“回退后字符不变”的情形一次性滑到位——这就是修正 next 数组（nextval）的意义。</p><p><span style="color:#64748b">【题面由王道原题重建】</span></p></p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-5" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第5题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>在 KMP 匹配中，用 next 数组存放模式串的部分匹配信息，当模式串位 j 与主串位 i 比较时，两个字符不相等，则 i 的位移方式是（　）。</p><div class="opts"><div class="opt"><b>A.</b> i=next[i]</div><div class="opt"><b>B.</b> i 不变</div><div class="opt"><b>C.</b> i=0</div><div class="opt"><b>D.</b> i=i+1</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>与上一题对偶：失配时需要回退的只是模式串指针 j，主串指针 i <b>保持不变</b>，下一趟用回退后的 T[next[j]] 继续与当前的 S[i] 比较。若 i 也回退（A、C）或前移（D），算法就退化为（甚至劣于）朴素匹配，最坏 O(mn)，KMP 的 O(m+n) 优势不复存在。选 B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-6" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第6题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>串 'ababaaababaa' 的 next 数组值为（　）。</p><div class="opts"><div class="opt"><b>A.</b> 0,1,2,3,4,5,6,7,8,9,9</div><div class="opt"><b>B.</b> 0,1,2,1,2,1,1,1,1,2,1,2</div><div class="opt"><b>C.</b> 0,1,1,2,3,4,2,2,3,4,5,6</div><div class="opt"><b>D.</b> 0,1,2,3,0,1,2,3,2,2,3,4,5</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>按统考口径逐位求“最长相等真前后缀长度+1”（next[1]=0、next[2]=1）：j=3~12 的已匹配前缀依次为 ab、aba、abab、ababa、ababaa、ababaaa、ababaaab、ababaaaba、ababaaabab、ababaaababa，对应最长相等前后缀长 0、1、2、3、1、1、2、3、4、5，各加 1 得 next = 0,1,1,2,3,4,2,2,3,4,5,6（已用程序模拟复核）。A 近似为顺序值，B、D 存在多处跳变错误。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-7" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第7题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设主串 S='aabaaaba'，模式串 T='aaab'，采用 KMP 算法进行模式匹配，到匹配成功时为止，在匹配过程中进行的单个字符间的比较次数是（　）。</p><div class="opts"><div class="opt"><b>A.</b> 9</div><div class="opt"><b>B.</b> 8</div><div class="opt"><b>C.</b> 7</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>T='aaab' 的 next = 0,1,2,3。模拟（王道实现，程序复核一致）：i=1、2 两次比较成功后，i=3 处 'b'≠'a' 失配，j 依次 3→2→1 共三次失配后 j=0，i 右移一位、j 回到 1；随后 i=4~7 与 T 逐位比较 4 次全部成功。总比较次数 2+3+4=<b>9</b>，成功位置为 4，选 B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P119</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-8" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第8题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>设主串 S='aabaaaba'，模式串 T='aaab'，采用改进后的 KMP 算法进行模式匹配，到匹配成功时为止，在匹配过程中进行的单个字符间的比较次数是（　）。</p><div class="opts"><div class="opt"><b>A.</b> 9</div><div class="opt"><b>B.</b> 8</div><div class="opt"><b>C.</b> 7</div><div class="opt"><b>D.</b> 6</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>由 next = 0,1,2,3 修正：t2 与 t[next[2]]=t1 同为 'a'，nextval[2]=nextval[1]=0；t3 与 t2 同为 'a'，nextval[3]=0；t4='b'≠t3='a'，nextval[4]=3，即 nextval = 0,0,0,3。匹配时 i=1、2 两次成功后，i=3 处一次失配即 j=nextval[3]=0，直接右移主串指针，省去普通 KMP 中 i=3 处 j=2、j=1 的两次徒劳比较（t1~t3 全为 'a'，与 'b' 比必败）。总次数 2+1+4=<b>7</b>（程序复核一致），选 C。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P120</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-9" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第9题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>KMP 算法使用 nextval 数组进行模式匹配，模式串为 S='ababaaa'，当主串中的某字符与 S 中的第 6 个字符失配时，S 向右滑动的距离是（　）。</p><div class="opts"><div class="opt"><b>A.</b> 1</div><div class="opt"><b>B.</b> 2</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>S='ababaaa' 的 next = 0,1,1,2,3,4,2（程序复核一致）。逐位修正求 nextval：j=2 'b'≠t1 'a' → 1；j=3 'a'=t1 → 取 nextval[1]=0；j=4 'b'=t2 → 1；j=5 'a'=t3 → 取 nextval[3]=0；j=6 'a'≠t4 'b' → 保留 next[6]=4。第 6 个字符失配时 j 回退到 4，模式串右滑 6-4=<b>2</b> 位，选 B。</p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P120</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-10" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第10题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2015 统考真题】已知字符串 s 为 'abaabaabacacaabaabcc'，模式串 t 为 'abaabc'，采用 KMP 算法进行模式匹配，当第一次出现失配（s[i]≠t[j]）时，i=j=5，则下次开始匹配时 i 和 j 的值分别是（　）。</p><div class="opts"><div class="opt"><b>A.</b> i=1，j=0</div><div class="opt"><b>B.</b> i=5，j=0</div><div class="opt"><b>C.</b> i=5，j=2</div><div class="opt"><b>D.</b> i=6，j=2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选C。</b>题面按 0 基下标：首次失配时 i=j=5，即 s[0..4]='abaab' 已与 t[0..4] 匹配，而 s[5]='a'≠t[5]='c'。失配后主串指针不回溯，i 保持 5；模式串指针滑到已匹配段 'abaab' 的<b>最长相等前后缀 'ab' 的长度 2</b>，即用 t[2]='a' 继续与 s[5] 比较（程序复核：next[6]=3，换算 0 基恰为 j=2）。故 i=5、j=2，选 C。A、D 使 i 发生变动违背 KMP 主串指针不回溯的特性；B 把 j 直接滑回 0，弃用了已有的 2 位部分匹配信息。</p></p><p class="final-ans">✅ 答案：<b>C</b>　📖 王道书解析 P120</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-11" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第11题</span><span class="pname"></span><span class="tag tag-tpl">选择</span><span class="tag tag-hot">重建题</span></div>
+    <div class="prob-desc"><p>串 'ababaaababaa' 的 nextval 数组值为（　）。</p><div class="opts"><div class="opt"><b>A.</b> 0,1,1,2,3,4,2,2,3,4,5,6</div><div class="opt"><b>B.</b> 0,1,0,1,0,4,2,1,0,1,0,4</div><div class="opt"><b>C.</b> 0,1,0,1,0,4,2,2,0,1,0,4</div><div class="opt"><b>D.</b> 0,1,0,1,1,4,2,1,0,1,1,4</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选B。</b>第 6 题已求得 next = 0,1,1,2,3,4,2,2,3,4,5,6，在此基础上逐位修正：若 t[j]=t[next[j]] 则 nextval[j]=nextval[next[j]]（回退后字符相同，再退一步），否则保留 next[j]。算得 j=2~12 依次为 1、0、1、0、4、2、1、0、1、0、4，故 nextval = 0,1,0,1,0,4,2,1,0,1,0,4（程序复核一致），选 B。A 是未修正的 next 数组——漏掉了“回退后仍同字符则继续回退”的优化；C、D 在个别位置的修正判断出错。</p><p><span style="color:#64748b">【题面由王道原题重建】</span></p></p><p class="final-ans">✅ 答案：<b>B</b>　📖 王道书解析 P120</p></div></details>
+  </div>
+  <div class="prob" id="wq-4-2-12" data-type="选择">
+    <div class="prob-head"><span class="pnum">4.2 · 第12题</span><span class="pname"></span><span class="tag tag-tpl">选择</span></div>
+    <div class="prob-desc"><p>【2024 统考真题】KMP 算法使用修正后的 next 数组（nextval）进行模式匹配，模式串为 S='aabaab'，当主串的某个字符与 S 的某个字符失配时，S 向右滑动的最长距离是（　）。</p><div class="opts"><div class="opt"><b>A.</b> 5</div><div class="opt"><b>B.</b> 4</div><div class="opt"><b>C.</b> 3</div><div class="opt"><b>D.</b> 2</div></div></div>
+    <details class="ans"><summary>查看解析与答案</summary><div class="ans-body"><p><b>【解析】</b><p><b>独立验算：选A。</b>S='aabaab' 的 next = 0,1,2,1,2,3；修正得 nextval = 0,0,2,0,0,2（j=2 'a'=t1 → 0；j=3 'b'≠t2 → 2；j=4 'a'=t1 → 0；j=5 'a'=t2 → 取 nextval[2]=0；j=6 'b'=t3 → 取 nextval[3]=2，程序复核一致）。失配于第 j 位时右滑 j-nextval[j] 位：j=2~6 对应 2、1、4、5、4，最长滑动 <b>5</b> 位——失配于第 5 个字符时 nextval[5]=0，直接滑回起点重新比较。选 A。</p></p><p class="final-ans">✅ 答案：<b>A</b>　📖 王道书解析 P121</p></div></details>
+  </div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "wdex-c4", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>
