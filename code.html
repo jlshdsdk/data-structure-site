@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>王道数据结构代码汇总 · 数据结构自学网站</title>
+<script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" title="展开/收起导航">☰</button>
+  <a class="brand" href="index.html" style="text-decoration:none">数据结构自学网站<small>清爽自习 · 理论 × 模板 × 真题 × 实战</small></a>
+  <div class="search-wrap">
+    <span class="icon">🔍</span>
+    <input type="text" id="searchBox" placeholder="搜本模块知识点 / 算法名 / 题号…" autocomplete="off">
+    <div class="search-list" id="searchList"></div>
+  </div>
+  <div class="top-actions">
+    <button class="theme-btn" id="fontMinus" title="减小字号">A-</button>
+    <button class="theme-btn" id="fontPlus" title="增大字号">A+</button>
+    <button class="theme-btn" id="nightBtn" title="夜间模式">🌙</button>
+  </div>
+</header>
+
+<aside class="sidebar" id="sidebar">
+  <div class="thu-side">
+    <div class="t1">学而时习</div>
+    <div class="t2">数据结构 · 自学手册<br><b>循序渐进 · 学练结合</b></div>
+  </div>
+  <nav id="nav"></nav>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main class="main" id="main">
+  <div class="hero slim">
+    <p class="crumb"><a href="index.html">🏠 首页</a> › 王道代码汇总</p>
+  </div>
+  <div class="part-zone" id="wcode">
+  <div class="part-head">
+    <div class="pnum">代码汇总</div>
+    <h2>王道数据结构 · 代码汇总</h2>
+    <p>《25王道数据结构代码汇总》全量收录：0 段标准实现——线性表/栈队列/串/树与二叉树/图/查找/排序，全部整理为可编译的规范C代码，带注释。配合「王道精讲」原理与「课后题」实战使用。</p>
+  </div>
+  <div class="chap-head" id="wc-ch1"><h3>第1章 线性表<span class="tag tag-tpl">7 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch1-body">
+  <section class="sec" id="wc-1-1">
+    <h3>1.1.1 顺序表定义 <span class="tag tag-tpl">顺序表定义</span></h3>
+    <p>静态分配用定长数组一次到位，动态分配用 malloc/new 按需申请、可扩容，两种定义都要会写。</p>
+    <pre class="code" data-t="顺序表定义"><code>//1.静态分配的顺序表
+#define MaxSize 50                 //定义线性表的最大长度
+typedef struct{
+    ElemType data[MaxSize];        //顺序表的元素
+    int length;                    //顺序表的当前长度
+}SqList;                           //顺序表的类型定义
+
+//2.动态分配的顺序表（与静态分配二选一）
+#define InitSize 100               //表长度的初始定义
+typedef struct{
+    ElemType *data;                //指示动态分配数组的指针
+    int MaxSize, length;           //数组的最大容量和当前个数
+}SeqList;                          //动态分配数组顺序表的类型定义
+
+//C语言的初始动态分配语句为
+//L.data = (ElemType*)malloc(sizeof(ElemType)*InitSize);
+//C++语言的初始动态分配语句为
+//L.data = new ElemType[InitSize];</code></pre>
+  </section>
+  <section class="sec" id="wc-1-2">
+    <h3>1.1.2 顺序表基本操作 <span class="tag tag-tpl">顺序表基本操作</span></h3>
+    <p>静态/动态两种初始化加插入、删除、按值查找。核心是位序 i 与下标 i-1 的换算，以及移动元素的循环方向。</p>
+    <pre class="code" data-t="顺序表基本操作"><code>//静态分配的顺序表初始化
+//SqList L;                       //声明一个顺序表
+void InitList(SqList &amp;L){
+    L.length = 0;                  //顺序表初始长度为0
+}
+
+//动态分配的顺序表初始化
+void InitList(SeqList &amp;L){         //与上面构成重载
+    L.data = (ElemType*)malloc(MaxSize*sizeof(ElemType));   //分配存储空间
+    L.length = 0;                  //顺序表初始长度为0
+    L.MaxSize = InitSize;          //初始存储容量
+}
+
+//插入操作：将元素e插入到顺序表L中第i个位置
+bool ListInsert(SqList &amp;L, int i, ElemType e){
+    if(i&lt;1 || i&gt;L.length+1)        //判断i的范围是否有效
+        return false;
+    if(L.length &gt;= MaxSize)        //当前存储空间已满，不能插入
+        return false;
+    for(int j=L.length; j&gt;=i; j--) //将第i个元素及之后的元素后移
+        L.data[j] = L.data[j-1];
+    L.data[i-1] = e;               //在位置i处放入e
+    L.length++;                    //线性表长度加1
+    return true;
+}
+
+//删除操作：删除顺序表L中第i个位置的元素，用e带回其值
+bool ListDelete(SqList &amp;L, int i, ElemType &amp;e){
+    if(i&lt;1 || i&gt;L.length)          //判断i的范围是否有效
+        return false;
+    e = L.data[i-1];               //将被删除的元素赋值给e
+    for(int j=i; j&lt;L.length; j++)  //将第i个位置之后的元素前移
+        L.data[j-1] = L.data[j];
+    L.length--;                    //线性表长度减1
+    return true;
+}
+
+//按值查找（顺序查找）：查找顺序表中值为e的元素，返回其位序
+int LocateElem(SqList L, ElemType e){
+    int i;
+    for(i=0; i&lt;L.length; i++)
+        if(L.data[i] == e)
+            return i+1;            //返回其位序i+1
+    return 0;                      //退出循环，说明查找失败
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-1-3">
+    <h3>1.2.1 单链表结点定义 <span class="tag tag-tpl">单链表结点定义</span></h3>
+    <p>结点 = 数据域 + 后继指针；LNode 强调结点，LinkList 强调链表（头指针）。</p>
+    <pre class="code" data-t="单链表结点定义"><code>typedef struct LNode{              //定义单链表结点类型
+    ElemType data;                 //数据域，存放一个数据元素
+    struct LNode *next;            //指针域，指向下一个结点
+}LNode, *LinkList;                 //LNode强调结点，LinkList强调链表（头指针）</code></pre>
+  </section>
+  <section class="sec" id="wc-1-4">
+    <h3>1.2.2 单链表基本操作 <span class="tag tag-tpl">单链表基本操作</span></h3>
+    <p>带头/不带头两种初始化，求表长与两种查找，按位序插入删除，头插法（逆置利器）与尾插法建表。改指针的语句顺序是高频考点。</p>
+    <pre class="code" data-t="单链表基本操作"><code>//初始化一个空的单链表（不带头结点）
+bool InitList(LinkList &amp;L){
+    L = NULL;                            //空表，暂时还没有任何结点
+    return true;
+}
+
+//初始化一个单链表（带头结点）——王道推荐
+bool InitList2(LinkList &amp;L){
+    L = (LNode*)malloc(sizeof(LNode));   //创建头结点
+    if(L == NULL)                        //内存不足，分配失败
+        return false;
+    L-&gt;next = NULL;                      //头结点之后暂时还没有元素结点
+    return true;
+}
+
+//求表长（带头结点）
+int Length(LinkList L){
+    int len = 0;                         //计数变量，初始为0
+    LNode *p = L;
+    while(p-&gt;next != NULL){
+        p = p-&gt;next;
+        len++;                           //每访问一个结点，计数加1
+    }
+    return len;
+}
+
+//按序号查找：取出带头结点单链表L中第i个位置的结点指针
+LNode *GetElem(LinkList L, int i){
+    if(i &lt; 0)
+        return NULL;
+    LNode *p = L;                        //指针p指向当前扫描到的结点
+    int j = 0;                           //记录当前结点的位序，头结点是第0个结点
+    while(p != NULL &amp;&amp; j &lt; i){           //循环找到第i个结点
+        p = p-&gt;next;
+        j++;
+    }
+    return p;                            //返回第i个结点的指针或NULL
+}
+
+//按值查找：查找数据域值等于e的结点指针，否则返回NULL
+LNode *LocateElem(LinkList L, ElemType e){
+    LNode *p = L-&gt;next;                  //从第1个结点开始查找
+    while(p != NULL &amp;&amp; p-&gt;data != e)     //找到data域为e的结点即停
+        p = p-&gt;next;
+    return p;                            //找到后返回该结点指针，否则返回NULL
+}
+
+//按位序插入（带头结点）：在第i个位置插入元素e
+bool ListInsert(LinkList &amp;L, int i, ElemType e){
+    if(i &lt; 1)
+        return false;
+    LNode *p = GetElem(L, i-1);          //查找插入位置的前驱结点
+    if(p == NULL)                        //i值不合法
+        return false;
+    LNode *s = (LNode*)malloc(sizeof(LNode));
+    s-&gt;data = e;
+    s-&gt;next = p-&gt;next;                   //①新结点先接上p的后继（顺序不能颠倒）
+    p-&gt;next = s;                         //②再将s连到p之后
+    return true;
+}
+
+//后插语句：将*s插到*p之后（配合下面的交换数据域可实现"前插"效果，O(1)）
+//s-&gt;next = p-&gt;next;                     //修改指针域，不能颠倒
+//p-&gt;next = s;
+//temp = p-&gt;data;                        //交换数据域部分
+//p-&gt;data = s-&gt;data;
+//s-&gt;data = temp;
+
+//删除*p的后继结点（片段）
+//q = p-&gt;next;                           //令q指向被删除结点
+//p-&gt;next = q-&gt;next;                     //*p从链中断开
+//free(q);                               //释放结点的存储空间
+
+//删除指定结点p本身：与后继结点交换数据域后删后继（O(1)）
+bool DeleteNode(LNode *p){
+    if(p == NULL || p-&gt;next == NULL)     //p是最后一个结点时此法失效，只能O(n)找前驱
+        return false;
+    LNode *q = p-&gt;next;                  //令q指向*p的后继结点
+    p-&gt;data = p-&gt;next-&gt;data;             //和后继结点交换数据域
+    p-&gt;next = q-&gt;next;                   //将*q结点从链中"断开"
+    free(q);                             //释放后继结点的存储空间
+    return true;
+}
+
+//头插法建立单链表：从表尾到表头逆向建立，每次均在头结点之后插入元素
+LinkList CreateList1(LinkList &amp;L){
+    LNode *s; int x;
+    L = (LinkList)malloc(sizeof(LNode)); //创建头结点
+    L-&gt;next = NULL;                      //初始化为空链表
+    while(scanf("%d", &amp;x) != EOF){       //循环输入
+        s = (LNode*)malloc(sizeof(LNode));   //创建新结点
+        s-&gt;data = x;
+        s-&gt;next = L-&gt;next;               //将新结点插入表中，L为头指针
+        L-&gt;next = s;
+    }
+    return L;
+}
+
+//尾插法建立单链表：从表头到表尾正向建立，每次均在表尾插入元素
+LinkList CreateList2(LinkList &amp;L){
+    int x;                               //设元素类型为整型
+    L = (LinkList)malloc(sizeof(LNode)); //创建头结点
+    LNode *s, *r = L;                    //r为表尾指针
+    while(scanf("%d", &amp;x) != EOF){       //循环输入
+        s = (LNode*)malloc(sizeof(LNode));
+        s-&gt;data = x;
+        r-&gt;next = s;                     //插入到表尾
+        r = s;                           //r指向新的表尾结点
+    }
+    r-&gt;next = NULL;                      //尾结点指针置空
+    return L;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-1-5">
+    <h3>1.3.1 双链表结点定义 <span class="tag tag-tpl">双链表结点定义</span></h3>
+    <p>在单链表结点基础上增加前驱指针 prior，可双向遍历。</p>
+    <pre class="code" data-t="双链表结点定义"><code>typedef struct DNode{                //定义双链表结点类型
+    ElemType data;                   //数据域
+    struct DNode *prior, *next;      //前驱和后继指针
+}DNode, *DLinkList;</code></pre>
+  </section>
+  <section class="sec" id="wc-1-6">
+    <h3>1.3.2 双链表基本操作 <span class="tag tag-tpl">双链表基本操作</span></h3>
+    <p>插入要按①②③④顺序接好四个指针，删除要先接后继再释放，记住"先连后断"。</p>
+    <pre class="code" data-t="双链表基本操作"><code>//初始化双链表（带头结点）
+bool InitDLinkList(DLinkList &amp;L){
+    L = (DNode*)malloc(sizeof(DNode));   //分配一个头结点
+    if(L == NULL)
+        return false;                    //内存不足，分配失败
+    L-&gt;prior = NULL;                     //头结点的prior永远指向NULL
+    L-&gt;next = NULL;                      //头结点之后暂时还没有结点
+    return true;
+}
+
+//插入：在p结点之后插入s结点（注意语句顺序！）
+bool InsertNextDNode(DNode *p, DNode *s){
+    if(p == NULL || s == NULL)           //非法参数
+        return false;
+    s-&gt;next = p-&gt;next;                   //①结点*s插入到结点*p之后，先接上p的原后继
+    if(p-&gt;next != NULL)                  //如果p结点有后继结点
+        p-&gt;next-&gt;prior = s;              //②p的原后继的prior指向s
+    s-&gt;prior = p;                        //③s的prior指向p
+    p-&gt;next = s;                         //④p的next指向s（最后才能改！）
+    return true;
+}
+
+//删除：删除p结点的后继结点q
+bool DeleteNextDNode(DNode *p){
+    if(p == NULL)
+        return false;
+    DNode *q = p-&gt;next;                  //找到p的后继结点q
+    if(q == NULL)                        //p没有后继
+        return false;
+    p-&gt;next = q-&gt;next;
+    if(q-&gt;next != NULL)                  //q结点不是最后一个结点
+        q-&gt;next-&gt;prior = p;
+    free(q);                             //释放结点空间
+    return true;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-1-7">
+    <h3>1.4 静态链表 <span class="tag tag-tpl">静态链表</span></h3>
+    <p>用数组模拟链表：next 存后继元素的数组下标（游标），只能沿游标顺序访问，不支持随机存取。</p>
+    <pre class="code" data-t="静态链表"><code>#define MaxSize 50                   //静态链表的最大长度
+typedef struct{                      //静态链表结构类型的定义
+    ElemType data;                   //存储数据元素
+    int next;                        //下一个元素的数组下标（游标）
+}SLinkList[MaxSize];                 //SLinkList即"长度为MaxSize的该结构数组"
+
+//王道约定的游标语义：a[0]充当"头结点"；next==-1表示表尾；next==-2表示结点空闲
+//插入（位序i）：①找一个空闲结点存入元素 ②从头结点出发找到位序i-1的结点
+//              ③新结点next=第i-1个结点的next ④第i-1个结点next=新结点的数组下标
+//删除（位序i）：①前驱结点的游标跳过被删结点 ②被删结点next置-2重新标记为空闲</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch2"><h3>第2章 栈和队列<span class="tag tag-tpl">5 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch2-body">
+  <section class="sec" id="wc-2-1">
+    <h3>2.1.1 顺序栈 <span class="tag tag-tpl">顺序栈</span></h3>
+    <p>top 指向栈顶元素：栈空为 -1，栈满为 MaxSize-1；进栈"先加指针再存元素"，出栈相反。</p>
+    <pre class="code" data-t="顺序栈"><code>#define MaxSize 50                   //定义栈中元素的最大个数
+typedef struct{
+    ElemType data[MaxSize];          //存放栈中元素
+    int top;                         //栈顶指针
+}SqStack;
+
+//(1)初始化
+void InitStack(SqStack &amp;S){
+    S.top = -1;                      //初始化栈顶指针
+}
+
+//(2)判栈空
+bool StackEmpty(SqStack S){
+    if(S.top == -1)                  //栈空
+        return true;
+    else                             //不空
+        return false;
+}
+
+//(3)进栈
+bool Push(SqStack &amp;S, ElemType x){
+    if(S.top == MaxSize-1)           //栈满，报错
+        return false;
+    S.data[++S.top] = x;             //指针先加1，再入栈
+    return true;
+}
+
+//(4)出栈
+bool Pop(SqStack &amp;S, ElemType &amp;x){
+    if(S.top == -1)                  //栈空，报错
+        return false;
+    x = S.data[S.top--];             //先出栈，指针再减1
+    return true;                     //数据仍残留内存，只是逻辑上被删除
+}
+
+//(5)读栈顶元素
+bool GetTop(SqStack S, ElemType &amp;x){
+    if(S.top == -1)                  //栈空，报错
+        return false;
+    x = S.data[S.top];               //x记录栈顶元素
+    return true;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-2-2">
+    <h3>2.1.2 链式栈 <span class="tag tag-tpl">链式栈</span></h3>
+    <p>用链表实现栈，规定所有操作都在表头进行，头指针即栈顶指针，不存在栈满问题。</p>
+    <pre class="code" data-t="链式栈"><code>typedef struct Linknode{             //链栈结点定义
+    ElemType data;                   //数据域
+    struct Linknode *next;           //指针域
+}*LiStack;                           //栈类型定义
+
+//初始化栈（不带头结点）
+bool InitStack(LiStack &amp;L){
+    L = NULL;                        //空栈
+    return true;
+}
+
+//判栈空
+bool StackEmpty(LiStack L){
+    if(L == NULL)
+        return true;
+    else
+        return false;
+}
+
+//进栈：相当于对链表头进行"后插"
+bool Push(LiStack &amp;L, ElemType x){
+    Linknode *s = (Linknode*)malloc(sizeof(Linknode));
+    if(s == NULL)                    //内存分配失败
+        return false;
+    s-&gt;data = x;                     //用结点s保存数据元素x
+    s-&gt;next = L;                     //新结点接在原栈顶之前
+    L = s;                           //头指针指向新栈顶
+    return true;
+}
+
+//出栈：相当于删除链表的第一个结点
+bool Pop(LiStack &amp;L, ElemType &amp;x){
+    if(L == NULL)                    //栈空，报错
+        return false;
+    Linknode *p = L;                 //p指向此次出栈的结点
+    x = p-&gt;data;                     //用x返回栈顶元素
+    L = L-&gt;next;                     //栈顶指针下移
+    free(p);                         //释放结点空间
+    return true;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-2-3">
+    <h3>2.2.1 顺序队列 <span class="tag tag-tpl">顺序队列</span></h3>
+    <p>循环队列牺牲一个存储单元区分队空与队满：队空 front==rear，队满 (rear+1)%MaxSize==front，指针加1都要取模。</p>
+    <pre class="code" data-t="顺序队列"><code>#define MaxSize 50                   //定义队列中元素的最大个数
+typedef struct{
+    ElemType data[MaxSize];          //用数组存放队列元素
+    int front, rear;                 //队头指针和队尾指针
+}SqQueue;
+
+//(1)初始化
+void InitQueue(SqQueue &amp;Q){
+    Q.rear = Q.front = 0;            //初始化队首、队尾指针
+}
+
+//(2)判队空
+bool isEmpty(SqQueue Q){
+    if(Q.rear == Q.front)            //队空条件
+        return true;
+    else
+        return false;
+}
+
+//(3)入队（循环队列）
+bool EnQueue(SqQueue &amp;Q, ElemType x){
+    if((Q.rear+1)%MaxSize == Q.front)    //队满报错（牺牲一个存储单元）
+        return false;
+    Q.data[Q.rear] = x;              //新元素插入队尾
+    Q.rear = (Q.rear+1)%MaxSize;     //队尾指针加1取模
+    return true;
+}
+
+//(4)出队（循环队列）
+bool DeQueue(SqQueue &amp;Q, ElemType &amp;x){
+    if(Q.rear == Q.front)            //队空报错
+        return false;
+    x = Q.data[Q.front];             //x记录队头元素
+    Q.front = (Q.front+1)%MaxSize;   //队头指针加1取模
+    return true;
+}
+//队列中元素个数 = (Q.rear - Q.front + MaxSize) % MaxSize</code></pre>
+  </section>
+  <section class="sec" id="wc-2-4">
+    <h3>2.2.2 链式队列 <span class="tag tag-tpl">链式队列</span></h3>
+    <p>带头结点的链式队列：front 指头结点；出队时若这是最后一个结点，必须把 rear 拉回头结点。</p>
+    <pre class="code" data-t="链式队列"><code>typedef struct LinkNode{             //链式队列结点
+    ElemType data;
+    struct LinkNode *next;
+}LinkNode;
+
+typedef struct{                      //链式队列
+    LinkNode *front, *rear;          //队列的队头和队尾指针
+}LinkQueue;
+
+//(1)初始化（带头结点）
+void InitQueue(LinkQueue &amp;Q){
+    Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));   //建立头结点
+    Q.front-&gt;next = NULL;            //初始为空
+}
+
+//(2)判队空
+bool IsEmpty(LinkQueue Q){
+    if(Q.front == Q.rear)            //判空条件
+        return true;
+    else
+        return false;
+}
+
+//(3)入队
+void EnQueue(LinkQueue &amp;Q, ElemType x){
+    LinkNode *s = (LinkNode*)malloc(sizeof(LinkNode));
+    s-&gt;data = x;
+    s-&gt;next = NULL;
+    Q.rear-&gt;next = s;                //插入链尾
+    Q.rear = s;                      //修改尾指针
+}
+
+//(4)出队
+bool DeQueue(LinkQueue &amp;Q, ElemType &amp;x){
+    if(Q.front == Q.rear)            //空队
+        return false;
+    LinkNode *p = Q.front-&gt;next;     //p指向此次出队的结点
+    x = p-&gt;data;
+    Q.front-&gt;next = p-&gt;next;         //摘下结点p
+    if(Q.rear == p)                  //若原队列中只有一个结点，删除后变空
+        Q.rear = Q.front;            //rear回到头结点（关键！）
+    free(p);
+    return true;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-2-5">
+    <h3>2.3 应用 <span class="tag tag-tpl">应用</span></h3>
+    <p>栈在递归中的作用：函数调用栈保存每层递归的参数、局部变量与返回地址，斐波那契数列是最经典的例子。</p>
+    <pre class="code" data-t="应用"><code>//栈在递归中的作用：系统把每层递归的局部变量、参数与返回地址
+//压入函数调用栈，返回时逐层出栈恢复现场
+//斐波那契数列的递归实现
+int F(int n){
+    if(n == 0)
+        return 0;                    //边界条件
+    else if(n == 1)
+        return 1;                    //边界条件
+    else
+        return F(n-1) + F(n-2);      //递归表达式
+}</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch3"><h3>第3章 串<span class="tag tag-tpl">5 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch3-body">
+  <section class="sec" id="wc-3-1">
+    <h3>3.1 串的定义与实现 <span class="tag tag-tpl">串的定义与实现</span></h3>
+    <p>串的两种顺序存储：定长顺序表示用静态数组ch[MAXLEN]；堆分配表示按串长动态分配，ch指向串的基地址。</p>
+    <pre class="code" data-t="串的定义与实现"><code>//---------- 定长顺序存储表示 ----------
+#define MAXLEN 255                  //预定义最大串长为255
+typedef struct{
+    char ch[MAXLEN];                //每个分量存储一个字符
+    int length;                     //串的实际长度
+}SString;
+
+//---------- 堆分配存储表示 ----------
+typedef struct{
+    char *ch;                       //按串长度分配存储区，ch指向串的基地址
+    int length;                     //串的长度
+}HString;</code></pre>
+  </section>
+  <section class="sec" id="wc-3-2">
+    <h3>3.2.1 简单模式匹配算法 <span class="tag tag-tpl">简单模式匹配算法（BF）</span></h3>
+    <p>朴素模式匹配：匹配失败时主串指针i回退（i=i-j+2）、模式串指针j回到1重新开始，最坏时间复杂度O(mn)。</p>
+    <pre class="code" data-t="简单模式匹配算法（BF）"><code>//简单的模式匹配算法（不使用串的基本操作，直接通过数组下标实现）
+int Index(SString S, SString T){
+    int i=1, j=1;                   //i为主串指针，j为模式串指针
+    while(i&lt;=S.length &amp;&amp; j&lt;=T.length){
+        if(S.ch[i] == T.ch[j]){
+            ++i; ++j;               //继续比较后继字符
+        }else{
+            i = i-j+2;              //主串指针回退：指向下一个子串的第一个位置
+            j = 1;                  //模式串指针后退：重新开始匹配
+        }
+    }
+    if(j &gt; T.length)
+        return i-T.length;          //匹配成功：返回子串第一个字符在主串中的位置
+    else
+        return 0;                   //主串中不存在与T相等的子串
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-3-3">
+    <h3>3.2.2 KMP算法：求next数组 <span class="tag tag-tpl">KMP算法：求next数组</span></h3>
+    <p>next[1]恒为0；j==0或字符相等时i、j各进一格并置next[i]=j，否则j=next[j]回退。考试以手算为主，此代码了解即可。</p>
+    <pre class="code" data-t="KMP算法：求next数组"><code>//求next数组（考研考手算，代码了解即可）
+void get_next(SString T, int next[]){
+    int i=1, j=0;
+    next[1] = 0;                    //约定：next[1]恒为0
+    while(i &lt; T.length){
+        if(j==0 || T.ch[i]==T.ch[j]){
+            ++i; ++j;
+            next[i] = j;            //最长相等前后缀长度 + 1
+        }else
+            j = next[j];            //前后缀对不上，j回退再试
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-3-4">
+    <h3>3.2.3 KMP算法：匹配 <span class="tag tag-tpl">KMP算法：匹配</span></h3>
+    <p>KMP匹配：主串指针i不回溯，失配时模式串指针j=next[j]右移；j==0时i++、j++从下一字符重新比较。最坏时间复杂度O(m+n)。</p>
+    <pre class="code" data-t="KMP算法：匹配"><code>//利用next数组进行匹配（主串指针不回溯）
+int Index_KMP(SString S, SString T, int next[]){
+    int i=1, j=1;
+    while(i&lt;=S.length &amp;&amp; j&lt;=T.length){
+        if(j==0 || S.ch[i]==T.ch[j]){
+            ++i; ++j;               //继续比较后继字符
+        }else
+            j = next[j];            //模式串向右移动（主串指针i不变）
+    }
+    if(j &gt; T.length)
+        return i-T.length;          //匹配成功
+    else
+        return 0;
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-3-5">
+    <h3>3.2.4 由next求nextval数组 <span class="tag tag-tpl">由next求nextval数组</span></h3>
+    <p>若T.ch[next[j]]==T.ch[j]，跳过去必再失配，继承nextval[next[j]]；否则保留next[j]。匹配时把Index_KMP中的next换成nextval即可。</p>
+    <pre class="code" data-t="由next求nextval数组"><code>//由next数组求nextval数组（王道标准写法）
+void get_nextval(SString T, int next[], int nextval[]){
+    nextval[1] = 0;                          //nextval[1]恒为0
+    for(int j=2; j&lt;=T.length; j++){
+        if(T.ch[next[j]] == T.ch[j])
+            nextval[j] = nextval[next[j]];   //跳过去也必失配，继承nextval
+        else
+            nextval[j] = next[j];            //跳过去可能配上，保留next
+    }
+}</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch4"><h3>第4章 树与二叉树<span class="tag tag-tpl">11 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch4-body">
+  <section class="sec" id="wc-4-1">
+    <h3>4.1.1 二叉树的链式存储结构 <span class="tag tag-tpl">二叉树的链式存储结构</span></h3>
+    <p>二叉链表：每个结点含数据域和左、右孩子指针。n个结点的二叉链表共有n+1个空链域。</p>
+    <pre class="code" data-t="二叉树的链式存储结构"><code>//二叉树的链式存储结构（二叉链表）
+typedef struct BiTNode{
+    ElemType data;                      //数据域
+    struct BiTNode *lchild, *rchild;    //左、右孩子指针
+}BiTNode, *BiTree;</code></pre>
+  </section>
+  <section class="sec" id="wc-4-2">
+    <h3>4.1.2 二叉树的遍历（递归） <span class="tag tag-tpl">二叉树的遍历（递归）</span></h3>
+    <p>三种递归遍历只差visit(T)的位置：先序根左右，中序左根右，后序左右根。</p>
+    <pre class="code" data-t="二叉树的遍历（递归）"><code>//1.先序遍历
+void PreOrder(BiTree T){
+    if(T != NULL){
+        visit(T);                       //访问根结点
+        PreOrder(T-&gt;lchild);            //递归遍历左子树
+        PreOrder(T-&gt;rchild);            //递归遍历右子树
+    }
+}
+
+//2.中序遍历
+void InOrder(BiTree T){
+    if(T != NULL){
+        InOrder(T-&gt;lchild);             //递归遍历左子树
+        visit(T);                       //访问根结点
+        InOrder(T-&gt;rchild);             //递归遍历右子树
+    }
+}
+
+//3.后序遍历
+void PostOrder(BiTree T){
+    if(T != NULL){
+        PostOrder(T-&gt;lchild);           //递归遍历左子树
+        PostOrder(T-&gt;rchild);           //递归遍历右子树
+        visit(T);                       //访问根结点
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-3">
+    <h3>4.1.2 中序遍历（非递归） <span class="tag tag-tpl">二叉树的中序遍历（非递归）</span></h3>
+    <p>借助栈：一路向左依次入栈，栈顶出栈并访问，再转向右子树；空间复杂度O(h)。</p>
+    <pre class="code" data-t="二叉树的中序遍历（非递归）"><code>//二叉树的中序遍历（非递归）
+void InOrder2(BiTree T){
+    InitStack(S);                       //初始化栈S
+    BiTree p = T;                       //p是遍历指针
+    while(p || !IsEmpty(S)){            //栈不空或p不空时循环
+        if(p){                          //一路向左
+            Push(S, p);                 //当前结点入栈
+            p = p-&gt;lchild;              //左孩子不空，一直往左走
+        }else{                          //出栈，访问根结点，遍历右子树
+            Pop(S, p);                  //栈顶元素出栈
+            visit(p);                   //访问根结点
+            p = p-&gt;rchild;              //再向右子树走
+        }
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-4">
+    <h3>4.1.2 先序遍历（非递归） <span class="tag tag-tpl">二叉树的先序遍历（非递归）</span></h3>
+    <p>与中序非递归框架相同，唯一区别是访问时机提前：入栈前先visit当前结点。</p>
+    <pre class="code" data-t="二叉树的先序遍历（非递归）"><code>//二叉树的先序遍历（非递归）
+void PreOrder2(BiTree T){
+    InitStack(S);                       //初始化栈S
+    BiTree p = T;                       //p是遍历指针
+    while(p || !IsEmpty(S)){            //栈不空或p不空时循环
+        if(p){                          //一路向左
+            visit(p);                   //先访问当前结点
+            Push(S, p);                 //当前结点入栈
+            p = p-&gt;lchild;              //左孩子不空，继续往左走
+        }else{                          //出栈，并转向出栈结点的右子树
+            Pop(S, p);                  //栈顶元素出栈
+            p = p-&gt;rchild;              //向右子树走，p赋值为出栈结点的右孩子
+        }
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-5">
+    <h3>4.1.2 层次遍历 <span class="tag tag-tpl">二叉树的层次遍历</span></h3>
+    <p>借助辅助队列：根结点入队，出队访问后将其左、右孩子依次入队，直到队空。</p>
+    <pre class="code" data-t="二叉树的层次遍历"><code>//二叉树的层次遍历
+void LevelOrder(BiTree T){
+    InitQueue(Q);                       //初始化辅助队列
+    BiTree p;
+    EnQueue(Q, T);                      //将根结点入队
+    while(!IsEmpty(Q)){                 //队列不空则循环
+        DeQueue(Q, p);                  //队头结点出队
+        visit(p);                       //访问出队结点
+        if(p-&gt;lchild != NULL)
+            EnQueue(Q, p-&gt;lchild);      //若左孩子不空，左孩子入队
+        if(p-&gt;rchild != NULL)
+            EnQueue(Q, p-&gt;rchild);      //若右孩子不空，右孩子入队
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-6">
+    <h3>4.2.1 线索二叉树的存储结构 <span class="tag tag-tpl">线索二叉树的存储结构</span></h3>
+    <p>在二叉链表基础上增加ltag、rtag：tag==0表示指针指向孩子，tag==1表示指针是线索（利用空链域记录前驱/后继）。</p>
+    <pre class="code" data-t="线索二叉树的存储结构"><code>//线索二叉树的存储结构（线索链表）
+typedef struct ThreadNode{
+    ElemType data;                          //数据元素
+    struct ThreadNode *lchild, *rchild;     //左、右孩子指针
+    int ltag, rtag;                         //左、右线索标志
+}ThreadNode, *ThreadTree;</code></pre>
+  </section>
+  <section class="sec" id="wc-4-7">
+    <h3>4.2.2 中序线索二叉树的构造 <span class="tag tag-tpl">中序线索二叉树的构造</span></h3>
+    <p>中序遍历中线索化：左子树空则lchild指向前驱pre；前驱的右子树空则其rchild指向当前结点。主过程最后处理序列的最后一个结点。</p>
+    <pre class="code" data-t="中序线索二叉树的构造"><code>//中序遍历对二叉树线索化的递归算法（pre为引用参数，随递归回溯保持最新值）
+void InThread(ThreadTree &amp;p, ThreadTree &amp;pre){
+    if(p != NULL){
+        InThread(p-&gt;lchild, pre);               //递归，线索化左子树
+        if(p-&gt;lchild == NULL){                  //当前结点的左子树为空
+            p-&gt;lchild = pre;                    //建立当前结点的前驱线索
+            p-&gt;ltag = 1;
+        }
+        if(pre != NULL &amp;&amp; pre-&gt;rchild == NULL){ //前驱结点非空且其右子树为空
+            pre-&gt;rchild = p;                    //建立前驱结点的后继线索
+            pre-&gt;rtag = 1;
+        }
+        pre = p;                                //标记当前结点成为刚刚访问过的结点
+        InThread(p-&gt;rchild, pre);               //递归，线索化右子树
+    }
+}
+
+//通过中序遍历建立中序线索二叉树的主过程算法
+void CreateInThread(ThreadTree T){
+    ThreadTree pre = NULL;
+    if(T != NULL){                              //非空二叉树，线索化
+        InThread(T, pre);                       //线索化二叉树
+        pre-&gt;rchild = NULL;                     //处理遍历的最后一个结点
+        pre-&gt;rtag = 1;
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-8">
+    <h3>4.2.2 中序线索二叉树的遍历 <span class="tag tag-tpl">中序线索二叉树的遍历</span></h3>
+    <p>Firstnode找最左下结点，Nextnode按rtag或右子树最左下找后继；二者串起来即为O(1)空间的非递归中序遍历。</p>
+    <pre class="code" data-t="中序线索二叉树的遍历"><code>//1.求中序线索二叉树中序序列下的第一个结点
+ThreadNode *Firstnode(ThreadNode *p){
+    while(p-&gt;ltag == 0)
+        p = p-&gt;lchild;                  //最左下结点（不一定是叶结点）
+    return p;
+}
+
+//2.求中序线索二叉树中结点p在中序序列下的后继结点
+ThreadNode *Nextnode(ThreadNode *p){
+    if(p-&gt;rtag == 0)
+        return Firstnode(p-&gt;rchild);    //右子树中最左下结点
+    else
+        return p-&gt;rchild;               //rtag==1，直接返回后继线索
+}
+
+//3.求中序线索二叉树中序序列下的最后一个结点
+ThreadNode *Lastnode(ThreadNode *p){
+    while(p-&gt;rtag == 0)
+        p = p-&gt;rchild;                  //最右下结点（不一定是叶结点）
+    return p;
+}
+
+//4.求中序线索二叉树中结点p在中序序列下的前驱结点
+ThreadNode *Prenode(ThreadNode *p){
+    if(p-&gt;ltag == 0)
+        return Lastnode(p-&gt;lchild);     //左子树中最右下结点
+    else
+        return p-&gt;lchild;               //ltag==1，直接返回前驱线索
+}
+
+//5.不带头结点的中序线索二叉树的中序遍历
+void InOrder(ThreadTree T){
+    for(ThreadNode *p = Firstnode(T); p != NULL; p = Nextnode(p))
+        visit(p);
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-9">
+    <h3>4.3.1 树的存储结构 <span class="tag tag-tpl">树的存储结构</span></h3>
+    <p>双亲表示法用数组存结点及其双亲下标（找双亲快）；孩子兄弟表示法存第一个孩子和右兄弟指针，使树与二叉树同构。</p>
+    <pre class="code" data-t="树的存储结构"><code>//---------- 1.双亲表示法（顺序存储）----------
+#define MAX_TREE_SIZE 100               //树中最多结点数
+typedef struct{                         //树的结点定义
+    ElemType data;                      //数据元素
+    int parent;                         //双亲位置域
+}PTNode;
+typedef struct{                         //树的类型定义
+    PTNode nodes[MAX_TREE_SIZE];        //双亲表示法存储
+    int n;                              //结点数
+}PTree;
+
+//---------- 2.孩子兄弟表示法（链式存储）----------
+typedef struct CSNode{
+    ElemType data;                      //数据域
+    struct CSNode *firstchild, *nextsibling;    //第一个孩子和右兄弟指针
+}CSNode, *CSTree;</code></pre>
+  </section>
+  <section class="sec" id="wc-4-10">
+    <h3>4.4.1 并查集的基本实现 <span class="tag tag-tpl">并查集的基本实现</span></h3>
+    <p>并查集用双亲指针数组存储：初始化全为-1；Find沿双亲指针找根，Union把一棵树的根连接到另一棵树的根下面。</p>
+    <pre class="code" data-t="并查集的基本实现"><code>//并查集的结构定义
+#define SIZE 100
+int UFSets[SIZE];                       //集合元素数组（双亲指针数组）
+
+//并查集的初始化
+void Initial(int S[]){
+    for(int i = 0; i &lt; SIZE; i++)       //每个元素自成单元素集合
+        S[i] = -1;
+}
+
+//并查集的Find操作
+int Find(int S[], int x){
+    while(S[x] &gt;= 0)                    //循环寻找x的根
+        x = S[x];
+    return x;                           //根的S[]值小于0
+}
+
+//并查集的Union操作
+void Union(int S[], int Root1, int Root2){
+    if(Root1 == Root2)                  //要求Root1与Root2是不同的集合
+        return;
+    S[Root2] = Root1;                   //将根Root2连接到另一根Root1下面
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-4-11">
+    <h3>4.4.1 并查集的优化 <span class="tag tag-tpl">并查集的优化</span></h3>
+    <p>Union按结点数小树并大树（根的负值绝对值即集合元素数）；Find找根后把沿途结点直接挂到根下（压缩路径）。</p>
+    <pre class="code" data-t="并查集的优化"><code>//改进的Union操作：小树合并到大树
+void Union(int S[], int Root1, int Root2){
+    if(Root1 == Root2)
+        return;                         //同一集合，不需要合并
+    if(S[Root2] &gt; S[Root1]){            //Root2结点数更少（负值更大）
+        S[Root1] += S[Root2];           //累加集合的结点总数
+        S[Root2] = Root1;               //小树合并到大树
+    }else{                              //Root1结点数更少
+        S[Root2] += S[Root1];           //累加集合的结点总数
+        S[Root1] = Root2;               //小树合并到大树
+    }
+}
+
+//改进的Find操作：先找到根结点，再进行压缩路径
+int Find(int S[], int x){
+    int root = x;
+    while(S[root] &gt;= 0)                 //循环找到根
+        root = S[root];
+    while(x != root){                   //压缩路径
+        int t = S[x];                   //t指向x的父结点
+        S[x] = root;                    //x直接挂到根结点下面
+        x = t;
+    }
+    return root;                        //返回根结点编号
+}</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch5"><h3>第5章 图<span class="tag tag-tpl">6 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch5-body">
+  <section class="sec" id="wc-5-1">
+    <h3>5.1.1 邻接矩阵法 <span class="tag tag-tpl">邻接矩阵法</span></h3>
+    <p>用二维数组存边：图的空间复杂度O(|V|^2)，适合稠密图；带权网无边处存INFINITY。</p>
+    <pre class="code" data-t="邻接矩阵法"><code>#define MaxVertexNum 100                    //顶点数目的最大值
+#define INFINITY 2147483647                 //宏定义常量“无穷”（可用int上限值表示）
+typedef char VertexType;                    //顶点的数据类型
+typedef int EdgeType;                       //带权图中边上权值的数据类型
+typedef struct{
+    VertexType Vex[MaxVertexNum];           //顶点表
+    EdgeType Edge[MaxVertexNum][MaxVertexNum]; //邻接矩阵，边表
+    int vexnum, arcnum;                     //图的当前顶点数和弧数
+}MGraph;</code></pre>
+  </section>
+  <section class="sec" id="wc-5-2">
+    <h3>5.1.2 邻接表法 <span class="tag tag-tpl">邻接表法</span></h3>
+    <p>顶点表+每顶点一条边链表：空间O(|V|+|E|)，适合稀疏图；有向图求入度需逆邻接表。</p>
+    <pre class="code" data-t="邻接表法"><code>#define MaxVertexNum 100                    //图中顶点数目的最大值
+//“边/弧”结点
+typedef struct ArcNode{
+    int adjvex;                             //该弧指向的顶点的位置（编号）
+    struct ArcNode *next;                   //指向下一条弧的指针
+    //InfoType info;                        //边权值（存带权图时启用）
+}ArcNode;
+//“顶点”结点
+typedef struct VNode{
+    VertexType data;                        //顶点信息
+    ArcNode *first;                         //指向第一条依附该顶点的边/弧
+}VNode, AdjList[MaxVertexNum];
+//用邻接表存储的图
+typedef struct{
+    AdjList vertices;                       //顶点表（AdjList即VNode数组）
+    int vexnum, arcnum;                     //图的顶点数和边数/弧数
+}ALGraph;</code></pre>
+  </section>
+  <section class="sec" id="wc-5-3">
+    <h3>5.2.1 广度优先搜索 <span class="tag tag-tpl">广度优先搜索（BFS）</span></h3>
+    <p>借助队列按层访问；邻接表O(|V|+|E|)、邻接矩阵O(|V|^2)。BFS可顺便求无权图单源最短路径。</p>
+    <pre class="code" data-t="广度优先搜索（BFS）"><code>bool visited[MAX_VERTEX_NUM];               //访问标记数组（初始都为false）
+void BFSTraverse(Graph G){                  //对图G进行广度优先遍历
+    for(i=0; i&lt;G.vexnum; ++i)
+        visited[i]=FALSE;                   //访问标记数组初始化
+    InitQueue(Q);                           //初始化辅助队列Q
+    for(i=0; i&lt;G.vexnum; ++i)               //从0号顶点开始遍历
+        if(!visited[i])                     //对每个连通分量调用一次BFS
+            BFS(G, i);                      //vi未访问过，从vi开始BFS
+}
+
+//用邻接表实现广度优先搜索
+void BFS(ALGraph G, int i){
+    visit(i);                               //访问初始顶点i
+    visited[i]=TRUE;                        //对i做已访问标记
+    EnQueue(Q, i);                          //顶点i入队
+    while(!IsEmpty(Q)){
+        DeQueue(Q, v);                      //队首顶点v出队
+        for(p=G.vertices[v].firstarc; p; p=p-&gt;nextarc){ //检测v的所有邻接点
+            w=p-&gt;adjvex;
+            if(visited[w]==FALSE){          //w为v的尚未访问的邻接点
+                visit(w);                   //访问w
+                visited[w]=TRUE;            //对w做已访问标记
+                EnQueue(Q, w);              //顶点w入队
+            }
+        }
+    }
+}
+
+//用邻接矩阵实现广度优先搜索
+void BFS(MGraph G, int i){
+    visit(i);                               //访问初始顶点i
+    visited[i]=TRUE;                        //对i做已访问标记
+    EnQueue(Q, i);                          //顶点i入队
+    while(!IsEmpty(Q)){
+        DeQueue(Q, v);                      //队首顶点v出队
+        for(w=0; w&lt;G.vexnum; w++)           //检测v的所有邻接点
+            if(visited[w]==FALSE &amp;&amp; G.Edge[v][w]==1){
+                visit(w);                   //w为v的尚未访问的邻接点，访问w
+                visited[w]=TRUE;            //对w做已访问标记
+                EnQueue(Q, w);              //顶点w入队
+            }
+    }
+}
+
+//BFS算法求解单源最短路径问题
+void BFS_MIN_Distance(Graph G, int u){
+    //d[i]表示从u到i结点的最短路径
+    for(i=0; i&lt;G.vexnum; ++i){
+        d[i]=INF;                           //初始化路径长度为“无穷”
+        path[i]=-1;                         //最短路径从哪个顶点过来（前驱）
+    }
+    d[u]=0;                                 //源点到自己的距离为0
+    visited[u]=TRUE;                        //对u做已访问标记
+    EnQueue(Q, u);                          //源点入队
+    while(!IsEmpty(Q)){                     //BFS算法主过程
+        DeQueue(Q, u);                      //队头元素u出队
+        for(w=FirstNeighbor(G,u); w&gt;=0; w=NextNeighbor(G,u,w))
+            if(!visited[w]){                //w为u的尚未访问的邻接顶点
+                d[w]=d[u]+1;                //路径长度加1（第一次被到达即最短）
+                path[w]=u;                  //最短路径应从u到w
+                visited[w]=TRUE;            //设已访问标记
+                EnQueue(Q, w);              //顶点w入队
+            }//if
+    }//while
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-5-4">
+    <h3>5.2.2 深度优先搜索 <span class="tag tag-tpl">深度优先搜索（DFS）</span></h3>
+    <p>递归深入、走不动再回退；邻接表O(|V|+|E|)、邻接矩阵O(|V|^2)，外层循环保证非连通图也能遍历完。</p>
+    <pre class="code" data-t="深度优先搜索（DFS）"><code>bool visited[MAX_VERTEX_NUM];               //访问标记数组（初始都为false）
+void DFSTraverse(Graph G){                  //对图G进行深度优先遍历
+    for(v=0; v&lt;G.vexnum; ++v)
+        visited[v]=FALSE;                   //初始化已访问标记数据
+    for(v=0; v&lt;G.vexnum; ++v)               //本代码中是从v=0开始遍历
+        if(!visited[v])                     //处理非连通图：对每个连通分量调用一次
+            DFS(G, v);
+}
+
+//用邻接表实现深度优先搜索
+void DFS(ALGraph G, int i){
+    visit(i);                               //访问初始顶点i
+    visited[i]=TRUE;                        //对i做已访问标记
+    for(p=G.vertices[i].firstarc; p; p=p-&gt;nextarc){ //检测i的所有邻接点
+        j=p-&gt;adjvex;
+        if(visited[j]==FALSE)               //j为i的尚未访问的邻接点
+            DFS(G, j);                      //递归访问j
+    }
+}
+
+//用邻接矩阵实现深度优先搜索
+void DFS(MGraph G, int i){
+    visit(i);                               //访问初始顶点i
+    visited[i]=TRUE;                        //对i做已访问标记
+    for(j=0; j&lt;G.vexnum; j++){              //检测i的所有邻接点
+        if(visited[j]==FALSE &amp;&amp; G.Edge[i][j]==1)
+            DFS(G, j);                      //j为i的尚未访问的邻接点，递归访问j
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-5-5">
+    <h3>5.3.1 最小生成树 <span class="tag tag-tpl">最小生成树（Prim/Kruskal）</span></h3>
+    <p>Prim逐点扩散O(|V|^2)适合稠密图；Kruskal逐边挑选+并查集判环O(ElogE)适合稀疏图。</p>
+    <pre class="code" data-t="最小生成树（Prim/Kruskal）"><code>//最小生成树的通用算法框架
+//GENERIC_MST(G){
+//    T=NULL;                             //初始化空树，T存放已选的边
+//    while T未形成一棵生成树;             //树中不含全部顶点时循环
+//        找到一条最小代价边(u,v)，且加入T后不会产生回路;
+//        T=T∪{(u,v)};                    //将此边归入树
+//}
+
+//Prim算法：从顶点v0出发构造连通网G的最小生成树（邻接矩阵存储，O(|V|^2)）
+#define INF 2147483647                      //用int上限表示“无穷”（无边）
+void Prim(MGraph G, int v0){
+    bool isJoin[MaxVertexNum];              //标记各顶点是否已加入树
+    int lowCost[MaxVertexNum];              //各顶点加入树的最低代价
+    for(int i=0; i&lt;G.vexnum; i++){          //初始化两个辅助数组
+        isJoin[i]=false;
+        lowCost[i]=INF;
+    }
+    lowCost[v0]=0;                          //出发点代价为0，第一轮必选中它
+    for(int i=0; i&lt;G.vexnum; i++){          //共n轮，每轮纳入一个新顶点
+        int k=-1, min=INF;
+        for(int j=0; j&lt;G.vexnum; j++)       //①找未入树且lowCost最低的顶点k
+            if(!isJoin[j] &amp;&amp; lowCost[j]&lt;min){
+                min=lowCost[j];
+                k=j;
+            }
+        isJoin[k]=true;                     //将顶点k纳入生成树
+        for(int j=0; j&lt;G.vexnum; j++)       //②用k刷新各未入树顶点的lowCost值
+            if(!isJoin[j] &amp;&amp; G.Edge[k][j]&lt;lowCost[j])
+                lowCost[j]=G.Edge[k][j];
+    }
+}
+
+//Kruskal算法：边按权值递增依次选边，用并查集判断是否构成回路
+typedef struct{ int u, v, w; } Edge;        //边：两端点编号+权值
+int fa[MaxVertexNum];                       //并查集父指针
+int Find(int x){                            //找所在连通分量的根
+    while(fa[x]!=x) x=fa[x];
+    return x;
+}
+void Kruskal(Edge e[], int m, int n){       //m条边，n个顶点
+    for(int i=0; i&lt;m-1; i++)                //①将边数组按权值递增排序
+        for(int j=0; j&lt;m-1-i; j++)
+            if(e[j].w&gt;e[j+1].w){
+                Edge t=e[j]; e[j]=e[j+1]; e[j+1]=t;
+            }
+    for(int i=0; i&lt;n; i++) fa[i]=i;         //②初始化：每个顶点自成一个连通分量
+    int cnt=0;                              //已入选边数
+    for(int i=0; i&lt;m &amp;&amp; cnt&lt;n-1; i++){      //③依次考察当前权值最小的边
+        int ru=Find(e[i].u), rv=Find(e[i].v);
+        if(ru!=rv){                         //两端点属于不同连通分量，不会成环
+            fa[ru]=rv;                      //合并两个连通分量
+            cnt++;                          //选入此边，选出n-1条即得最小生成树
+        }
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-5-6">
+    <h3>5.3.2 拓扑排序 <span class="tag tag-tpl">拓扑排序</span></h3>
+    <p>重复输出入度为0的顶点并删其出边（用栈存0入度顶点）；输出顶点数<|V|说明有回路。O(|V|+|E|)。</p>
+    <pre class="code" data-t="拓扑排序"><code>bool TopologicalSort(Graph G){              //G是以邻接表存储的有向图
+    InitStack(S);                           //初始化栈，存储入度为0的顶点
+    for(int i=0; i&lt;G.vexnum; i++)
+        if(indegree[i]==0)
+            Push(S, i);                     //将所有入度为0的顶点进栈
+    int count=0;                            //计数，记录当前已经输出的顶点数
+    while(!IsEmpty(S)){                     //栈不空，则存在入度为0的顶点
+        Pop(S, i);                          //栈顶元素出栈
+        print[count++]=i;                   //输出顶点i，记录拓扑序列
+        for(p=G.vertices[i].firstarc; p; p=p-&gt;nextarc){
+            //将所有i指向的顶点的入度减1，并将入度减为0的顶点压入栈S
+            v=p-&gt;adjvex;
+            if(!(--indegree[v]))
+                Push(S, v);                 //入度减为0，则入栈
+        }
+    }//while
+    if(count &lt; G.vexnum)
+        return false;                       //排序失败：有向图中有回路
+    else
+        return true;                        //拓扑排序成功
+}
+//每个顶点进栈出栈一次、每条边被“删除”一次：O(|V|+|E|)</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch6"><h3>第6章 查找<span class="tag tag-tpl">2 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch6-body">
+  <section class="sec" id="wc-6-1">
+    <h3>6.1.1 顺序查找 <span class="tag tag-tpl">顺序查找</span></h3>
+    <p>0号单元存“哨兵”，从后往前找无需判断越界；查找成功返回下标，失败返回0。</p>
+    <pre class="code" data-t="顺序查找"><code>typedef struct{                 //查找表的数据结构（顺序表）
+    ElemType *elem;             //元素存储空间基址，建表时按实际长度分配
+    int TableLen;               //表的长度
+}SSTable;
+
+//顺序查找：数据从下标1开始存，0号位置存“哨兵”
+int Search_Seq(SSTable ST, ElemType key){
+    int i;
+    ST.elem[0] = key;                       //“哨兵”——保证循环一定能终止
+    for(i = ST.TableLen; ST.elem[i] != key; --i)  //从后往前找，无需判断越界
+        ;
+    return i;                               //查找成功返回元素下标；失败返回0
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-6-2">
+    <h3>6.1.2 折半查找 <span class="tag tag-tpl">折半查找</span></h3>
+    <p>只适用于有序顺序表；mid=(low+high)/2向下取整，失败返回-1。判定树层数=⌈log2(n+1)⌉。</p>
+    <pre class="code" data-t="折半查找"><code>//折半查找：查找成功返回元素下标，失败返回-1
+int Binary_Search(SSTable L, ElemType key){
+    int low = 0, high = L.TableLen - 1, mid;
+    while(low &lt;= high){                     //low&gt;high时查找失败
+        mid = (low + high) / 2;             //取中间位置（向下取整）
+        if(L.elem[mid] == key)
+            return mid;                     //查找成功则返回所在位置
+        else if(L.elem[mid] &gt; key)
+            high = mid - 1;                 //继续在前半部分查找
+        else
+            low = mid + 1;                  //继续在后半部分查找
+    }
+    return -1;                              //查找失败，返回-1
+}</code></pre>
+  </section>
+</div>
+  <div class="chap-head" id="wc-ch7"><h3>第7章 排序<span class="tag tag-tpl">8 段代码</span></h3><p>本节代码为《王道数据结构》标准实现，可直接用于期末笔试与408答题；点右上角「复制」即可取用。</p></div>
+  <div class="sec" id="wc-ch7-body">
+  <section class="sec" id="wc-7-1">
+    <h3>7.1.1 直接插入排序 <span class="tag tag-tpl">直接插入排序</span></h3>
+    <p>带哨兵A[0]：依次把A[2]~A[n]插入前面已排序序列。最好O(n)，最坏/平均O(n^2)，稳定。</p>
+    <pre class="code" data-t="直接插入排序"><code>//直接插入排序（带哨兵）
+void InsertSort(int A[],int n){
+    int i,j;
+    for(i=2;i&lt;=n;i++)               //依次将A[2]~A[n]插入到前面已排序序列
+        if(A[i]&lt;A[i-1]){            //若A[i]关键码小于其前驱，将A[i]插入有序表
+            A[0]=A[i];              //复制为哨兵，A[0]不存放元素
+            for(j=i-1;A[0]&lt;A[j];--j) //从后往前查找待插入位置
+                A[j+1]=A[j];        //向后挪位
+            A[j+1]=A[0];            //复制到插入位置
+        }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-2">
+    <h3>7.1.2 折半插入排序 <span class="tag tag-tpl">折半插入排序</span></h3>
+    <p>用折半查找找插入位置，减少比较次数；移动次数不变，仍O(n^2)，稳定。</p>
+    <pre class="code" data-t="折半插入排序"><code>//折半插入排序
+void InsertSort(int A[],int n){
+    int i,j,low,high,mid;
+    for(i=2;i&lt;=n;i++){              //依次将A[2]~A[n]插入前面的已排序序列
+        A[0]=A[i];                  //将A[i]暂存到A[0]
+        low=1; high=i-1;            //设置折半查找的范围
+        while(low&lt;=high){           //折半查找（默认递增有序）
+            mid=(low+high)/2;       //取中间点
+            if(A[mid]&gt;A[0]) high=mid-1; //查找左半子表
+            else low=mid+1;         //查找右半子表（相等也右插，保证稳定性）
+        }
+        for(j=i-1;j&gt;=high+1;--j)    //统一后移元素，空出插入位置
+            A[j+1]=A[j];
+        A[high+1]=A[0];             //插入操作
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-3">
+    <h3>7.1.3 希尔排序 <span class="tag tag-tpl">希尔排序</span></h3>
+    <p>按增量dk分组做直接插入，增量逐趟减半到1；A[0]只是暂存单元不是哨兵。不稳定。</p>
+    <pre class="code" data-t="希尔排序"><code>//希尔排序
+void ShellSort(int A[],int n){
+    int d,i,j;
+    //A[0]只是暂存单元，不是哨兵，当j&lt;=0时，插入位置已到
+    for(d=n/2; d&gt;=1; d=d/2)         //步长变化（每次缩小一半）
+        for(i=d+1; i&lt;=n; ++i)       //对各子表做直接插入
+            if(A[i]&lt;A[i-d]){        //需将A[i]插入有序增量子表
+                A[0]=A[i];          //暂存在A[0]
+                for(j=i-d; j&gt;0 &amp;&amp; A[0]&lt;A[j]; j-=d)
+                    A[j+d]=A[j];    //记录后移，查找插入的位置
+                A[j+d]=A[0];        //插入
+            }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-4">
+    <h3>7.2.1 冒泡排序 <span class="tag tag-tpl">冒泡排序</span></h3>
+    <p>从后往前两两比较逆序即交换，小元素上浮；flag判断一趟无交换则提前结束。O(n^2)，稳定。</p>
+    <pre class="code" data-t="冒泡排序"><code>//交换
+void swap(int &amp;a,int &amp;b){
+    int temp=a;
+    a=b;
+    b=temp;
+}
+//冒泡排序
+void BubbleSort(int A[],int n){
+    for(int i=0; i&lt;n-1; i++){
+        bool flag=false;            //表示本趟冒泡是否发生交换的标志
+        for(int j=n-1; j&gt;i; j--)    //一趟冒泡过程（从后往前）
+            if(A[j-1]&gt;A[j]){        //若为逆序
+                swap(A[j-1],A[j]);  //交换
+                flag=true;
+            }
+        if(flag==false)
+            return;                 //本趟遍历后没有发生交换，说明表已经有序
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-5">
+    <h3>7.2.2 快速排序 <span class="tag tag-tpl">快速排序</span></h3>
+    <p>Partition以首元素为枢轴划分左右子表，再递归；平均O(nlog2n)，空间O(log2n)，不稳定。</p>
+    <pre class="code" data-t="快速排序"><code>//用第一个元素将待排序序列划分成左右两个部分
+int Partition(int A[],int low,int high){
+    int pivot=A[low];               //第一个元素作为枢轴
+    while(low&lt;high){                //用low、high搜索枢轴的最终位置
+        while(low&lt;high &amp;&amp; A[high]&gt;=pivot) --high;
+        A[low]=A[high];             //比枢轴小的元素移动到左端
+        while(low&lt;high &amp;&amp; A[low]&lt;=pivot) ++low;
+        A[high]=A[low];             //比枢轴大的元素移动到右端
+    }
+    A[low]=pivot;                   //枢轴元素存放到最终位置
+    return low;                     //返回存放枢轴的最终位置
+}
+//快速排序
+void QuickSort(int A[],int low,int high){
+    if(low&lt;high){                   //递归跳出的条件
+        int pivotpos=Partition(A,low,high); //划分
+        QuickSort(A,low,pivotpos-1);        //划分左子表
+        QuickSort(A,pivotpos+1,high);       //划分右子表
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-6">
+    <h3>7.3.1 简单选择排序 <span class="tag tag-tpl">简单选择排序</span></h3>
+    <p>每趟从无序区选最小元素与区首交换；比较次数恒为n(n-1)/2，不稳定。</p>
+    <pre class="code" data-t="简单选择排序"><code>//简单选择排序
+void SelectSort(int A[],int n){
+    for(int i=0; i&lt;n-1; i++){       //一共进行n-1趟
+        int min=i;                  //记录最小元素位置
+        for(int j=i+1; j&lt;n; j++)    //在A[i..n-1]中选择最小的元素
+            if(A[j]&lt;A[min]) min=j;  //更新最小元素位置
+        if(min!=i) swap(A[i],A[min]); //封装的swap()函数共移动元素3次
+    }
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-7">
+    <h3>7.3.2 堆排序 <span class="tag tag-tpl">堆排序</span></h3>
+    <p>建立大根堆后每趟堆顶与堆底交换再向下调整；建堆O(n)，排序O(nlog2n)，不稳定。附向上调整AdjustUp。</p>
+    <pre class="code" data-t="堆排序"><code>//建立大根堆
+void BuildMaxHeap(int A[],int len){
+    for(int i=len/2; i&gt;0; i--)      //从i=⌊n/2⌋到1，反复调整堆
+        AdjustDown(A,i,len);
+}
+//函数AdjustDown将元素k向下进行调整
+void AdjustDown(int A[],int k,int len){
+    A[0]=A[k];                      //A[0]暂存
+    for(int i=2*k; i&lt;=len; i*=2){   //沿key较大的子结点向下筛选
+        if(i&lt;len &amp;&amp; A[i]&lt;A[i+1])
+            i++;                    //取key较大的子结点的下标
+        if(A[0]&gt;=A[i]) break;       //筛选结束
+        else{
+            A[k]=A[i];              //将A[i]调整到双亲结点上
+            k=i;                    //修改k值，以便继续向下筛选
+        }
+    }
+    A[k]=A[0];                      //被筛选结点的值放入最终位置
+}
+//堆排序的完整逻辑
+void HeapSort(int A[],int len){
+    BuildMaxHeap(A,len);            //初始建堆
+    for(int i=len; i&gt;1; i--){       //n-1趟的交换和建堆过程
+        swap(A[i],A[1]);            //输出堆顶的元素（和堆底元素交换）
+        AdjustDown(A,1,i-1);        //整理，把剩余的i-1个元素整理成堆
+    }
+}
+//向上调整堆的算法（大根堆中插入新元素时，从插入位置k向上调整）
+void AdjustUp(int A[],int k){
+    A[0]=A[k];                      //A[0]暂存
+    int i=k/2;                      //若结点值大于双亲结点，则将双亲结点下调，并继续向上比较
+    while(i&gt;0 &amp;&amp; A[i]&lt;A[0]){        //双亲结点值小于新结点值
+        A[k]=A[i];                  //双亲结点下调
+        k=i;
+        i=k/2;                      //继续向上比较
+    }
+    A[k]=A[0];                      //复制到最终位置
+}</code></pre>
+  </section>
+  <section class="sec" id="wc-7-8">
+    <h3>7.4 归并排序 <span class="tag tag-tpl">归并排序</span></h3>
+    <p>二路归并：Merge将两个有序段合并（取等号保证稳定），MergeSort二分递归。O(nlog2n)，稳定，需O(n)辅助数组。</p>
+    <pre class="code" data-t="归并排序"><code>int *B=(int*)malloc(n*sizeof(int));  //辅助数组B
+//A[low..mid]和A[mid+1..high]各自有序，将两个部分归并
+void Merge(int A[],int low,int mid,int high){
+    int i,j,k;
+    for(k=low; k&lt;=high; k++)
+        B[k]=A[k];                  //将A中所有元素复制到B中
+    for(i=low, j=mid+1, k=i; i&lt;=mid &amp;&amp; j&lt;=high; k++){
+        if(B[i]&lt;=B[j])
+            A[k]=B[i++];            //将较小值复制到A中（取=保证稳定）
+        else
+            A[k]=B[j++];
+    }
+    while(i&lt;=mid)  A[k++]=B[i++];   //若第一个表未检测完，复制
+    while(j&lt;=high) A[k++]=B[j++];   //若第二个表未检测完，复制
+}
+void MergeSort(int A[],int low,int high){
+    if(low&lt;high){
+        int mid=(low+high)/2;       //从中间划分两个子序列
+        MergeSort(A,low,mid);       //对左侧子序列进行递归排序
+        MergeSort(A,mid+1,high);    //对右侧子序列进行递归排序
+        Merge(A,low,mid,high);      //归并
+    }
+}</code></pre>
+  </section>
+</div>
+</div>
+
+</main>
+<div class="thu-watermark">学</div>
+<footer>📖 数据结构自学网站 📖<br>循序渐进 · 学练结合 · 温故知新 —— 理论筑基，模板在手，真题实战 · 供课程学习 / 期末复习 / 408备考 · 代码遵循C++11 · 祝学业有成 🎓<br><span style="font-size:11px;opacity:.75">清爽自习主题 · <a href="index.html" style="color:inherit">返回首页</a></span></footer>
+
+<button id="backtop" title="回到顶部">↑</button>
+<script src="assets/nav.js"></script>
+<script src="assets/checkin.js"></script>
+<script>window.PAGE = { page: "code", search: "local" };</script>
+<script src="assets/app.js"></script>
+</body>
+</html>
