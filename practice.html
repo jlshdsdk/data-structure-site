@@ -69,7 +69,7 @@ int main() {
     return 0;
 }</code></pre>
     <div class="warn"><b>易错点：</b>①unique必须先排序；②erase的区间是[unique返回值, end)；③size()是无符号，与int比较要强转防告警。</div>
-    <p class="mapline">📌 考点映射：<a href="stl.html#s-vector">1.1 vector</a> · <a href="stl.html#s-sort">1.10 sort</a> · <a href="stl.html#s-unique">1.15 unique</a> ｜ LC217 存在重复元素（第三部分1.7例1）</p>
+    <p class="mapline">📌 考点映射：<a href="stl.html#s-vector">1.1 vector</a> · <a href="stl.html#s-sort">1.10 sort</a> · <a href="stl.html#s-unique">1.15 unique</a> ｜ LC217 存在重复元素（STL详解1.7例1）</p>
   </section>
 
   <section class="sec" id="e2">
@@ -361,7 +361,7 @@ int main() {
     cout &lt;&lt; "WPL = " &lt;&lt; wpl &lt;&lt; endl;
     return 0;
 }</code></pre>
-    <div class="warn"><b>易错点：</b>①"求最大k个用小根堆"——方向最易反；②WPL=非叶结点权值和，一行累加；③n=1时哈夫曼树退化，编码约定为"0"；④笔试版（静态数组两次扫最小）见第四部分3.5，两者必须都会。</div>
+    <div class="warn"><b>易错点：</b>①"求最大k个用小根堆"——方向最易反；②WPL=非叶结点权值和，一行累加；③n=1时哈夫曼树退化，编码约定为"0"；④笔试版（静态数组两次扫最小）见算法模板3.5，两者必须都会。</div>
     <p class="mapline">📌 考点映射：<a href="stl.html#s-adapt">1.8 priority_queue堆写法</a> · <a href="algorithms.html#a-huffman">3.5 哈夫曼树</a> ｜ <a href="leetcode.html#lc215">LC215 第K个最大</a> · <a href="leetcode.html#lc347">LC347 前K个高频</a></p>
   </section>
 
@@ -523,7 +523,7 @@ int main() {
     cout &lt;&lt; trap(h) &lt;&lt; endl;                 // 输入 0,1,0,2,1,0,1,3,2,1,2,1 → 6
     return 0;
 }</code></pre>
-    <div class="warn"><b>易错点：</b>①单调队列"先过期再取答案"顺序铁律；②接雨水弹栈后必须判栈空（无左边界）；③高度是 min(左右边界)−底，宽度按横向层算；④LC42也可用双指针O(1)空间解（见第七部分）。</div>
+    <div class="warn"><b>易错点：</b>①单调队列"先过期再取答案"顺序铁律；②接雨水弹栈后必须判栈空（无左边界）；③高度是 min(左右边界)−底，宽度按横向层算；④LC42也可用双指针O(1)空间解（见力扣Hot100页）。</div>
     <p class="mapline">📌 考点映射：<a href="algorithms.html#a-monoqueue">2.4 单调队列</a> · <a href="algorithms.html#a-monostack">2.3 单调栈</a> ｜ <a href="leetcode.html#lc239">LC239 滑动窗口最大值</a> · <a href="leetcode.html#lc42">LC42 接雨水</a></p>
   </section>
 
@@ -602,7 +602,7 @@ int main() {
     if (cnt &lt; n) cout &lt;&lt; "\nimpossible" &lt;&lt; endl;   // 输出不全→有环
     return 0;
 }</code></pre>
-    <div class="warn"><b>易错点：</b>①堆优化Dijkstra用"懒删除"：同一顶点可能多次入堆，出堆时判done跳过；②dist用long long防溢出；③拓扑排序输出数&lt;n⇔有环——这是判环标准方法；④笔试版（邻接矩阵O(V²)）见第四部分4.4/4.3。</div>
+    <div class="warn"><b>易错点：</b>①堆优化Dijkstra用"懒删除"：同一顶点可能多次入堆，出堆时判done跳过；②dist用long long防溢出；③拓扑排序输出数&lt;n⇔有环——这是判环标准方法；④笔试版（邻接矩阵O(V²)）见算法模板4.4/4.3。</div>
     <p class="mapline">📌 考点映射：<a href="algorithms.html#a-dijkstra">4.4 Dijkstra</a> · <a href="algorithms.html#a-topo">4.3 拓扑排序</a> · <a href="stl.html#s-adapt">1.8 小根堆写法</a> ｜ <a href="leetcode.html#lc207">LC207 课程表</a></p>
   </section>
 

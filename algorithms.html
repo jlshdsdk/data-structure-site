@@ -203,7 +203,7 @@ void Reverse(LinkList &amp;L) {                 // 就地逆置（头插重建�
     r-&gt;next = pa ? pa : pb;                 // 整段接管剩余
     free(Lb);
 }</code></pre>
-        <p>O(m+n)/O(1)，即归并排序Merge的链表版（对应LC21，第七部分）。</p>
+        <p>O(m+n)/O(1)，即归并排序Merge的链表版（对应LC21，力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
@@ -245,7 +245,7 @@ int Partition(int a[], int low, int high) {
     return low;
 }</code></pre>
     <div class="cx"><span><b>三种模板</b> 时间O(n)</span><span><b>空间</b> O(1)</span></div>
-    <div class="note"><b>STL替代标注：</b>双指针没有STL可替代——是必考思想本身；std::remove思想同模板①。对应真题：LC283移动零、LC11盛水、LC15三数之和（第七部分）。</div>
+    <div class="note"><b>STL替代标注：</b>双指针没有STL可替代——是必考思想本身；std::remove思想同模板①。对应真题：LC283移动零、LC11盛水、LC15三数之和（力扣Hot100页）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>有序数组{1,3,5,7,9}找和为10的两个数。</p>
@@ -264,7 +264,7 @@ int Partition(int a[], int low, int high) {
         if (a[i] != a[k]) a[++k] = a[i];
     return k + 1;
 }</code></pre>
-        <p>利用有序性：i扫到与保留区末尾不同才保留（对照unique的思想，第六部分·实战e1）。</p>
+        <p>利用有序性：i扫到与保留区末尾不同才保留（对照unique的思想，实战e1）。</p>
       </div></details>
     </div>
   </section>
@@ -305,7 +305,7 @@ LNode* FindKthFromEnd(LinkList L, int k) {
     return slow;
 }</code></pre>
     <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(1)</span></div>
-    <div class="note"><b>STL替代标注：</b>无STL可替代，指针思想本身即考点。对应真题：LC141/142/19/234（第七部分链表模块）。</div>
+    <div class="note"><b>STL替代标注：</b>无STL可替代，指针思想本身即考点。对应真题：LC141/142/19/234（力扣Hot100页链表模块）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>1→2→3→4→5，Mid返回哪个结点？若是1→2→3→4呢？</p>
@@ -318,7 +318,7 @@ LNode* FindKthFromEnd(LinkList L, int k) {
       <p>判断带头结点单链表是否回文，要求O(n)、O(1)。</p>
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
         <p><b>三步：</b>①快慢指针找中点（1.4模板①）；②就地逆置后半段（1.2 Reverse）；③前半段与逆置段逐结点比较，最后（可选）再逆回去还原。</p>
-        <p>O(n)/O(1)——即LC234标准解法（第七部分），三问合一的典型408大题。</p>
+        <p>O(n)/O(1)——即LC234标准解法（力扣Hot100页），三问合一的典型408大题。</p>
       </div></details>
     </div>
   </section>
@@ -444,7 +444,7 @@ bool DeQueue(SqQueue &amp;Q, int &amp;x) {
     while (top &gt;= 0) res[stk[top--]] = -1;  // 无更大值
 }</code></pre>
     <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(n)</span></div>
-    <div class="note"><b>STL替代标注：</b>笔试手写数组栈；机试 <code class="inl">stack&lt;int&gt;</code> 或 <code class="inl">deque</code>。对应真题：LC739每日温度、LC42接雨水（第六部分·实战e7、第七部分）。</div>
+    <div class="note"><b>STL替代标注：</b>笔试手写数组栈；机试 <code class="inl">stack&lt;int&gt;</code> 或 <code class="inl">deque</code>。对应真题：LC739每日温度、LC42接雨水（实战e7、力扣Hot100页）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>a={2,1,2,4,3}，求每个元素右侧首个更大值。</p>
@@ -456,7 +456,7 @@ bool DeQueue(SqQueue &amp;Q, int &amp;x) {
       <div class="ex-t">【例2·408风格应用题】</div>
       <p>温度数组求"再等几天升温"，无则0。a={73,74,75,71,69,72,76,73}。</p>
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
-        <p>把清算语句改为 <code class="inl">res[stk[top--]] = i - stk[top]</code>（记录下标差），res初始全0：<b>1 1 4 2 1 1 0 0</b>。即LC739（第七部分）。</p>
+        <p>把清算语句改为 <code class="inl">res[stk[top--]] = i - stk[top]</code>（记录下标差），res初始全0：<b>1 1 4 2 1 1 0 0</b>。即LC739（力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
@@ -476,7 +476,7 @@ bool DeQueue(SqQueue &amp;Q, int &amp;x) {
     }
 }</code></pre>
     <div class="cx"><span><b>时间</b> O(n)</span><span><b>空间</b> O(k)</span></div>
-    <div class="note"><b>STL替代标注：</b>机试 <code class="inl">deque&lt;int&gt;</code> 三行对应①②③（第六部分·实战e7）；笔试手写数组版更稳。对应真题：LC239（第七部分，困难）。</div>
+    <div class="note"><b>STL替代标注：</b>机试 <code class="inl">deque&lt;int&gt;</code> 三行对应①②③（实战e7）；笔试手写数组版更稳。对应真题：LC239（力扣Hot100页，困难）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>a={1,3,-1,-3,5,3,6,7}，k=3，窗口最大值序列？</p>
@@ -538,7 +538,7 @@ void PostOrder(BiTree T) {             // 后序：左右根（自底向上汇�
     if (!A || !B) return false;                 // 一空一非空：不相似
     return similar(A-&gt;lchild, B-&gt;lchild) &amp;&amp; similar(A-&gt;rchild, B-&gt;rchild);
 }</code></pre>
-        <p>双树同步递归是408大题常客（对应LC101对称二叉树思想，第七部分）。</p>
+        <p>双树同步递归是408大题常客（对应LC101对称二叉树思想，力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
@@ -599,7 +599,7 @@ void PostOrder(BiTree T) {             // 后序：左右根（自底向上汇�
     }
 }</code></pre>
     <div class="cx"><span><b>非递归遍历</b> O(n)</span><span><b>栈/队列空间</b> O(n)</span></div>
-    <div class="note"><b>STL替代标注：</b>笔试手写栈/队列；机试 <code class="inl">stack/queue</code>（第六部分·实战e3、LC102）。<b>高频易错：</b>后序last标记防重复进右子树；层序"入队时"不必标记（树无环）但图必须标记。</div>
+    <div class="note"><b>STL替代标注：</b>笔试手写栈/队列；机试 <code class="inl">stack/queue</code>（实战e3、LC102）。<b>高频易错：</b>后序last标记防重复进右子树；层序"入队时"不必标记（树无环）但图必须标记。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>中序非递归中，结点被访问的时机是？（入栈时/弹栈时/转右时）</p>
@@ -626,7 +626,7 @@ void PostOrder(BiTree T) {             // 后序：左右根（自底向上汇�
     }
     return best;
 }</code></pre>
-        <p>"rear-front=当前层结点数"是分层技巧核心（对照LC102/199，第七部分）。</p>
+        <p>"rear-front=当前层结点数"是分层技巧核心（对照LC102/199，力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
@@ -779,7 +779,7 @@ void CreateHuffman(int w[], int n, HTNode ht[]) {
         ht[i].weight = ht[s1].weight + ht[s2].weight;
     }
 }</code></pre>
-    <div class="cx"><span><b>构造</b> O(n²)（堆优化O(nlogn)，机试版见第六部分·实战e4）</span><span><b>空间</b> O(n)</span></div>
+    <div class="cx"><span><b>构造</b> O(n²)（堆优化O(nlogn)，机试版见实战e4）</span><span><b>空间</b> O(n)</span></div>
     <div class="note"><b>STL替代标注：</b>笔试手写；机试 <code class="inl">priority_queue</code> 小根堆一行合并。<b>高频易错：</b>①形态不唯一但<b>WPL唯一</b>；②编码左0右1，是<b>前缀码</b>；③WPL=Σ权×路径长=非叶结点权和（两个公式互验）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础计算题】</div>
@@ -837,7 +837,7 @@ void Union2(int x, int y) {                  // 按大小合并
 for (int i = 0; i &lt; m; i++) Union2(e[i][0], e[i][1]);
 int cnt = 0;
 for (int i = 0; i &lt; n; i++) if (fa[i] == i) cnt++;   // 根的个数=块数</code></pre>
-        <p>近似O(n+m)；DFS/BFS解法需显式建图，并查集可"边读边并"（对应LC547，第七部分）。</p>
+        <p>近似O(n+m)；DFS/BFS解法需显式建图，并查集可"边读边并"（对应LC547，力扣Hot100页）。</p>
       </div></details>
     </div>
     <div class="ex">
@@ -882,7 +882,7 @@ typedef struct {
       <tr><td>BFS/DFS</td><td>O(V²)</td><td>O(V+E)</td></tr>
       <tr><td>适合</td><td>稠密图</td><td>稀疏图</td></tr>
     </table></div>
-    <div class="note"><b>STL替代标注：</b>笔试写上述标准定义；机试 <code class="inl">vector&lt;vector&lt;int&gt;&gt; g(n+1)</code> 顶替邻接表（第六部分·实战e8）。<b>高频易错：</b>无向图邻接表边结点<b>2e个</b>；矩阵第i行非零个数=顶点i出度；十字链表（有向）、邻接多重表（无向）只考概念。</div>
+    <div class="note"><b>STL替代标注：</b>笔试写上述标准定义；机试 <code class="inl">vector&lt;vector&lt;int&gt;&gt; g(n+1)</code> 顶替邻接表（实战e8）。<b>高频易错：</b>无向图邻接表边结点<b>2e个</b>；矩阵第i行非零个数=顶点i出度；十字链表（有向）、邻接多重表（无向）只考概念。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>n顶点e条边的无向图邻接表：求顶点u度数的复杂度？边结点总数？</p>
@@ -950,7 +950,7 @@ void BFS_Shortest(ALGraph G, int src, int d[]) {   // 无权单源最短路
     }
 }</code></pre>
     <div class="cx"><span><b>邻接表</b> O(V+E)</span><span><b>邻接矩阵</b> O(V²)</span><span><b>空间</b> O(V)</span></div>
-    <div class="note"><b>STL替代标注：</b>笔试手写循环队列+visited数组；机试 <code class="inl">queue+vector</code>（第七部分LC200/994/695）。<b>高频易错：</b>BFS在<b>入队时</b>标记（不是出队时）；BFS树"矮胖"、DFS树"瘦高"；遍历序列不唯一（邻接点次序）。</div>
+    <div class="note"><b>STL替代标注：</b>笔试手写循环队列+visited数组；机试 <code class="inl">queue+vector</code>（力扣Hot100页LC200/994/695）。<b>高频易错：</b>BFS在<b>入队时</b>标记（不是出队时）；BFS树"矮胖"、DFS树"瘦高"；遍历序列不唯一（邻接点次序）。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础题】</div>
       <p>为什么BFS能求无权图最短路径？带权图行吗？</p>
@@ -1006,7 +1006,7 @@ void BFS_Shortest(ALGraph G, int src, int d[]) {   // 无权单源最短路
     return cnt &gt;= G.vexnum;                  // 输出不全→有环
 }</code></pre>
     <div class="cx"><span><b>邻接表</b> O(V+E)</span><span><b>邻接矩阵</b> O(V²)</span></div>
-    <div class="note"><b>STL替代标注：</b>笔试手写；机试 <code class="inl">vector邻接表+queue/stack</code>（第六部分·实战e8、LC207）。<b>高频易错：</b>①拓扑序列<b>一般不唯一</b>，唯一⇔每步0入度顶点恰一个；②DFS的<b>逆后序</b>也是拓扑序；③AOV网顶点=活动、边=先后关系。</div>
+    <div class="note"><b>STL替代标注：</b>笔试手写；机试 <code class="inl">vector邻接表+queue/stack</code>（实战e8、LC207）。<b>高频易错：</b>①拓扑序列<b>一般不唯一</b>，唯一⇔每步0入度顶点恰一个；②DFS的<b>逆后序</b>也是拓扑序；③AOV网顶点=活动、边=先后关系。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础选择题】</div>
       <p>拓扑排序得到v1 v2 v3 v4，一定正确的是：A.强连通 B.无环 C.v4到v1有路径 D.边数3</p>
@@ -1051,7 +1051,7 @@ void Dijkstra(MGraph G, int v0) {
             }
     }
 }</code></pre>
-    <div class="cx"><span><b>教材版</b> O(V²)</span><span><b>堆优化</b> O((V+E)logV)（机试，第六部分·实战e8）</span><span><b>空间</b> O(V)</span></div>
+    <div class="cx"><span><b>教材版</b> O(V²)</span><span><b>堆优化</b> O((V+E)logV)（机试，实战e8）</span><span><b>空间</b> O(V)</span></div>
     <div class="note"><b>STL替代标注：</b>笔试按教材版手写并画表模拟；机试 <code class="inl">priority_queue+vector邻接表</code>。<b>高频易错：</b>①<b>不能处理负权边</b>（选择题高频）；②手工模拟：每轮确认一个顶点、更新一行；③与Prim代码极像——Prim松弛用 Edge[u][j]，Dijkstra用 dist[u]+Edge[u][j]。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础选择题】</div>
@@ -1634,7 +1634,7 @@ void MergeSort(int a[], int low, int high) {
     </div>
     <div class="ex">
       <div class="ex-t">【例2·408真题风格题】</div>
-      <p>链表归并排序如何找中点？（对应LC148，第七部分）</p>
+      <p>链表归并排序如何找中点？（对应LC148，力扣Hot100页）</p>
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
         <p><b>快慢指针找中点→断开→递归排序两半→有序链表合并（1.2的MergeList）。</b>数组版用mid下标、链表版用快慢指针——两者Merge逻辑完全同构。</p>
       </div></details>

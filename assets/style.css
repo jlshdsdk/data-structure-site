@@ -361,3 +361,13 @@ html.night footer{color:#8a7a80;border-top-color:#322328}
 .final-ans{margin-top:8px;padding:8px 12px;background:#eef5fe;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;font-size:14px}
 html.night .final-ans{background:#251c1e;border-left-color:#3b82f6;color:#c9bec7}
 html.night .prob-desc .opt{color:#c9bec7}
+
+/* ---------- 润色：面包屑收紧 / 徽章布局 ---------- */
+.hero.slim{padding:12px 22px;margin-bottom:14px}
+.hero.slim .crumb{font-size:13px;color:#64748b;margin:0}
+.hero.slim .crumb a{color:#2563eb;text-decoration:none;font-weight:600}
+.sec>h3 .mark-btn{float:right;margin-left:12px}
+.prob-head{display:flex;align-items:center;flex-wrap:wrap}
+.prob-head .mark-btn{margin-left:auto;float:none}
+h3 span[style*="float:right"]{float:right;margin-left:12px;max-width:60%;font-size:12px;font-weight:400;color:#64748b}
+html.night h3 span[style*="float:right"]{color:#9a8a90}

@@ -52,7 +52,7 @@
       <li><b>红线（考场禁用STL）：</b>题目考察的数据结构/算法本身必须手写——考链表必须写链式结构与指针操作（禁用 <code class="inl">std::list</code>）；考排序必须写排序过程（禁用 <code class="inl">sort</code>）；考哈希表必须写散列函数与冲突处理（禁用 <code class="inl">unordered_map</code>）。</li>
       <li><b>可声明调用：</b>非考察点的辅助步骤可写「调用快速排序，时间O(nlogn)」，注明算法名+复杂度即给分（真题参考答案有先例）。</li>
       <li><b>要给定义：</b>若用vector等作答，先写一行定义说明；笔试更推荐「普通数组+length」的王道风格。</li>
-      <li><b>机试放开：</b>复试机试/刷题平台STL是提分利器，第七部分真题代码全部放开使用。</li>
+      <li><b>机试放开：</b>复试机试/刷题平台STL是提分利器，力扣Hot100页真题代码全部放开使用。</li>
     </ul>
     <h4>对比辨析：同一个操作，三层写法</h4>
     <div class="tbl-wrap"><table class="api">
@@ -63,14 +63,14 @@
       <tr><td>哈希统计</td><td>计数数组 / 散列表结构定义</td><td><code>unordered_map</code></td><td>散列冲突、ASL成功/失败</td></tr>
       <tr><td>图遍历</td><td>邻接表结构+visited数组+队列/递归</td><td><code>vector邻接表+queue</code></td><td>遍历序列、复杂度、连通分量</td></tr>
     </table></div>
-    <div class="note"><b>四大应试模块使用法：</b>①【高频考点】标签——考前必过；②【必考模板】——要能默写（第四部分全部带此标注的代码）；③【考场禁用STL】——红线；④【真题对应】——第七部分每题的考点映射链接，学→练→考闭环。</div>
+    <div class="note"><b>四大应试模块使用法：</b>①【高频考点】标签——考前必过；②【必考模板】——要能默写（算法模板页全部带此标注的代码）；③【考场禁用STL】——红线；④【真题对应】——力扣Hot100页每题的考点映射链接，学→练→考闭环。</div>
     <div class="ex">
       <div class="ex-t">【例1·基础辨析题】</div>
       <p>机试中要"对n个整数降序排序后求前k大"，写出最简STL组合。</p>
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
 <pre class="code" data-t="机试最简组合"><code>sort(v.begin(), v.end(), greater&lt;int&gt;());   // 降序
 // 前k大即 v[0..k-1]</code></pre>
-        <p>笔试则写：「采用快速排序对数组降序排序，平均时间O(nlogn)，前k个即为前k大」；若只求前k大，更快的是快速选择（LC215，见第七部分）。</p>
+        <p>笔试则写：「采用快速排序对数组降序排序，平均时间O(nlogn)，前k个即为前k大」；若只求前k大，更快的是快速选择（LC215，见力扣Hot100页）。</p>
       </div></details>
     </div>
     <div class="ex">
@@ -170,14 +170,14 @@ while (pos != string::npos) {
     }
     return true;
 }</code></pre>
-        <p><b>考点提炼：</b>首尾双指针。408变体"回文链表"：快慢指针找中点+后半段逆置（LC234，见第七部分）。</p>
+        <p><b>考点提炼：</b>首尾双指针。408变体"回文链表"：快慢指针找中点+后半段逆置（LC234，见力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
 
   <section class="sec" id="s-deque">
     <h3>3. deque —— 双端队列<span class="tag tag-ok">机试可用</span><span class="tag tag-no">笔试须手写</span></h3>
-    <p class="lcline">🎬 对应课程：L4 队列（课件用手写循环队列，见第四部分2.2） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
+    <p class="lcline">🎬 对应课程：L4 队列（课件用手写循环队列，见算法模板2.2） ｜ <a href="course.html#c-l0">考试规则见 L0/L26</a></p>
     <p class="pos">应试定位：笔试考"输出受限/输入受限双端队列的合法序列判断"（逻辑结构选择题）；STL deque是机试单调队列的标准载体。</p>
     <p class="wdlink">🔗 王道考点联动：<a href="wangdao.html#wd-c3s7">第3章 双端队列</a> —— 输出/输入受限双端队列合法序列判断。原理精讲见王道精讲页对应小节。</p>
     <p><b>核心定义：</b>两端均O(1)插删、支持O(1)随机访问的队列（分段连续，原理不深究）。<b>适用：</b>滑动窗口、两端操作。<b>禁用：</b>笔试写循环队列时用手写数组版更稳。</p>
@@ -190,7 +190,7 @@ while (pos != string::npos) {
       <tr><td><code>d[i]</code></td><td>随机访问</td><td>引用</td><td>O(1)</td></tr>
       <tr><td><code>d.size()</code> / <code>d.clear()</code> / <code>d.insert / erase</code></td><td>长度 / 清空 / 中间插删（全部迭代器失效）</td><td>见名</td><td>O(1)/O(n)/O(n)</td></tr>
     </table></div>
-    <div class="warn"><b>高频易错点：</b>①中间插删使<b>所有</b>迭代器失效；②STL deque（两端可进出）≠考纲"输出受限双端队列"（一端只能删）——后者是逻辑结构选择题；③408笔试的单调队列用手写数组模拟（见第四部分2.4）。</div>
+    <div class="warn"><b>高频易错点：</b>①中间插删使<b>所有</b>迭代器失效；②STL deque（两端可进出）≠考纲"输出受限双端队列"（一端只能删）——后者是逻辑结构选择题；③408笔试的单调队列用手写数组模拟（见算法模板2.4）。</div>
     <div class="cx"><span><b>两端插删</b> O(1)</span><span><b>随机访问</b> O(1)</span><span><b>中间插删</b> O(n)</span></div>
     <div class="ex">
       <div class="ex-t">【例1·基础用法题】</div>
@@ -294,7 +294,7 @@ set&lt;int&gt;::iterator it = s.lower_bound(x);   // 首个&gt;=x
 if (it == s.begin()) /* 无前驱 */; else /* *prev(it)即前驱 */;
 it = s.upper_bound(x);                      // 首个&gt;x
 if (it != s.end()) /* *it即后继 */;</code></pre>
-        <p>完整题见第六部分·实战 e6 与第七部分对应set模块。unordered_set没有lower_bound——有序性不可替代。</p>
+        <p>完整题见实战 e6 与力扣Hot100页对应set模块。unordered_set没有lower_bound——有序性不可替代。</p>
       </div></details>
     </div>
   </section>
@@ -334,7 +334,7 @@ for (auto &amp;p : m) cout &lt;&lt; p.first &lt;&lt; ":" &lt;&lt; p.second &lt;&
 int total = 0;
 for (auto it = m.lower_bound(l); it != m.end() &amp;&amp; it-&gt;first &lt;= r; ++it)
     total += it-&gt;second;</code></pre>
-        <p>笔试对应：二叉排序树的中序遍历=按键升序（第四部分5.2）。</p>
+        <p>笔试对应：二叉排序树的中序遍历=按键升序（算法模板5.2）。</p>
       </div></details>
     </div>
   </section>
@@ -566,7 +566,7 @@ while (i &lt; (int)s.size()) {
 void LeftShift(int R[], int n, int p) {
     Reverse(R, 0, p - 1); Reverse(R, p, n - 1); Reverse(R, 0, n - 1);
 }</code></pre>
-        <p>O(n)/O(1)。机试三行：<code class="inl">reverse(a,a+p); reverse(a+p,a+n); reverse(a,a+n);</code>（LC189 轮转数组同源，见第七部分）。</p>
+        <p>O(n)/O(1)。机试三行：<code class="inl">reverse(a,a+p); reverse(a+p,a+n); reverse(a,a+n);</code>（LC189 轮转数组同源，见力扣Hot100页）。</p>
       </div></details>
     </div>
   </section>
@@ -647,7 +647,7 @@ int c2 = count_if(v.begin(), v.end(), [](int x) { return x &gt; 4; });   // 4</c
       <tr><td>有序插入位置</td><td>lower_bound结果即插入点</td></tr>
       <tr><td>set/map成员版</td><td><code>s.lower_bound(x)</code>（O(logn)；set无序禁用全局版）</td></tr>
     </table></div>
-    <div class="danger"><b>最大坑点：</b>对<b>无序</b>区间调用结果是未定义的（不报错但结果错）。笔试的折半查找（判定树/ASL）必须手写，见第四部分5.1。</div>
+    <div class="danger"><b>最大坑点：</b>对<b>无序</b>区间调用结果是未定义的（不报错但结果错）。笔试的折半查找（判定树/ASL）必须手写，见算法模板5.1。</div>
     <div class="cx"><span><b>时间</b> O(logn)</span><span><b>前提</b> 区间非降序</span></div>
     <div class="ex">
       <div class="ex-t">【例1·基础用法题】</div>
@@ -662,7 +662,7 @@ int c2 = count_if(v.begin(), v.end(), [](int x) { return x &gt; 4; });   // 4</c
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
 <pre class="code" data-t="插入位置+出现次数"><code>int pos = lower_bound(a, a + n, x) - a;          // 插入位置
 int cnt = upper_bound(a, a + n, x) - lower_bound(a, a + n, x);   // 出现次数</code></pre>
-        <p>笔试对应折半查找"查找失败时的比较位置即插入位置"——判定树画法见第四部分5.1；二分变形题见第七部分 LC35/LC34。</p>
+        <p>笔试对应折半查找"查找失败时的比较位置即插入位置"——判定树画法见算法模板5.1；二分变形题见力扣Hot100页 LC35/LC34。</p>
       </div></details>
     </div>
   </section>
@@ -691,7 +691,7 @@ v.erase(last, v.end());                      // 1 3 5
       <div class="ex-t">【例2·408风格应用题】</div>
       <p>n个整数可能重复，输出去重后的升序序列（机试），并说明与set方案的区别。</p>
       <details class="ans"><summary>查看解析</summary><div class="ans-body">
-        <p>见上方"三连"，O(nlogn)。set方案：<code class="inl">set&lt;int&gt; s;</code> 边插边去重，代码更短但常数大、无下标访问。完整对比如第六部分·实战 e1。</p>
+        <p>见上方"三连"，O(nlogn)。set方案：<code class="inl">set&lt;int&gt; s;</code> 边插边去重，代码更短但常数大、无下标访问。完整对比如实战 e1。</p>
       </div></details>
     </div>
   </section>
@@ -706,7 +706,7 @@ v.erase(last, v.end());                      // 1 3 5
 int kth = v[k - 1];                                 // 先 nth_element(begin+k-1,...) 再取
 nth_element(v.begin(), v.begin() + n / 2, v.end()); // 中位数（n奇数）
 int mid = v[n / 2];</code></pre>
-    <div class="note"><b>应试注意：</b>只求第k小不必全排序——比sort便宜；笔试手写=快排Partition+单边递归（见第四部分6.3与第七部分LC215）。</div>
+    <div class="note"><b>应试注意：</b>只求第k小不必全排序——比sort便宜；笔试手写=快排Partition+单边递归（见算法模板6.3与力扣Hot100页LC215）。</div>
     <div class="cx"><span><b>平均</b> O(n)</span><span><b>空间</b> O(1)</span></div>
     <div class="ex">
       <div class="ex-t">【例1·基础用法题】</div>
@@ -817,7 +817,7 @@ sort(v.begin(), v.end(),
     if (a.first != b.first) return a.first &lt; b.first;
     return a.second &gt; b.second;
 });</code></pre>
-        <p>这正是LC56合并区间的预处理步骤（第七部分），笔试常以"区间调度"变体出现。</p>
+        <p>这正是LC56合并区间的预处理步骤（力扣Hot100页），笔试常以"区间调度"变体出现。</p>
       </div></details>
     </div>
   </section>

@@ -581,7 +581,7 @@ next[prev[y]] = x;  prev[x] = prev[y];  next[x] = y;  prev[y] = x;
         <li>ST表查询两段区间允许重叠（max 不怕重复）；尺取法有负数就失效。</li>
       </ul>
     </div>
-    <p><b>本节小结：</b>本节课我们重点掌握了——行优先寻址公式；四类特殊矩阵的空间与映射公式（2016/2018/2020 三道真题直接考）；三元组表/快速转置 O(n+t)；十字链表。DP、前缀和、差分、ST表、尺取法是课件特色弹药库（期末不考、机试必练），到第七部分力扣（LC53/152/209/239）我们还会反复用到它们。</p>
+    <p><b>本节小结：</b>本节课我们重点掌握了——行优先寻址公式；四类特殊矩阵的空间与映射公式（2016/2018/2020 三道真题直接考）；三元组表/快速转置 O(n+t)；十字链表。DP、前缀和、差分、ST表、尺取法是课件特色弹药库（期末不考、机试必练），到力扣Hot100页（LC53/152/209/239）我们还会反复用到它们。</p>
   </section>
 
   <div class="chap-head" id="ch6"><h3>第6章 · 字符串模式匹配（对应PPT：Lecture 6 + Tutorial 1）</h3><p>朴素匹配 → KMP → next 手算 → 循环节（不考清单）→ 改进 next2（不考清单）；Tutorial 的编辑距离与 LCS 全部是课件拓展。</p></div>
@@ -682,7 +682,7 @@ void buildNext(char *P, int next[], int m) {          // 递推：已知next(j)=
       <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>填表得 LCS 长度 <b>2（"BC"）</b>。变形题：LCS="abce" 长4，S 删 1 个（x）、P 删 1 个（f），<b>合计 2 个</b>。</p></div></details>
     </div>
     <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>子序列≠子串（可不连续）；编辑距离边界是 i/j 而非 0；不相等时 LCS 取 max<b>不含左上</b>、编辑距离取 min<b>含左上+1</b>——两张表对照背。</div>
-    <p><b>本节小结：</b>本节课我们了解了模糊匹配的两把尺子——编辑距离（相等取左上、不等三邻取min+1）与 LCS（相等左上+1、不等上左取max），以及三个变形的转化结论。这些全是动态规划在字符串上的应用，408 不考，但 LeetCode72/1143/583/516 是面试高频，放到了第七部分供你练手。</p>
+    <p><b>本节小结：</b>本节课我们了解了模糊匹配的两把尺子——编辑距离（相等取左上、不等三邻取min+1）与 LCS（相等左上+1、不等上左取max），以及三个变形的转化结论。这些全是动态规划在字符串上的应用，408 不考，但 LeetCode72/1143/583/516 是面试高频，放到了力扣Hot100页供你练手。</p>
   </section>
 
   <div class="chap-head" id="ch7"><h3>第7章 · 树和二叉树（对应PPT：Lecture 7–11）</h3><p>五章连环：定义性质 → 存储与遍历 → 线索 → 树与森林 → 应用（哈夫曼/表达式树/并查集）。这是全课程分值最重的一章。</p></div>
@@ -1121,7 +1121,7 @@ void getInDegree(Vertex Head[], int n, int InDegree[]) {   // O(n+e)
     <div class="ex">
       <div class="ex-t">【PPT原题·2020级期末15分 PAGE 56 课下思考】FindPath</div>
       <p>带权图邻接表存储，设计算法找从 u 出发、不经过 v、总顶点数≤m、长度恰为 L 的所有简单路径（每条存单链表）。</p>
-      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>DFS + 路径数组 + 两剪枝（顶点数超 m 剪、当前长度已超 L 剪——边权可能为负时只能顶点数剪枝），路径长恰为 L 且未过 v 时整条记录。属于回溯搜索的综合题，L26 归入课下思考；思路与第四部分回溯模板一致。</p></div></details>
+      <details class="ans"><summary>查看解析</summary><div class="ans-body"><p>DFS + 路径数组 + 两剪枝（顶点数超 m 剪、当前长度已超 L 剪——边权可能为负时只能顶点数剪枝），路径长恰为 L 且未过 v 时整条记录。属于回溯搜索的综合题，L26 归入课下思考；思路与算法模板页回溯模板一致。</p></div></details>
     </div>
     <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>无向图 DFS 判环必须带 pre 排除父边，否则每条边都像环；有向图遇到 visited==2（已完成）不是环、只有 ==1 才是；输出所有路径类题 vis 要恢复现场。并查集法判连通/判环是课件特色补充，408 作为替代解法了解。</div>
     <p><b>本节小结：</b>本节课我们重点掌握了——DFS/BFS 的过程、两种访问时机、复杂度（表 O(n+e)/矩阵 O(n²)）；非连通图多次启动与连通分量计数；四大应用（连通性、可达性、无向/有向判环——三状态法是课件招牌）。</p>
@@ -1585,7 +1585,7 @@ void MergeSort(int R[], int n) {              // 自底向上
       <li><b>插值查找：</b>mid = low + (K−R[low])/(R[high]−R[low])×(high−low)（假设均匀分布）；姚期智与储枫证明平均每轮把区间从 n 缩到 √n → <b>平均 O(loglogn)</b>，最坏 O(n)（分布极不均）；实用法：先用插值缩小区间再转对半。</li>
     </ul>
     <h4>三、再谈对半查找（PAGE 52-63）</h4>
-    <p><b>循环不变量："执行过程中 low 左边全&lt;K、high 右边全&gt;K"</b>（PAGE 54）——由此得两个工程变体：<b>BinSearchFirstPosGEK 返回 low</b>（第一个 ≥K 的位置，不存在返回 n+1）、<b>BinSearchLastPosLEK 返回 high</b>——它们正是 lower_bound/upper_bound 的语义（联动第三部分 STL）。<b>二分搜索答案</b>（PAGE 60-63，LC875 珂珂吃香蕉）：速度 s 的"能否吃完"构成 0…0 1…1 序列，<b>找第一个 1</b>，O(nlogm)。<span class="tag tag-ext">工程变体408不考，思想极有用</span></p>
+    <p><b>循环不变量："执行过程中 low 左边全&lt;K、high 右边全&gt;K"</b>（PAGE 54）——由此得两个工程变体：<b>BinSearchFirstPosGEK 返回 low</b>（第一个 ≥K 的位置，不存在返回 n+1）、<b>BinSearchLastPosLEK 返回 high</b>——它们正是 lower_bound/upper_bound 的语义（联动STL详解页）。<b>二分搜索答案</b>（PAGE 60-63，LC875 珂珂吃香蕉）：速度 s 的"能否吃完"构成 0…0 1…1 序列，<b>找第一个 1</b>，O(nlogm)。<span class="tag tag-ext">工程变体408不考，思想极有用</span></p>
     <h4>四、分块查找与跳表（PAGE 49-50、65-88）</h4>
     <p><b>分块（索引顺序）查找：</b>块间有序（前块最大&lt;后块）、<b>块内不要求有序</b>——索引表对半 + 块内顺序。<b>跳表（Pugh 1989）</b><span class="tag tag-ext">课件拓展·408不考</span>：多层耦合有序链表；查找从顶层起"小则向右、大则向下"；插入<b>抛硬币</b>（1/2概率）逐层生长；查/插/删 O(logn)、空间 O(n)——概率性平衡的替代品。</p>
     <div class="ppt-warn"><div class="pw-t">⚠️【PPT易错提醒】</div>成功=深度+1、失败=深度（不加1）；失败分母 n+1；对半只适用于<b>有序数组</b>（链表不能二分）、适合<b>静态</b>查找（动态增删 O(n) 调整）；分块查找块内无序不能二分。</div>
