@@ -11,7 +11,7 @@
     if (extra) for (var k in extra) o[k] = extra[k];
     return o;
   }
-  function cap(frames) { return frames.slice(0, 16); }
+  function cap(frames) { return frames.slice(0, 22); }
 
   function fallback(code) {
     var ls = linesOf(code);
@@ -33,47 +33,86 @@
     var save = lineNo(code, /=\s*\w+\.data\[i\s*-\s*1\]/);
     var pull = lineNo(code, /data\[j\s*-\s*1\]\s*=\s*\w+\.data\[j\]/);
     var dec = lineNo(code, /length--/);
-    var cells = ["12", "7", "9", "4"];
-    var frames = [F("按 ListInsert：位序 i=2，插入 5。先看后移循环。", shift, { kind: "array", cells: cells.slice() })];
-    var cur = cells.slice();
-    cur.push(cur[3]);
-    frames.push(F("j 从 length 往前：data[4] = data[3]", shift, { kind: "array", cells: cur.slice(), hl: [4] }));
-    cur[3] = cur[2];
-    frames.push(F("data[3] = data[2]，9 后移", shift, { kind: "array", cells: cur.slice(), hl: [3] }));
-    cur[2] = cur[1];
-    frames.push(F("data[2] = data[1]，7 后移", shift, { kind: "array", cells: cur.slice(), hl: [2] }));
-    cur[1] = "5";
-    frames.push(F("空出的位序 2 写入 e", put, { kind: "array", cells: cur.slice(), hl: [1] }));
-    frames.push(F("length++，得到 [12,5,7,9,4]", inc, { kind: "array", cells: cur.slice(), done: [1] }));
-    var d = ["12", "5", "7", "9", "4"];
-    frames.push(F("接 ListDelete，位序 i=4，e 先带走 9", save, { kind: "array", cells: d.slice(), hl: [3] }));
-    d = ["12", "5", "7", "4", "4"];
-    frames.push(F("data[j-1] = data[j]，后面的元素前移", pull, { kind: "array", cells: d.slice(), hl: [3] }));
-    frames.push(F("length--，逻辑上是 [12,5,7,4]", dec, { kind: "array", cells: ["12", "5", "7", "4"] }));
+    var base = [8, 5, 11, 2, 9, 4];
+    var frames = [F("表长 6：[8,5,11,2,9,4]。在位序 3 插入 3，对应 for(j=length; j>=i; j--)。", lineNo(code, /for\s*\(/), { kind: "array", cells: base.map(String), focus: "插入前" })];
+    var cur = base.slice();
+    cur.push("");
+    for (var j = 6; j >= 3; j--) {
+      frames.push(F("j=" + j + "，准备执行 data[" + j + "]=data[" + (j - 1) + "]，源是 " + cur[j - 1], shift, { kind: "array", cells: cur.map(String), hl: [j - 1], move: { from: j - 1, to: j } }));
+      cur[j] = cur[j - 1];
+      frames.push(F("data[" + j + "] 已经写成 " + cur[j] + "。必须从后往前，否则会盖掉还没搬走的数。", shift, { kind: "array", cells: cur.map(String), hl: [j], done: [j] }));
+    }
+    cur[2] = 3;
+    frames.push(F("腾出的下标 2（位序 3）写入 e=3。", put, { kind: "array", cells: cur.map(String), hl: [2] }));
+    frames.push(F("length++，长度变成 7：[8,5,3,11,2,9,4]。", inc, { kind: "array", cells: cur.map(String), done: [2] }));
+    frames.push(F("接着删除位序 3。先 e = data[2]，把 3 带走。", save, { kind: "array", cells: cur.map(String), hl: [2] }));
+    for (var j2 = 3; j2 < cur.length; j2++) {
+      frames.push(F("j=" + j2 + "，data[" + (j2 - 1) + "]=data[" + j2 + "]，" + cur[j2] + " 前移。", pull, { kind: "array", cells: cur.map(String), hl: [j2], move: { from: j2, to: j2 - 1 } }));
+      cur[j2 - 1] = cur[j2];
+    }
+    cur.pop();
+    frames.push(F("length--，逻辑长度回到 6：[8,5,11,2,9,4]。", dec, { kind: "array", cells: cur.map(String) }));
     return frames;
   }
 
   function listInsert(code) {
-    var a = lineNo(code, /->next\s*=\s*\w+->next/);
-    var b = lineNo(code, /->next\s*=\s*s/);
-    var nodes = [{ v: "1" }, { v: "2" }, { v: "4" }];
+    var scan = lineNo(code, /p\s*=\s*p->next|p=p->next/);
+    var link1 = lineNo(code, /->next\s*=\s*\w+->next/);
+    var link2 = lineNo(code, /->next\s*=\s*s/);
+    var H = { id: "H", v: "头", head: true };
+    var a = { id: "a", v: "10" }, b = { id: "b", v: "16" }, c = { id: "c", v: "27" };
+    var s = { id: "s", v: "8", tag: "new" };
+    var chain = [H, a, b, c];
+    var edges0 = [{ from: "H", to: "a" }, { from: "a", to: "b" }, { from: "b", to: "c" }];
     return [
-      F("链是 1→2→4，要在 p（值为 2）后面插入 3", a, { kind: "list", nodes: nodes.slice() }),
-      F("先让新结点 s 的 next 指向 p 原来的后继 4", a, { kind: "list", nodes: [{ v: "1" }, { v: "2" }, { v: "3", tag: "new" }, { v: "4" }], hl: [2] }),
-      F("再让 p 的 next 指向 s。顺序反了会把后继弄丢", b, { kind: "list", nodes: [{ v: "1" }, { v: "2" }, { v: "3" }, { v: "4" }], hl: [2] })
+      F("带头结点。要在位序 i=2 插入 8。开始 p=L，j=0，p 停在头结点。", lineNo(code, /p\s*=\s*L/), { kind: "list", nodes: chain, edges: edges0, ptrs: [{ name: "L", id: "H" }, { name: "p", id: "H" }] }),
+      F("while 里 j<i-1，p 沿 next 走到 10，j 变成 1。这就是第 i-1 个结点。", scan, { kind: "list", nodes: chain, edges: edges0, ptrs: [{ name: "L", id: "H" }, { name: "p", id: "a" }], hl: ["a"] }),
+      F("malloc 出 s，s->data=8。s 还没进链，原来的 10→16 还在。", lineNo(code, /s->data|->data\s*=\s*e/), { kind: "list", nodes: chain.concat([s]), edges: edges0, ptrs: [{ name: "p", id: "a" }, { name: "s", id: "s" }], hl: ["s"] }),
+      F("先写 s->next = p->next。s 接到 16。若先改 p->next，16 就丢了。", link1, { kind: "list", nodes: chain.concat([s]), edges: edges0.concat([{ from: "s", to: "b", style: "new" }]), ptrs: [{ name: "p", id: "a" }, { name: "s", id: "s" }], hl: ["s", "b"] }),
+      F("再写 p->next = s。10 改指向 8，8 再指向 16。", link2, { kind: "list", nodes: [H, a, s, b, c], edges: [{ from: "H", to: "a" }, { from: "a", to: "s", style: "new" }, { from: "s", to: "b" }, { from: "b", to: "c" }], ptrs: [{ name: "p", id: "a" }, { name: "s", id: "s" }], hl: ["a", "s"] }),
+      F("插入完成：头 → 10 → 8 → 16 → 27。", link2, { kind: "list", nodes: [H, a, { id: "s", v: "8" }, b, c], edges: [{ from: "H", to: "a" }, { from: "a", to: "s" }, { from: "s", to: "b" }, { from: "b", to: "c" }] })
     ];
   }
 
   function listBuild(code) {
-    var head = lineNo(code, /头插|s->next\s*=\s*L->next|s->next=L->next/);
-    var tail = lineNo(code, /尾插|r->next\s*=\s*s|r->next=s/);
+    var tailLink = lineNo(code, /r->next\s*=\s*s|r->next=s/);
+    var tailMove = lineNo(code, /r\s*=\s*s/);
+    var headLink = lineNo(code, /s->next\s*=\s*L->next|s->next=L->next/);
+    var headHang = lineNo(code, /L->next\s*=\s*s|L->next=s/);
+    var H = { id: "H", v: "头", head: true };
+    function tail(vals, rId) {
+      var nodes = [H];
+      var edges = [];
+      var prev = "H";
+      vals.forEach(function (v, i) {
+        var id = "t" + i;
+        nodes.push({ id: id, v: String(v) });
+        edges.push({ from: prev, to: id });
+        prev = id;
+      });
+      return { nodes: nodes, edges: edges, ptrs: [{ name: "r", id: rId }] };
+    }
+    var t0 = tail([], "H");
+    var t1 = tail([10], "t0");
+    var t2 = tail([10, 16], "t1");
+    var t3 = tail([10, 16, 27], "t2");
+    function head(vals) {
+      var nodes = [H];
+      var edges = [];
+      vals.forEach(function (v, i) { nodes.push({ id: "h" + i, v: String(v) }); });
+      if (vals.length) edges.push({ from: "H", to: "h0" });
+      for (var i = 0; i < vals.length - 1; i++) edges.push({ from: "h" + i, to: "h" + (i + 1) });
+      return { nodes: nodes, edges: edges, ptrs: [{ name: "L", id: "H" }] };
+    }
     return [
-      F("头插法：依次来 1、2、3，每次插到头结点后面", head, { kind: "list", nodes: [{ v: "1" }] }),
-      F("2 插到最前", head, { kind: "list", nodes: [{ v: "2", tag: "new" }, { v: "1" }], hl: [0] }),
-      F("3 再插到最前，头插结果是 3→2→1", head, { kind: "list", nodes: [{ v: "3" }, { v: "2" }, { v: "1" }] }),
-      F("尾插法从空表开始，r 一直指向表尾", tail, { kind: "list", nodes: [{ v: "1" }] }),
-      F("2 接到尾后", tail, { kind: "list", nodes: [{ v: "1" }, { v: "2", tag: "new" }], hl: [1] }),
-      F("3 接到尾后，尾插结果是 1→2→3", tail, { kind: "list", nodes: [{ v: "1" }, { v: "2" }, { v: "3" }] })
+      F("尾插：r 先指着头结点。输入 10、16、27，9999 结束。", lineNo(code, /r\s*=\s*L/), { kind: "list", nodes: t0.nodes, edges: t0.edges, ptrs: t0.ptrs }),
+      F("10 挂到 r 后面，再 r=s，r 改指 10。", tailMove, Object.assign({ kind: "list" }, t1)),
+      F("16 挂到当前表尾 10 后面，r 再后移。", tailLink, Object.assign({ kind: "list" }, t2)),
+      F("27 同样后插。尾插得到 10→16→27，和输入顺序一样。", tailMove, Object.assign({ kind: "list" }, t3)),
+      F("头插另起一表。先 L->next=NULL，否则第一结点会接上脏指针。", lineNo(code, /L->next\s*=\s*NULL|next\s*=\s*NULL/), { kind: "list", nodes: [H], edges: [], ptrs: [{ name: "L", id: "H" }] }),
+      F("输入 10：s->next=L->next（空），再 L->next=s。", headHang, Object.assign({ kind: "list" }, head([10]))),
+      F("输入 16：新结点插到头结点后面，next 指向原来的 10。", headLink, Object.assign({ kind: "list" }, head([16, 10]))),
+      F("输入 27 再插到最前。头插得到 27→16→10，顺序和输入相反。", headHang, Object.assign({ kind: "list" }, head([27, 16, 10])))
     ];
   }
 
@@ -106,20 +145,30 @@
   }
 
   function bubble(code) {
-    var mark = lineNo(code, /if\s*\(|swap|>/);
-    var a = [5, 2, 8, 1, 9, 3];
-    var frames = [F("冒泡：相邻比较，逆序就交换。数组 5 2 8 1 9 3", mark, { kind: "bars", vals: a.slice(), hl: [0, 1] })];
+    var cmp = lineNo(code, /A\[j\s*-\s*1\]\s*>\s*A\[j\]|a\[j\s*-\s*1\]|>/);
+    var sw = lineNo(code, /swap\s*\(/);
+    var a = [49, 38, 65, 97, 76, 13, 27, 49];
+    var frames = [F("王道这组数：49 38 65 97 76 13 27 49。代码从后往前扫，只有 A[j-1] > A[j] 才交换。", cmp, { kind: "bars", vals: a.slice() })];
     var n = a.length;
-    for (var i = 0; i < n - 1 && frames.length < 14; i++) {
-      for (var j = 0; j < n - 1 - i && frames.length < 14; j++) {
-        if (a[j] > a[j + 1]) {
-          var t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;
-          frames.push(F(a.slice().join(" ") + "  交换下标 " + j + " 和 " + (j + 1), mark, { kind: "bars", vals: a.slice(), hl: [j, j + 1] }));
+    for (var i = 0; i < n - 1; i++) {
+      if (frames.length > 28) break;
+      var flag = false, complete = true;
+      for (var j = n - 1; j > i; j--) {
+        if (frames.length > 28) { complete = false; break; }
+        var left = a[j - 1], right = a[j];
+        if (left > right) {
+          frames.push(F("j=" + j + "，比较下标 " + (j - 1) + " 和 " + j + "：" + left + " > " + right + "，进入 swap。", cmp, { kind: "bars", vals: a.slice(), hl: [j - 1, j], tag: left + " > " + right + "  要交换" }));
+          var t = a[j - 1]; a[j - 1] = a[j]; a[j] = t; flag = true;
+          frames.push(F("swap 用 temp 交换后，这一对变成 " + a[j - 1] + " , " + a[j] + "。", sw, { kind: "bars", vals: a.slice(), hl: [j - 1, j], tag: "交换完成" }));
+        } else {
+          frames.push(F("j=" + j + "，" + left + " ≤ " + right + "，if 不成立，这一对不动。", cmp, { kind: "bars", vals: a.slice(), hl: [j - 1, j], tag: left + " ≤ " + right + "  不交换" }));
         }
       }
+      if (!complete) break;
+      frames.push(F("第 " + (i + 1) + " 趟走完。下标 " + i + " 固定为 " + a[i] + "。" + (flag ? "有交换，还要继续。" : "本趟没有交换，flag 仍是 false，函数 return。"), lineNo(code, /flag\s*==\s*false|return/), { kind: "bars", vals: a.slice(), done: range(0, i), tag: "第 " + (i + 1) + " 趟结束" }));
+      if (!flag) break;
     }
-    frames.push(F("有序：" + a.join(" "), mark, { kind: "bars", vals: a.slice(), done: [0, 1, 2, 3, 4, 5] }));
-    return cap(frames);
+    return frames;
   }
 
   function insertSort(code) {
@@ -407,54 +456,117 @@
   }
 
   function has(arr, v) { return Array.isArray(arr) && arr.indexOf(v) >= 0; }
+  function round(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function label(ctx, text, x, y, color, size) {
+    ctx.fillStyle = color || "#e2e8f0";
+    if (size) ctx.font = size + ' system-ui,"Segoe UI","Microsoft YaHei",sans-serif';
+    ctx.fillText(String(text), x, y);
+    ctx.font = '14px system-ui,"Segoe UI","Microsoft YaHei",sans-serif';
+  }
   function box(ctx, x, y, w, h, fill) {
     ctx.fillStyle = fill;
-    ctx.beginPath();
-    ctx.rect(x, y, w, h);
+    round(ctx, x, y, w, h, 6);
     ctx.fill();
   }
-  function label(ctx, text, x, y, color) {
-    ctx.fillStyle = color || "#e2e8f0";
-    ctx.fillText(String(text), x, y);
+  function arrow(ctx, x1, y1, x2, y2, color) {
+    var ang = Math.atan2(y2 - y1, x2 - x1);
+    var len = Math.hypot(x2 - x1, y2 - y1);
+    if (len < 6) return;
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.8;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - 8 * Math.cos(ang - 0.45), y2 - 8 * Math.sin(ang - 0.45));
+    ctx.lineTo(x2 - 8 * Math.cos(ang + 0.45), y2 - 8 * Math.sin(ang + 0.45));
+    ctx.closePath(); ctx.fill();
   }
   function drawArray(ctx, f, w, h) {
     var cells = f.cells || [];
     var n = Math.max(cells.length, 1);
-    var bw = Math.min(64, (w - 24) / n - 6);
-    var total = n * bw + (n - 1) * 6;
-    var x = (w - total) / 2, y = h / 2 - 18;
+    var bw = Math.min(58, (w - 36) / n - 8);
+    var gap = 8;
+    var total = n * bw + (n - 1) * gap;
+    var x0 = (w - total) / 2, y = h / 2 - 8;
+    var xs = [];
     cells.forEach(function (c, i) {
-      box(ctx, x, y, bw, 36, has(f.hl, i) ? "#f59e0b" : has(f.done, i) ? "#166534" : "#1e293b");
-      label(ctx, c, x + bw / 2, y + 18, has(f.hl, i) ? "#111827" : "#e2e8f0");
-      x += bw + 6;
+      var x = x0 + i * (bw + gap);
+      xs.push(x);
+      var on = has(f.hl, i), done = has(f.done, i), empty = c === "";
+      ctx.fillStyle = on ? "#f59e0b" : done ? "#166534" : "#1e293b";
+      ctx.strokeStyle = empty ? "#64748b" : on ? "#fde68a" : "#334155";
+      ctx.setLineDash(empty ? [4, 3] : []);
+      round(ctx, x, y, bw, 40, 8); ctx.fill(); ctx.stroke();
+      ctx.setLineDash([]);
+      label(ctx, empty ? "" : c, x + bw / 2, y + 20, on ? "#111827" : "#f8fafc", "16px");
+      label(ctx, "位" + (i + 1), x + bw / 2, y - 16, "#93c5fd", "11px");
+      label(ctx, "下标" + i, x + bw / 2, y + 56, "#94a3b8", "11px");
     });
+    if (f.move && xs[f.move.from] != null && xs[f.move.to] != null) {
+      var yA = y - 28;
+      arrow(ctx, xs[f.move.from] + bw / 2, yA, xs[f.move.to] + bw / 2, yA, "#fb7185");
+    }
+    if (f.tag) label(ctx, f.tag, w / 2, h - 14, "#fde68a", "13px");
   }
   function drawBars(ctx, f, w, h) {
     var vals = f.vals || [];
     var n = Math.max(vals.length, 1);
     var max = Math.max.apply(null, vals.concat([1]));
-    var bw = Math.min(36, (w - 24) / n - 6);
-    var total = n * bw + (n - 1) * 6;
-    var x = (w - total) / 2;
+    var bw = Math.min(42, (w - 28) / n - 8);
+    var gap = 8;
+    var total = n * bw + (n - 1) * gap;
+    var x0 = (w - total) / 2;
     vals.forEach(function (v, i) {
-      var bh = Math.max(8, (h - 46) * (v / max));
-      var y = h - 16 - bh;
+      var bh = Math.max(10, (h - 78) * (v / max));
+      var x = x0 + i * (bw + gap);
+      var y = h - 36 - bh;
       var fill = f.pivot === i ? "#38bdf8" : has(f.hl, i) ? "#f59e0b" : has(f.done, i) ? "#22c55e" : "#334155";
-      box(ctx, x, y, bw, bh, fill);
-      label(ctx, v, x + bw / 2, y - 10, "#e2e8f0");
-      x += bw + 6;
+      round(ctx, x, y, bw, bh, 5); ctx.fillStyle = fill; ctx.fill();
+      label(ctx, v, x + bw / 2, y - 12, "#f8fafc", "13px");
+      label(ctx, i, x + bw / 2, h - 16, has(f.done, i) ? "#86efac" : "#94a3b8", "11px");
     });
+    if (f.tag) label(ctx, f.tag, w / 2, 16, "#fde68a", "13px");
   }
   function drawList(ctx, f, w, h) {
     var nodes = f.nodes || [];
-    var bw = 46, gap = 28;
+    if (!nodes.length) return;
+    if (!nodes[0].id) {
+      nodes = nodes.map(function (n, i) { return { id: "n" + i, v: n.v, head: n.head, tag: n.tag }; });
+      f = Object.assign({}, f, { nodes: nodes, edges: nodes.slice(0, -1).map(function (_, i) { return { from: "n" + i, to: "n" + (i + 1) }; }) });
+    }
+    var bw = 54, bh = 36, gap = 36;
     var total = nodes.length * bw + (nodes.length - 1) * gap;
-    var x = Math.max(12, (w - total) / 2), y = h / 2 - 16;
-    nodes.forEach(function (node, i) {
-      box(ctx, x, y, bw, 32, has(f.hl, i) ? "#f59e0b" : node.tag === "new" ? "#5b21b6" : "#1e293b");
-      label(ctx, node.v, x + bw / 2, y + 16, has(f.hl, i) ? "#111827" : "#e2e8f0");
-      if (i < nodes.length - 1) label(ctx, "→", x + bw + gap / 2, y + 16, "#94a3b8");
-      x += bw + gap;
+    var x0 = Math.max(16, (w - total) / 2);
+    var y = h / 2 - 6;
+    var pos = {};
+    nodes.forEach(function (n, i) { pos[n.id] = { x: x0 + i * (bw + gap), y: n.tag === "new" ? y - 58 : y }; });
+    (f.edges || []).forEach(function (e) {
+      var a = pos[e.from], b = pos[e.to];
+      if (!a || !b) return;
+      var color = e.style === "new" ? "#f472b6" : "#94a3b8";
+      arrow(ctx, a.x + bw, a.y + bh / 2, b.x, b.y + bh / 2, color);
+    });
+    nodes.forEach(function (n) {
+      var p = pos[n.id];
+      var on = has(f.hl, n.id);
+      ctx.fillStyle = n.head ? "#1e3a5f" : on ? "#f59e0b" : n.tag === "new" ? "#4c1d95" : "#1e293b";
+      ctx.strokeStyle = on ? "#fde68a" : "#475569";
+      round(ctx, p.x, p.y, bw, bh, 7); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(p.x + bw * 0.62, p.y); ctx.lineTo(p.x + bw * 0.62, p.y + bh); ctx.stroke();
+      label(ctx, n.v, p.x + bw * 0.31, p.y + bh / 2, on ? "#111827" : "#f8fafc", "14px");
+      label(ctx, "next", p.x + bw * 0.82, p.y + bh / 2, "#94a3b8", "10px");
+    });
+    (f.ptrs || []).forEach(function (p) {
+      var at = pos[p.id];
+      if (!at) return;
+      label(ctx, p.name, at.x + bw / 2, at.y - 14, "#7dd3fc", "13px");
     });
   }
   function drawStack(ctx, f, w, h) {
@@ -467,10 +579,6 @@
     });
     label(ctx, "栈", x + 36, h - 12, "#94a3b8");
     if (f.out) label(ctx, "出栈 " + f.out, w * 0.72, h / 2, "#e2e8f0");
-  }
-  function arrow(ctx, x1, y1, x2, y2, color) {
-    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1.4;
-    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
   }
   function drawGraph(ctx, f, w, h) {
     var by = {};
@@ -555,7 +663,7 @@
       timer = setInterval(function () {
         if (i >= frames.length - 1) { stop(); return; }
         i++; show();
-      }, 900);
+      }, 1200);
     };
     var started = false;
     function kick() { if (started) return; started = true; show(); }
