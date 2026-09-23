@@ -154,8 +154,8 @@
   /* ================= 3. 代码块：包装 + 复制 + 分批高亮 ================= */
   var HL_RE = /(\/\/[^\n]*|\/\*[\s\S]*?\*\/)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|(#[^\n]*)|\b(alignas|auto|bool|break|case|catch|char|class|const|constexpr|continue|default|delete|do|double|else|enum|explicit|extern|false|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|return|short|signed|sizeof|static|struct|switch|template|this|throw|true|try|typedef|typename|union|unsigned|using|virtual|void|volatile|while)\b|\b(cerr|cin|cout|deque|endl|greater|less|list|make_pair|make_tuple|map|multimap|multiset|pair|priority_queue|queue|set|stack|string|stringstream|tuple|unordered_map|unordered_set|vector|getline|isdigit|stoi)\b|\b(\d+\.?\d*(?:[eE][+-]?\d+)?|0x[0-9a-fA-F]+)\b/g;
   function escHtml(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-  function highlight(codeEl) {
-    var raw = codeEl.textContent, out = "", last = 0, m;
+  function highlightText(raw) {
+    var out = "", last = 0, m;
     HL_RE.lastIndex = 0;
     while ((m = HL_RE.exec(raw)) !== null) {
       if (m.index > last) out += escHtml(raw.slice(last, m.index));
@@ -163,8 +163,17 @@
       out += '<span class="tk-' + cls + '">' + escHtml(m[0]) + "</span>";
       last = m.index + m[0].length;
     }
-    out += escHtml(raw.slice(last));
-    codeEl.innerHTML = out;
+    return out + escHtml(raw.slice(last));
+  }
+  function highlight(codeEl) {
+    var raw = codeEl.textContent;
+    var pre = codeEl.parentElement;
+    if (pre) pre._raw = raw;
+    var lines = raw.replace(/\n$/, "").split("\n");
+    codeEl.innerHTML = lines.map(function (line, i) {
+      return '<span class="c-line" data-n="' + (i + 1) + '">' + highlightText(line) + "</span>";
+    }).join("\n");
+    if (pre && pre.classList.contains("code") && window.DSDemo) window.DSDemo.mount(pre, raw);
   }
   function fallbackCopy(text) {
     var ta = document.createElement("textarea");
@@ -185,7 +194,7 @@
       pre.parentNode.insertBefore(box, pre);
       box.appendChild(head); box.appendChild(pre);
       btn.addEventListener("click", function () {
-        var text = pre.textContent;
+        var text = pre._raw != null ? pre._raw : pre.textContent;
         function done() {
           btn.textContent = "已复制 ✓"; btn.classList.add("ok");
           setTimeout(function () { btn.textContent = "复制"; btn.classList.remove("ok"); }, 1600);
