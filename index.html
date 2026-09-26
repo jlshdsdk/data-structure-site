@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>数据结构自学网站（清爽自习版）· 首页导航</title>
+<title>全站目录 · 数据结构自学网站</title>
 <script>try{if(localStorage.getItem('ds_night')==='1')document.documentElement.classList.add('night');var f=+localStorage.getItem('ds_font')||0;if(f)document.documentElement.classList.add('fz'+f);}catch(e){}</script>
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -33,74 +33,91 @@
 <div class="overlay" id="overlay"></div>
 
 <main class="main" id="main">
-  <div class="hero">
-    <span class="thu-seal"><span>学而<br>时习</span></span>
-    <h1>数据结构自学网站（清爽自习版）：王道精讲 + 本校课程PPT + C++ STL + 算法模板 + 本校期末真题 + 实战力扣 + 打卡进度</h1>
-    <svg class="thu-gate" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg" aria-label="翻开的书本剪影">
-      <g fill="#2563eb" opacity="0.4">
-        <path d="M60 26 C47 15 28 13 12 17 L12 98 C28 94 47 96 60 107 C73 96 92 94 108 98 L108 17 C92 13 73 15 60 26 Z" opacity="0.22"/>
-        <path d="M58 30 L58 106 L62 106 L62 30 Z"/>
-        <path d="M18 32 C32 29 46 31 54 38 L54 47 C46 40 32 38 18 41 Z"/>
-        <path d="M102 32 C88 29 74 31 66 38 L66 47 C74 40 88 38 102 41 Z"/>
-        <path d="M18 49 C32 46 46 48 54 55 L54 64 C46 57 32 55 18 58 Z"/>
-        <path d="M102 49 C88 46 74 48 66 55 L66 64 C74 57 88 55 102 58 Z"/>
-        <path d="M18 66 C32 63 46 65 54 72 L54 81 C46 74 32 72 18 75 Z"/>
-        <path d="M102 66 C88 63 74 65 66 72 L66 81 C74 74 88 72 102 75 Z"/>
-      </g>
-    </svg>
-    <div class="thu-motto"><span class="m">学而不思则罔 · 思而不学则殆</span><span class="sub-m">自学心法 ｜ 循序渐进 · 学练结合 · 温故知新</span></div>
-    <p class="sub" style="margin-top:12px">全程以课堂老师视角讲解 · 十大学习模块各成独立页面、按需加载，更快更流畅。公共配置（夜间模式/字号/打卡/进度）保存于浏览器，全站通用。</p>
-    <div class="h-checkin">
-      <button class="pc-btn" id="h_todayBtn">✅ 今日打卡</button>
-      <span class="stat">🔥 连续打卡 <b id="h_streak">0</b> 天</span>
-      <span class="stat">📅 累计 <b id="h_total">0</b> 天</span>
-      <a class="stat" href="progress.html" style="color:#2563eb;font-weight:700">查看打卡日历与学习进度 →</a>
+  <div class="part-zone" id="dirzone">
+  <div class="part-head">
+    <div class="pnum">全站目录</div>
+    <h2>📚 全站目录 · 一页直达</h2>
+    <p>十大学习模块的全部章节汇成一页：点任意<b>小节</b>直达对应内容，点<b>模块标题</b>进入模块页。找内容也可以用顶部搜索（全网索引）或 Ctrl+F。</p>
+  </div>
+  <div class="h-checkin">
+    <button class="pc-btn" id="h_todayBtn">✅ 今日打卡</button>
+    <span class="stat">🔥 连续打卡 <b id="h_streak">0</b> 天</span>
+    <span class="stat">📅 累计 <b id="h_total">0</b> 天</span>
+    <a class="stat" href="progress.html" style="color:#2563eb;font-weight:700">查看打卡日历与学习进度 →</a>
+  </div>
+  <div class="dir-quick"><a href="#dir-wangdao">📖 王道精讲</a>
+<a href="#dir-course">🏫 本校课程</a>
+<a href="#dir-stl">🧰 STL接口</a>
+<a href="#dir-algorithms">✍️ 算法模板</a>
+<a href="#dir-exams">🎯 期末真题</a>
+<a href="#dir-practice">⚔️ STL×算法实战</a>
+<a href="#dir-leetcode">🔥 力扣Hot100</a>
+<a href="#dir-wdex">📝 王道课后题</a>
+<a href="#dir-code">💾 代码汇总</a>
+<a href="#dir-progress">📅 打卡进度</a></div>
+  <div class="dir-grid">
+    <div class="dir-card" id="dir-wangdao">
+      <a class="dir-head" href="wangdao.html"><span class="ic">📖</span>
+        <span class="tt">王道数据结构同步精讲<small>97节 · 210+例题</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">对应王道PPT八章97节：导入/考点/代码/易错/例题五件套，408与期末双修。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>第1章 绪论<span class="cnt">4节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c1s1">数据结构基本概念</a><a href="wangdao.html#wd-c1s2">算法基本概念</a><a href="wangdao.html#wd-c1s3">时间复杂度</a><a href="wangdao.html#wd-c1s4">空间复杂度</a></div></details><details class="dir-ch" open><summary>第2章 线性表<span class="cnt">12节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c2s1">定义与基本操作</a><a href="wangdao.html#wd-c2s2">顺序表的定义</a><a href="wangdao.html#wd-c2s3">顺序表插入删除</a><a href="wangdao.html#wd-c2s4">顺序表查找</a><a href="wangdao.html#wd-c2s5">单链表定义</a><a href="wangdao.html#wd-c2s6">单链表插入删除</a><a href="wangdao.html#wd-c2s7">单链表查找</a><a href="wangdao.html#wd-c2s8">单链表建立</a><a href="wangdao.html#wd-c2s9">双链表</a><a href="wangdao.html#wd-c2s10">循环链表</a><a href="wangdao.html#wd-c2s11">静态链表</a><a href="wangdao.html#wd-c2s12">顺序表vs链表</a></div></details><details class="dir-ch" open><summary>第3章 栈队列数组<span class="cnt">13节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c3s1">栈的基本概念</a><a href="wangdao.html#wd-c3s2">栈的顺序实现</a><a href="wangdao.html#wd-c3s3">栈的链式实现</a><a href="wangdao.html#wd-c3s4">队列基本概念</a><a href="wangdao.html#wd-c3s5">队列顺序实现</a><a href="wangdao.html#wd-c3s6">队列链式实现</a><a href="wangdao.html#wd-c3s7">双端队列</a><a href="wangdao.html#wd-c3s8">括号匹配</a><a href="wangdao.html#wd-c3s9">表达式求值(上)</a><a href="wangdao.html#wd-c3s10">表达式求值(下)</a><a href="wangdao.html#wd-c3s11">栈与递归</a><a href="wangdao.html#wd-c3s12">队列的应用</a><a href="wangdao.html#wd-c3s13">特殊矩阵压缩</a></div></details><details class="dir-ch" open><summary>第4章 串<span class="cnt">6节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c4s1">定义与基本操作</a><a href="wangdao.html#wd-c4s2">存储结构</a><a href="wangdao.html#wd-c4s3">朴素模式匹配</a><a href="wangdao.html#wd-c4s4">KMP算法</a><a href="wangdao.html#wd-c4s5">next数组</a><a href="wangdao.html#wd-c4s6">KMP进一步优化</a></div></details><details class="dir-ch" open><summary>第5章 树与二叉树<span class="cnt">17节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c5s1">树定义与术语</a><a href="wangdao.html#wd-c5s2">树的性质</a><a href="wangdao.html#wd-c5s3">二叉树定义</a><a href="wangdao.html#wd-c5s4">二叉树性质</a><a href="wangdao.html#wd-c5s5">二叉树存储</a><a href="wangdao.html#wd-c5s6">先中后序遍历</a><a href="wangdao.html#wd-c5s7">层次遍历</a><a href="wangdao.html#wd-c5s8">遍历序列构造二叉树</a><a href="wangdao.html#wd-c5s9">线索二叉树概念</a><a href="wangdao.html#wd-c5s10">二叉树线索化</a><a href="wangdao.html#wd-c5s11">线索找前驱后继</a><a href="wangdao.html#wd-c5s12">树存储结构</a><a href="wangdao.html#wd-c5s13">树森林↔二叉树</a><a href="wangdao.html#wd-c5s14">树森林遍历</a><a href="wangdao.html#wd-c5s15">哈夫曼树</a><a href="wangdao.html#wd-c5s16">并查集</a><a href="wangdao.html#wd-c5s17">并查集优化</a></div></details><details class="dir-ch" open><summary>第6章 图<span class="cnt">14节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c6s1">图基本概念</a><a href="wangdao.html#wd-c6s2">邻接矩阵</a><a href="wangdao.html#wd-c6s3">邻接表</a><a href="wangdao.html#wd-c6s4">十字链表/邻接多重表</a><a href="wangdao.html#wd-c6s5">图基本操作</a><a href="wangdao.html#wd-c6s6">BFS广度优先</a><a href="wangdao.html#wd-c6s7">DFS深度优先</a><a href="wangdao.html#wd-c6s8">最小生成树</a><a href="wangdao.html#wd-c6s9">最短路径BFS</a><a href="wangdao.html#wd-c6s10">Dijkstra</a><a href="wangdao.html#wd-c6s11">Floyd</a><a href="wangdao.html#wd-c6s12">DAG描述表达式</a><a href="wangdao.html#wd-c6s13">拓扑排序</a><a href="wangdao.html#wd-c6s14">关键路径</a></div></details><details class="dir-ch" open><summary>第7章 查找<span class="cnt">17节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c7s1">查找基本概念</a><a href="wangdao.html#wd-c7s2">顺序查找</a><a href="wangdao.html#wd-c7s3">折半查找</a><a href="wangdao.html#wd-c7s4">分块查找</a><a href="wangdao.html#wd-c7s5">二叉排序树</a><a href="wangdao.html#wd-c7s6">平衡二叉树</a><a href="wangdao.html#wd-c7s7">AVL删除</a><a href="wangdao.html#wd-c7s8">红黑树定义性质</a><a href="wangdao.html#wd-c7s9">红黑树插入</a><a href="wangdao.html#wd-c7s10">红黑树删除</a><a href="wangdao.html#wd-c7s11">B树</a><a href="wangdao.html#wd-c7s12">B树插删</a><a href="wangdao.html#wd-c7s13">B+树</a><a href="wangdao.html#wd-c7s14">散列基本概念</a><a href="wangdao.html#wd-c7s15">散列函数构造</a><a href="wangdao.html#wd-c7s16">拉链法</a><a href="wangdao.html#wd-c7s17">开放定址法</a></div></details><details class="dir-ch" open><summary>第8章 排序<span class="cnt">14节</span></summary><div class="dir-pills"><a href="wangdao.html#wd-c8s1">排序基本概念</a><a href="wangdao.html#wd-c8s2">插入排序</a><a href="wangdao.html#wd-c8s3">希尔排序</a><a href="wangdao.html#wd-c8s4">冒泡排序</a><a href="wangdao.html#wd-c8s5">快速排序</a><a href="wangdao.html#wd-c8s6">简单选择排序</a><a href="wangdao.html#wd-c8s7">堆排序</a><a href="wangdao.html#wd-c8s8">堆插入删除</a><a href="wangdao.html#wd-c8s9">归并排序</a><a href="wangdao.html#wd-c8s10">基数排序</a><a href="wangdao.html#wd-c8s11">外部排序</a><a href="wangdao.html#wd-c8s12">败者树</a><a href="wangdao.html#wd-c8s13">置换-选择排序</a><a href="wangdao.html#wd-c8s14">最佳归并树</a></div></details></div>
     </div>
-    <p class="sub">标签约定：<b>王道核心考点</b> / <b>王道易错提醒</b> / <b>本校期末考点</b> / <b>期末真题</b> / <b>必考模板</b> / <b>考场禁用STL</b> / <b>机试可用</b></p>
+    <div class="dir-card" id="dir-course">
+      <a class="dir-head" href="course.html"><span class="ic">🏫</span>
+        <span class="tt">本校课程PPT同步精讲<small>27讲 · 51考点框</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">完全对应本校课件Lecture 0-26，含考核范围与「不考清单」原话。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>第0章 导学与总结<span class="cnt">2讲</span></summary><div class="dir-pills"><a href="course.html#c-l0">L0 课程简介与考核</a><a href="course.html#c-l26">L26 期末总结·不考清单</a></div></details><details class="dir-ch" open><summary>第1-2章 绪论<span class="cnt">2讲</span></summary><div class="dir-pills"><a href="course.html#c-l1">L1 数据结构概述</a><a href="course.html#c-l2">L2 算法与复杂度</a></div></details><a class="dir-row" href="course.html#c-l3"><b>第3章 线性表(链接存储)</b><span>L3 链表·双指针·多项式</span></a><a class="dir-row" href="course.html#c-l4"><b>第4章 栈和队列</b><span>L4 表达式·栈混洗·BFS队列</span></a><a class="dir-row" href="course.html#c-l5"><b>第5章 数组与矩阵</b><span>L5 寻址·压缩·区间技巧</span></a><details class="dir-ch" open><summary>第6章 串<span class="cnt">2讲</span></summary><div class="dir-pills"><a href="course.html#c-l6">L6 朴素匹配与KMP</a><a href="course.html#c-tut">Tut1 模糊匹配(DP)</a></div></details><details class="dir-ch" open><summary>第7章 树与二叉树<span class="cnt">5讲</span></summary><div class="dir-pills"><a href="course.html#c-l7">L7 定义与五引理</a><a href="course.html#c-l8">L8 存储与遍历</a><a href="course.html#c-l9">L9 线索二叉树</a><a href="course.html#c-l10">L10 树·森林</a><a href="course.html#c-l11">L11 哈夫曼·表达式树·并查集</a></div></details><details class="dir-ch" open><summary>第8章 图<span class="cnt">5讲</span></summary><div class="dir-pills"><a href="course.html#c-l12">L12 概念与存储</a><a href="course.html#c-l13">L13 DFS/BFS</a><a href="course.html#c-l14">L14 拓扑·关键路径</a><a href="course.html#c-l15">L15 最短路径</a><a href="course.html#c-l16">L16 最小支撑树</a></div></details><details class="dir-ch" open><summary>第9章 排序<span class="cnt">5讲</span></summary><div class="dir-pills"><a href="course.html#c-l17">L17 平方阶四兄弟</a><a href="course.html#c-l18">L18 堆排序·TopK</a><a href="course.html#c-l19">L19 快排·快选</a><a href="course.html#c-l20">L20 归并·下界</a><a href="course.html#c-l21">L21 分布排序</a></div></details><details class="dir-ch" open><summary>第10章 查找<span class="cnt">4讲</span></summary><div class="dir-pills"><a href="course.html#c-l22">L22 线性查找·ASL</a><a href="course.html#c-l23">L23 BST·AVL·红黑</a><a href="course.html#c-l24">L24 B树·B+树</a><a href="course.html#c-l25">L25 散列</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-stl">
+      <a class="dir-head" href="stl.html"><span class="ic">🧰</span>
+        <span class="tt">C++ STL 工具接口详解<small>22组件 · 63课件链接</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">每个容器的接口表/复杂度/考场可用边界，笔试机试双口径。</p>
+      <div class="dir-body"><a class="dir-row" href="stl.html#p2-pre"><b>应试须知</b><span>STL考场可用边界(L26原话)</span></a><details class="dir-ch" open><summary>序列容器<span class="cnt">4项</span></summary><div class="dir-pills"><a href="stl.html#s-vector">vector 动态数组</a><a href="stl.html#s-string">string 字符串</a><a href="stl.html#s-deque">deque 双端队列</a><a href="stl.html#s-list">list 双向链表</a></div></details><details class="dir-ch" open><summary>关联与无序容器<span class="cnt">5项</span></summary><div class="dir-pills"><a href="stl.html#s-set">set / multiset</a><a href="stl.html#s-map">map / multimap</a><a href="stl.html#s-unord">unordered_set / map</a><a href="stl.html#s-adapt">stack / queue / priority_queue</a><a href="stl.html#s-iter">迭代器与失效场景</a></div></details><details class="dir-ch" open><summary>通用算法<span class="cnt">9项</span></summary><div class="dir-pills"><a href="stl.html#s-sort">总览 与 sort/stable_sort</a><a href="stl.html#s-reverse">reverse</a><a href="stl.html#s-find">find</a><a href="stl.html#s-count">count</a><a href="stl.html#s-lower">lower/upper_bound</a><a href="stl.html#s-unique">unique</a><a href="stl.html#s-nth">nth_element</a><a href="stl.html#s-maxmin">max/min家族</a><a href="stl.html#s-swap">swap</a></div></details><details class="dir-ch" open><summary>工具类<span class="cnt">3项</span></summary><div class="dir-pills"><a href="stl.html#s-pair">pair 二元组</a><a href="stl.html#s-tuple">tuple 多元组</a><a href="stl.html#s-cmp">比较函数/仿函数必考</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-algorithms">
+      <a class="dir-head" href="algorithms.html"><span class="ic">✍️</span>
+        <span class="tt">算法标准模板<small>33个模板</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">可直接默写的考场模板：思想→接口→模板→书写步骤。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>第1章 线性表<span class="cnt">4个</span></summary><div class="dir-pills"><a href="algorithms.html#a-seqlist">顺序表操作</a><a href="algorithms.html#a-linklist">链表操作</a><a href="algorithms.html#a-twoptr">双指针</a><a href="algorithms.html#a-slowfast">快慢指针</a></div></details><details class="dir-ch" open><summary>第2章 栈与队列<span class="cnt">4个</span></summary><div class="dir-pills"><a href="algorithms.html#a-stack">栈的模拟</a><a href="algorithms.html#a-queue">队列的模拟</a><a href="algorithms.html#a-monostack">单调栈</a><a href="algorithms.html#a-monoqueue">单调队列</a></div></details><details class="dir-ch" open><summary>第3章 树与二叉树<span class="cnt">6个</span></summary><div class="dir-pills"><a href="algorithms.html#a-bitree">递归遍历</a><a href="algorithms.html#a-bitreerec">非递归与层序</a><a href="algorithms.html#a-bitreeattr">属性计算</a><a href="algorithms.html#a-thread">线索二叉树</a><a href="algorithms.html#a-huffman">哈夫曼树</a><a href="algorithms.html#a-unionfind">并查集</a></div></details><details class="dir-ch" open><summary>第4章 图<span class="cnt">8个</span></summary><div class="dir-pills"><a href="algorithms.html#a-graphstore">存储结构</a><a href="algorithms.html#a-graphbfsdfs">BFS 与 DFS</a><a href="algorithms.html#a-topo">拓扑排序</a><a href="algorithms.html#a-dijkstra">Dijkstra</a><a href="algorithms.html#a-floyd">Floyd</a><a href="algorithms.html#a-prim">Prim</a><a href="algorithms.html#a-kruskal">Kruskal</a><a href="algorithms.html#a-aoe">关键路径</a></div></details><details class="dir-ch" open><summary>第5章 查找<span class="cnt">4个</span></summary><div class="dir-pills"><a href="algorithms.html#a-seqbin">顺序与折半</a><a href="algorithms.html#a-bst">二叉排序树</a><a href="algorithms.html#a-avl">平衡二叉树</a><a href="algorithms.html#a-hash">哈希表</a></div></details><details class="dir-ch" open><summary>第6章 内部排序<span class="cnt">7个</span></summary><div class="dir-pills"><a href="algorithms.html#a-sortinsert">插入/希尔</a><a href="algorithms.html#a-sortbubble">冒泡</a><a href="algorithms.html#a-sortquick">快速</a><a href="algorithms.html#a-sortselect">选择/堆</a><a href="algorithms.html#a-sortmerge">归并</a><a href="algorithms.html#a-sortradix">基数</a><a href="algorithms.html#a-sortsummary">总结对比表</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-exams">
+      <a class="dir-head" href="exams.html"><span class="ic">🎯</span>
+        <span class="tt">本校期末真题逐题精讲<small>182题 · 10套卷</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">10套往届题182题全解析：考点定位/思路/答案/踩坑/出题规律，可按题型章节筛选。</p>
+      <div class="dir-body"><a class="dir-row" href="exams.html#ex-overview"><b>总览</b><span>十套真题出题规律总览</span></a><details class="dir-ch" open><summary>按章节分类刷真题<span class="cnt">8章</span></summary><div class="dir-pills"><a href="exams.html#ex-c1">绪论(复杂度)</a><a href="exams.html#ex-c2">线性表</a><a href="exams.html#ex-c3">栈队列数组</a><a href="exams.html#ex-c4">串</a><a href="exams.html#ex-c5">树与二叉树</a><a href="exams.html#ex-c6">图</a><a href="exams.html#ex-c7">查找</a><a href="exams.html#ex-c8">排序</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-practice">
+      <a class="dir-head" href="practice.html"><span class="ic">⚔️</span>
+        <span class="tt">STL×算法实战<small>9题</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">9道408风格综合题：STL选型+完整代码+易错总结。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>综合实战（9题）<span class="cnt">9题</span></summary><div class="dir-pills"><a href="practice.html#e1">vector+sort 排序去重</a><a href="practice.html#e2">stack 括号/后缀表达式</a><a href="practice.html#e3">queue 层序与图BFS</a><a href="practice.html#e4">priority_queue TopK/哈夫曼</a><a href="practice.html#e5">unordered_map 统计</a><a href="practice.html#e6">set/map 前驱后继</a><a href="practice.html#e7">滑动窗口与接雨水</a><a href="practice.html#e8">Dijkstra/拓扑排序</a><a href="practice.html#e9">lower_bound 进阶</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-leetcode">
+      <a class="dir-head" href="leetcode.html"><span class="ic">🔥</span>
+        <span class="tt">力扣Hot100精讲<small>67题</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">67道数据结构强相关Hot100，考点映射回各部分，支持难度筛选。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>按模块刷题（67题）<span class="cnt">9类</span></summary><div class="dir-pills"><a href="leetcode.html#p4-array">数组与双指针(10)</a><a href="leetcode.html#p4-link">链表(8)</a><a href="leetcode.html#p4-stackqueue">栈与队列(8)</a><a href="leetcode.html#p4-hash">哈希表(7)</a><a href="leetcode.html#p4-tree">二叉树(12)</a><a href="leetcode.html#p4-graph">图与BFS/DFS(5)</a><a href="leetcode.html#p4-binarysearch">二分查找(6)</a><a href="leetcode.html#p4-sortheap">排序与堆(5)</a><a href="leetcode.html#p4-greedydp">贪心与基础DP(6)</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-wdex">
+      <a class="dir-head" href="wdex.html"><span class="ic">📝</span>
+        <span class="tt">王道课后题<small>641选择 · 155综合</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">2027王道书课后题全量：选择题官方答案+逐题独立验算解析、综合题完整解答，按王道8章组织。</p>
+      <div class="dir-body"><a class="dir-row" href="wdex.html#wdex-overview"><b>总览</b><span>刷题指南与统计</span></a><a class="dir-row" href="wdex-c1.html#wdex1"><b>第1章 绪论</b><span>第1章课后题</span></a><a class="dir-row" href="wdex-c2.html#wdex2"><b>第2章 线性表</b><span>第2章课后题</span></a><a class="dir-row" href="wdex-c3.html#wdex3"><b>第3章 栈、队列和数组</b><span>第3章课后题</span></a><a class="dir-row" href="wdex-c4.html#wdex4"><b>第4章 串</b><span>第4章课后题</span></a><a class="dir-row" href="wdex-c5.html#wdex5"><b>第5章 树与二叉树</b><span>第5章课后题</span></a><a class="dir-row" href="wdex-c6.html#wdex6"><b>第6章 图</b><span>第6章课后题</span></a><a class="dir-row" href="wdex-c7.html#wdex7"><b>第7章 查找</b><span>第7章课后题</span></a><a class="dir-row" href="wdex-c8.html#wdex8"><b>第8章 排序</b><span>第8章课后题</span></a></div>
+    </div>
+    <div class="dir-card" id="dir-code">
+      <a class="dir-head" href="code.html"><span class="ic">💾</span>
+        <span class="tt">王道代码汇总<small>44 段代码</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">《25王道数据结构代码汇总》全量整理：线性表到排序的规范C实现，可编译、带注释、一键复制。</p>
+      <div class="dir-body"><details class="dir-ch" open><summary>章节导航<span class="cnt">8章</span></summary><div class="dir-pills"><a href="code.html#wcode">代码汇总</a><a href="code.html#wc-ch1">第1章 线性表</a><a href="code.html#wc-ch2">第2章 栈和队列</a><a href="code.html#wc-ch3">第3章 串</a><a href="code.html#wc-ch4">第4章 树与二叉树</a><a href="code.html#wc-ch5">第5章 图</a><a href="code.html#wc-ch6">第6章 查找</a><a href="code.html#wc-ch7">第7章 排序</a></div></details></div>
+    </div>
+    <div class="dir-card" id="dir-progress">
+      <a class="dir-head" href="progress.html"><span class="ic">📅</span>
+        <span class="tt">打卡进度<small>全站通用</small></span><span class="go">进入 →</span></a>
+      <p class="dir-desc">每日打卡+连续天数+各模块「已学」进度条，数据localStorage/Supabase双模式同步。</p>
+      <div class="dir-body"><a class="dir-row" href="progress.html"><b>打卡与学习进度</b><span>打卡日历 · 模块进度条</span></a></div>
+    </div>
   </div>
-
-  <div class="mod-grid">
-    <a class="mod-card" href="wangdao.html">
-      <span class="meta">97节 · 210+例题</span><span class="ic">📖</span>
-      <h3>王道数据结构同步精讲</h3><p>对应王道PPT八章97节：导入/考点/代码/易错/例题五件套，408与期末双修。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="course.html">
-      <span class="meta">27讲 · 51考点框</span><span class="ic">🏫</span>
-      <h3>本校课程PPT同步精讲</h3><p>完全对应本校课件Lecture 0-26，含考核范围与「不考清单」原话。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="stl.html">
-      <span class="meta">22组件 · 63课件链接</span><span class="ic">🧰</span>
-      <h3>C++ STL 工具接口详解</h3><p>每个容器的接口表/复杂度/考场可用边界，笔试机试双口径。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="algorithms.html">
-      <span class="meta">33个模板</span><span class="ic">✍️</span>
-      <h3>算法标准模板</h3><p>可直接默写的考场模板：思想→接口→模板→书写步骤。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="exams.html">
-      <span class="meta">182题 · 10套卷</span><span class="ic">🎯</span>
-      <h3>本校期末真题逐题精讲</h3><p>10套往届题182题全解析：考点定位/思路/答案/踩坑/出题规律，可按题型章节筛选。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="practice.html">
-      <span class="meta">9题</span><span class="ic">⚔️</span>
-      <h3>STL×算法实战</h3><p>9道408风格综合题：STL选型+完整代码+易错总结。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="leetcode.html">
-      <span class="meta">67题</span><span class="ic">🔥</span>
-      <h3>力扣Hot100精讲</h3><p>67道数据结构强相关Hot100，考点映射回各部分，支持难度筛选。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="progress.html">
-      <span class="meta">全站通用</span><span class="ic">📅</span>
-      <h3>打卡进度</h3><p>每日打卡+连续天数+各模块「已学」进度条，数据localStorage/Supabase双模式同步。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="wdex.html">
-      <span class="meta">641选择 · 155综合</span><span class="ic">📝</span>
-      <h3>王道课后题</h3><p>2027王道书课后题全量：选择题官方答案+逐题独立验算解析、综合题完整解答，按王道8章组织。</p><span class="go">进入学习 →</span>
-    </a>
-    <a class="mod-card" href="code.html">
-      <span class="meta">44 段代码</span><span class="ic">💾</span>
-      <h3>王道代码汇总</h3><p>《25王道数据结构代码汇总》全量整理：线性表到排序的规范C实现，可编译、带注释、一键复制。</p><span class="go">进入学习 →</span>
-    </a>
-  </div>
+</div>
 
 </main>
 <div class="thu-watermark">学</div>
